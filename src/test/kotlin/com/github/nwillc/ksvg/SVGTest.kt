@@ -36,11 +36,12 @@ internal class SVGTest {
     internal fun testRect() {
         val svg = svg {
             rect {}
+            text {}
         }
 
         val sb = StringBuilder()
         svg.render(sb)
 
-        assertThat(sb.toString()).isEqualTo("<svg><rect></rect></svg>")
+        assertThat(sb.toString()).isEqualTo("<svg><rect></rect><text></text></svg>")
     }
 }

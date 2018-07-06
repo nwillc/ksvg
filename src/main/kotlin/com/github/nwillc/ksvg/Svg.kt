@@ -49,9 +49,18 @@ class SVG : Tag("svg") {
         children.add(rect)
         return rect
     }
+
+    fun text(init: TEXT.() -> Unit): TEXT {
+        val text = TEXT()
+        text.init()
+        children.add(text)
+        return text
+    }
 }
 
 class RECT : Tag("rect")
+
+class TEXT : Tag("text")
 
 fun svg(init: SVG.() -> Unit): SVG {
     val svg = SVG()
