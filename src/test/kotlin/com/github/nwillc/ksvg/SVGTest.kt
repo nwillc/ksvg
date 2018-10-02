@@ -17,7 +17,7 @@ internal class SVGTest {
         val svg = svg { }
         val sb = StringBuilder()
         svg.render(sb)
-        assertThat(sb.toString()).isEqualTo("<svg></svg>")
+        assertThat(sb.toString()).isEqualTo("<svg/>\n")
     }
 
     @Test
@@ -29,19 +29,98 @@ internal class SVGTest {
         val sb = StringBuilder()
         svg.render(sb)
 
-        assertThat(sb.toString()).isEqualTo("<svg viewBox='0 0 10 10'></svg>")
+        assertThat(sb.toString()).isEqualTo("<svg viewBox=\"0 0 10 10\"/>\n")
     }
 
     @Test
-    internal fun testRect() {
+    internal fun testOrigin() {
         val svg = svg {
-            rect {}
-            text {}
+            text {
+                x = 1
+                y = 2
+            }
         }
 
         val sb = StringBuilder()
         svg.render(sb)
 
-        assertThat(sb.toString()).isEqualTo("<svg><rect></rect><text></text></svg>")
+        assertThat(sb.toString()).isEqualTo("<svg><text x=\"1\" y=\"2\"/>\n</svg>\n")
+    }
+
+    @Test
+    internal fun testDemensions() {
+        val svg = svg {
+            rect {
+                width = 20
+                height = 10
+            }
+        }
+
+        val sb = StringBuilder()
+        svg.render(sb)
+
+        assertThat(sb.toString()).isEqualTo("<svg><rect width=\"20\" height=\"10\"/>\n</svg>\n")
+    }
+
+    @Test
+    internal fun testRect() {
+        val svg = svg {
+            rect {
+                x = 1
+                y = 2
+            }
+            text {
+                +"Hello World"
+            }
+        }
+
+        val sb = StringBuilder()
+        svg.render(sb)
+
+        assertThat(sb.toString()).isEqualTo("<svg><rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
+    }
+
+    @Test
+    internal fun testAdd() {
+        var svg = svg {
+            rect {}
+        }
+
+        svg.text {
+            +"Hello World"
+        }
+
+        val sb = StringBuilder()
+        svg.render(sb)
+
+        assertThat(sb.toString()).isEqualTo("<svg><rect/>\n<text>Hello World</text>\n</svg>\n")
+    }
+
+    @Test
+    internal fun testFill() {
+        val svg = svg {
+            text {
+                fill = "black"
+            }
+        }
+
+        val sb = StringBuilder()
+        svg.render(sb)
+
+        assertThat(sb.toString()).isEqualTo("<svg><text fill=\"black\"/>\n</svg>\n")
+    }
+
+    @Test
+    internal fun testStyle() {
+        val svg = svg {
+            rect {
+                style = "fill:black"
+            }
+        }
+
+        val sb = StringBuilder()
+        svg.render(sb)
+
+        assertThat(sb.toString()).isEqualTo("<svg><rect style=\"fill:black\"/>\n</svg>\n")
     }
 }
