@@ -38,14 +38,6 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'com.github.nwillc.ksvg.MainKt'
-    }
-
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-}
-
 test {
     useJUnitPlatform()
 
