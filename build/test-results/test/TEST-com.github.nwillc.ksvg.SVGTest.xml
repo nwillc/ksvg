@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.nwillc.ksvg.SVGTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-10-14T16:42:28" hostname="scraps.local" time="0.263">
+  <properties/>
+  <testcase name="testSvgWithAttr$ksvg()" classname="com.github.nwillc.ksvg.SVGTest" time="0.251"/>
+  <testcase name="testSvg$ksvg()" classname="com.github.nwillc.ksvg.SVGTest" time="0.002"/>
+  <testcase name="testSvgWithTags$ksvg()" classname="com.github.nwillc.ksvg.SVGTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

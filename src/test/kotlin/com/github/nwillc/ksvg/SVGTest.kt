@@ -33,7 +33,7 @@ internal class SVGTest {
     }
 
     @Test
-    internal fun testRect() {
+    internal fun testSvgWithTags() {
         val svg = svg {
             rect {}
             text {}
