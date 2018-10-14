@@ -8,7 +8,7 @@ env:
   - TERM=dumb
 
 after_success:
-  - ./gradlew clean publish bintrayUpload
+  - ./gradlew publish bintrayUpload
 
 branches:
   only:
