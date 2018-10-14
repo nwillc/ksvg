@@ -123,4 +123,21 @@ internal class SVGTest {
 
         assertThat(sb.toString()).isEqualTo("<svg><rect style=\"fill:black\"/>\n</svg>\n")
     }
+
+    @Test
+    internal fun testCircle() {
+        var svg = svg {
+            circle {
+                cx = 10
+                cy = 10
+                r = 5
+                fill = "blue"
+            }
+        }
+
+        val sb = StringBuilder()
+        svg.render(sb)
+
+        assertThat(sb.toString()).isEqualTo("<svg><circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
+    }
 }

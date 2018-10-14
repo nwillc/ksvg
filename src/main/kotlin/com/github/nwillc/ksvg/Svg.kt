@@ -118,8 +118,32 @@ class SVG : Tag("svg") {
         children.add(text)
         return text
     }
+
+    fun circle(init: CIRCLE.() -> Unit): CIRCLE {
+        val circle = CIRCLE()
+        circle.init()
+        children.add(circle)
+        return circle
+    }
 }
 
+class CIRCLE : Tag("circle"), HasAttributes, HasFill {
+    var cx: Int
+        get() = attributes["cx"]!!.toInt()
+        set(value) {
+            attributes["cx"] = value.toString()
+        }
+    var cy: Int
+        get() = attributes["cy"]!!.toInt()
+        set(value) {
+            attributes["cy"] = value.toString()
+        }
+    var r: Int
+        get() = attributes["r"]!!.toInt()
+        set(value) {
+            attributes["r"] = value.toString()
+        }
+}
 class RECT : Tag("rect"), HasOrigin, HasDimensions, HasStyle
 
 class TEXT : TagWithText("text"), HasOrigin, HasFill
