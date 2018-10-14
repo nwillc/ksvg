@@ -15,23 +15,85 @@ interface Element {
     fun render(builder: StringBuilder)
 }
 
+class TextElement(private val text: String) : Element {
+    override fun render(builder: StringBuilder) {
+        builder.append(text)
+    }
+}
+
+interface HasAttributes {
+    val attributes: MutableMap<String, String>
+}
+
+interface HasOrigin : HasAttributes {
+    var x: Int
+        get() = attributes["x"]!!.toInt()
+        set(value) {
+            attributes["x"] = value.toString()
+        }
+    var y: Int
+        get() = attributes["y"]!!.toInt()
+        set(value) {
+            attributes["y"] = value.toString()
+        }
+}
+
+interface HasDimensions : HasAttributes {
+    var height: Int
+        get() = attributes["height"]!!.toInt()
+        set(value) {
+            attributes["height"] = value.toString()
+        }
+    var width: Int
+        get() = attributes["width"]!!.toInt()
+        set(value) {
+            attributes["width"] = value.toString()
+        }
+}
+
+interface HasFill : HasAttributes {
+    var fill: String
+        get() = attributes["fill"]!!
+        set(value) {
+            attributes["fill"] = value
+        }
+}
+
+interface HasStyle : HasAttributes {
+    var style: String
+        get() = attributes["style"]!!
+        set(value) {
+            attributes["style"] = value
+        }
+}
+
 @SvgTagMarker
-abstract class Tag(val name: String) : Element {
-    val attributes = hashMapOf<String, String>()
+abstract class Tag(private val name: String) : Element, HasAttributes {
+    override val attributes = hashMapOf<String, String>()
     val children = arrayListOf<Element>()
 
     override fun render(builder: StringBuilder) {
         builder.append("<$name")
         if (attributes.isNotEmpty()) {
-            builder.append(attributes.entries.joinToString(prefix = " ", separator = ",") {
-                it.key + "='" + it.value + "'"
+            builder.append(attributes.entries.joinToString(prefix = " ", separator = " ") {
+                it.key + "=\"" + it.value + '"'
             })
         }
-        builder.append('>')
-        children.forEach {
-            it.render(builder)
+        if (children.isEmpty()) {
+            builder.append("/>\n")
+        } else {
+            builder.append('>')
+            children.forEach {
+                it.render(builder)
+            }
+            builder.append("</$name>\n")
         }
-        builder.append("</$name>")
+    }
+}
+
+abstract class TagWithText(name: String) : Tag(name) {
+    operator fun String.unaryPlus() {
+        children.add(TextElement(this))
     }
 }
 
@@ -58,9 +120,9 @@ class SVG : Tag("svg") {
     }
 }
 
-class RECT : Tag("rect")
+class RECT : Tag("rect"), HasOrigin, HasDimensions, HasStyle
 
-class TEXT : Tag("text")
+class TEXT : TagWithText("text"), HasOrigin, HasFill
 
 fun svg(init: SVG.() -> Unit): SVG {
     val svg = SVG()
