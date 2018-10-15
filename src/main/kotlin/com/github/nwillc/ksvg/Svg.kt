@@ -15,7 +15,7 @@ interface Element {
     fun render(builder: StringBuilder)
 }
 
-class TextElement(private val text: String) : Element {
+class TextElement(internal val text: String) : Element {
     override fun render(builder: StringBuilder) {
         builder.append(text)
     }
@@ -92,18 +92,20 @@ abstract class Tag(private val name: String) : Element, HasAttributes {
 }
 
 abstract class TagWithText(name: String) : Tag(name) {
-    operator fun String.unaryPlus() {
-        children.add(TextElement(this))
-    }
+    var body: String
+        get() = (children[0] as TextElement).text
+        set(value) {
+            children.add(TextElement(value))
+        }
 }
 
 class SVG : Tag("svg"), HasDimensions {
+    
     var viewBox: String
         get() = attributes["viewBox"]!!
         set(value) {
             attributes["viewBox"] = value
         }
-
 
     fun rect(init: RECT.() -> Unit): RECT {
         val rect = RECT()

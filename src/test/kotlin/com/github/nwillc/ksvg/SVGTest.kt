@@ -53,7 +53,7 @@ internal class SVGTest {
             y = 2
         }
         svg.text {
-            +"Hello World"
+            body = "Hello World"
         }
 
         assertRenders("<svg><rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
@@ -64,7 +64,7 @@ internal class SVGTest {
         svg.rect {}
 
         svg.text {
-            +"Hello World"
+            body = "Hello World"
         }
 
         assertRenders("<svg><rect/>\n<text>Hello World</text>\n</svg>\n")
@@ -100,7 +100,7 @@ internal class SVGTest {
        svg.a {
            href = "http://www.google.com"
            text {
-             +"google.com"
+             body = "google.com"
            }
        }
         assertRenders("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n</a>\n</svg>\n")
