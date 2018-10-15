@@ -97,7 +97,7 @@ abstract class TagWithText(name: String) : Tag(name) {
     }
 }
 
-class SVG : Tag("svg") {
+class SVG : Tag("svg"), HasDimensions {
     var viewBox: String
         get() = attributes["viewBox"]!!
         set(value) {
@@ -151,7 +151,17 @@ class CIRCLE : Tag("circle"), HasAttributes, HasFill {
             attributes["r"] = value.toString()
         }
 }
-class RECT : Tag("rect"), HasOrigin, HasDimensions, HasStyle
+
+class TITLE : TagWithText("title")
+
+class RECT : Tag("rect"), HasOrigin, HasDimensions, HasStyle {
+    fun title(block: TITLE.() -> Unit): TITLE {
+        val title = TITLE()
+        title.block()
+        children.add(title)
+        return title
+    }
+}
 
 class TEXT : TagWithText("text"), HasOrigin, HasFill
 
