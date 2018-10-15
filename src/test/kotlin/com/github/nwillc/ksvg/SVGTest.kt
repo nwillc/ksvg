@@ -12,132 +12,114 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class SVGTest {
+    private val svg = svg {}
+    private val sb = StringBuilder()
+
     @Test
     internal fun testSvg() {
-        val svg = svg { }
-        val sb = StringBuilder()
-        svg.render(sb)
-        assertThat(sb.toString()).isEqualTo("<svg/>\n")
+       assertRenders("<svg/>\n")
     }
 
     @Test
     internal fun testSvgWithAttr() {
-        val svg = svg {
-            viewBox = "0 0 10 10"
-        }
-
-        val sb = StringBuilder()
-        svg.render(sb)
-
-        assertThat(sb.toString()).isEqualTo("<svg viewBox=\"0 0 10 10\"/>\n")
+        svg.viewBox = "0 0 10 10"
+        assertRenders("<svg viewBox=\"0 0 10 10\"/>\n")
     }
 
     @Test
     internal fun testOrigin() {
-        val svg = svg {
-            text {
-                x = 1
-                y = 2
-            }
+        svg.text {
+            x = 1
+            y = 2
         }
 
-        val sb = StringBuilder()
-        svg.render(sb)
-
-        assertThat(sb.toString()).isEqualTo("<svg><text x=\"1\" y=\"2\"/>\n</svg>\n")
+        assertRenders("<svg><text x=\"1\" y=\"2\"/>\n</svg>\n")
     }
 
     @Test
     internal fun testDemensions() {
-        val svg = svg {
-            rect {
-                width = 20
-                height = 10
-            }
+        svg.rect {
+            width = 20
+            height = 10
         }
 
-        val sb = StringBuilder()
-        svg.render(sb)
-
-        assertThat(sb.toString()).isEqualTo("<svg><rect width=\"20\" height=\"10\"/>\n</svg>\n")
+        assertRenders("<svg><rect width=\"20\" height=\"10\"/>\n</svg>\n")
     }
 
     @Test
     internal fun testSvgWithTags() {
-        val svg = svg {
-            rect {
-                x = 1
-                y = 2
-            }
-            text {
-                +"Hello World"
-            }
+        svg.rect {
+            x = 1
+            y = 2
+        }
+        svg.text {
+            +"Hello World"
         }
 
-        val sb = StringBuilder()
-        svg.render(sb)
-
-        assertThat(sb.toString()).isEqualTo("<svg><rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
+        assertRenders("<svg><rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
     }
 
     @Test
     internal fun testAdd() {
-        var svg = svg {
-            rect {}
-        }
+        svg.rect {}
 
         svg.text {
             +"Hello World"
         }
 
-        val sb = StringBuilder()
-        svg.render(sb)
+        assertRenders("<svg><rect/>\n<text>Hello World</text>\n</svg>\n")
+    }
 
-        assertThat(sb.toString()).isEqualTo("<svg><rect/>\n<text>Hello World</text>\n</svg>\n")
+    @Test
+    internal fun testRawAttributes() {
+        svg.attributes["foo"] = "bar"
+
+        assertRenders("<svg foo=\"bar\"/>\n")
     }
 
     @Test
     internal fun testFill() {
-        val svg = svg {
-            text {
-                fill = "black"
-            }
+        svg.text {
+            fill = "black"
         }
 
-        val sb = StringBuilder()
-        svg.render(sb)
-
-        assertThat(sb.toString()).isEqualTo("<svg><text fill=\"black\"/>\n</svg>\n")
+        assertRenders("<svg><text fill=\"black\"/>\n</svg>\n")
     }
 
     @Test
     internal fun testStyle() {
-        val svg = svg {
-            rect {
-                style = "fill:black"
-            }
+        svg.rect {
+            style = "fill:black"
         }
 
-        val sb = StringBuilder()
-        svg.render(sb)
+        assertRenders("<svg><rect style=\"fill:black\"/>\n</svg>\n")
+    }
 
-        assertThat(sb.toString()).isEqualTo("<svg><rect style=\"fill:black\"/>\n</svg>\n")
+    @Test
+    internal fun testHref() {
+       svg.a {
+           href = "http://www.google.com"
+           text {
+             +"google.com"
+           }
+       }
+        assertRenders("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n</a>\n</svg>\n")
     }
 
     @Test
     internal fun testCircle() {
-        var svg = svg {
-            circle {
-                cx = 10
-                cy = 10
-                r = 5
-                fill = "blue"
-            }
+        svg.circle {
+            cx = 10
+            cy = 10
+            r = 5
+            fill = "blue"
         }
 
-        val sb = StringBuilder()
-        svg.render(sb)
+        assertRenders("<svg><circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
+    }
 
-        assertThat(sb.toString()).isEqualTo("<svg><circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
+    internal fun assertRenders(str: String) {
+        svg.render(sb)
+        assertThat(sb.toString()).isEqualTo(str)
     }
 }
