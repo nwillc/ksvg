@@ -125,6 +125,13 @@ class SVG : Tag("svg") {
         children.add(circle)
         return circle
     }
+
+    fun a(block: A.() -> Unit): A {
+        val a = A()
+        a.block()
+        children.add(a)
+        return a
+    }
 }
 
 class CIRCLE : Tag("circle"), HasAttributes, HasFill {
@@ -147,6 +154,28 @@ class CIRCLE : Tag("circle"), HasAttributes, HasFill {
 class RECT : Tag("rect"), HasOrigin, HasDimensions, HasStyle
 
 class TEXT : TagWithText("text"), HasOrigin, HasFill
+
+class A : Tag("a") {
+    var href: String
+        get() = attributes["xlink:href"]!!
+        set(value) {
+            attributes["xlink:href"] = value
+        }
+
+    fun rect(block: RECT.() -> Unit): RECT {
+        val rect = RECT()
+        rect.block()
+        children.add(rect)
+        return rect
+    }
+
+    fun text(block: TEXT.() -> Unit): TEXT {
+        val text = TEXT()
+        text.block()
+        children.add(text)
+        return text
+    }
+}
 
 fun svg(init: SVG.() -> Unit): SVG {
     val svg = SVG()
