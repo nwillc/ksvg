@@ -37,7 +37,7 @@ internal class SVGTest {
     }
 
     @Test
-    internal fun testDemensions() {
+    internal fun testDimensions() {
         svg.rect {
             width = 20
             height = 10
@@ -118,7 +118,7 @@ internal class SVGTest {
         assertRenders("<svg><circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
     }
 
-    internal fun assertRenders(str: String) {
+    private fun assertRenders(str: String) {
         svg.render(sb)
         assertThat(sb.toString()).isEqualTo(str)
     }
