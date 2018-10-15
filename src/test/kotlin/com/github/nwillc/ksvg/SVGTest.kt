@@ -17,7 +17,7 @@ internal class SVGTest {
 
     @Test
     internal fun testSvg() {
-       assertRenders("<svg/>\n")
+        assertRenders("<svg/>\n")
     }
 
     @Test
@@ -97,12 +97,12 @@ internal class SVGTest {
 
     @Test
     internal fun testHref() {
-       svg.a {
-           href = "http://www.google.com"
-           text {
-             body = "google.com"
-           }
-       }
+        svg.a {
+            href = "http://www.google.com"
+            text {
+                body = "google.com"
+            }
+        }
         assertRenders("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n</a>\n</svg>\n")
     }
 

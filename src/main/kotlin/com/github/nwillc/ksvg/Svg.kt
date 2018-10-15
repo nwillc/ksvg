@@ -100,7 +100,7 @@ abstract class TagWithText(name: String) : Tag(name) {
 }
 
 class SVG : Tag("svg"), HasDimensions {
-    
+
     var viewBox: String
         get() = attributes["viewBox"]!!
         set(value) {
