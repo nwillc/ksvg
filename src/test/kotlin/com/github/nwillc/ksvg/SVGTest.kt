@@ -87,15 +87,6 @@ internal class SVGTest {
     }
 
     @Test
-    internal fun testStyle() {
-        svg.rect {
-            style = "fill:black"
-        }
-
-        assertRenders("<svg><rect style=\"fill:black\"/>\n</svg>\n")
-    }
-
-    @Test
     internal fun testHref() {
         svg.a {
             href = "http://www.google.com"
