@@ -243,7 +243,7 @@ class LINE : Tag("line"), HasStyle {
         }
 }
 
-class TEXT : TagWithText("body"), HasOrigin, HasFill
+class TEXT : TagWithText("text"), HasOrigin, HasFill
 
 class A : Tag("a") {
     var href: String
