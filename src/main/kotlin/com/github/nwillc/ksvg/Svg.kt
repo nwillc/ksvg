@@ -8,6 +8,9 @@
 
 package com.github.nwillc.ksvg
 
+/**
+ * Indicates something is an SVG DSL marker.
+ */
 @DslMarker
 annotation class SvgTagMarker
 
@@ -31,7 +34,7 @@ class TextElement(internal val body: String) : Element {
 }
 
 /**
- * An Element has a Map of attributes.
+ * An Element has attributes.
  */
 interface HasAttributes {
     /**
@@ -99,25 +102,15 @@ interface HasFill : HasAttributes {
 }
 
 /**
- * An Element can have a style attribute.
- */
-interface HasStyle : HasAttributes {
-    /**
-     * The style attribute.
-     */
-    var style: String
-        get() = attributes["style"]!!
-        set(value) {
-            attributes["style"] = value
-        }
-}
-
-/**
- * Abstract SVG named tag with attributes and child elements.
+ * Abstract SVG named element with attributes and child elements.
+ * @param name The svg tag of the element.
  */
 @SvgTagMarker
 abstract class Tag(private val name: String) : Element, HasAttributes {
     override val attributes = hashMapOf<String, String>()
+    /**
+     * The children elements contained in this element.
+     */
     protected val children = arrayListOf<Element>()
 
     override fun render(builder: StringBuilder) {
@@ -139,7 +132,13 @@ abstract class Tag(private val name: String) : Element, HasAttributes {
     }
 }
 
+/**
+ * An SVG element that has a text body.
+ */
 abstract class TagWithText(name: String) : Tag(name) {
+    /**
+     * The text body string.
+     */
     var body: String
         get() = (children[0] as TextElement).body
         set(value) {
@@ -147,14 +146,22 @@ abstract class TagWithText(name: String) : Tag(name) {
         }
 }
 
+/**
+ * The SVG element itself.
+ */
 class SVG : Tag("svg"), HasDimensions {
-
+    /**
+     * The viewBox attribute.
+     */
     var viewBox: String
         get() = attributes["viewBox"]!!
         set(value) {
             attributes["viewBox"] = value
         }
 
+    /**
+     * Create a rect element in this svg.
+     */
     fun rect(init: RECT.() -> Unit): RECT {
         val rect = RECT()
         rect.init()
@@ -162,6 +169,9 @@ class SVG : Tag("svg"), HasDimensions {
         return rect
     }
 
+    /**
+     * Create a text element in this svg.
+     */
     fun text(init: TEXT.() -> Unit): TEXT {
         val text = TEXT()
         text.init()
@@ -169,6 +179,9 @@ class SVG : Tag("svg"), HasDimensions {
         return text
     }
 
+    /**
+     * Create a circle element in this svg.
+     */
     fun circle(init: CIRCLE.() -> Unit): CIRCLE {
         val circle = CIRCLE()
         circle.init()
@@ -176,6 +189,9 @@ class SVG : Tag("svg"), HasDimensions {
         return circle
     }
 
+    /**
+     * Create a line element in this svg.
+     */
     fun line(init: LINE.() -> Unit): LINE {
         val line = LINE()
         line.init()
@@ -183,6 +199,9 @@ class SVG : Tag("svg"), HasDimensions {
         return line
     }
 
+    /**
+     * Create an a refereence element in this svg.
+     */
     fun a(block: A.() -> Unit): A {
         val a = A()
         a.block()
@@ -191,17 +210,29 @@ class SVG : Tag("svg"), HasDimensions {
     }
 }
 
+/**
+ * The SVG circle element.
+ */
 class CIRCLE : Tag("circle"), HasAttributes, HasFill {
+    /**
+     * The x coordinate of the circle's center.
+     */
     var cx: Int
         get() = attributes["cx"]!!.toInt()
         set(value) {
             attributes["cx"] = value.toString()
         }
+    /**
+     * The r coordinate of the circle's center.
+     */
     var cy: Int
         get() = attributes["cy"]!!.toInt()
         set(value) {
             attributes["cy"] = value.toString()
         }
+    /**
+     * The radius or the circle.
+     */
     var r: Int
         get() = attributes["r"]!!.toInt()
         set(value) {
@@ -209,9 +240,18 @@ class CIRCLE : Tag("circle"), HasAttributes, HasFill {
         }
 }
 
+/**
+ * An SVG title element.
+ */
 class TITLE : TagWithText("title")
 
-class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions, HasStyle {
+/**
+ * An SVG rect element.
+ */
+class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions {
+    /**
+     * Add a title to the rect.
+     */
     fun title(block: TITLE.() -> Unit): TITLE {
         val title = TITLE()
         title.block()
@@ -220,22 +260,37 @@ class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions, HasStyle {
     }
 }
 
-class LINE : Tag("line"), HasStyle {
+/**
+ * An SVG line element.
+ */
+class LINE : Tag("line") {
+    /**
+     * The X1 coordinate of the line.
+     */
     var x1: Int
         get() = attributes["x1"]!!.toInt()
         set(value) {
             attributes["x1"] = value.toString()
         }
+    /**
+     * The Y1 coordinate of the line.
+     */
     var y1: Int
         get() = attributes["y1"]!!.toInt()
         set(value) {
             attributes["y1"] = value.toString()
         }
+    /**
+     * The X2 coordinate of the line.
+     */
     var x2: Int
         get() = attributes["x2"]!!.toInt()
         set(value) {
             attributes["x2"] = value.toString()
         }
+    /**
+     * The Y2 coordinate of the line.
+     */
     var y2: Int
         get() = attributes["y2"]!!.toInt()
         set(value) {
@@ -243,15 +298,27 @@ class LINE : Tag("line"), HasStyle {
         }
 }
 
+/**
+ * An SVG text element.
+ */
 class TEXT : TagWithText("text"), HasOrigin, HasFill
 
+/**
+ * An SVG A reference element.
+ */
 class A : Tag("a") {
+    /**
+     * The reference URL.
+     */
     var href: String
         get() = attributes["xlink:href"]!!
         set(value) {
             attributes["xlink:href"] = value
         }
 
+    /**
+     * Create a rect element inside the reference.
+     */
     fun rect(block: RECT.() -> Unit): RECT {
         val rect = RECT()
         rect.block()
@@ -259,6 +326,9 @@ class A : Tag("a") {
         return rect
     }
 
+    /**
+     * Create a text element inside the reference.
+     */
     fun text(block: TEXT.() -> Unit): TEXT {
         val text = TEXT()
         text.block()
@@ -267,6 +337,9 @@ class A : Tag("a") {
     }
 }
 
+/**
+ * Create an SVG element.
+ */
 fun svg(init: SVG.() -> Unit): SVG {
     val svg = SVG()
     svg.init()
