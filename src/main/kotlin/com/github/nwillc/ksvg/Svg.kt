@@ -11,26 +11,50 @@ package com.github.nwillc.ksvg
 @DslMarker
 annotation class SvgTagMarker
 
+/**
+ * Indicate a class's SVG representation can be rendered.
+ */
 interface Element {
+    /**
+     * Render the SVG representation of a class to a StringBuffer.
+     */
     fun render(builder: StringBuilder)
 }
 
-class TextElement(internal val text: String) : Element {
+/**
+ * An Element with a basic text body between it's SVG tags.
+ */
+class TextElement(internal val body: String) : Element {
     override fun render(builder: StringBuilder) {
-        builder.append(text)
+        builder.append(body)
     }
 }
 
+/**
+ * An Element has a Map of attributes.
+ */
 interface HasAttributes {
+    /**
+     * A Map of attributes.
+     */
     val attributes: MutableMap<String, String>
 }
 
+/**
+ * An Element has x,y origin.
+ */
 interface HasOrigin : HasAttributes {
+    /**
+     * Origin's X coordinate.
+     */
     var x: Int
         get() = attributes["x"]!!.toInt()
         set(value) {
             attributes["x"] = value.toString()
         }
+    /**
+     * Origin's Y coordinate.
+     */
     var y: Int
         get() = attributes["y"]!!.toInt()
         set(value) {
@@ -38,12 +62,21 @@ interface HasOrigin : HasAttributes {
         }
 }
 
+/**
+ * An Element has height and width dimensions.
+ */
 interface HasDimensions : HasAttributes {
+    /**
+     * The height dimension.
+     */
     var height: Int
         get() = attributes["height"]!!.toInt()
         set(value) {
             attributes["height"] = value.toString()
         }
+    /**
+     * The width dimension.
+     */
     var width: Int
         get() = attributes["width"]!!.toInt()
         set(value) {
@@ -51,7 +84,13 @@ interface HasDimensions : HasAttributes {
         }
 }
 
+/**
+ * An Element can have a fill color.
+ */
 interface HasFill : HasAttributes {
+    /**
+     * The fill color.
+     */
     var fill: String
         get() = attributes["fill"]!!
         set(value) {
@@ -59,7 +98,13 @@ interface HasFill : HasAttributes {
         }
 }
 
+/**
+ * An Element can have a style attribute.
+ */
 interface HasStyle : HasAttributes {
+    /**
+     * The style attribute.
+     */
     var style: String
         get() = attributes["style"]!!
         set(value) {
@@ -67,10 +112,13 @@ interface HasStyle : HasAttributes {
         }
 }
 
+/**
+ * Abstract SVG named tag with attributes and child elements.
+ */
 @SvgTagMarker
 abstract class Tag(private val name: String) : Element, HasAttributes {
     override val attributes = hashMapOf<String, String>()
-    val children = arrayListOf<Element>()
+    protected val children = arrayListOf<Element>()
 
     override fun render(builder: StringBuilder) {
         builder.append("<$name")
@@ -93,7 +141,7 @@ abstract class Tag(private val name: String) : Element, HasAttributes {
 
 abstract class TagWithText(name: String) : Tag(name) {
     var body: String
-        get() = (children[0] as TextElement).text
+        get() = (children[0] as TextElement).body
         set(value) {
             children.add(TextElement(value))
         }
@@ -163,7 +211,7 @@ class CIRCLE : Tag("circle"), HasAttributes, HasFill {
 
 class TITLE : TagWithText("title")
 
-class RECT : Tag("rect"), HasOrigin, HasDimensions, HasStyle {
+class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions, HasStyle {
     fun title(block: TITLE.() -> Unit): TITLE {
         val title = TITLE()
         title.block()
@@ -195,7 +243,7 @@ class LINE : Tag("line"), HasStyle {
         }
 }
 
-class TEXT : TagWithText("text"), HasOrigin, HasFill
+class TEXT : TagWithText("body"), HasOrigin, HasFill
 
 class A : Tag("a") {
     var href: String

@@ -33,7 +33,7 @@ internal class SVGTest {
             y = 2
         }
 
-        assertRenders("<svg><text x=\"1\" y=\"2\"/>\n</svg>\n")
+        assertRenders("<svg><body x=\"1\" y=\"2\"/>\n</svg>\n")
     }
 
     @Test
@@ -56,7 +56,7 @@ internal class SVGTest {
             body = "Hello World"
         }
 
-        assertRenders("<svg><rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
+        assertRenders("<svg><rect x=\"1\" y=\"2\"/>\n<body>Hello World</body>\n</svg>\n")
     }
 
     @Test
@@ -67,7 +67,7 @@ internal class SVGTest {
             body = "Hello World"
         }
 
-        assertRenders("<svg><rect/>\n<text>Hello World</text>\n</svg>\n")
+        assertRenders("<svg><rect/>\n<body>Hello World</body>\n</svg>\n")
     }
 
     @Test
@@ -83,7 +83,7 @@ internal class SVGTest {
             fill = "black"
         }
 
-        assertRenders("<svg><text fill=\"black\"/>\n</svg>\n")
+        assertRenders("<svg><body fill=\"black\"/>\n</svg>\n")
     }
 
     @Test
@@ -103,7 +103,7 @@ internal class SVGTest {
                 body = "google.com"
             }
         }
-        assertRenders("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n</a>\n</svg>\n")
+        assertRenders("<svg><a xlink:href=\"http://www.google.com\"><body>google.com</body>\n</a>\n</svg>\n")
     }
 
     @Test
