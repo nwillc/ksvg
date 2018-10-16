@@ -118,6 +118,18 @@ internal class SVGTest {
         assertRenders("<svg><circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
     }
 
+    @Test
+    internal fun testLine() {
+        svg.line {
+            x1 = 1
+            y1 = 1
+            x2 = 5
+            y2 = 5
+        }
+
+        assertRenders("<svg><line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
+    }
+
     private fun assertRenders(str: String) {
         svg.render(sb)
         assertThat(sb.toString()).isEqualTo(str)

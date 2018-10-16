@@ -128,6 +128,13 @@ class SVG : Tag("svg"), HasDimensions {
         return circle
     }
 
+    fun line(init: LINE.() -> Unit): LINE {
+        val line = LINE()
+        line.init()
+        children.add(line)
+        return line
+    }
+
     fun a(block: A.() -> Unit): A {
         val a = A()
         a.block()
@@ -163,6 +170,29 @@ class RECT : Tag("rect"), HasOrigin, HasDimensions, HasStyle {
         children.add(title)
         return title
     }
+}
+
+class LINE : Tag("line"), HasStyle {
+    var x1: Int
+        get() = attributes["x1"]!!.toInt()
+        set(value) {
+            attributes["x1"] = value.toString()
+        }
+    var y1: Int
+        get() = attributes["y1"]!!.toInt()
+        set(value) {
+            attributes["y1"] = value.toString()
+        }
+    var x2: Int
+        get() = attributes["x2"]!!.toInt()
+        set(value) {
+            attributes["x2"] = value.toString()
+        }
+    var y2: Int
+        get() = attributes["y2"]!!.toInt()
+        set(value) {
+            attributes["y2"] = value.toString()
+        }
 }
 
 class TEXT : TagWithText("text"), HasOrigin, HasFill
