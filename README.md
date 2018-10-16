@@ -35,6 +35,11 @@ This DSL lets you generate simple SVG from [Kotlin](https://kotlinlang.org/) ver
    System.out.println(sb.toString())
 ```
 
+## See Also
+
+- [License](LICENSE.md)
+- [Javadoc](https://nwillc.github.io/ksvg/javadoc)
+
 -----
 [![license](https://img.shields.io/github/license/nwillc/ksvg.svg)](https://tldrlegal.com/license/-isc-license)
 [![Travis](https://img.shields.io/travis/nwillc/ksvg.svg)](https://travis-ci.org/nwillc/ksvg)
