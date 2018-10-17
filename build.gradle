@@ -16,7 +16,7 @@ buildscript {
 }
 
 group 'com.github.nwillc'
-version '1.3.4'
+version '1.4.0'
 
 apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
