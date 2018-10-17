@@ -34,96 +34,6 @@ class TextElement(internal val body: String) : Element {
 }
 
 /**
- * An Element has attributes.
- */
-interface HasAttributes {
-    /**
-     * A Map of attributes.
-     */
-    val attributes: MutableMap<String, String>
-}
-
-/**
- * An Element has x,y origin.
- */
-interface HasOrigin : HasAttributes {
-    /**
-     * Origin's X coordinate.
-     */
-    var x: Int
-        get() = attributes["x"]!!.toInt()
-        set(value) {
-            attributes["x"] = value.toString()
-        }
-    /**
-     * Origin's Y coordinate.
-     */
-    var y: Int
-        get() = attributes["y"]!!.toInt()
-        set(value) {
-            attributes["y"] = value.toString()
-        }
-}
-
-/**
- * An Element has height and width dimensions.
- */
-interface HasDimensions : HasAttributes {
-    /**
-     * The height dimension.
-     */
-    var height: Int
-        get() = attributes["height"]!!.toInt()
-        set(value) {
-            attributes["height"] = value.toString()
-        }
-    /**
-     * The width dimension.
-     */
-    var width: Int
-        get() = attributes["width"]!!.toInt()
-        set(value) {
-            attributes["width"] = value.toString()
-        }
-}
-
-/**
- * An Element can have a fill color.
- */
-interface HasFill : HasAttributes {
-    /**
-     * The fill color.
-     */
-    var fill: String
-        get() = attributes["fill"]!!
-        set(value) {
-            attributes["fill"] = value
-        }
-}
-
-/**
- * An Element has a stroke associated.
- */
-interface HasStroke : HasAttributes {
-    /**
-     * The stroke color.
-     */
-    var stroke: String
-        get() = attributes["stroke"]!!
-        set(value) {
-            attributes["stroke"] = value
-        }
-    /**
-     * The stroke width.
-     */
-    var strokeWidth: Int
-        get() = attributes["stroke-width"]!!.toInt()
-        set(value) {
-            attributes["stroke-width"] = value.toString()
-        }
-}
-
-/**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
  */
@@ -235,7 +145,7 @@ class SVG : Tag("svg"), HasDimensions {
 /**
  * The SVG circle element.
  */
-class CIRCLE : Tag("circle"), HasAttributes, HasFill, HasStroke {
+class CIRCLE : Tag("circle"), HasAttributes, IsShape {
     /**
      * The x coordinate of the circle's center.
      */
@@ -270,7 +180,7 @@ class TITLE : TagWithText("title")
 /**
  * An SVG rect element.
  */
-class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions, HasStroke {
+class RECT : Tag("rect"), HasOrigin, HasDimensions, IsShape {
     /**
      * Add a title to the rect.
      */
