@@ -10,29 +10,43 @@ This DSL lets you generate simple SVG from [Kotlin](https://kotlinlang.org/) ver
 ## Example
 
 ```kotlin
-   val svg = svg {
-        width = 200
-        height = 200
-        rect {
-            title {
-                body = "A Blue Rectangle"
+        val svg = svg {
+            width = 200
+            height = 200
+            rect {
+                title {
+                    body = "A Blue Rectangle"
+                }
+                x = 50
+                y = 50
+                width = 20
+                height = 10
+                fill = "blue"
             }
-            x = 50
-            y = 50
-            width = 20
-            height = 10
-            fill = "blue"
+            text {
+                body = "label"
+                x = 100
+                y = 100
+            }
+            circle {
+                cx = 100
+                cy = 150
+                r = 20
+                fill = "red"
+            }
+            line {
+                x1 = 0
+                y1 = 0
+                x2 = 40
+                y2 = 40
+                strokeWidth = 3
+                stroke = "black"
+            }
         }
-        text {
-            body = "label"
-            x = 100
-            y = 100
-        }
-   }
-   
-   val sb = StringBuffer()
-   svg.render(sb)
-   System.out.println(sb.toString())
+
+        val sb = StringBuilder()
+        svg.render(sb)
+        System.out.println("<html><body>$sb</body></html>")
 ```
 
 ## See Also

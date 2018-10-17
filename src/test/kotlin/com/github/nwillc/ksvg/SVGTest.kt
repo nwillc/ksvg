@@ -121,6 +121,49 @@ internal class SVGTest {
         assertRenders("<svg><line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
     }
 
+    @Test
+    internal fun testOutput() {
+        val svg = svg {
+            width = 200
+            height = 200
+            rect {
+                title {
+                    body = "A Blue Rectangle"
+                }
+                x = 50
+                y = 50
+                width = 20
+                height = 10
+                fill = "blue"
+            }
+            text {
+                body = "label"
+                x = 100
+                y = 100
+            }
+            circle {
+                cx = 100
+                cy = 150
+                r = 20
+                fill = "red"
+                stroke = "blue"
+                strokeWidth = 2
+            }
+            line {
+                x1 = 0
+                y1 = 0
+                x2 = 40
+                y2 = 40
+                strokeWidth = 3
+                stroke = "black"
+            }
+        }
+
+        val sb = StringBuilder()
+        svg.render(sb)
+        System.out.println("<html><body>$sb</body></html>")
+    }
+    
     private fun assertRenders(str: String) {
         svg.render(sb)
         assertThat(sb.toString()).isEqualTo(str)

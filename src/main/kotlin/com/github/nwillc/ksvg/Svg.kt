@@ -102,6 +102,28 @@ interface HasFill : HasAttributes {
 }
 
 /**
+ * An Element has a stroke associated.
+ */
+interface HasStroke : HasAttributes {
+    /**
+     * The stroke color.
+     */
+    var stroke: String
+        get() = attributes["stroke"]!!
+        set(value) {
+            attributes["stroke"] = value
+        }
+    /**
+     * The stroke width.
+     */
+    var strokeWidth: Int
+        get() = attributes["stroke-width"]!!.toInt()
+        set(value) {
+            attributes["stroke-width"] = value.toString()
+        }
+}
+
+/**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
  */
@@ -213,7 +235,7 @@ class SVG : Tag("svg"), HasDimensions {
 /**
  * The SVG circle element.
  */
-class CIRCLE : Tag("circle"), HasAttributes, HasFill {
+class CIRCLE : Tag("circle"), HasAttributes, HasFill, HasStroke {
     /**
      * The x coordinate of the circle's center.
      */
@@ -248,7 +270,7 @@ class TITLE : TagWithText("title")
 /**
  * An SVG rect element.
  */
-class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions {
+class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions, HasStroke {
     /**
      * Add a title to the rect.
      */
@@ -263,7 +285,7 @@ class RECT : Tag("rect"), HasFill, HasOrigin, HasDimensions {
 /**
  * An SVG line element.
  */
-class LINE : Tag("line") {
+class LINE : Tag("line"), HasStroke {
     /**
      * The X1 coordinate of the line.
      */
