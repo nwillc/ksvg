@@ -82,14 +82,13 @@ abstract class TagWithText(name: String) : Tag(name) {
  * The SVG element itself.
  */
 class SVG : Tag("svg"), HasDimensions {
+    override var height: Int by attributes
+    override var width: Int by attributes
+
     /**
      * The viewBox attribute.
      */
-    var viewBox: String
-        get() = attributes["viewBox"]!! as String
-        set(value) {
-            attributes["viewBox"] = value
-        }
+    var viewBox: String by attributes
 
     /**
      * Create a rect element in this svg.
@@ -146,30 +145,24 @@ class SVG : Tag("svg"), HasDimensions {
  * The SVG circle element.
  */
 class CIRCLE : Tag("circle"), HasAttributes, IsShape {
+    override var stroke: String by attributes
+    override var fill: String by attributes
+
     /**
      * The x coordinate of the circle's center.
      */
-    var cx: Int
-        get() = attributes["cx"]!! as Int
-        set(value) {
-            attributes["cx"] = value
-        }
+    var cx: Int by attributes
+
     /**
      * The r coordinate of the circle's center.
      */
-    var cy: Int
-        get() = attributes["cy"]!! as Int
-        set(value) {
-            attributes["cy"] = value
-        }
+    var cy: Int by attributes
+
     /**
      * The radius or the circle.
      */
-    var r: Int
-        get() = attributes["r"]!! as Int
-        set(value) {
-            attributes["r"] = value
-        }
+    var r: Int by attributes
+
 }
 
 /**
@@ -181,6 +174,13 @@ class TITLE : TagWithText("title")
  * An SVG rect element.
  */
 class RECT : Tag("rect"), HasOrigin, HasDimensions, IsShape {
+    override var x: Int by attributes
+    override var y: Int by attributes
+    override var height: Int by attributes
+    override var width: Int by attributes
+    override var stroke: String by attributes
+    override var fill: String by attributes
+
     /**
      * Add a title to the rect.
      */
@@ -196,44 +196,38 @@ class RECT : Tag("rect"), HasOrigin, HasDimensions, IsShape {
  * An SVG line element.
  */
 class LINE : Tag("line"), HasStroke {
+    override var stroke: String by attributes
+
     /**
      * The X1 coordinate of the line.
      */
-    var x1: Int
-        get() = attributes["x1"]!! as Int
-        set(value) {
-            attributes["x1"] = value
-        }
+    var x1: Int by attributes
+
     /**
      * The Y1 coordinate of the line.
      */
-    var y1: Int
-        get() = attributes["y1"]!! as Int
-        set(value) {
-            attributes["y1"] = value
-        }
+    var y1: Int by attributes
+
     /**
      * The X2 coordinate of the line.
      */
-    var x2: Int
-        get() = attributes["x2"]!! as Int
-        set(value) {
-            attributes["x2"] = value
-        }
+    var x2: Int by attributes
+
     /**
      * The Y2 coordinate of the line.
      */
-    var y2: Int
-        get() = attributes["y2"]!! as Int
-        set(value) {
-            attributes["y2"] = value
-        }
+    var y2: Int by attributes
+
 }
 
 /**
  * An SVG text element.
  */
-class TEXT : TagWithText("text"), HasOrigin, HasFill
+class TEXT : TagWithText("text"), HasOrigin, HasFill {
+    override var x: Int by attributes
+    override var y: Int by attributes
+    override var fill: String by attributes
+}
 
 /**
  * An SVG A reference element.
