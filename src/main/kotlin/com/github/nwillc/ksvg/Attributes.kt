@@ -31,7 +31,6 @@ interface HasOrigin : HasAttributes {
      * Origin's Y coordinate.
      */
     var y: Int
-
 }
 
 /**
@@ -57,7 +56,6 @@ interface HasFill : HasAttributes {
      * The fill color.
      */
     var fill: String
-
 }
 
 /**

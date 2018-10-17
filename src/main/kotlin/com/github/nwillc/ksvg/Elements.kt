@@ -162,7 +162,6 @@ class CIRCLE : Tag("circle"), HasAttributes, IsShape {
      * The radius or the circle.
      */
     var r: Int by attributes
-
 }
 
 /**
@@ -217,7 +216,6 @@ class LINE : Tag("line"), HasStroke {
      * The Y2 coordinate of the line.
      */
     var y2: Int by attributes
-
 }
 
 /**

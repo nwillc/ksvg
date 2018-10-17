@@ -163,7 +163,7 @@ internal class SVGTest {
         svg.render(sb)
         System.out.println("<html><body>$sb</body></html>")
     }
-    
+
     private fun assertRenders(str: String) {
         svg.render(sb)
         assertThat(sb.toString()).isEqualTo(str)
