@@ -1,0 +1,3 @@
+root=true
+[*.{kt,kts}]
+insert_final_newline=true
