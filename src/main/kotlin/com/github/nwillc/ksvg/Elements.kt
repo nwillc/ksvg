@@ -39,7 +39,7 @@ class TextElement(internal val body: String) : Element {
  */
 @SvgTagMarker
 abstract class Tag(private val name: String) : Element, HasAttributes {
-    override val attributes = hashMapOf<String, String>()
+    override val attributes = hashMapOf<String, Any?>()
     /**
      * The children elements contained in this element.
      */
@@ -86,7 +86,7 @@ class SVG : Tag("svg"), HasDimensions {
      * The viewBox attribute.
      */
     var viewBox: String
-        get() = attributes["viewBox"]!!
+        get() = attributes["viewBox"]!! as String
         set(value) {
             attributes["viewBox"] = value
         }
@@ -150,25 +150,25 @@ class CIRCLE : Tag("circle"), HasAttributes, IsShape {
      * The x coordinate of the circle's center.
      */
     var cx: Int
-        get() = attributes["cx"]!!.toInt()
+        get() = attributes["cx"]!! as Int
         set(value) {
-            attributes["cx"] = value.toString()
+            attributes["cx"] = value
         }
     /**
      * The r coordinate of the circle's center.
      */
     var cy: Int
-        get() = attributes["cy"]!!.toInt()
+        get() = attributes["cy"]!! as Int
         set(value) {
-            attributes["cy"] = value.toString()
+            attributes["cy"] = value
         }
     /**
      * The radius or the circle.
      */
     var r: Int
-        get() = attributes["r"]!!.toInt()
+        get() = attributes["r"]!! as Int
         set(value) {
-            attributes["r"] = value.toString()
+            attributes["r"] = value
         }
 }
 
@@ -200,33 +200,33 @@ class LINE : Tag("line"), HasStroke {
      * The X1 coordinate of the line.
      */
     var x1: Int
-        get() = attributes["x1"]!!.toInt()
+        get() = attributes["x1"]!! as Int
         set(value) {
-            attributes["x1"] = value.toString()
+            attributes["x1"] = value
         }
     /**
      * The Y1 coordinate of the line.
      */
     var y1: Int
-        get() = attributes["y1"]!!.toInt()
+        get() = attributes["y1"]!! as Int
         set(value) {
-            attributes["y1"] = value.toString()
+            attributes["y1"] = value
         }
     /**
      * The X2 coordinate of the line.
      */
     var x2: Int
-        get() = attributes["x2"]!!.toInt()
+        get() = attributes["x2"]!! as Int
         set(value) {
-            attributes["x2"] = value.toString()
+            attributes["x2"] = value
         }
     /**
      * The Y2 coordinate of the line.
      */
     var y2: Int
-        get() = attributes["y2"]!!.toInt()
+        get() = attributes["y2"]!! as Int
         set(value) {
-            attributes["y2"] = value.toString()
+            attributes["y2"] = value
         }
 }
 
@@ -243,7 +243,7 @@ class A : Tag("a") {
      * The reference URL.
      */
     var href: String
-        get() = attributes["xlink:href"]!!
+        get() = attributes["xlink:href"]!! as String
         set(value) {
             attributes["xlink:href"] = value
         }

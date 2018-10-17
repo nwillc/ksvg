@@ -15,7 +15,7 @@ interface HasAttributes {
     /**
      * A Map of attributes.
      */
-    val attributes: MutableMap<String, String>
+    val attributes: MutableMap<String, Any?>
 }
 
 /**
@@ -26,17 +26,17 @@ interface HasOrigin : HasAttributes {
      * Origin's X coordinate.
      */
     var x: Int
-        get() = attributes["x"]!!.toInt()
+        get() = attributes["x"]!! as Int
         set(value) {
-            attributes["x"] = value.toString()
+            attributes["x"] = value
         }
     /**
      * Origin's Y coordinate.
      */
     var y: Int
-        get() = attributes["y"]!!.toInt()
+        get() = attributes["y"]!! as Int
         set(value) {
-            attributes["y"] = value.toString()
+            attributes["y"] = value
         }
 }
 
@@ -48,17 +48,17 @@ interface HasDimensions : HasAttributes {
      * The height dimension.
      */
     var height: Int
-        get() = attributes["height"]!!.toInt()
+        get() = attributes["height"]!! as Int
         set(value) {
-            attributes["height"] = value.toString()
+            attributes["height"] = value
         }
     /**
      * The width dimension.
      */
     var width: Int
-        get() = attributes["width"]!!.toInt()
+        get() = attributes["width"]!! as Int
         set(value) {
-            attributes["width"] = value.toString()
+            attributes["width"] = value
         }
 }
 
@@ -70,7 +70,7 @@ interface HasFill : HasAttributes {
      * The fill color.
      */
     var fill: String
-        get() = attributes["fill"]!!
+        get() = attributes["fill"]!! as String
         set(value) {
             attributes["fill"] = value
         }
@@ -84,7 +84,7 @@ interface HasStroke : HasAttributes {
      * The stroke color.
      */
     var stroke: String
-        get() = attributes["stroke"]!!
+        get() = attributes["stroke"]!! as String
         set(value) {
             attributes["stroke"] = value
         }
@@ -92,9 +92,9 @@ interface HasStroke : HasAttributes {
      * The stroke width.
      */
     var strokeWidth: Int
-        get() = attributes["stroke-width"]!!.toInt()
+        get() = attributes["stroke-width"]!! as Int
         set(value) {
-            attributes["stroke-width"] = value.toString()
+            attributes["stroke-width"] = value
         }
 }
 
