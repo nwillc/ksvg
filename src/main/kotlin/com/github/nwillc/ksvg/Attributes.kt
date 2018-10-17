@@ -15,7 +15,7 @@ interface HasAttributes {
     /**
      * A Map of attributes.
      */
-    val attributes: MutableMap<String, String>
+    val attributes: MutableMap<String, Any?>
 }
 
 /**
@@ -26,18 +26,12 @@ interface HasOrigin : HasAttributes {
      * Origin's X coordinate.
      */
     var x: Int
-        get() = attributes["x"]!!.toInt()
-        set(value) {
-            attributes["x"] = value.toString()
-        }
+
     /**
      * Origin's Y coordinate.
      */
     var y: Int
-        get() = attributes["y"]!!.toInt()
-        set(value) {
-            attributes["y"] = value.toString()
-        }
+
 }
 
 /**
@@ -48,18 +42,11 @@ interface HasDimensions : HasAttributes {
      * The height dimension.
      */
     var height: Int
-        get() = attributes["height"]!!.toInt()
-        set(value) {
-            attributes["height"] = value.toString()
-        }
+
     /**
      * The width dimension.
      */
     var width: Int
-        get() = attributes["width"]!!.toInt()
-        set(value) {
-            attributes["width"] = value.toString()
-        }
 }
 
 /**
@@ -70,10 +57,6 @@ interface HasFill : HasAttributes {
      * The fill color.
      */
     var fill: String
-        get() = attributes["fill"]!!
-        set(value) {
-            attributes["fill"] = value
-        }
 }
 
 /**
@@ -84,17 +67,14 @@ interface HasStroke : HasAttributes {
      * The stroke color.
      */
     var stroke: String
-        get() = attributes["stroke"]!!
-        set(value) {
-            attributes["stroke"] = value
-        }
+
     /**
      * The stroke width.
      */
     var strokeWidth: Int
-        get() = attributes["stroke-width"]!!.toInt()
+        get() = attributes["stroke-width"]!! as Int
         set(value) {
-            attributes["stroke-width"] = value.toString()
+            attributes["stroke-width"] = value
         }
 }
 
