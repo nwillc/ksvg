@@ -47,6 +47,15 @@ internal class SVGTest {
     }
 
     @Test
+    internal fun testNoBody() {
+
+        svg.text {
+        }
+
+        assertThat((svg.children[0] as TEXT).body).isEmpty()
+    }
+
+    @Test
     internal fun testBodyGetSet() {
         val msg = "Hello World"
 
@@ -55,6 +64,39 @@ internal class SVGTest {
         }
 
         assertThat((svg.children[0] as TEXT).body).isEqualTo(msg)
+    }
+
+    @Test
+    internal fun testLineStrokeWidthGetSet() {
+        val width = 10
+
+        svg.line {
+            strokeWidth = width
+        }
+
+        assertThat((svg.children[0] as LINE).strokeWidth).isEqualTo(width)
+    }
+
+    @Test
+    internal fun testRectStrokeWidthGetSet() {
+        val width = 10
+
+        svg.rect {
+            strokeWidth = width
+        }
+
+        assertThat((svg.children[0] as HasStroke).strokeWidth).isEqualTo(width)
+    }
+
+    @Test
+    internal fun testCircleStrokeWidthGetSet() {
+        val width = 10
+
+        svg.circle {
+            strokeWidth = width
+        }
+
+        assertThat((svg.children[0] as CIRCLE).strokeWidth).isEqualTo(width)
     }
 
     @Test
@@ -101,13 +143,17 @@ internal class SVGTest {
 
     @Test
     internal fun testHref() {
+        val url = "http://www.google.com"
         svg.a {
-            href = "http://www.google.com"
+            href = url
             text {
                 body = "google.com"
             }
+            rect {
+            }
         }
-        assertRenders("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n</a>\n</svg>\n")
+        assertThat((svg.children[0] as A).href).isEqualTo(url)
+        assertRenders("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n<rect/>\n</a>\n</svg>\n")
     }
 
     @Test

@@ -22,73 +22,61 @@ package com.github.nwillc.ksvg
 annotation class SvgTagMarker
 
 /**
- * Indicate a class's SVG representation can be rendered.
- */
-interface Element {
-    /**
-     * Render the SVG representation of a class to a StringBuffer.
-     */
-    fun render(builder: StringBuilder)
-}
-
-/**
- * An Element with a basic text body between it's SVG tags.
- */
-class TextElement(internal val body: String) : Element {
-    override fun render(builder: StringBuilder) {
-        builder.append(body)
-    }
-}
-
-/**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
  */
 @SvgTagMarker
-abstract class Tag(private val name: String) : Element, HasAttributes {
+abstract class Element(private val name: String) : HasAttributes {
     override val attributes = hashMapOf<String, Any?>()
     /**
-     * The children elements contained in this element.
+     * Child Element contained in this Element.
      */
     val children = arrayListOf<Element>()
+    /**
+     * Raw text body of the Element.
+     */
+    var body: String = ""
 
-    override fun render(builder: StringBuilder) {
+    /**
+     * Render the Element as SVG text.
+     * @param builder A StringBuilder to append the SVG text to.
+     */
+    fun render(builder: StringBuilder) {
         builder.append("<$name")
         if (attributes.isNotEmpty()) {
             builder.append(attributes.entries.joinToString(prefix = " ", separator = " ") {
                 it.key + "=\"" + it.value + '"'
             })
         }
-        if (children.isEmpty()) {
+        if (!(hasBody() || hasChildren())) {
             builder.append("/>\n")
         } else {
             builder.append('>')
+            if (hasBody()) {
+                builder.append(body)
+            }
             children.forEach {
                 it.render(builder)
             }
             builder.append("</$name>\n")
         }
     }
-}
 
-/**
- * An SVG element that has a text body.
- */
-abstract class TagWithText(name: String) : Tag(name) {
     /**
-     * The text body string.
+     * Has raw text body.
      */
-    var body: String
-        get() = (children[0] as TextElement).body
-        set(value) {
-            children.add(TextElement(value))
-        }
+    fun hasBody(): Boolean = body.isNotEmpty()
+
+    /**
+     * Has Children.
+     */
+    fun hasChildren(): Boolean = children.isNotEmpty()
 }
 
 /**
  * The SVG element itself.
  */
-class SVG : Tag("svg"), HasDimensions {
+class SVG : Element("svg"), HasDimensions {
     override var height: Int by attributes
     override var width: Int by attributes
 
@@ -151,7 +139,7 @@ class SVG : Tag("svg"), HasDimensions {
 /**
  * The SVG circle element.
  */
-class CIRCLE : Tag("circle"), HasAttributes, IsShape {
+class CIRCLE : Element("circle"), HasAttributes, IsShape {
     override var stroke: String by attributes
     override var fill: String by attributes
 
@@ -174,12 +162,12 @@ class CIRCLE : Tag("circle"), HasAttributes, IsShape {
 /**
  * An SVG title element.
  */
-class TITLE : TagWithText("title")
+class TITLE : Element("title")
 
 /**
  * An SVG rect element.
  */
-class RECT : Tag("rect"), HasOrigin, HasDimensions, IsShape {
+class RECT : Element("rect"), HasOrigin, HasDimensions, IsShape {
     override var x: Int by attributes
     override var y: Int by attributes
     override var height: Int by attributes
@@ -201,7 +189,7 @@ class RECT : Tag("rect"), HasOrigin, HasDimensions, IsShape {
 /**
  * An SVG line element.
  */
-class LINE : Tag("line"), HasStroke {
+class LINE : Element("line"), HasStroke {
     override var stroke: String by attributes
 
     /**
@@ -228,7 +216,7 @@ class LINE : Tag("line"), HasStroke {
 /**
  * An SVG text element.
  */
-class TEXT : TagWithText("text"), HasOrigin, HasFill {
+class TEXT : Element("text"), HasOrigin, HasFill {
     override var x: Int by attributes
     override var y: Int by attributes
     override var fill: String by attributes
@@ -237,7 +225,7 @@ class TEXT : TagWithText("text"), HasOrigin, HasFill {
 /**
  * An SVG A reference element.
  */
-class A : Tag("a") {
+class A : Element("a") {
     /**
      * The reference URL.
      */
