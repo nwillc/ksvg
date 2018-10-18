@@ -1,0 +1,189 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.github.nwillc.ksvg - ksvg</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">ksvg</a>&nbsp;/&nbsp;<a href="./index.html">com.github.nwillc.ksvg</a><br/>
+<br/>
+<h2>Package com.github.nwillc.ksvg</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-a/index.html">A</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag/index.html"><span class="identifier">Tag</span></a></code>
+<p>An SVG A reference element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-c-i-r-c-l-e/index.html">CIRCLE</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CIRCLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a><span class="symbol">, </span><a href="-has-fill/index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
+<p>The SVG circle element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-element/index.html">Element</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Element</span></code>
+<p>Indicate a class's SVG representation can be rendered.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-attributes/index.html">HasAttributes</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HasAttributes</span></code>
+<p>An Element has attributes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-dimensions/index.html">HasDimensions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HasDimensions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>An Element has height and width dimensions.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-fill/index.html">HasFill</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HasFill</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>An Element can have a fill color.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-origin/index.html">HasOrigin</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HasOrigin</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>An Element has x,y origin.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-stroke/index.html">HasStroke</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HasStroke</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>An Element has a stroke associated.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-l-i-n-e/index.html">LINE</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">LINE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
+<p>An SVG line element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-r-e-c-t/index.html">RECT</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RECT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="-has-fill/index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a><span class="symbol">, </span><a href="-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
+<p>An SVG rect element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-s-v-g/index.html">SVG</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">SVG</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a></code>
+<p>The SVG element itself.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-t-e-x-t/index.html">TEXT</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TEXT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag-with-text/index.html"><span class="identifier">TagWithText</span></a><span class="symbol">, </span><a href="-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="-has-fill/index.html"><span class="identifier">HasFill</span></a></code>
+<p>An SVG text element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-t-i-t-l-e/index.html">TITLE</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TITLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag-with-text/index.html"><span class="identifier">TagWithText</span></a></code>
+<p>An SVG title element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-tag/index.html">Tag</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Tag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-element/index.html"><span class="identifier">Element</span></a><span class="symbol">, </span><a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>Abstract SVG named element with attributes and child elements.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-tag-with-text/index.html">TagWithText</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">TagWithText</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-tag/index.html"><span class="identifier">Tag</span></a></code>
+<p>An SVG element that has a text body.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-text-element/index.html">TextElement</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TextElement</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-element/index.html"><span class="identifier">Element</span></a></code>
+<p>An Element with a basic text body between it's SVG tags.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Annotations</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-svg-tag-marker/index.html">SvgTagMarker</a></p>
+</td>
+<td>
+<code><span class="keyword">annotation</span> <span class="keyword">class </span><span class="identifier">SvgTagMarker</span></code>
+<p>Indicates something is an SVG DSL marker.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="svg.html">svg</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">svg</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg$svg(kotlin.Function1((com.github.nwillc.ksvg.SVG, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="-s-v-g/index.html"><span class="identifier">SVG</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-s-v-g/index.html"><span class="identifier">SVG</span></a></code>
+<p>Create an SVG element.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

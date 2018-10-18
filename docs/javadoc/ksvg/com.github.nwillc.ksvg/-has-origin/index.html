@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HasOrigin - ksvg</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg</a>&nbsp;/&nbsp;<a href="./index.html">HasOrigin</a><br/>
+<br/>
+<h1>HasOrigin</h1>
+<code><span class="keyword">interface </span><span class="identifier">HasOrigin</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>An Element has x,y origin.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="x.html">x</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">x</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Origin's X coordinate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="y.html">y</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">y</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Origin's Y coordinate.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-has-attributes/attributes.html">attributes</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">attributes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>A Map of attributes.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-r-e-c-t/index.html">RECT</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RECT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="../-has-fill/index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="../-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a><span class="symbol">, </span><a href="../-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
+<p>An SVG rect element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-t-e-x-t/index.html">TEXT</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TEXT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag-with-text/index.html"><span class="identifier">TagWithText</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="../-has-fill/index.html"><span class="identifier">HasFill</span></a></code>
+<p>An SVG text element.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

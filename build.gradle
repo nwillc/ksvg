@@ -12,23 +12,21 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
                 "gradle.plugin.com.github.nwillc:vplugin:$vplugin_version",
                 "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_plugin_version",
-                "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+                "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version",
+                "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_plugin_version"
 
     }
 }
-
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC9.2"
-}
-
-group 'com.github.nwillc'
-version '1.4.1-SNAPSHOT'
 
 apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.nwillc.vplugin'
 apply plugin: 'org.jetbrains.dokka'
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+group 'com.github.nwillc'
+version '1.4.1-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -153,9 +151,10 @@ task ktlint(type: JavaExec, group: "verification") {
     args "src/**/*.kt"
     // args "--reporter=checkstyle, output=${buildDir}/ktlint.xml
 }
+check.dependsOn ktlint
 
 detekt {
-    toolVersion = "1.0.0.RC9.2"
+    toolVersion = "$detekt_plugin_version"
     input = files("src/main/kotlin")
     filters = ".*/resources/.*,.*/build/.*"
 }

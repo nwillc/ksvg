@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SVG - ksvg</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg</a>&nbsp;/&nbsp;<a href="./index.html">SVG</a><br/>
+<br/>
+<h1>SVG</h1>
+<code><span class="keyword">class </span><span class="identifier">SVG</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="../-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a></code>
+<p>The SVG element itself.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">SVG</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>The SVG element itself.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="view-box.html">viewBox</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">viewBox</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The viewBox attribute.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-tag/attributes.html">attributes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">attributes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>A Map of attributes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-tag/children.html">children</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">children</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../-element/index.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span></code>
+<p>The children elements contained in this element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-has-dimensions/height.html">height</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">height</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>The height dimension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-has-dimensions/width.html">width</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">width</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>The width dimension.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="a.html">a</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">a</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.SVG$a(kotlin.Function1((com.github.nwillc.ksvg.A, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-a/index.html"><span class="identifier">A</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-a/index.html"><span class="identifier">A</span></a></code>
+<p>Create an a refereence element in this svg.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="circle.html">circle</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">circle</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.SVG$circle(kotlin.Function1((com.github.nwillc.ksvg.CIRCLE, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="../-c-i-r-c-l-e/index.html"><span class="identifier">CIRCLE</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-c-i-r-c-l-e/index.html"><span class="identifier">CIRCLE</span></a></code>
+<p>Create a circle element in this svg.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="line.html">line</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">line</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.SVG$line(kotlin.Function1((com.github.nwillc.ksvg.LINE, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="../-l-i-n-e/index.html"><span class="identifier">LINE</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-l-i-n-e/index.html"><span class="identifier">LINE</span></a></code>
+<p>Create a line element in this svg.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="rect.html">rect</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">rect</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.SVG$rect(kotlin.Function1((com.github.nwillc.ksvg.RECT, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="../-r-e-c-t/index.html"><span class="identifier">RECT</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-r-e-c-t/index.html"><span class="identifier">RECT</span></a></code>
+<p>Create a rect element in this svg.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="text.html">text</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">text</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.SVG$text(kotlin.Function1((com.github.nwillc.ksvg.TEXT, kotlin.Unit)))/init">init</span><span class="symbol">:</span>&nbsp;<a href="../-t-e-x-t/index.html"><span class="identifier">TEXT</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-t-e-x-t/index.html"><span class="identifier">TEXT</span></a></code>
+<p>Create a text element in this svg.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-tag/render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.Tag$render(java.lang.StringBuilder)/builder">builder</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html"><span class="identifier">StringBuilder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Render the SVG representation of a class to a StringBuffer.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

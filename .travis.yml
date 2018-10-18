@@ -7,9 +7,6 @@ jdk:
 env:
   - TERM=dumb
 
-script:
-  - ./gradlew ktlint check
-
 after_success:
   - ./gradlew publish bintrayUpload
 
