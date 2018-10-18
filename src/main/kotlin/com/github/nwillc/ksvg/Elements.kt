@@ -50,7 +50,7 @@ abstract class Tag(private val name: String) : Element, HasAttributes {
     /**
      * The children elements contained in this element.
      */
-    protected val children = arrayListOf<Element>()
+    val children = arrayListOf<Element>()
 
     override fun render(builder: StringBuilder) {
         builder.append("<$name")

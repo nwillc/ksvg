@@ -47,6 +47,17 @@ internal class SVGTest {
     }
 
     @Test
+    internal fun testBodyGetSet() {
+        val msg = "Hello World"
+
+        svg.text {
+            body = msg
+        }
+
+        assertThat((svg.children[0] as TEXT).body).isEqualTo(msg)
+    }
+
+    @Test
     internal fun testSvgWithTags() {
         svg.rect {
             x = 1
@@ -61,13 +72,15 @@ internal class SVGTest {
 
     @Test
     internal fun testAdd() {
+        val msg = "Hello World"
+
         svg.rect {}
 
         svg.text {
-            body = "Hello World"
+            body = msg
         }
 
-        assertRenders("<svg><rect/>\n<text>Hello World</text>\n</svg>\n")
+        assertRenders("<svg><rect/>\n<text>$msg</text>\n</svg>\n")
     }
 
     @Test
