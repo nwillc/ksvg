@@ -15,6 +15,9 @@
 
 package com.github.nwillc.ksvg
 
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
+
 /**
  * Indicates something is an SVG DSL marker.
  */
@@ -141,6 +144,7 @@ class SVG : Element("svg"), HasDimensions {
  */
 class CIRCLE : Element("circle"), HasAttributes, IsShape {
     override var stroke: String by attributes
+    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
     override var fill: String by attributes
 
     /**
@@ -173,6 +177,7 @@ class RECT : Element("rect"), HasOrigin, HasDimensions, IsShape {
     override var height: Int by attributes
     override var width: Int by attributes
     override var stroke: String by attributes
+    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
     override var fill: String by attributes
 
     /**
@@ -191,7 +196,7 @@ class RECT : Element("rect"), HasOrigin, HasDimensions, IsShape {
  */
 class LINE : Element("line"), HasStroke {
     override var stroke: String by attributes
-
+    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
     /**
      * The X1 coordinate of the line.
      */
@@ -229,11 +234,7 @@ class A : Element("a") {
     /**
      * The reference URL.
      */
-    var href: String
-        get() = attributes["xlink:href"]!! as String
-        set(value) {
-            attributes["xlink:href"] = value
-        }
+    var href: String by AttrDelegate<String>(attributes, "xlink:href")
 
     /**
      * Create a rect element inside the reference.
@@ -263,4 +264,18 @@ fun svg(init: SVG.() -> Unit): SVG {
     val svg = SVG()
     svg.init()
     return svg
+}
+
+/**
+ * A property delegate to allow attributes to be stored with a key different from their name.
+ */
+private class AttrDelegate<T>(private val properties: MutableMap<String, Any?>, private val key: String) : ReadWriteProperty<Any?, T> {
+    @Suppress("UNCHECKED_CAST")
+    public override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        return properties[key] as T
+    }
+
+    public override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+        properties[key] = value
+    }
 }

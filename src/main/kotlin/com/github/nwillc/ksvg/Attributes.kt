@@ -77,10 +77,6 @@ interface HasStroke : HasAttributes {
      * The stroke width.
      */
     var strokeWidth: Int
-        get() = attributes["stroke-width"]!! as Int
-        set(value) {
-            attributes["stroke-width"] = value
-        }
 }
 
 /**
