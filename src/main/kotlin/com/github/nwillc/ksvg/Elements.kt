@@ -77,6 +77,14 @@ abstract class Element(private val name: String) : HasAttributes {
 }
 
 /**
+ * Element is a region and therefore has stroke and fill.
+ */
+abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
+    override var stroke: String by attributes
+    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
+    override var fill: String by attributes
+}
+/**
  * The SVG element itself.
  */
 class SVG : Element("svg"), HasDimensions {
@@ -119,6 +127,16 @@ class SVG : Element("svg"), HasDimensions {
     }
 
     /**
+     * Create a circle element in this svg.
+     */
+    fun polygon(init: POLYGON.() -> Unit): POLYGON {
+        val polygon = POLYGON()
+        polygon.init()
+        children.add(polygon)
+        return polygon
+    }
+
+    /**
      * Create a line element in this svg.
      */
     fun line(init: LINE.() -> Unit): LINE {
@@ -142,11 +160,7 @@ class SVG : Element("svg"), HasDimensions {
 /**
  * The SVG circle element.
  */
-class CIRCLE : Element("circle"), HasAttributes, IsShape {
-    override var stroke: String by attributes
-    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
-    override var fill: String by attributes
-
+class CIRCLE : REGION("circle") {
     /**
      * The x coordinate of the circle's center.
      */
@@ -164,6 +178,16 @@ class CIRCLE : Element("circle"), HasAttributes, IsShape {
 }
 
 /**
+ * The SVG circle element.
+ */
+class POLYGON : REGION("polygon") {
+    /**
+     * The points defining the x and y coordinates for each corner of the polygon.
+     */
+    var points: String by attributes
+}
+
+/**
  * An SVG title element.
  */
 class TITLE : Element("title")
@@ -171,14 +195,11 @@ class TITLE : Element("title")
 /**
  * An SVG rect element.
  */
-class RECT : Element("rect"), HasOrigin, HasDimensions, IsShape {
+class RECT : REGION("rect"), HasOrigin, HasDimensions {
     override var x: Int by attributes
     override var y: Int by attributes
     override var height: Int by attributes
     override var width: Int by attributes
-    override var stroke: String by attributes
-    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
-    override var fill: String by attributes
 
     /**
      * Add a title to the rect.

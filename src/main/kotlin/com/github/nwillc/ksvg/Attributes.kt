@@ -78,8 +78,3 @@ interface HasStroke : HasAttributes {
      */
     var strokeWidth: Int
 }
-
-/**
- * Element is a shape and therefore has stroke and fill.
- */
-interface IsShape : HasStroke, HasFill

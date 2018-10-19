@@ -169,6 +169,16 @@ internal class SVGTest {
     }
 
     @Test
+    internal fun testPolygon() {
+        val pts = "200,10 250,190 160,210"
+        svg.polygon {
+            points = pts
+        }
+
+        assertRenders("<svg><polygon points=\"$pts\"/>\n</svg>\n")
+    }
+
+    @Test
     internal fun testLine() {
         svg.line {
             x1 = 1
