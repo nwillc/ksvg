@@ -49,6 +49,12 @@ This DSL lets you generate simple SVG from [Kotlin](https://kotlinlang.org/) ver
         System.out.println("<html><body>$sb</body></html>")
 ```
 
+## About Inline SVG
+SVG is an XML tag based format. Those tags can be put into an `.svg` file, or in a modern browser 
+appear directly inline in the HTML. But with *my* level of expertise/effort I couldn't get one exact set of tag 
+attributes that worked in both on certain tags. I may offer a configurable rendering that handles this at a later 
+date.
+
 ## See Also
 
 - [License](LICENSE.md)
