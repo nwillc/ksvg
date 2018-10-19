@@ -127,7 +127,7 @@ class SVG : Element("svg"), HasDimensions {
     }
 
     /**
-     * Create a circle element in this svg.
+     * Create a polygon element in this svg.
      */
     fun polygon(init: POLYGON.() -> Unit): POLYGON {
         val polygon = POLYGON()
@@ -178,7 +178,7 @@ class CIRCLE : REGION("circle") {
 }
 
 /**
- * The SVG circle element.
+ * The SVG polygon element.
  */
 class POLYGON : REGION("polygon") {
     /**
