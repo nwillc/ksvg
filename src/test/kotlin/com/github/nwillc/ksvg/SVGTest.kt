@@ -13,17 +13,16 @@ import org.junit.jupiter.api.Test
 
 internal class SVGTest {
     private val svg = svg {}
-    private val sb = StringBuilder()
 
     @Test
     internal fun testSvg() {
-        assertRenders("<svg/>\n")
+        assertThat(svg.toString()).isEqualTo("<svg/>\n")
     }
 
     @Test
     internal fun testSvgWithAttr() {
         svg.viewBox = "0 0 10 10"
-        assertRenders("<svg viewBox=\"0 0 10 10\"/>\n")
+        assertThat(svg.toString()).isEqualTo("<svg viewBox=\"0 0 10 10\"/>\n")
     }
 
     @Test
@@ -32,8 +31,7 @@ internal class SVGTest {
             x = 1
             y = 2
         }
-
-        assertRenders("<svg><text x=\"1\" y=\"2\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><text x=\"1\" y=\"2\"/>\n</svg>\n")
     }
 
     @Test
@@ -43,7 +41,7 @@ internal class SVGTest {
             height = 10
         }
 
-        assertRenders("<svg><rect width=\"20\" height=\"10\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><rect width=\"20\" height=\"10\"/>\n</svg>\n")
     }
 
     @Test
@@ -109,7 +107,7 @@ internal class SVGTest {
             body = "Hello World"
         }
 
-        assertRenders("<svg><rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
     }
 
     @Test
@@ -122,14 +120,14 @@ internal class SVGTest {
             body = msg
         }
 
-        assertRenders("<svg><rect/>\n<text>$msg</text>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><rect/>\n<text>$msg</text>\n</svg>\n")
     }
 
     @Test
     internal fun testRawAttributes() {
         svg.attributes["foo"] = "bar"
 
-        assertRenders("<svg foo=\"bar\"/>\n")
+        assertThat(svg.toString()).isEqualTo("<svg foo=\"bar\"/>\n")
     }
 
     @Test
@@ -138,7 +136,7 @@ internal class SVGTest {
             fill = "black"
         }
 
-        assertRenders("<svg><text fill=\"black\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><text fill=\"black\"/>\n</svg>\n")
     }
 
     @Test
@@ -153,7 +151,7 @@ internal class SVGTest {
             }
         }
         assertThat((svg.children[0] as A).href).isEqualTo(url)
-        assertRenders("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n<rect/>\n</a>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><a xlink:href=\"http://www.google.com\"><text>google.com</text>\n<rect/>\n</a>\n</svg>\n")
     }
 
     @Test
@@ -165,7 +163,7 @@ internal class SVGTest {
             fill = "blue"
         }
 
-        assertRenders("<svg><circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
     }
 
     @Test
@@ -175,7 +173,7 @@ internal class SVGTest {
             points = pts
         }
 
-        assertRenders("<svg><polygon points=\"$pts\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><polygon points=\"$pts\"/>\n</svg>\n")
     }
 
     @Test
@@ -187,7 +185,7 @@ internal class SVGTest {
             y2 = 5
         }
 
-        assertRenders("<svg><line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg><line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
     }
 
     @Test
@@ -227,14 +225,6 @@ internal class SVGTest {
                 stroke = "black"
             }
         }
-
-        val sb = StringBuilder()
-        svg.render(sb)
-        System.out.println("<html><body>$sb</body></html>")
-    }
-
-    private fun assertRenders(str: String) {
-        svg.render(sb)
-        assertThat(sb.toString()).isEqualTo(str)
+        System.out.println("<html><body>$svg</body></html>")
     }
 }

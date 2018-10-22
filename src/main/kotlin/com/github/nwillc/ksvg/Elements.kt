@@ -15,6 +15,8 @@
 
 package com.github.nwillc.ksvg
 
+import java.io.StringWriter
+import java.io.Writer
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -41,27 +43,29 @@ abstract class Element(private val name: String) : HasAttributes {
     var body: String = ""
 
     /**
-     * Render the Element as SVG text.
-     * @param builder A StringBuilder to append the SVG text to.
+     * Render the Element as SVG.
+     * @param writer A Writer to append the SVG to.
      */
-    fun render(builder: StringBuilder) {
-        builder.append("<$name")
-        if (attributes.isNotEmpty()) {
-            builder.append(attributes.entries.joinToString(prefix = " ", separator = " ") {
-                it.key + "=\"" + it.value + '"'
-            })
+    fun render(writer: Writer) {
+        writer.append("<$name")
+        attributes.entries.forEach {
+            writer.append(' ')
+            writer.append(it.key)
+            writer.append("=\"")
+            writer.append(it.value.toString())
+            writer.append('"')
         }
-        if (!(hasBody() || hasChildren())) {
-            builder.append("/>\n")
+        if (!hasContent()) {
+            writer.append("/>\n")
         } else {
-            builder.append('>')
+            writer.append('>')
             if (hasBody()) {
-                builder.append(body)
+                writer.append(body)
             }
             children.forEach {
-                it.render(builder)
+                it.render(writer)
             }
-            builder.append("</$name>\n")
+            writer.append("</$name>\n")
         }
     }
 
@@ -74,6 +78,18 @@ abstract class Element(private val name: String) : HasAttributes {
      * Has Children.
      */
     fun hasChildren(): Boolean = children.isNotEmpty()
+
+    /**
+     * Has any content, i.e. a body and/or children.
+     */
+    fun hasContent(): Boolean = hasBody() || hasChildren()
+
+    override fun toString(): String {
+        return StringWriter().use {
+            render(it)
+            it.toString()
+        }
+    }
 }
 
 /**
@@ -84,6 +100,7 @@ abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
     override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
     override var fill: String by attributes
 }
+
 /**
  * The SVG element itself.
  */
