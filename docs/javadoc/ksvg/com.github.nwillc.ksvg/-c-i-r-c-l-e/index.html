@@ -8,7 +8,7 @@
 <a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg</a>&nbsp;/&nbsp;<a href="./index.html">CIRCLE</a><br/>
 <br/>
 <h1>CIRCLE</h1>
-<code><span class="keyword">class </span><span class="identifier">CIRCLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="../-has-attributes/index.html"><span class="identifier">HasAttributes</span></a><span class="symbol">, </span><a href="../-has-fill/index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="../-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
+<code><span class="keyword">class </span><span class="identifier">CIRCLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-r-e-g-i-o-n/index.html"><span class="identifier">com.github.nwillc.ksvg.REGION</span></a></code>
 <p>The SVG circle element.</p>
 <h3>Constructors</h3>
 <table>
@@ -24,98 +24,61 @@
 </tr>
 </tbody>
 </table>
-<h3>Properties</h3>
+<h3>Functions</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="cx.html">cx</a></p>
+<p><a href="get-cx.html">getCx</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">cx</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">getCx</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">int</span></code>
 <p>The x coordinate of the circle's center.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="cy.html">cy</a></p>
+<p><a href="get-cy.html">getCy</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">cy</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">getCy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">int</span></code>
 <p>The r coordinate of the circle's center.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="r.html">r</a></p>
+<p><a href="get-r.html">getR</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">r</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">getR</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">int</span></code>
 <p>The radius or the circle.</p>
 </td>
 </tr>
-</tbody>
-</table>
-<h3>Inherited Properties</h3>
-<table>
-<tbody>
 <tr>
 <td>
-<p><a href="../-tag/attributes.html">attributes</a></p>
+<p><a href="set-cx.html">setCx</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">attributes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>A Map of attributes.</p>
+<code><span class="keyword">fun </span><span class="identifier">setCx</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>The x coordinate of the circle's center.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="../-tag/children.html">children</a></p>
+<p><a href="set-cy.html">setCy</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">children</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../-element/index.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span></code>
-<p>The children elements contained in this element.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-fill/fill.html">fill</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fill</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The fill color.</p>
+<code><span class="keyword">fun </span><span class="identifier">setCy</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>The r coordinate of the circle's center.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="../-has-stroke/stroke.html">stroke</a></p>
+<p><a href="set-r.html">setR</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">stroke</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The stroke color.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-stroke/stroke-width.html">strokeWidth</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">strokeWidth</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
-<p>The stroke width.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Inherited Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-tag/render.html">render</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.Tag$render(java.lang.StringBuilder)/builder">builder</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html"><span class="identifier">StringBuilder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Render the SVG representation of a class to a StringBuffer.</p>
+<code><span class="keyword">fun </span><span class="identifier">setR</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>The radius or the circle.</p>
 </td>
 </tr>
 </tbody>

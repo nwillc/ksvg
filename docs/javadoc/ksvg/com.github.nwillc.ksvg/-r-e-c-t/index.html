@@ -8,7 +8,7 @@
 <a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg</a>&nbsp;/&nbsp;<a href="./index.html">RECT</a><br/>
 <br/>
 <h1>RECT</h1>
-<code><span class="keyword">class </span><span class="identifier">RECT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="../-has-fill/index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="../-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="../-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a><span class="symbol">, </span><a href="../-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
+<code><span class="keyword">class </span><span class="identifier">RECT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-r-e-g-i-o-n/index.html"><span class="identifier">com.github.nwillc.ksvg.REGION</span></a><span class="symbol">, </span><a href="../-has-origin/index.html"><span class="identifier">com.github.nwillc.ksvg.HasOrigin</span></a><span class="symbol">, </span><a href="../-has-dimensions/index.html"><span class="identifier">com.github.nwillc.ksvg.HasDimensions</span></a></code>
 <p>An SVG rect element.</p>
 <h3>Constructors</h3>
 <table>
@@ -24,116 +24,88 @@
 </tr>
 </tbody>
 </table>
-<h3>Inherited Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-tag/attributes.html">attributes</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">attributes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>A Map of attributes.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-tag/children.html">children</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">children</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../-element/index.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span></code>
-<p>The children elements contained in this element.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-fill/fill.html">fill</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fill</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The fill color.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-dimensions/height.html">height</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">height</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
-<p>The height dimension.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-stroke/stroke.html">stroke</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">stroke</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The stroke color.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-stroke/stroke-width.html">strokeWidth</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">strokeWidth</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
-<p>The stroke width.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-dimensions/width.html">width</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">width</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
-<p>The width dimension.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-origin/x.html">x</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">x</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
-<p>Origin's X coordinate.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-has-origin/y.html">y</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">y</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
-<p>Origin's Y coordinate.</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3>Functions</h3>
 <table>
 <tbody>
 <tr>
 <td>
+<p><a href="get-height.html">getHeight</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getHeight</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">int</span></code>
+<p>The height dimension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-width.html">getWidth</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getWidth</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">int</span></code>
+<p>The width dimension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-x.html">getX</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getX</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">int</span></code>
+<p>Origin's X coordinate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-y.html">getY</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getY</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">int</span></code>
+<p>Origin's Y coordinate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-height.html">setHeight</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setHeight</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>The height dimension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-width.html">setWidth</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setWidth</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>The width dimension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-x.html">setX</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setX</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>Origin's X coordinate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-y.html">setY</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setY</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>Origin's Y coordinate.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="title.html">title</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">title</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.RECT$title(kotlin.Function1((com.github.nwillc.ksvg.TITLE, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-t-i-t-l-e/index.html"><span class="identifier">TITLE</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-t-i-t-l-e/index.html"><span class="identifier">TITLE</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">title</span><span class="symbol">(</span><span class="identifier">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.TITLE</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-t-i-t-l-e/index.html"><span class="identifier">com.github.nwillc.ksvg.TITLE</span></a></code>
 <p>Add a title to the rect.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Inherited Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-tag/render.html">render</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.Tag$render(java.lang.StringBuilder)/builder">builder</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html"><span class="identifier">StringBuilder</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Render the SVG representation of a class to a StringBuffer.</p>
 </td>
 </tr>
 </tbody>

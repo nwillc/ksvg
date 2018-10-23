@@ -8,32 +8,27 @@
 <a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg</a>&nbsp;/&nbsp;<a href="./index.html">HasFill</a><br/>
 <br/>
 <h1>HasFill</h1>
-<code><span class="keyword">interface </span><span class="identifier">HasFill</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<code><span class="keyword">interface </span><span class="identifier">HasFill</span></code>
 <p>An Element can have a fill color.</p>
-<h3>Properties</h3>
+<h3>Functions</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="fill.html">fill</a></p>
+<p><a href="get-fill.html">getFill</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">fill</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getFill</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">java.lang.String</span></code>
 <p>The fill color.</p>
 </td>
 </tr>
-</tbody>
-</table>
-<h3>Inherited Properties</h3>
-<table>
-<tbody>
 <tr>
 <td>
-<p><a href="../-has-attributes/attributes.html">attributes</a></p>
+<p><a href="set-fill.html">setFill</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">attributes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>A Map of attributes.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">setFill</span><span class="symbol">(</span><span class="identifier">p</span><span class="symbol">:</span>&nbsp;<span class="identifier">java.lang.String</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">void</span></code>
+<p>The fill color.</p>
 </td>
 </tr>
 </tbody>
@@ -43,20 +38,11 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../-c-i-r-c-l-e/index.html">CIRCLE</a></p>
+<p><a href="../-r-e-g-i-o-n/index.html">REGION</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">CIRCLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="../-has-attributes/index.html"><span class="identifier">HasAttributes</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="../-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
-<p>The SVG circle element.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-r-e-c-t/index.html">RECT</a></p>
-</td>
-<td>
-<code><span class="keyword">class </span><span class="identifier">RECT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag/index.html"><span class="identifier">Tag</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="../-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="../-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a><span class="symbol">, </span><a href="../-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
-<p>An SVG rect element.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">REGION</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-element/index.html"><span class="identifier">com.github.nwillc.ksvg.Element</span></a><span class="symbol">, </span><a href="../-has-stroke/index.html"><span class="identifier">com.github.nwillc.ksvg.HasStroke</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">com.github.nwillc.ksvg.HasFill</span></a></code>
+<p>Element is a region and therefore has stroke and fill.</p>
 </td>
 </tr>
 <tr>
@@ -64,7 +50,7 @@
 <p><a href="../-t-e-x-t/index.html">TEXT</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">TEXT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-tag-with-text/index.html"><span class="identifier">TagWithText</span></a><span class="symbol">, </span><a href="../-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasFill</span></a></code>
+<code><span class="keyword">class </span><span class="identifier">TEXT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-element/index.html"><span class="identifier">com.github.nwillc.ksvg.Element</span></a><span class="symbol">, </span><a href="../-has-origin/index.html"><span class="identifier">com.github.nwillc.ksvg.HasOrigin</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">com.github.nwillc.ksvg.HasFill</span></a></code>
 <p>An SVG text element.</p>
 </td>
 </tr>
