@@ -44,7 +44,7 @@ dependencies {
             "org.junit.platform:junit-platform-runner:$junit_platform_version",
             "org.assertj:assertj-core:$assertj_version"
 
-    testImplementation "io.mockk:mockk:1.8.9"
+    testImplementation "io.mockk:mockk:$mockk_version"
 
     ktlint "com.github.shyiko:ktlint:$ktlint_version"
 }
