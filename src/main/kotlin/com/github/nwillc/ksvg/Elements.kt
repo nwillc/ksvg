@@ -56,7 +56,7 @@ abstract class Element(private val name: String) {
      * Render the Element as SVG.
      * @param writer A Writer to append the SVG to.
      */
-     open fun render(writer: Writer, renderMode: RenderMode = RenderMode.INLINE) {
+    open fun render(writer: Writer, renderMode: RenderMode = RenderMode.INLINE) {
         writer.append("<$name")
         attributes.entries.forEach {
             writer.append(' ')
@@ -188,12 +188,12 @@ class SVG : Element("svg"), HasDimensions {
         return a
     }
 
-  override fun render(writer: Writer, renderMode: RenderMode) {
-      if (renderMode == RenderMode.FILE) {
-          writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n")
-      }
-      super.render(writer, renderMode)
-  }
+    override fun render(writer: Writer, renderMode: RenderMode) {
+        if (renderMode == RenderMode.FILE) {
+            writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n")
+        }
+        super.render(writer, renderMode)
+    }
 }
 
 /**
@@ -329,7 +329,8 @@ fun svg(init: SVG.() -> Unit): SVG {
 /**
  * A property delegate to allow attributes to be stored with a key different from their name.
  */
-private class RenamedAttribute<T>(private val attributes: MutableMap<String, Any?>, private val key: String) : ReadWriteProperty<Any?, T> {
+private class RenamedAttribute<T>(private val attributes: MutableMap<String, Any?>, private val key: String) :
+        ReadWriteProperty<Any?, T> {
     @Suppress("UNCHECKED_CAST")
     public override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return attributes[key] as T
