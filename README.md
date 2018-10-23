@@ -43,10 +43,8 @@ This DSL lets you generate simple SVG from [Kotlin](https://kotlinlang.org/) ver
                 stroke = "black"
             }
         }
-
-        val sb = StringBuilder()
-        svg.render(sb)
-        System.out.println("<html><body>$sb</body></html>")
+        
+        System.out.println("<html><body>$svg</body></html>")
 ```
 
 ## About Inline SVG
