@@ -15,19 +15,9 @@
 package com.github.nwillc.ksvg
 
 /**
- * An Element has attributes.
- */
-interface HasAttributes {
-    /**
-     * A Map of attributes.
-     */
-    val attributes: MutableMap<String, Any?>
-}
-
-/**
  * An Element has x,y origin.
  */
-interface HasOrigin : HasAttributes {
+interface HasOrigin {
     /**
      * Origin's X coordinate.
      */
@@ -42,7 +32,7 @@ interface HasOrigin : HasAttributes {
 /**
  * An Element has height and width dimensions.
  */
-interface HasDimensions : HasAttributes {
+interface HasDimensions {
     /**
      * The height dimension.
      */
@@ -57,7 +47,7 @@ interface HasDimensions : HasAttributes {
 /**
  * An Element can have a fill color.
  */
-interface HasFill : HasAttributes {
+interface HasFill {
     /**
      * The fill color.
      */
@@ -67,7 +57,7 @@ interface HasFill : HasAttributes {
 /**
  * An Element has a stroke associated.
  */
-interface HasStroke : HasAttributes {
+interface HasStroke {
     /**
      * The stroke color.
      */

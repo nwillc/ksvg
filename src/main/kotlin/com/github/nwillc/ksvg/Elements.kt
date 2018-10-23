@@ -26,17 +26,27 @@ import kotlin.reflect.KProperty
 @DslMarker
 annotation class SvgTagMarker
 
+enum class RenderMode {
+    INLINE,
+    FILE
+}
+
 /**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
  */
 @SvgTagMarker
-abstract class Element(private val name: String) : HasAttributes {
-    override val attributes = hashMapOf<String, Any?>()
+abstract class Element(private val name: String) {
+    /**
+     * A Map of attributes associated with the element.
+     */
+    val attributes = hashMapOf<String, Any?>()
+
     /**
      * Child Element contained in this Element.
      */
     val children = arrayListOf<Element>()
+
     /**
      * Raw text body of the Element.
      */
@@ -46,7 +56,7 @@ abstract class Element(private val name: String) : HasAttributes {
      * Render the Element as SVG.
      * @param writer A Writer to append the SVG to.
      */
-    fun render(writer: Writer) {
+     open fun render(writer: Writer, renderMode: RenderMode = RenderMode.INLINE) {
         writer.append("<$name")
         attributes.entries.forEach {
             writer.append(' ')
@@ -61,6 +71,8 @@ abstract class Element(private val name: String) : HasAttributes {
             writer.append('>')
             if (hasBody()) {
                 writer.append(body)
+            } else {
+                writer.append('\n')
             }
             children.forEach {
                 it.render(writer)
@@ -84,6 +96,9 @@ abstract class Element(private val name: String) : HasAttributes {
      */
     fun hasContent(): Boolean = hasBody() || hasChildren()
 
+    /**
+     * Returns the rendered SVG as a String.
+     */
     override fun toString(): String {
         return StringWriter().use {
             render(it)
@@ -97,7 +112,7 @@ abstract class Element(private val name: String) : HasAttributes {
  */
 abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
     override var stroke: String by attributes
-    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
+    override var strokeWidth: Int by RenamedAttribute<Int>(attributes, "stroke-width")
     override var fill: String by attributes
 }
 
@@ -172,6 +187,13 @@ class SVG : Element("svg"), HasDimensions {
         children.add(a)
         return a
     }
+
+  override fun render(writer: Writer, renderMode: RenderMode) {
+      if (renderMode == RenderMode.FILE) {
+          writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n")
+      }
+      super.render(writer, renderMode)
+  }
 }
 
 /**
@@ -234,7 +256,7 @@ class RECT : REGION("rect"), HasOrigin, HasDimensions {
  */
 class LINE : Element("line"), HasStroke {
     override var stroke: String by attributes
-    override var strokeWidth: Int by AttrDelegate<Int>(attributes, "stroke-width")
+    override var strokeWidth: Int by RenamedAttribute<Int>(attributes, "stroke-width")
     /**
      * The X1 coordinate of the line.
      */
@@ -272,7 +294,7 @@ class A : Element("a") {
     /**
      * The reference URL.
      */
-    var href: String by AttrDelegate<String>(attributes, "xlink:href")
+    var href: String by RenamedAttribute<String>(attributes, "xlink:href")
 
     /**
      * Create a rect element inside the reference.
@@ -307,13 +329,13 @@ fun svg(init: SVG.() -> Unit): SVG {
 /**
  * A property delegate to allow attributes to be stored with a key different from their name.
  */
-private class AttrDelegate<T>(private val properties: MutableMap<String, Any?>, private val key: String) : ReadWriteProperty<Any?, T> {
+private class RenamedAttribute<T>(private val attributes: MutableMap<String, Any?>, private val key: String) : ReadWriteProperty<Any?, T> {
     @Suppress("UNCHECKED_CAST")
     public override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        return properties[key] as T
+        return attributes[key] as T
     }
 
     public override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        properties[key] = value
+        attributes[key] = value
     }
 }
