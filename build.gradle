@@ -27,7 +27,7 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: "jacoco"
 
 group 'com.github.nwillc'
-version '1.6.0'
+version '1.6.1-SNAPSHOT'
 
 repositories {
     jcenter()
@@ -43,6 +43,8 @@ dependencies {
     testCompile "org.junit.jupiter:junit-jupiter-engine:$jupiter_version",
             "org.junit.platform:junit-platform-runner:$junit_platform_version",
             "org.assertj:assertj-core:$assertj_version"
+
+    testImplementation "io.mockk:mockk:1.8.9"
 
     ktlint "com.github.shyiko:ktlint:$ktlint_version"
 }
@@ -150,7 +152,6 @@ task ktlint(type: JavaExec, group: "verification") {
     classpath = configurations.ktlint
     main = "com.github.shyiko.ktlint.Main"
     args "src/**/*.kt"
-    // args "--reporter=checkstyle, output=${buildDir}/ktlint.xml
 }
 check.dependsOn ktlint
 
@@ -166,7 +167,7 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true // coveralls plugin depends on xml format report
+        xml.enabled = true
         html.enabled = true
     }
 }

@@ -100,9 +100,13 @@ abstract class Element(private val name: String) {
      * Returns the rendered SVG as a String.
      */
     override fun toString(): String {
-        return StringWriter().use {
-            render(it)
-            it.toString()
+        try {
+            return StringWriter().use {
+                render(it)
+                it.toString()
+            }
+        } catch (e: Throwable) {
+            throw RuntimeException("Unable to generate SVG", e)
         }
     }
 }
