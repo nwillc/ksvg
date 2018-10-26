@@ -26,8 +26,18 @@ import kotlin.reflect.KProperty
 @DslMarker
 annotation class SvgTagMarker
 
+/**
+ * The mode to employ when rendering. Some Elements must render differently when used inline in HTML5 or in a
+ * standalone SVG file.
+ */
 enum class RenderMode {
+    /**
+     * Render as inline SVG designed to appear inline in HTML5.
+     */
     INLINE,
+    /**
+     * Render as an SVG `.svg` file format.
+     */
     FILE
 }
 
@@ -53,12 +63,23 @@ abstract class Element(private val name: String) {
     var body: String = ""
 
     /**
+     * Get the attributes specific to a render mode. Allows tags to modify their attributes during rendering
+     * based on the rendering mode. Defaults to the basic Element attributes but can be overrided by Elements to return
+     * differing attribute based on mode.
+     * @param renderMode which mode we are rendering in
+     */
+    open fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
+        return attributes
+    }
+
+    /**
      * Render the Element as SVG.
      * @param writer A Writer to append the SVG to.
+     * @param renderMode Should the Elements render for inline SVG or file SVG.
      */
-    open fun render(writer: Writer, renderMode: RenderMode = RenderMode.INLINE) {
+    open fun render(writer: Writer, renderMode: RenderMode) {
         writer.append("<$name")
-        attributes.entries.forEach {
+        getAttributes(renderMode).entries.forEach {
             writer.append(' ')
             writer.append(it.key)
             writer.append("=\"")
@@ -75,7 +96,7 @@ abstract class Element(private val name: String) {
                 writer.append('\n')
             }
             children.forEach {
-                it.render(writer)
+                it.render(writer, renderMode)
             }
             writer.append("</$name>\n")
         }
@@ -97,12 +118,12 @@ abstract class Element(private val name: String) {
     fun hasContent(): Boolean = hasBody() || hasChildren()
 
     /**
-     * Returns the rendered SVG as a String.
+     * Returns the rendered inline SVG as a String.
      */
     override fun toString(): String {
         try {
             return StringWriter().use {
-                render(it)
+                render(it, RenderMode.INLINE)
                 it.toString()
             }
         } catch (e: Throwable) {
@@ -190,6 +211,16 @@ class SVG : Element("svg"), HasDimensions {
         a.block()
         children.add(a)
         return a
+    }
+
+    override fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
+        return if (renderMode == RenderMode.FILE) {
+            val map = mutableMapOf<String, Any?>("xmlns" to "http://www.w3.org/2000/svg")
+            map.putAll(attributes)
+            map
+        } else {
+            super.getAttributes(renderMode)
+        }
     }
 
     override fun render(writer: Writer, renderMode: RenderMode) {
@@ -318,6 +349,16 @@ class A : Element("a") {
         text.block()
         children.add(text)
         return text
+    }
+
+    override fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
+        return if (renderMode == RenderMode.FILE) {
+            val map = HashMap<String, Any?>(attributes)
+            map["href"] = map.remove("xlink:href")
+            map
+        } else {
+            attributes
+        }
     }
 }
 

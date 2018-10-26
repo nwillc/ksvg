@@ -12,8 +12,8 @@ import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import java.io.PrintWriter
-import java.lang.RuntimeException
+import java.io.InputStreamReader
+import java.io.StringWriter
 
 internal class SVGTest {
     private val svg = svg {}
@@ -200,7 +200,39 @@ internal class SVGTest {
     }
 
     @Test
-    internal fun testOutput() {
+    internal fun testSVGFileMode() {
+        StringWriter().use {
+            svg.render(it, RenderMode.INLINE)
+            assertThat(it.toString()).isEqualTo("<svg/>\n")
+        }
+
+        StringWriter().use {
+            svg.render(it, RenderMode.FILE)
+            assertThat(it.toString()).isEqualTo("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\"/>\n")
+        }
+    }
+
+    @Test
+    internal fun testAFileMode() {
+        svg.a {
+            href = "http://www.google.com"
+        }
+
+        StringWriter().use {
+            svg.render(it, RenderMode.INLINE)
+            assertThat(it.toString()).isEqualTo("<svg>\n<a xlink:href=\"http://www.google.com\"/>\n</svg>\n")
+        }
+
+        StringWriter().use {
+            svg.render(it, RenderMode.FILE)
+            assertThat(it.toString()).isEqualTo("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                    "<a href=\"http://www.google.com\"/>\n" +
+                    "</svg>\n")
+        }
+    }
+
+    @Test
+    internal fun testPersistedExample() {
         val svg = svg {
             width = 200
             height = 200
@@ -236,8 +268,16 @@ internal class SVGTest {
                 stroke = "black"
             }
         }
-        PrintWriter(System.out).use {
-            svg.render(it, RenderMode.FILE)
+
+        javaClass.getResourceAsStream("/example1.svg").use {
+            InputStreamReader(it).use {
+                val text = it.readText()
+                StringWriter().use {
+                    svg.render(it, RenderMode.FILE)
+                    assertThat(it.toString()).isEqualTo(text)
+                }
+            }
         }
     }
+
 }
