@@ -279,5 +279,4 @@ internal class SVGTest {
             }
         }
     }
-
 }
