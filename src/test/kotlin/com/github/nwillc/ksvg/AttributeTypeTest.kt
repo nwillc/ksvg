@@ -28,5 +28,20 @@ internal class AttributeTypeTest {
         svg.width = "0"
         svg.width = "10"
         svg.width = "10%"
+        svg.width = "9px"
+    }
+
+    @Test
+    internal fun testListOfNumbersFail() {
+        assertThatThrownBy { svg.viewBox = "a" }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { svg.viewBox = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { svg.viewBox = "1,,1" }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    internal fun testListOfNumbersPass() {
+        svg.viewBox = "0 0 1 5"
+        svg.viewBox = "10  0 3 4"
+        svg.viewBox = "10,0, 3,4"
     }
 }

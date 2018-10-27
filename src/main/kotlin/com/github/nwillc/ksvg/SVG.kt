@@ -15,13 +15,13 @@ import java.io.Writer
  */
 @SvgTagMarker
 class SVG : Element("svg"), HasDimensions {
-    override var height: String by TypedAttribute(AttributeType.PositionOrPercentage)
-    override var width: String by TypedAttribute(AttributeType.PositionOrPercentage)
+    override var height: String by TypedAttribute(AttributeType.Length)
+    override var width: String by TypedAttribute(AttributeType.Length)
 
     /**
      * The viewBox attribute.
      */
-    var viewBox: String by attributes
+    var viewBox: String by TypedAttribute(AttributeType.NumberList)
 
     /**
      * Create a rect element in this svg.

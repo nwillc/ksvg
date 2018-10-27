@@ -15,8 +15,8 @@ package com.github.nwillc.ksvg
 class RECT : REGION("rect"), HasOrigin, HasDimensions {
     override var x: String by attributes
     override var y: String by attributes
-    override var height: String by TypedAttribute(AttributeType.PositionOrPercentage)
-    override var width: String by TypedAttribute(AttributeType.PositionOrPercentage)
+    override var height: String by TypedAttribute(AttributeType.Length)
+    override var width: String by TypedAttribute(AttributeType.Length)
 
     /**
      * Add a title to the rect.
