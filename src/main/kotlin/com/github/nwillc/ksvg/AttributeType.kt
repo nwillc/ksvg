@@ -20,38 +20,26 @@ private val NUMBER_LIST_REGEX = Regex("($NUMBER_REGEX($SEPARATOR_REGEX)?)+")
  */
 enum class AttributeType {
     Length() {
-        override fun verify(value: Any?) {
-            if (value is String) {
-                if (value matches LENGTH_REGEX) {
-                    return
-                }
-            }
-            throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
+        override fun verify(value: String) {
+            if (!(value matches LENGTH_REGEX))
+                throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
         }
     },
     LengthOrPercentage() {
-        override fun verify(value: Any?) {
-            if (value is String) {
-                if (value matches LENGTH_OR_PERCENTAGE_REGEX) {
-                    return
-                }
-            }
-            throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
+        override fun verify(value: String) {
+            if (!(value matches LENGTH_OR_PERCENTAGE_REGEX))
+                throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
         }
     },
     NumberList() {
-        override fun verify(value: Any?) {
-            if (value is String) {
-                if (value matches NUMBER_LIST_REGEX) {
-                    return
-                }
-            }
-            throw IllegalArgumentException("Value ($value) is not a valid number list")
+        override fun verify(value: String) {
+            if (!(value matches NUMBER_LIST_REGEX))
+                throw IllegalArgumentException("Value ($value) is not a valid number list")
         }
     };
 
     /**
      * Verify a value is of the AttributeType.
      */
-    abstract fun verify(value: Any?)
+    abstract fun verify(value: String)
 }
