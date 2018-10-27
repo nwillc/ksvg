@@ -8,23 +8,22 @@
 
 package com.github.nwillc.ksvg
 
-/**
- * An SVG rect element.
- */
-@SvgTagMarker
-class RECT : REGION("rect"), HasOrigin, HasDimensions {
-    override var x: String by attributes
-    override var y: String by attributes
-    override var height: String by TypedAttribute(AttributeType.PositionOrPercentage)
-    override var width: String by TypedAttribute(AttributeType.PositionOrPercentage)
+private val POSITION_OR_PERCENTAGE_REGEX = Regex("[0-9]+%?")
 
-    /**
-     * Add a title to the rect.
-     */
-    fun title(block: TITLE.() -> Unit): TITLE {
-        val title = TITLE()
-        title.block()
-        children.add(title)
-        return title
-    }
+/**
+ *  An enumeration of attribute types and the how to verify if a value is of this type.
+ */
+enum class AttributeType {
+    PositionOrPercentage() {
+        override fun verify(value: Any?) {
+            if (value is String) {
+                if (value matches POSITION_OR_PERCENTAGE_REGEX) {
+                    return
+                }
+            }
+            throw IllegalArgumentException("Value ($value) is not a valid position or percentage")
+        }
+    };
+
+    abstract fun verify(value: Any?)
 }

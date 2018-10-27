@@ -65,7 +65,7 @@ abstract class Element(private val name: String) {
 
     /**
      * Get the attributes specific to a render mode. Allows tags to modify their attributes during rendering
-     * based on the rendering mode. Defaults to the basic Element attributes but can be overrided by Elements to return
+     * based on the rendering mode. Defaults to the basic Element attributes but can be overridden by Elements to return
      * differing attribute based on mode.
      * @param renderMode which mode we are rendering in
      */
@@ -138,7 +138,7 @@ abstract class Element(private val name: String) {
  */
 abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
     override var stroke: String by attributes
-    override var strokeWidth: Int by RenamedAttribute(attributes, "stroke-width")
+    override var strokeWidth: Int by RenamedAttribute("stroke-width")
     override var fill: String by attributes
 }
 
@@ -154,14 +154,28 @@ fun svg(init: SVG.() -> Unit): SVG {
 /**
  * A property delegate to allow attributes to be stored with a key different from their name.
  */
-internal class RenamedAttribute<T>(private val attributes: MutableMap<String, Any?>, private val key: String) :
-    ReadWriteProperty<Any?, T> {
+internal class RenamedAttribute<T>(private val key: String) : ReadWriteProperty<Any?, T> {
     @Suppress("UNCHECKED_CAST")
-    public override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        return attributes[key] as T
+    override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        return (thisRef as Element).attributes[key] as T
     }
 
-    public override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        attributes[key] = value
+    override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+        (thisRef as Element).attributes[key] = value
+    }
+}
+
+/**
+ * A property delegate that checks if the value matches a specified AttributeType's criteria.
+ */
+internal class TypedAttribute<T>(private val type: AttributeType) : ReadWriteProperty<Any?, T> {
+    @Suppress("UNCHECKED_CAST")
+    override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+        return (thisRef as Element).attributes[property.name] as T
+    }
+
+    override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+        type.verify(value)
+        (thisRef as Element).attributes[property.name] = value
     }
 }

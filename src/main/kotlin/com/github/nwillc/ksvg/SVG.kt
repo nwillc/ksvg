@@ -15,8 +15,8 @@ import java.io.Writer
  */
 @SvgTagMarker
 class SVG : Element("svg"), HasDimensions {
-    override var height: String by attributes
-    override var width: String by attributes
+    override var height: String by TypedAttribute(AttributeType.PositionOrPercentage)
+    override var width: String by TypedAttribute(AttributeType.PositionOrPercentage)
 
     /**
      * The viewBox attribute.
@@ -74,7 +74,7 @@ class SVG : Element("svg"), HasDimensions {
     }
 
     /**
-     * Create an a refereence element in this svg.
+     * Create an a reference element in this svg.
      */
     fun a(block: A.() -> Unit): A {
         val a = A()

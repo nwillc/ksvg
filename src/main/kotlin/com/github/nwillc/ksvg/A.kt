@@ -16,7 +16,7 @@ class A : Element("a") {
     /**
      * The reference URL.
      */
-    var href: String by RenamedAttribute<String>(attributes, "xlink:href")
+    var href: String by RenamedAttribute("xlink:href")
 
     /**
      * Create a rect element inside the reference.

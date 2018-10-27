@@ -14,7 +14,7 @@ package com.github.nwillc.ksvg
 @SvgTagMarker
 class LINE : Element("line"), HasStroke {
     override var stroke: String by attributes
-    override var strokeWidth: Int by RenamedAttribute(attributes, "stroke-width")
+    override var strokeWidth: Int by RenamedAttribute("stroke-width")
     /**
      * The X1 coordinate of the line.
      */

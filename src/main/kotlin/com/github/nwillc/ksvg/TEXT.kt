@@ -8,8 +8,6 @@
 
 package com.github.nwillc.ksvg
 
-import kotlin.properties.Delegates
-
 /**
  * An SVG text element.
  */
