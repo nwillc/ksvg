@@ -104,7 +104,7 @@ publishing {
     }
 }
 
-publish.dependsOn = ['assemble', 'sourceJar', 'generatePomFileForMavenPublication']
+publish.dependsOn = ['assemble', 'sourceJar', 'javadocJar', 'generatePomFileForMavenPublication']
 
 model {
     tasks.generatePomFileForMavenPublication {

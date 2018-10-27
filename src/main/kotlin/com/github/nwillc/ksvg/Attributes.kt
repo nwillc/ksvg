@@ -21,12 +21,12 @@ interface HasOrigin {
     /**
      * Origin's X coordinate.
      */
-    var x: String
+    var x: String?
 
     /**
      * Origin's Y coordinate.
      */
-    var y: String
+    var y: String?
 }
 
 /**
@@ -36,12 +36,12 @@ interface HasDimensions {
     /**
      * The height dimension.
      */
-    var height: String
+    var height: String?
 
     /**
      * The width dimension.
      */
-    var width: String
+    var width: String?
 }
 
 /**
@@ -51,7 +51,7 @@ interface HasFill {
     /**
      * The fill color.
      */
-    var fill: String
+    var fill: String?
 }
 
 /**
@@ -61,10 +61,10 @@ interface HasStroke {
     /**
      * The stroke color.
      */
-    var stroke: String
+    var stroke: String?
 
     /**
      * The stroke width.
      */
-    var strokeWidth: Int
+    var strokeWidth: String?
 }

@@ -70,7 +70,7 @@ internal class SVGTest {
 
     @Test
     internal fun testLineStrokeWidthGetSet() {
-        val width = 10
+        val width = "10"
 
         svg.line {
             strokeWidth = width
@@ -81,7 +81,7 @@ internal class SVGTest {
 
     @Test
     internal fun testRectStrokeWidthGetSet() {
-        val width = 10
+        val width = "10"
 
         svg.rect {
             strokeWidth = width
@@ -92,7 +92,7 @@ internal class SVGTest {
 
     @Test
     internal fun testCircleStrokeWidthGetSet() {
-        val width = 10
+        val width = "10"
 
         svg.circle {
             strokeWidth = width
@@ -161,9 +161,9 @@ internal class SVGTest {
     @Test
     internal fun testCircle() {
         svg.circle {
-            cx = 10
-            cy = 10
-            r = 5
+            cx = "10"
+            cy = "10"
+            r = "5"
             fill = "blue"
         }
 
@@ -183,10 +183,10 @@ internal class SVGTest {
     @Test
     internal fun testLine() {
         svg.line {
-            x1 = 1
-            y1 = 1
-            x2 = 5
-            y2 = 5
+            x1 = "1"
+            y1 = "1"
+            x2 = "5"
+            y2 = "5"
         }
 
         assertThat(svg.toString()).isEqualTo("<svg>\n<line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
@@ -252,19 +252,19 @@ internal class SVGTest {
                 y = "100"
             }
             circle {
-                cx = 100
-                cy = 150
-                r = 20
+                cx = "100"
+                cy = "150"
+                r = "20"
                 fill = "red"
                 stroke = "blue"
-                strokeWidth = 2
+                strokeWidth = "2"
             }
             line {
-                x1 = 0
-                y1 = 0
-                x2 = 40
-                y2 = 40
-                strokeWidth = 3
+                x1 = "0"
+                y1 = "0"
+                x2 = "40"
+                y2 = "40"
+                strokeWidth = "3"
                 stroke = "black"
             }
         }

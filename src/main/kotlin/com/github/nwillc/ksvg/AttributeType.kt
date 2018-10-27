@@ -10,16 +10,15 @@ package com.github.nwillc.ksvg
 
 private val NUMBER_REGEX = Regex("[+-]?[0-9]*.?[0-9]+")
 private val SEPARATOR_REGEX = Regex("\\s*,?\\s+")
-private val LENGTH_REGEX = Regex("$NUMBER_REGEX(em|ex|px|in|cm|mm|pt|pc|%)?")
+private val UNITS = "em|ex|px|in|cm|mm|pt|pc"
+private val LENGTH_REGEX = Regex("$NUMBER_REGEX($UNITS)?")
+private val LENGTH_OR_PERCENTAGE_REGEX = Regex("$NUMBER_REGEX($UNITS|%)?")
 private val NUMBER_LIST_REGEX = Regex("($NUMBER_REGEX($SEPARATOR_REGEX)?)+")
 
 /**
  *  An enumeration of attribute types and the how to verify if a value is of this type.
  */
 enum class AttributeType {
-    /**
-     * An attribute representing length.
-     */
     Length() {
         override fun verify(value: Any?) {
             if (value is String) {
@@ -27,7 +26,17 @@ enum class AttributeType {
                     return
                 }
             }
-            throw IllegalArgumentException("Value ($value) is not a valid length")
+            throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
+        }
+    },
+    LengthOrPercentage() {
+        override fun verify(value: Any?) {
+            if (value is String) {
+                if (value matches LENGTH_OR_PERCENTAGE_REGEX) {
+                    return
+                }
+            }
+            throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
         }
     },
     NumberList() {

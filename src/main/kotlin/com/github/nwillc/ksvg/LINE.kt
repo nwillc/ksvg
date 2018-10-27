@@ -13,25 +13,25 @@ package com.github.nwillc.ksvg
  */
 @SvgTagMarker
 class LINE : Element("line"), HasStroke {
-    override var stroke: String by attributes
-    override var strokeWidth: Int by RenamedAttribute("stroke-width")
+    override var stroke: String? by attributes
+    override var strokeWidth: String? by RenamedAttribute("stroke-width")
     /**
      * The X1 coordinate of the line.
      */
-    var x1: Int by attributes
+    var x1: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 
     /**
      * The Y1 coordinate of the line.
      */
-    var y1: Int by attributes
+    var y1: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 
     /**
      * The X2 coordinate of the line.
      */
-    var x2: Int by attributes
+    var x2: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 
     /**
      * The Y2 coordinate of the line.
      */
-    var y2: Int by attributes
+    var y2: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 }

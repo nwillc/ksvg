@@ -13,7 +13,7 @@ package com.github.nwillc.ksvg
  */
 @SvgTagMarker
 class TEXT : Element("text"), HasOrigin, HasFill {
-    override var x: String by attributes
-    override var y: String by attributes
-    override var fill: String by attributes
+    override var x: String? by attributes
+    override var y: String? by attributes
+    override var fill: String? by attributes
 }

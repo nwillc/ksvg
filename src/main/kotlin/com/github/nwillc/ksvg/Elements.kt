@@ -49,7 +49,7 @@ abstract class Element(private val name: String) {
     /**
      * A Map of attributes associated with the element.
      */
-    val attributes = hashMapOf<String, Any?>()
+    val attributes = hashMapOf<String, String?>()
 
     val id: String by attributes
 
@@ -137,9 +137,9 @@ abstract class Element(private val name: String) {
  * Element is a region and therefore has stroke and fill.
  */
 abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
-    override var stroke: String by attributes
-    override var strokeWidth: Int by RenamedAttribute("stroke-width")
-    override var fill: String by attributes
+    override var stroke: String? by attributes
+    override var strokeWidth: String? by RenamedAttribute("stroke-width")
+    override var fill: String? by attributes
 }
 
 /**
@@ -152,30 +152,33 @@ fun svg(init: SVG.() -> Unit): SVG {
 }
 
 /**
- * A property delegate to allow attributes to be stored with a key different from their name.
+ * A property delegate to allow attributes to be rendered with a different name.
  */
-internal class RenamedAttribute<T>(private val key: String) : ReadWriteProperty<Any?, T> {
+internal class RenamedAttribute(private val renamed: String) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
-    override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        return (thisRef as Element).attributes[key] as T
+    override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {
+        return (thisRef as Element).attributes[renamed]
     }
 
-    override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        (thisRef as Element).attributes[key] = value
+    override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
+        if (value != null)
+            (thisRef as Element).attributes[renamed] = value
     }
 }
 
 /**
  * A property delegate that checks if the value matches a specified AttributeType's criteria.
  */
-internal class TypedAttribute<T>(private val type: AttributeType) : ReadWriteProperty<Any?, T> {
+internal class TypedAttribute(private val type: AttributeType) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
-    override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-        return (thisRef as Element).attributes[property.name] as T
+    override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {
+        return (thisRef as Element).attributes[property.name]
     }
 
-    override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        type.verify(value)
-        (thisRef as Element).attributes[property.name] = value
+    override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
+        if (value != null) {
+            type.verify(value)
+            (thisRef as Element).attributes[property.name] = value
+        }
     }
 }

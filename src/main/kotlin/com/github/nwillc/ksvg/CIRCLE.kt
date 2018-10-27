@@ -16,15 +16,15 @@ class CIRCLE : REGION("circle") {
     /**
      * The x coordinate of the circle's center.
      */
-    var cx: Int by attributes
+    var cx: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 
     /**
      * The r coordinate of the circle's center.
      */
-    var cy: Int by attributes
+    var cy: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 
     /**
      * The radius or the circle.
      */
-    var r: Int by attributes
+    var r: String? by TypedAttribute(AttributeType.Length)
 }
