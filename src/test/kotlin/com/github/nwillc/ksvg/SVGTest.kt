@@ -164,6 +164,7 @@ internal class SVGTest {
             cx = "10"
             cy = "10"
             r = "5"
+            assertThat(r).isEqualTo("5")
             fill = "blue"
         }
 

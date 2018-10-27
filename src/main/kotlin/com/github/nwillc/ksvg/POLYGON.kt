@@ -11,7 +11,7 @@ package com.github.nwillc.ksvg
 /**
  * The SVG polygon element.
  */
-class POLYGON : REGION("polygon") {
+class POLYGON(validateAttributes: Boolean = false) : REGION("polygon", validateAttributes) {
     /**
      * The points defining the x and y coordinates for each corner of the polygon.
      */

@@ -12,7 +12,7 @@ package com.github.nwillc.ksvg
  * An SVG text element.
  */
 @SvgTagMarker
-class TEXT : Element("text"), HasOrigin, HasFill {
+class TEXT(validateAttributes: Boolean = false) : Element("text", validateAttributes), HasOrigin, HasFill {
     override var x: String? by attributes
     override var y: String? by attributes
     override var fill: String? by attributes

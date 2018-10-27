@@ -45,13 +45,16 @@ enum class RenderMode {
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
  */
-abstract class Element(private val name: String) {
+abstract class Element(private val name: String, var validateAttributes: Boolean) {
     /**
      * A Map of attributes associated with the element.
      */
     val attributes = hashMapOf<String, String?>()
 
-    val id: String by attributes
+    /**
+     * The id attribute of the Element.
+     */
+    val id: String? by attributes
 
     /**
      * Child Element contained in this Element.
@@ -136,7 +139,8 @@ abstract class Element(private val name: String) {
 /**
  * Element is a region and therefore has stroke and fill.
  */
-abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
+abstract class REGION(name: String, validateAttributes: Boolean) : Element(name, validateAttributes), HasStroke,
+    HasFill {
     override var stroke: String? by attributes
     override var strokeWidth: String? by RenamedAttribute("stroke-width")
     override var fill: String? by attributes
@@ -145,8 +149,8 @@ abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
 /**
  * Create an SVG element.
  */
-fun svg(init: SVG.() -> Unit): SVG {
-    val svg = SVG()
+fun svg(validateAttributes: Boolean = false, init: SVG.() -> Unit): SVG {
+    val svg = SVG(validateAttributes)
     svg.init()
     return svg
 }
@@ -161,8 +165,9 @@ internal class RenamedAttribute(private val renamed: String) : ReadWriteProperty
     }
 
     override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
-        if (value != null)
-            (thisRef as Element).attributes[renamed] = value
+        if (value != null && thisRef is Element) {
+            thisRef.attributes[renamed] = value
+        }
     }
 }
 
@@ -176,9 +181,11 @@ internal class TypedAttribute(private val type: AttributeType) : ReadWriteProper
     }
 
     override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
-        if (value != null) {
-            type.verify(value)
-            (thisRef as Element).attributes[property.name] = value
+        if (value != null && thisRef is Element) {
+            if (thisRef.validateAttributes)
+                type.verify(value)
+
+            thisRef.attributes[property.name] = value
         }
     }
 }

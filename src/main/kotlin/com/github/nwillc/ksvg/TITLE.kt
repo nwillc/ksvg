@@ -12,4 +12,4 @@ package com.github.nwillc.ksvg
  * An SVG title element.
  */
 @SvgTagMarker
-class TITLE : Element("title")
+class TITLE(validateAttributes: Boolean = false) : Element("title", validateAttributes)

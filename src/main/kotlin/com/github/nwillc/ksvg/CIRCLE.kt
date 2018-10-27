@@ -12,7 +12,7 @@ package com.github.nwillc.ksvg
  * The SVG circle element.
  */
 @SvgTagMarker
-class CIRCLE : REGION("circle") {
+class CIRCLE(validateAttributes: Boolean = false) : REGION("circle", validateAttributes) {
     /**
      * The x coordinate of the circle's center.
      */

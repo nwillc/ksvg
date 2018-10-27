@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
 
 internal class AttributeTypeTest {
-    private val svg = svg {}
+    private val svg = svg(true) {}
 
     @Test
     internal fun testPositionOrPercentageFail() {
@@ -43,5 +43,22 @@ internal class AttributeTypeTest {
         svg.viewBox = "0 0 1 5"
         svg.viewBox = "10  0 3 4"
         svg.viewBox = "10,0, 3,4"
+    }
+
+    @Test
+    internal fun testLengthFail() {
+        svg.circle {
+            assertThatThrownBy { r = "a" }.isInstanceOf(IllegalArgumentException::class.java)
+            assertThatThrownBy { r = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
+            assertThatThrownBy { r = "10 %" }.isInstanceOf(IllegalArgumentException::class.java)
+        }
+    }
+
+    @Test
+    internal fun testLengthPass() {
+        svg.circle {
+            r = "10"
+            r = "10px"
+        }
     }
 }

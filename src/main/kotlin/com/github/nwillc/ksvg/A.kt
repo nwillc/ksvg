@@ -12,7 +12,7 @@ package com.github.nwillc.ksvg
  * An SVG A reference element.
  */
 @SvgTagMarker
-class A : Element("a") {
+class A(validateAttributes: Boolean = false) : Element("a", validateAttributes) {
     /**
      * The reference URL.
      */

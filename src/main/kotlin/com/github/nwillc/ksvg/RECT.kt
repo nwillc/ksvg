@@ -12,7 +12,7 @@ package com.github.nwillc.ksvg
  * An SVG rect element.
  */
 @SvgTagMarker
-class RECT : REGION("rect"), HasOrigin, HasDimensions {
+class RECT(validateAttributes: Boolean = false) : REGION("rect", validateAttributes), HasOrigin, HasDimensions {
     override var x: String? by attributes
     override var y: String? by attributes
     override var height: String? by TypedAttribute(AttributeType.LengthOrPercentage)
@@ -22,7 +22,7 @@ class RECT : REGION("rect"), HasOrigin, HasDimensions {
      * Add a title to the rect.
      */
     fun title(block: TITLE.() -> Unit): TITLE {
-        val title = TITLE()
+        val title = TITLE(validateAttributes)
         title.block()
         children.add(title)
         return title

@@ -14,7 +14,7 @@ import java.io.Writer
  * The SVG element itself.
  */
 @SvgTagMarker
-class SVG : Element("svg"), HasDimensions {
+class SVG(validateAttributes: Boolean = false) : Element("svg", validateAttributes), HasDimensions {
     override var height: String? by TypedAttribute(AttributeType.LengthOrPercentage)
     override var width: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 
@@ -27,7 +27,7 @@ class SVG : Element("svg"), HasDimensions {
      * Create a rect element in this svg.
      */
     fun rect(init: RECT.() -> Unit): RECT {
-        val rect = RECT()
+        val rect = RECT(validateAttributes)
         rect.init()
         children.add(rect)
         return rect
@@ -37,7 +37,7 @@ class SVG : Element("svg"), HasDimensions {
      * Create a text element in this svg.
      */
     fun text(init: TEXT.() -> Unit): TEXT {
-        val text = TEXT()
+        val text = TEXT(validateAttributes)
         text.init()
         children.add(text)
         return text
@@ -47,7 +47,7 @@ class SVG : Element("svg"), HasDimensions {
      * Create a circle element in this svg.
      */
     fun circle(init: CIRCLE.() -> Unit): CIRCLE {
-        val circle = CIRCLE()
+        val circle = CIRCLE(validateAttributes)
         circle.init()
         children.add(circle)
         return circle
@@ -57,7 +57,7 @@ class SVG : Element("svg"), HasDimensions {
      * Create a polygon element in this svg.
      */
     fun polygon(init: POLYGON.() -> Unit): POLYGON {
-        val polygon = POLYGON()
+        val polygon = POLYGON(validateAttributes)
         polygon.init()
         children.add(polygon)
         return polygon
@@ -67,7 +67,7 @@ class SVG : Element("svg"), HasDimensions {
      * Create a line element in this svg.
      */
     fun line(init: LINE.() -> Unit): LINE {
-        val line = LINE()
+        val line = LINE(validateAttributes)
         line.init()
         children.add(line)
         return line
@@ -77,7 +77,7 @@ class SVG : Element("svg"), HasDimensions {
      * Create an a reference element in this svg.
      */
     fun a(block: A.() -> Unit): A {
-        val a = A()
+        val a = A(validateAttributes)
         a.block()
         children.add(a)
         return a
