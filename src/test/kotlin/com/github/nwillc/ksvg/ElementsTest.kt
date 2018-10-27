@@ -33,17 +33,4 @@ internal class ElementsTest {
             }
         }
     }
-
-    @Test
-    internal fun testBadElement() {
-        val badElement = BadElement()
-        assertThatThrownBy {
-            val foo = badElement.foo
-        }.isInstanceOf(RuntimeException::class.java)
-    }
-
-    private class BadElement {
-        val attributes = mutableMapOf<String, String?>()
-        var foo: String? by TypedAttribute(AttributeType.Length)
-    }
 }
