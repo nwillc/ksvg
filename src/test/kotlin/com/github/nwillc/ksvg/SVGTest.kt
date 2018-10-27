@@ -32,8 +32,8 @@ internal class SVGTest {
     @Test
     internal fun testTextOrigin() {
         svg.text {
-            x = 1
-            y = 2
+            x = "1"
+            y = "2"
         }
         assertThat(svg.toString()).isEqualTo("<svg>\n<text x=\"1\" y=\"2\"/>\n</svg>\n")
     }
@@ -41,8 +41,8 @@ internal class SVGTest {
     @Test
     internal fun testDimensions() {
         svg.rect {
-            width = 20
-            height = 10
+            width = "20"
+            height = "10"
         }
 
         assertThat(svg.toString()).isEqualTo("<svg>\n<rect width=\"20\" height=\"10\"/>\n</svg>\n")
@@ -104,8 +104,8 @@ internal class SVGTest {
     @Test
     internal fun testSvgWithTags() {
         svg.rect {
-            x = 1
-            y = 2
+            x = "1"
+            y = "2"
         }
         svg.text {
             body = "Hello World"
@@ -234,22 +234,22 @@ internal class SVGTest {
     @Test
     internal fun testPersistedExample() {
         val svg = svg {
-            width = 200
-            height = 200
+            width = "200"
+            height = "200"
             rect {
                 title {
                     body = "A Blue Rectangle"
                 }
-                x = 50
-                y = 50
-                width = 20
-                height = 10
+                x = "50"
+                y = "50"
+                width = "20"
+                height = "10"
                 fill = "blue"
             }
             text {
                 body = "label"
-                x = 100
-                y = 100
+                x = "100"
+                y = "100"
             }
             circle {
                 cx = 100

@@ -45,12 +45,13 @@ enum class RenderMode {
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
  */
-@SvgTagMarker
 abstract class Element(private val name: String) {
     /**
      * A Map of attributes associated with the element.
      */
     val attributes = hashMapOf<String, Any?>()
+
+    val id: String by attributes
 
     /**
      * Child Element contained in this Element.
@@ -137,229 +138,8 @@ abstract class Element(private val name: String) {
  */
 abstract class REGION(name: String) : Element(name), HasStroke, HasFill {
     override var stroke: String by attributes
-    override var strokeWidth: Int by RenamedAttribute<Int>(attributes, "stroke-width")
+    override var strokeWidth: Int by RenamedAttribute(attributes, "stroke-width")
     override var fill: String by attributes
-}
-
-/**
- * The SVG element itself.
- */
-class SVG : Element("svg"), HasDimensions {
-    override var height: Int by attributes
-    override var width: Int by attributes
-
-    /**
-     * The viewBox attribute.
-     */
-    var viewBox: String by attributes
-
-    /**
-     * Create a rect element in this svg.
-     */
-    fun rect(init: RECT.() -> Unit): RECT {
-        val rect = RECT()
-        rect.init()
-        children.add(rect)
-        return rect
-    }
-
-    /**
-     * Create a text element in this svg.
-     */
-    fun text(init: TEXT.() -> Unit): TEXT {
-        val text = TEXT()
-        text.init()
-        children.add(text)
-        return text
-    }
-
-    /**
-     * Create a circle element in this svg.
-     */
-    fun circle(init: CIRCLE.() -> Unit): CIRCLE {
-        val circle = CIRCLE()
-        circle.init()
-        children.add(circle)
-        return circle
-    }
-
-    /**
-     * Create a polygon element in this svg.
-     */
-    fun polygon(init: POLYGON.() -> Unit): POLYGON {
-        val polygon = POLYGON()
-        polygon.init()
-        children.add(polygon)
-        return polygon
-    }
-
-    /**
-     * Create a line element in this svg.
-     */
-    fun line(init: LINE.() -> Unit): LINE {
-        val line = LINE()
-        line.init()
-        children.add(line)
-        return line
-    }
-
-    /**
-     * Create an a refereence element in this svg.
-     */
-    fun a(block: A.() -> Unit): A {
-        val a = A()
-        a.block()
-        children.add(a)
-        return a
-    }
-
-    override fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
-        return if (renderMode == RenderMode.FILE) {
-            val map = mutableMapOf<String, Any?>("xmlns" to "http://www.w3.org/2000/svg")
-            map.putAll(attributes)
-            map
-        } else {
-            super.getAttributes(renderMode)
-        }
-    }
-
-    override fun render(writer: Writer, renderMode: RenderMode) {
-        if (renderMode == RenderMode.FILE) {
-            writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n")
-        }
-        super.render(writer, renderMode)
-    }
-}
-
-/**
- * The SVG circle element.
- */
-class CIRCLE : REGION("circle") {
-    /**
-     * The x coordinate of the circle's center.
-     */
-    var cx: Int by attributes
-
-    /**
-     * The r coordinate of the circle's center.
-     */
-    var cy: Int by attributes
-
-    /**
-     * The radius or the circle.
-     */
-    var r: Int by attributes
-}
-
-/**
- * The SVG polygon element.
- */
-class POLYGON : REGION("polygon") {
-    /**
-     * The points defining the x and y coordinates for each corner of the polygon.
-     */
-    var points: String by attributes
-}
-
-/**
- * An SVG title element.
- */
-class TITLE : Element("title")
-
-/**
- * An SVG rect element.
- */
-class RECT : REGION("rect"), HasOrigin, HasDimensions {
-    override var x: Int by attributes
-    override var y: Int by attributes
-    override var height: Int by attributes
-    override var width: Int by attributes
-
-    /**
-     * Add a title to the rect.
-     */
-    fun title(block: TITLE.() -> Unit): TITLE {
-        val title = TITLE()
-        title.block()
-        children.add(title)
-        return title
-    }
-}
-
-/**
- * An SVG line element.
- */
-class LINE : Element("line"), HasStroke {
-    override var stroke: String by attributes
-    override var strokeWidth: Int by RenamedAttribute<Int>(attributes, "stroke-width")
-    /**
-     * The X1 coordinate of the line.
-     */
-    var x1: Int by attributes
-
-    /**
-     * The Y1 coordinate of the line.
-     */
-    var y1: Int by attributes
-
-    /**
-     * The X2 coordinate of the line.
-     */
-    var x2: Int by attributes
-
-    /**
-     * The Y2 coordinate of the line.
-     */
-    var y2: Int by attributes
-}
-
-/**
- * An SVG text element.
- */
-class TEXT : Element("text"), HasOrigin, HasFill {
-    override var x: Int by attributes
-    override var y: Int by attributes
-    override var fill: String by attributes
-}
-
-/**
- * An SVG A reference element.
- */
-class A : Element("a") {
-    /**
-     * The reference URL.
-     */
-    var href: String by RenamedAttribute<String>(attributes, "xlink:href")
-
-    /**
-     * Create a rect element inside the reference.
-     */
-    fun rect(block: RECT.() -> Unit): RECT {
-        val rect = RECT()
-        rect.block()
-        children.add(rect)
-        return rect
-    }
-
-    /**
-     * Create a text element inside the reference.
-     */
-    fun text(block: TEXT.() -> Unit): TEXT {
-        val text = TEXT()
-        text.block()
-        children.add(text)
-        return text
-    }
-
-    override fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
-        return if (renderMode == RenderMode.FILE) {
-            val map = HashMap<String, Any?>(attributes)
-            map["href"] = map.remove("xlink:href")
-            map
-        } else {
-            attributes
-        }
-    }
 }
 
 /**
@@ -374,8 +154,8 @@ fun svg(init: SVG.() -> Unit): SVG {
 /**
  * A property delegate to allow attributes to be stored with a key different from their name.
  */
-private class RenamedAttribute<T>(private val attributes: MutableMap<String, Any?>, private val key: String) :
-        ReadWriteProperty<Any?, T> {
+internal class RenamedAttribute<T>(private val attributes: MutableMap<String, Any?>, private val key: String) :
+    ReadWriteProperty<Any?, T> {
     @Suppress("UNCHECKED_CAST")
     public override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return attributes[key] as T

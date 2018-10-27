@@ -21,12 +21,12 @@ interface HasOrigin {
     /**
      * Origin's X coordinate.
      */
-    var x: Int
+    var x: String
 
     /**
      * Origin's Y coordinate.
      */
-    var y: Int
+    var y: String
 }
 
 /**
@@ -36,12 +36,12 @@ interface HasDimensions {
     /**
      * The height dimension.
      */
-    var height: Int
+    var height: String
 
     /**
      * The width dimension.
      */
-    var width: Int
+    var width: String
 }
 
 /**
