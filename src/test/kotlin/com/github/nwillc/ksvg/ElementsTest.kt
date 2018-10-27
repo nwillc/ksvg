@@ -9,7 +9,6 @@
 package com.github.nwillc.ksvg
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 internal class ElementsTest {

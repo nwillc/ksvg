@@ -104,7 +104,8 @@ internal class SVGTest : HasSvg() {
     internal fun toStringFailure() {
         // Force a child element in that will throw an exception up when rendered.
         svg.children.add(mockk<TEXT>())
-        assertThatThrownBy { svg.toString() }.isInstanceOf(RuntimeException::class.java).hasMessageContaining("Unable to generate SVG")
+        assertThatThrownBy { svg.toString() }.isInstanceOf(RuntimeException::class.java)
+            .hasMessageContaining("Unable to generate SVG")
     }
 
     @Test
