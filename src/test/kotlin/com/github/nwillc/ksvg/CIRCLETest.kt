@@ -8,42 +8,32 @@
 
 package com.github.nwillc.ksvg
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
-internal class ElementsTest {
-
+internal class CIRCLETest : HasSvg() {
     @Test
-    internal fun testValidationAttributesTrue() {
-        svg(true) {
-            assertThat(validateAttributes).isTrue()
-            rect {
-                assertThat(validateAttributes).isTrue()
-            }
+    internal fun testCircle() {
+        svg.circle {
+            cx = "10"
+            cy = "10"
+            r = "5"
+            Assertions.assertThat(r).isEqualTo("5")
+            fill = "blue"
         }
+
+        assertThat(svg.toString()).isEqualTo("<svg>\n<circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
     }
 
     @Test
-    internal fun testValidationAttributesFalse() {
-        svg {
-            assertThat(validateAttributes).isFalse()
-            rect {
-                assertThat(validateAttributes).isFalse()
-            }
+    internal fun testCircleStrokeWidthGetSet() {
+        val width = "10"
+
+        svg.circle {
+            strokeWidth = width
         }
-    }
 
-    @Test
-    internal fun testBadElement() {
-        val badElement = BadElement()
-        assertThatThrownBy {
-            val foo = badElement.foo
-        }.isInstanceOf(RuntimeException::class.java)
-    }
-
-    private class BadElement {
-        val attributes = mutableMapOf<String, String?>()
-        var foo: String? by TypedAttribute(AttributeType.Length)
+        assertThat((svg.children[0] as CIRCLE).strokeWidth).isEqualTo(width)
     }
 }

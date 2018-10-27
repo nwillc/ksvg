@@ -10,10 +10,8 @@ package com.github.nwillc.ksvg
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import java.lang.IllegalArgumentException
 
-internal class AttributeTypeTest {
-    private val svg = svg(true) {}
+internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     internal fun testPositionOrPercentageFail() {

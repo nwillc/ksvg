@@ -15,8 +15,7 @@ import org.junit.jupiter.api.Test
 import java.io.InputStreamReader
 import java.io.StringWriter
 
-internal class SVGTest {
-    private val svg = svg {}
+internal class SVGTest : HasSvg() {
 
     @Test
     internal fun testSvg() {
@@ -27,15 +26,6 @@ internal class SVGTest {
     internal fun testSvgWithAttr() {
         svg.viewBox = "0 0 10 10"
         assertThat(svg.toString()).isEqualTo("<svg viewBox=\"0 0 10 10\"/>\n")
-    }
-
-    @Test
-    internal fun testTextOrigin() {
-        svg.text {
-            x = "1"
-            y = "2"
-        }
-        assertThat(svg.toString()).isEqualTo("<svg>\n<text x=\"1\" y=\"2\"/>\n</svg>\n")
     }
 
     @Test
@@ -66,39 +56,6 @@ internal class SVGTest {
         }
 
         assertThat((svg.children[0] as TEXT).body).isEqualTo(msg)
-    }
-
-    @Test
-    internal fun testLineStrokeWidthGetSet() {
-        val width = "10"
-
-        svg.line {
-            strokeWidth = width
-        }
-
-        assertThat((svg.children[0] as LINE).strokeWidth).isEqualTo(width)
-    }
-
-    @Test
-    internal fun testRectStrokeWidthGetSet() {
-        val width = "10"
-
-        svg.rect {
-            strokeWidth = width
-        }
-
-        assertThat((svg.children[0] as HasStroke).strokeWidth).isEqualTo(width)
-    }
-
-    @Test
-    internal fun testCircleStrokeWidthGetSet() {
-        val width = "10"
-
-        svg.circle {
-            strokeWidth = width
-        }
-
-        assertThat((svg.children[0] as CIRCLE).strokeWidth).isEqualTo(width)
     }
 
     @Test
@@ -144,56 +101,6 @@ internal class SVGTest {
     }
 
     @Test
-    internal fun testHref() {
-        val url = "http://www.google.com"
-        svg.a {
-            href = url
-            text {
-                body = "google.com"
-            }
-            rect {
-            }
-        }
-        assertThat((svg.children[0] as A).href).isEqualTo(url)
-        assertThat(svg.toString()).isEqualTo("<svg>\n<a xlink:href=\"http://www.google.com\">\n<text>google.com</text>\n<rect/>\n</a>\n</svg>\n")
-    }
-
-    @Test
-    internal fun testCircle() {
-        svg.circle {
-            cx = "10"
-            cy = "10"
-            r = "5"
-            assertThat(r).isEqualTo("5")
-            fill = "blue"
-        }
-
-        assertThat(svg.toString()).isEqualTo("<svg>\n<circle r=\"5\" cx=\"10\" cy=\"10\" fill=\"blue\"/>\n</svg>\n")
-    }
-
-    @Test
-    internal fun testPolygon() {
-        val pts = "200,10 250,190 160,210"
-        svg.polygon {
-            points = pts
-        }
-
-        assertThat(svg.toString()).isEqualTo("<svg>\n<polygon points=\"$pts\"/>\n</svg>\n")
-    }
-
-    @Test
-    internal fun testLine() {
-        svg.line {
-            x1 = "1"
-            y1 = "1"
-            x2 = "5"
-            y2 = "5"
-        }
-
-        assertThat(svg.toString()).isEqualTo("<svg>\n<line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
-    }
-
-    @Test
     internal fun toStringFailure() {
         // Force a child element in that will throw an exception up when rendered.
         svg.children.add(mockk<TEXT>())
@@ -210,25 +117,6 @@ internal class SVGTest {
         StringWriter().use {
             svg.render(it, RenderMode.FILE)
             assertThat(it.toString()).isEqualTo("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\"/>\n")
-        }
-    }
-
-    @Test
-    internal fun testAFileMode() {
-        svg.a {
-            href = "http://www.google.com"
-        }
-
-        StringWriter().use {
-            svg.render(it, RenderMode.INLINE)
-            assertThat(it.toString()).isEqualTo("<svg>\n<a xlink:href=\"http://www.google.com\"/>\n</svg>\n")
-        }
-
-        StringWriter().use {
-            svg.render(it, RenderMode.FILE)
-            assertThat(it.toString()).isEqualTo("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                    "<a href=\"http://www.google.com\"/>\n" +
-                    "</svg>\n")
         }
     }
 

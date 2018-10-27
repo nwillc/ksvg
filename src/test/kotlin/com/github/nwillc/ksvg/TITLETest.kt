@@ -9,41 +9,17 @@
 package com.github.nwillc.ksvg
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
-internal class ElementsTest {
-
+internal class TITLETest : HasSvg() {
     @Test
-    internal fun testValidationAttributesTrue() {
-        svg(true) {
-            assertThat(validateAttributes).isTrue()
-            rect {
-                assertThat(validateAttributes).isTrue()
+    internal fun testTitle() {
+        svg.rect {
+            title {
+                body = "Gone With The Wind"
             }
         }
-    }
 
-    @Test
-    internal fun testValidationAttributesFalse() {
-        svg {
-            assertThat(validateAttributes).isFalse()
-            rect {
-                assertThat(validateAttributes).isFalse()
-            }
-        }
-    }
-
-    @Test
-    internal fun testBadElement() {
-        val badElement = BadElement()
-        assertThatThrownBy {
-            val foo = badElement.foo
-        }.isInstanceOf(RuntimeException::class.java)
-    }
-
-    private class BadElement {
-        val attributes = mutableMapOf<String, String?>()
-        var foo: String? by TypedAttribute(AttributeType.Length)
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect>\n<title>Gone With The Wind</title>\n</rect>\n</svg>\n")
     }
 }

@@ -9,41 +9,29 @@
 package com.github.nwillc.ksvg
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
-internal class ElementsTest {
-
+internal class LINETest : HasSvg() {
     @Test
-    internal fun testValidationAttributesTrue() {
-        svg(true) {
-            assertThat(validateAttributes).isTrue()
-            rect {
-                assertThat(validateAttributes).isTrue()
-            }
+    internal fun testLineStrokeWidthGetSet() {
+        val width = "10"
+
+        svg.line {
+            strokeWidth = width
         }
+
+        assertThat((svg.children[0] as LINE).strokeWidth).isEqualTo(width)
     }
 
     @Test
-    internal fun testValidationAttributesFalse() {
-        svg {
-            assertThat(validateAttributes).isFalse()
-            rect {
-                assertThat(validateAttributes).isFalse()
-            }
+    internal fun testLine() {
+        svg.line {
+            x1 = "1"
+            y1 = "1"
+            x2 = "5"
+            y2 = "5"
         }
-    }
 
-    @Test
-    internal fun testBadElement() {
-        val badElement = BadElement()
-        assertThatThrownBy {
-            val foo = badElement.foo
-        }.isInstanceOf(RuntimeException::class.java)
-    }
-
-    private class BadElement {
-        val attributes = mutableMapOf<String, String?>()
-        var foo: String? by TypedAttribute(AttributeType.Length)
+        assertThat(svg.toString()).isEqualTo("<svg>\n<line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
     }
 }

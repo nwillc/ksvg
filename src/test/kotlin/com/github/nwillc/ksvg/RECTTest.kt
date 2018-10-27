@@ -9,41 +9,29 @@
 package com.github.nwillc.ksvg
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
-internal class ElementsTest {
-
+internal class RECTTest : HasSvg(true) {
     @Test
-    internal fun testValidationAttributesTrue() {
-        svg(true) {
-            assertThat(validateAttributes).isTrue()
-            rect {
-                assertThat(validateAttributes).isTrue()
-            }
+    internal fun testRectStrokeWidthGetSet() {
+        val width = "10"
+
+        svg.rect {
+            strokeWidth = width
         }
+
+        assertThat((svg.children[0] as HasStroke).strokeWidth).isEqualTo(width)
     }
 
     @Test
-    internal fun testValidationAttributesFalse() {
-        svg {
-            assertThat(validateAttributes).isFalse()
-            rect {
-                assertThat(validateAttributes).isFalse()
-            }
+    internal fun testRectValidated() {
+        svg.rect {
+            x = "0"
+            y = "5px"
+            height = "100%"
+            width = "100"
         }
-    }
 
-    @Test
-    internal fun testBadElement() {
-        val badElement = BadElement()
-        assertThatThrownBy {
-            val foo = badElement.foo
-        }.isInstanceOf(RuntimeException::class.java)
-    }
-
-    private class BadElement {
-        val attributes = mutableMapOf<String, String?>()
-        var foo: String? by TypedAttribute(AttributeType.Length)
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"0\" width=\"100\" y=\"5px\" height=\"100%\"/>\n</svg>\n")
     }
 }
