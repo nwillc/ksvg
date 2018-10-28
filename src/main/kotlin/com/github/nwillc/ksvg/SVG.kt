@@ -83,9 +83,9 @@ class SVG(validateAttributes: Boolean = false) : Element("svg", validateAttribut
         return a
     }
 
-    override fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
+    override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
         return if (renderMode == RenderMode.FILE) {
-            val map = mutableMapOf<String, Any?>("xmlns" to "http://www.w3.org/2000/svg")
+            val map = mutableMapOf<String, String?>("xmlns" to "http://www.w3.org/2000/svg")
             map.putAll(attributes)
             map
         } else {

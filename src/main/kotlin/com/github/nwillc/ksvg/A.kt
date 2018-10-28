@@ -38,9 +38,9 @@ class A(validateAttributes: Boolean = false) : Element("a", validateAttributes) 
         return text
     }
 
-    override fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
+    override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
         return if (renderMode == RenderMode.FILE) {
-            val map = HashMap<String, Any?>(attributes)
+            val map = HashMap<String, String?>(attributes)
             map["href"] = map.remove("xlink:href")
             map
         } else {

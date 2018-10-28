@@ -14,6 +14,7 @@ private const val UNITS = "em|ex|px|in|cm|mm|pt|pc"
 private val LENGTH_REGEX = Regex("$NUMBER_REGEX($UNITS)?")
 private val LENGTH_OR_PERCENTAGE_REGEX = Regex("$NUMBER_REGEX($UNITS|%)?")
 private val NUMBER_LIST_REGEX = Regex("($NUMBER_REGEX($SEPARATOR_REGEX)?)+")
+private val ID_NAME_REGEX = Regex("[^\\s]+")
 
 /**
  *  An enumeration of attribute types and the how to verify if a value is of this type.
@@ -44,6 +45,15 @@ enum class AttributeType {
         override fun verify(value: String) {
             if (!(value matches NUMBER_LIST_REGEX))
                 throw IllegalArgumentException("Value ($value) is not a valid number list")
+        }
+    },
+    /**
+     * Any non empty character string without whitespace.
+     */
+    IdName() {
+        override fun verify(value: String) {
+            if (!(value matches ID_NAME_REGEX))
+                throw IllegalArgumentException("Value ($value) is not a valid id")
         }
     };
 

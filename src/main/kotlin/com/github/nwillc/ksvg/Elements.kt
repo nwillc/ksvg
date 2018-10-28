@@ -55,7 +55,7 @@ abstract class Element(private val name: String, var validateAttributes: Boolean
     /**
      * The id attribute of the Element.
      */
-    val id: String? by attributes
+    val id: String? by TypedAttribute(AttributeType.IdName)
 
     /**
      * Child Element contained in this Element.
@@ -73,7 +73,7 @@ abstract class Element(private val name: String, var validateAttributes: Boolean
      * differing attribute based on mode.
      * @param renderMode which mode we are rendering in
      */
-    open fun getAttributes(renderMode: RenderMode): Map<String, Any?> {
+    open fun getAttributes(renderMode: RenderMode): Map<String, String?> {
         return attributes
     }
 
@@ -88,7 +88,7 @@ abstract class Element(private val name: String, var validateAttributes: Boolean
             writer.append(' ')
             writer.append(it.key)
             writer.append("=\"")
-            writer.append(it.value.toString())
+            writer.append(it.value)
             writer.append('"')
         }
         if (!hasContent()) {
