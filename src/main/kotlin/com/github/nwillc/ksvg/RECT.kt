@@ -13,8 +13,8 @@ package com.github.nwillc.ksvg
  */
 @SvgTagMarker
 class RECT(validateAttributes: Boolean = false) : REGION("rect", validateAttributes), HasOrigin, HasDimensions {
-    override var x: String? by attributes
-    override var y: String? by attributes
+    override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
     override var height: String? by TypedAttribute(AttributeType.LengthOrPercentage)
     override var width: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 

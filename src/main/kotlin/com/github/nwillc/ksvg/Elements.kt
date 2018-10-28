@@ -44,6 +44,7 @@ enum class RenderMode {
 /**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
+ * @param validateAttributes A boolean indicating if attribute values should be validated based on AttributeType when assigned.
  */
 abstract class Element(private val name: String, var validateAttributes: Boolean) {
     /**
@@ -95,7 +96,7 @@ abstract class Element(private val name: String, var validateAttributes: Boolean
         } else {
             writer.append('>')
             if (hasBody()) {
-                writer.append(body)
+                writer.append(escapeHTML(body))
             } else {
                 writer.append('\n')
             }
@@ -188,4 +189,22 @@ internal class TypedAttribute(private val type: AttributeType) : ReadWriteProper
             thisRef.attributes[property.name] = value
         }
     }
+}
+
+/**
+ * A quick and dirty HTML special character escaping for body elements.
+ */
+fun escapeHTML(s: String): String {
+    val out = StringBuilder(Math.max(16, s.length))
+    for (i in 0 until s.length) {
+        val c = s[i]
+        if (c.toInt() > 127 || c == '"' || c == '<' || c == '>' || c == '&') {
+            out.append("&#")
+            out.append(c.toInt())
+            out.append(';')
+        } else {
+            out.append(c)
+        }
+    }
+    return out.toString()
 }

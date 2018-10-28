@@ -32,4 +32,9 @@ internal class ElementsTest {
             }
         }
     }
+
+    @Test
+    internal fun testEscapeHTML() {
+        assertThat(escapeHTML("a&<>\"\u00E7")).isEqualTo("a&#38;&#60;&#62;&#34;&#231;")
+    }
 }

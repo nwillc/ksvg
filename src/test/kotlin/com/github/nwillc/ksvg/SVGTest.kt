@@ -159,12 +159,12 @@ internal class SVGTest : HasSvg() {
             }
         }
 
-        javaClass.getResourceAsStream("/example1.svg").use {
-            InputStreamReader(it).use {
-                val text = it.readText()
-                StringWriter().use {
-                    svg.render(it, RenderMode.FILE)
-                    assertThat(it.toString()).isEqualTo(text)
+        javaClass.getResourceAsStream("/example1.svg").use { resource ->
+            InputStreamReader(resource).use { input ->
+                val text = input.readText()
+                StringWriter().use { writer ->
+                    svg.render(writer, RenderMode.FILE)
+                    assertThat(writer.toString()).isEqualTo(text)
                 }
             }
         }

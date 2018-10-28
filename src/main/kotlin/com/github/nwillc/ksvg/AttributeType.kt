@@ -10,7 +10,7 @@ package com.github.nwillc.ksvg
 
 private val NUMBER_REGEX = Regex("[+-]?[0-9]*.?[0-9]+")
 private val SEPARATOR_REGEX = Regex("\\s*,?\\s+")
-private val UNITS = "em|ex|px|in|cm|mm|pt|pc"
+private const val UNITS = "em|ex|px|in|cm|mm|pt|pc"
 private val LENGTH_REGEX = Regex("$NUMBER_REGEX($UNITS)?")
 private val LENGTH_OR_PERCENTAGE_REGEX = Regex("$NUMBER_REGEX($UNITS|%)?")
 private val NUMBER_LIST_REGEX = Regex("($NUMBER_REGEX($SEPARATOR_REGEX)?)+")
@@ -19,18 +19,27 @@ private val NUMBER_LIST_REGEX = Regex("($NUMBER_REGEX($SEPARATOR_REGEX)?)+")
  *  An enumeration of attribute types and the how to verify if a value is of this type.
  */
 enum class AttributeType {
+    /**
+     * A length value, a number and optional unit.
+     */
     Length() {
         override fun verify(value: String) {
             if (!(value matches LENGTH_REGEX))
                 throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
         }
     },
+    /**
+     * A length or percentage, a number and optional unit or percent sign.
+     */
     LengthOrPercentage() {
         override fun verify(value: String) {
             if (!(value matches LENGTH_OR_PERCENTAGE_REGEX))
                 throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
         }
     },
+    /**
+     * A list of numbers separated by white space or commas.
+     */
     NumberList() {
         override fun verify(value: String) {
             if (!(value matches NUMBER_LIST_REGEX))

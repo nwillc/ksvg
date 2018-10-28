@@ -10,7 +10,7 @@ package com.github.nwillc.ksvg
 
 import org.junit.jupiter.api.BeforeEach
 
-internal open class HasSvg(val validated: Boolean = true) {
+internal open class HasSvg(private val validated: Boolean = true) {
     protected val svg = svg {}
 
     @BeforeEach
