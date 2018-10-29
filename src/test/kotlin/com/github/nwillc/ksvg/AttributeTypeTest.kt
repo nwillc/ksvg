@@ -8,10 +8,14 @@
 
 package com.github.nwillc.ksvg
 
+import io.mockk.mockk
+import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import kotlin.reflect.KProperty
 
 internal class AttributeTypeTest : HasSvg(true) {
+    private val kProperty = mockk<KProperty<String>>()
 
     @Test
     internal fun testPositionOrPercentageFail() {
@@ -58,5 +62,57 @@ internal class AttributeTypeTest : HasSvg(true) {
             r = "10"
             r = "10px"
         }
+    }
+
+    @Test
+    internal fun testPathFail() {
+        svg.path {
+            assertThatThrownBy { d = "p" }.isInstanceOf(IllegalArgumentException::class.java)
+            assertThatThrownBy { d = "@#$%^&*(" }.isInstanceOf(IllegalArgumentException::class.java)
+        }
+    }
+
+    @Test
+    internal fun testPathPass() {
+        svg.path {
+            d = "M 150,0 L 75,200 L 225,200 Z"
+            d = "M150 0 L75 200 L225 200 Z"
+            d = "m 150 0" +
+                    "l 75 200 " +
+                    "l 225 200 " +
+                    "z"
+        }
+    }
+
+    @Test
+    internal fun testNameFail() {
+        assertThatThrownBy { svg.id = "a bad name" }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    internal fun testNamePass() {
+        svg.id = "aGoodName"
+    }
+
+    // Test the impossible error conditions of the TypeAttribute delegate
+    @Test
+    internal fun testTypeAttributedDelegate() {
+        val typeAttr = TypedAttribute(AttributeType.Length)
+
+        assertThat(typeAttr.getValue(this, kProperty)).isNull()
+        typeAttr.setValue(svg, kProperty, null)
+        typeAttr.setValue(this, kProperty, "foo")
+        typeAttr.setValue(this, kProperty, null)
+    }
+
+    // Test the impossible error conditions of the RenameAttribute delegate
+    @Test
+    internal fun testRenamedAttributedDelegate() {
+        val typeAttr = RenamedAttribute("foo")
+
+        assertThat(typeAttr.getValue(this, kProperty)).isNull()
+        typeAttr.setValue(svg, kProperty, null)
+        typeAttr.setValue(this, kProperty, "foo")
+        typeAttr.setValue(this, kProperty, null)
     }
 }

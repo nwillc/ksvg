@@ -12,9 +12,10 @@ private val NUMBER_REGEX = Regex("[+-]?[0-9]*.?[0-9]+")
 private val SEPARATOR_REGEX = Regex("\\s*,?\\s+")
 private const val UNITS = "em|ex|px|in|cm|mm|pt|pc"
 private val LENGTH_REGEX = Regex("$NUMBER_REGEX($UNITS)?")
-private val LENGTH_OR_PERCENTAGE_REGEX = Regex("$NUMBER_REGEX($UNITS|%)?")
+private val LENGTH_PERCENT_REGEX = Regex("$NUMBER_REGEX($UNITS|%)?")
 private val NUMBER_LIST_REGEX = Regex("($NUMBER_REGEX($SEPARATOR_REGEX)?)+")
 private val ID_NAME_REGEX = Regex("[^\\s]+")
+private val PATH_REGEX = Regex("(($NUMBER_REGEX)|[\\smMlLhHvVcCsSqQtTaAzZ])+")
 
 /**
  *  An enumeration of attribute types and the how to verify if a value is of this type.
@@ -26,7 +27,7 @@ enum class AttributeType {
     Length() {
         override fun verify(value: String) {
             if (!(value matches LENGTH_REGEX))
-                throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
+                throw IllegalArgumentException("Value ($value) is not a valid length or percentage: $LENGTH_REGEX")
         }
     },
     /**
@@ -34,8 +35,8 @@ enum class AttributeType {
      */
     LengthOrPercentage() {
         override fun verify(value: String) {
-            if (!(value matches LENGTH_OR_PERCENTAGE_REGEX))
-                throw IllegalArgumentException("Value ($value) is not a valid length or percentage")
+            if (!(value matches LENGTH_PERCENT_REGEX))
+                throw IllegalArgumentException("Value ($value) is not a valid length or percentage: $LENGTH_PERCENT_REGEX")
         }
     },
     /**
@@ -44,7 +45,7 @@ enum class AttributeType {
     NumberList() {
         override fun verify(value: String) {
             if (!(value matches NUMBER_LIST_REGEX))
-                throw IllegalArgumentException("Value ($value) is not a valid number list")
+                throw IllegalArgumentException("Value ($value) is not a valid number list: $NUMBER_REGEX")
         }
     },
     /**
@@ -53,7 +54,16 @@ enum class AttributeType {
     IdName() {
         override fun verify(value: String) {
             if (!(value matches ID_NAME_REGEX))
-                throw IllegalArgumentException("Value ($value) is not a valid id")
+                throw IllegalArgumentException("Value ($value) is not a valid id: $ID_NAME_REGEX")
+        }
+    },
+    /**
+     * A set of commands and coordinates.
+     */
+    Path() {
+        override fun verify(value: String) {
+            if (!(value matches PATH_REGEX))
+                throw IllegalArgumentException("Value ($value) is not a valid path: $PATH_REGEX")
         }
     };
 

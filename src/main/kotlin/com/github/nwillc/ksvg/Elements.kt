@@ -53,14 +53,14 @@ abstract class Element(private val name: String, var validateAttributes: Boolean
     val attributes = hashMapOf<String, String?>()
 
     /**
-     * The id attribute of the Element.
-     */
-    val id: String? by TypedAttribute(AttributeType.IdName)
-
-    /**
      * Child Element contained in this Element.
      */
     val children = arrayListOf<Element>()
+
+    /**
+     * The id attribute of the Element.
+     */
+    var id: String? by TypedAttribute(AttributeType.IdName)
 
     /**
      * Raw text body of the Element.
@@ -162,7 +162,10 @@ fun svg(validateAttributes: Boolean = false, init: SVG.() -> Unit): SVG {
 internal class RenamedAttribute(private val renamed: String) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
     override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {
-        return (thisRef as Element).attributes[renamed]
+        if (thisRef is Element) {
+            return thisRef.attributes[renamed]
+        }
+        return null
     }
 
     override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
@@ -178,7 +181,10 @@ internal class RenamedAttribute(private val renamed: String) : ReadWriteProperty
 internal class TypedAttribute(private val type: AttributeType) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
     override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {
-        return (thisRef as Element).attributes[property.name]
+        if (thisRef is Element) {
+            return thisRef.attributes[property.name]
+        }
+        return null
     }
 
     override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {

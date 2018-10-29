@@ -83,6 +83,16 @@ class SVG(validateAttributes: Boolean = false) : Element("svg", validateAttribut
         return a
     }
 
+    /**
+     * Create an a path element in this svg.
+     */
+    fun path(block: PATH.() -> Unit): PATH {
+        val path = PATH(validateAttributes)
+        path.block()
+        children.add(path)
+        return path
+    }
+
     override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
         return if (renderMode == RenderMode.FILE) {
             val map = mutableMapOf<String, String?>("xmlns" to "http://www.w3.org/2000/svg")
