@@ -44,7 +44,8 @@ enum class RenderMode {
 /**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
- * @param validateAttributes A boolean indicating if attribute values should be validated based on AttributeType when assigned.
+ * @param validateAttributes A boolean indicating if attribute values should be validated based on AttributeType when
+ * assigned.
  */
 abstract class Element(private val name: String, var validateAttributes: Boolean) {
     /**

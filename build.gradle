@@ -27,7 +27,7 @@ apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: "jacoco"
 
 group 'com.github.nwillc'
-version '2.0.0-SNAPSHOT'
+version '2.0.0-RC1'
 
 repositories {
     jcenter()
