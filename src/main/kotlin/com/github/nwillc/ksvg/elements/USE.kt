@@ -15,16 +15,19 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
-import com.github.nwillc.ksvg.attributes.HasFill
 import com.github.nwillc.ksvg.attributes.HasOrigin
 import com.github.nwillc.ksvg.attributes.TypedAttribute
 
 /**
- * An SVG text element.
+ * An SVG use element.
  */
 @SvgTagMarker
-class TEXT(validateAttributes: Boolean = false) : Element("text", validateAttributes), HasOrigin, HasFill {
+class USE(validateAttributes: Boolean = false) : Element("use", validateAttributes), HasOrigin {
     override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
     override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var fill: String? by attributes
+
+    /**
+     * The reference URL.
+     */
+    var href: String? by TypedAttribute(AttributeType.Relative)
 }

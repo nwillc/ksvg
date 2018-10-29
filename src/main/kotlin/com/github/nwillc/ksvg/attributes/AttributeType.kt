@@ -55,6 +55,15 @@ enum class AttributeType {
         }
     },
     /**
+     * A relative URL by id name.
+     */
+    Relative() {
+        override fun verify(value: String) {
+            if (!(value matches relative))
+                throw IllegalArgumentException("Value ($value) is not a valid id: $relative")
+        }
+    },
+    /**
      * A set of commands and coordinates.
      */
     Path() {
@@ -64,7 +73,7 @@ enum class AttributeType {
         }
     };
 
-    companion object {
+    private companion object {
         private val number = Regex("[+-]?[0-9]*.?[0-9]+")
         private val separator = Regex("\\s*,?\\s+")
         private val lengthUnits = "em|ex|px|in|cm|mm|pt|pc"
@@ -72,6 +81,7 @@ enum class AttributeType {
         private val lengthPercent = Regex("$number($lengthUnits|%)?")
         private val numberList = Regex("($number($separator)?)+")
         private val idName = Regex("[^\\s]+")
+        private val relative = Regex("#$idName")
         private val path = Regex("(($number)|[\\smMlLhHvVcCsSqQtTaAzZ])+")
     }
 

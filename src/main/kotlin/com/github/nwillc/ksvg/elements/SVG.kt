@@ -24,6 +24,9 @@ import java.io.Writer
  */
 @SvgTagMarker
 class SVG(validateAttributes: Boolean = false) : Container("svg", validateAttributes), HasDimensions {
+    /**
+     * Top level functions.
+     */
     companion object {
         /**
          * Create an SVG element.
@@ -57,6 +60,16 @@ class SVG(validateAttributes: Boolean = false) : Container("svg", validateAttrib
      * The viewBox attribute.
      */
     var viewBox: String? by TypedAttribute(AttributeType.NumberList)
+
+    /**
+     * Create a group element in this svg.
+     */
+    fun defs(init: DEFS.() -> Unit): DEFS {
+        val defs = DEFS(validateAttributes)
+        defs.init()
+        children.add(defs)
+        return defs
+    }
 
     override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
         return if (renderMode == RenderMode.FILE) {

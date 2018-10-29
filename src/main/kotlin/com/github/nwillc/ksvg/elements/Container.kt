@@ -96,4 +96,14 @@ abstract class Container(name: String, validateAttributes: Boolean) : Element(na
         children.add(group)
         return group
     }
+
+    /**
+     * Create a group element in this svg.
+     */
+    fun use(init: USE.() -> Unit): USE {
+        val use = USE(validateAttributes)
+        use.init()
+        children.add(use)
+        return use
+    }
 }

@@ -100,6 +100,27 @@ internal class AttributeTypeTest : HasSvg(true) {
         svg.id = "aGoodName"
     }
 
+    @Test
+    internal fun testRelativeFail() {
+        assertThatThrownBy {
+            svg.use {
+                href = "#a bad name"
+            }
+        }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy {
+            svg.use {
+                href = "name"
+            }
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    internal fun testRelativePass() {
+        svg.use {
+            href = "#aGoodName"
+        }
+    }
+
     // Test the impossible error conditions of the TypeAttribute delegate
     @Test
     internal fun testTypeAttributedDelegate() {

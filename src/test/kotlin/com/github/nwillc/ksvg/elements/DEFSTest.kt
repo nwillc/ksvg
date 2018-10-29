@@ -13,31 +13,19 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.HasStroke
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class RECTTest : HasSvg(true) {
+internal class DEFSTest : HasSvg(true) {
     @Test
-    internal fun testRectStrokeWidthGetSet() {
-        val width = "10"
+    internal fun testDefs() {
 
-        svg.rect {
-            strokeWidth = width
+        svg.defs {
+            g {
+                id = "sample"
+            }
         }
 
-        assertThat((svg.children[0] as HasStroke).strokeWidth).isEqualTo(width)
-    }
-
-    @Test
-    internal fun testRectValidated() {
-        svg.rect {
-            x = "0"
-            y = "5px"
-            height = "100%"
-            width = "100"
-        }
-
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"0\" width=\"100\" y=\"5px\" height=\"100%\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<defs>\n<g id=\"sample\"/>\n</defs>\n</svg>\n")
     }
 }
