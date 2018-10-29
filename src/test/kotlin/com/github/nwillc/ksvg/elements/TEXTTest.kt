@@ -11,25 +11,22 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.github.nwillc.ksvg
+package com.github.nwillc.ksvg.elements
+
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
 
 /**
- * An SVG rect element.
+ *
  */
-@SvgTagMarker
-class RECT(validateAttributes: Boolean = false) : REGION("rect", validateAttributes), HasOrigin, HasDimensions {
-    override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var height: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var width: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-
-    /**
-     * Add a title to the rect.
-     */
-    fun title(block: TITLE.() -> Unit): TITLE {
-        val title = TITLE(validateAttributes)
-        title.block()
-        children.add(title)
-        return title
+internal class TEXTTest : HasSvg() {
+    @Test
+    internal fun testTextOrigin() {
+        svg.text {
+            x = "1"
+            y = "2"
+            body = "hello"
+        }
+        Assertions.assertThat(svg.toString()).isEqualTo("<svg>\n<text x=\"1\" y=\"2\">hello</text>\n</svg>\n")
     }
 }

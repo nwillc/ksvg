@@ -11,7 +11,10 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.github.nwillc.ksvg
+package com.github.nwillc.ksvg.elements
+
+import com.github.nwillc.ksvg.attributes.RenamedAttribute
+import com.github.nwillc.ksvg.SvgTagMarker
 
 /**
  * An SVG A reference element.
@@ -43,8 +46,8 @@ class A(validateAttributes: Boolean = false) : Element("a", validateAttributes) 
         return text
     }
 
-    override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
-        return if (renderMode == RenderMode.FILE) {
+    override fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> {
+        return if (renderMode == SVG.RenderMode.FILE) {
             val map = HashMap<String, String?>(attributes)
             map["href"] = map.remove("xlink:href")
             map

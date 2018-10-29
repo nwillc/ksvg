@@ -11,15 +11,32 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.github.nwillc.ksvg
+package com.github.nwillc.ksvg.elements
 
-/**
- * An SVG path element.
- */
-@SvgTagMarker
-class PATH(validateAttributes: Boolean = false) : REGION("path", validateAttributes) {
-    /**
-     * The path definition.
-     */
-    var d: String? by TypedAttribute(AttributeType.Path)
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+internal class LINETest : HasSvg() {
+    @Test
+    internal fun testLineStrokeWidthGetSet() {
+        val width = "10"
+
+        svg.line {
+            strokeWidth = width
+        }
+
+        assertThat((svg.children[0] as LINE).strokeWidth).isEqualTo(width)
+    }
+
+    @Test
+    internal fun testLine() {
+        svg.line {
+            x1 = "1"
+            y1 = "1"
+            x2 = "5"
+            y2 = "5"
+        }
+
+        assertThat(svg.toString()).isEqualTo("<svg>\n<line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
+    }
 }

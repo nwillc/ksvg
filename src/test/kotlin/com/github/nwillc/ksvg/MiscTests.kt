@@ -8,14 +8,15 @@
 
 package com.github.nwillc.ksvg
 
+import com.github.nwillc.ksvg.elements.SVG
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class ElementsTest {
+internal class MiscTests {
 
     @Test
     internal fun testValidationAttributesTrue() {
-        svg(true) {
+        SVG.svg(true) {
             assertThat(validateAttributes).isTrue()
             rect {
                 assertThat(validateAttributes).isTrue()
@@ -25,7 +26,7 @@ internal class ElementsTest {
 
     @Test
     internal fun testValidationAttributesFalse() {
-        svg {
+        SVG.svg {
             assertThat(validateAttributes).isFalse()
             rect {
                 assertThat(validateAttributes).isFalse()
@@ -35,6 +36,6 @@ internal class ElementsTest {
 
     @Test
     internal fun testEscapeHTML() {
-        assertThat(escapeHTML("a&<>\"\u00E7")).isEqualTo("a&#38;&#60;&#62;&#34;&#231;")
+        assertThat("a&<>\"\u00E7".escapeHTML()).isEqualTo("a&#38;&#60;&#62;&#34;&#231;")
     }
 }

@@ -11,32 +11,19 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.github.nwillc.ksvg
+package com.github.nwillc.ksvg.elements
+
+import com.github.nwillc.ksvg.SvgTagMarker
+import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeType
 
 /**
- * An SVG line element.
+ * An SVG path element.
  */
 @SvgTagMarker
-class LINE(validateAttributes: Boolean = false) : Element("line", validateAttributes), HasStroke {
-    override var stroke: String? by attributes
-    override var strokeWidth: String? by RenamedAttribute("stroke-width")
+class PATH(validateAttributes: Boolean = false) : Region("path", validateAttributes) {
     /**
-     * The X1 coordinate of the line.
+     * The path definition.
      */
-    var x1: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-
-    /**
-     * The Y1 coordinate of the line.
-     */
-    var y1: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-
-    /**
-     * The X2 coordinate of the line.
-     */
-    var x2: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-
-    /**
-     * The Y2 coordinate of the line.
-     */
-    var y2: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    var d: String? by TypedAttribute(AttributeType.Path)
 }

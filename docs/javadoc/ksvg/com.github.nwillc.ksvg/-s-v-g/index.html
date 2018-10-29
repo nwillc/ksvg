@@ -8,7 +8,7 @@
 <a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg</a>&nbsp;/&nbsp;<a href="./index.html">SVG</a><br/>
 <br/>
 <h1>SVG</h1>
-<code><span class="keyword">class </span><span class="identifier">SVG</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-element/index.html"><span class="identifier">com.github.nwillc.ksvg.Element</span></a><span class="symbol">, </span><a href="../-has-dimensions/index.html"><span class="identifier">com.github.nwillc.ksvg.HasDimensions</span></a></code>
+<code><span class="keyword">class </span><span class="identifier">SVG</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-element/index.html"><span class="identifier">com.github.nwillc.ksvg.elements.Element</span></a><span class="symbol">, </span><a href="../-has-dimensions/index.html"><span class="identifier">com.github.nwillc.ksvg.attributes.HasDimensions</span></a></code>
 <p>The SVG element itself.</p>
 <h3>Constructors</h3>
 <table>
@@ -32,7 +32,7 @@
 <p><a href="a.html">a</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">a</span><span class="symbol">(</span><span class="identifier">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.A</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-a/index.html"><span class="identifier">com.github.nwillc.ksvg.A</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">a</span><span class="symbol">(</span><span class="identifier">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.elements.A</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-a/index.html"><span class="identifier">com.github.nwillc.ksvg.elements.A</span></a></code>
 <p>Create an a refereence element in this svg.</p>
 </td>
 </tr>
@@ -41,7 +41,7 @@
 <p><a href="circle.html">circle</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">circle</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.CIRCLE</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-c-i-r-c-l-e/index.html"><span class="identifier">com.github.nwillc.ksvg.CIRCLE</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">circle</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.elements.CIRCLE</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-c-i-r-c-l-e/index.html"><span class="identifier">com.github.nwillc.ksvg.elements.CIRCLE</span></a></code>
 <p>Create a circle element in this svg.</p>
 </td>
 </tr>
@@ -77,7 +77,7 @@
 <p><a href="line.html">line</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">line</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.LINE</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-l-i-n-e/index.html"><span class="identifier">com.github.nwillc.ksvg.LINE</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">line</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.elements.LINE</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-l-i-n-e/index.html"><span class="identifier">com.github.nwillc.ksvg.elements.LINE</span></a></code>
 <p>Create a line element in this svg.</p>
 </td>
 </tr>
@@ -86,7 +86,7 @@
 <p><a href="polygon.html">polygon</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">polygon</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.POLYGON</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-p-o-l-y-g-o-n/index.html"><span class="identifier">com.github.nwillc.ksvg.POLYGON</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">polygon</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.elements.POLYGON</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-p-o-l-y-g-o-n/index.html"><span class="identifier">com.github.nwillc.ksvg.elements.POLYGON</span></a></code>
 <p>Create a polygon element in this svg.</p>
 </td>
 </tr>
@@ -95,7 +95,7 @@
 <p><a href="rect.html">rect</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">rect</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.RECT</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-r-e-c-t/index.html"><span class="identifier">com.github.nwillc.ksvg.RECT</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">rect</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.elements.RECT</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-r-e-c-t/index.html"><span class="identifier">com.github.nwillc.ksvg.elements.RECT</span></a></code>
 <p>Create a rect element in this svg.</p>
 </td>
 </tr>
@@ -140,7 +140,7 @@
 <p><a href="text.html">text</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">text</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.TEXT</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-t-e-x-t/index.html"><span class="identifier">com.github.nwillc.ksvg.TEXT</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">text</span><span class="symbol">(</span><span class="identifier">init</span><span class="symbol">:</span>&nbsp;<span class="identifier">kotlin.jvm.functions.Function1</span><span class="symbol">&lt;</span><span class="identifier">? super com.github.nwillc.ksvg.elements.TEXT</span><span class="symbol">,</span>&nbsp;<span class="identifier">kotlin.Unit</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-t-e-x-t/index.html"><span class="identifier">com.github.nwillc.ksvg.elements.TEXT</span></a></code>
 <p>Create a text element in this svg.</p>
 </td>
 </tr>
