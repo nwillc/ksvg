@@ -14,12 +14,10 @@
 package com.github.nwillc.ksvg
 
 import com.github.nwillc.ksvg.elements.SVG
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.FileWriter
-import java.io.PrintWriter
 
-@Disabled
+//@Disabled
 internal class FileTest {
     @Test
     internal fun testCirclesDiagonal() {
@@ -38,14 +36,105 @@ internal class FileTest {
                 }
             }
             for (i in 20..80 step 20)
-            use {
-                x = i.toString()
-                y = i.toString()
-                href = "#circle1"
-            }
+                use {
+                    x = i.toString()
+                    y = i.toString()
+                    href = "#circle1"
+                }
         }
 
         FileWriter("build/tmp/circlesDiagonal.svg").use {
+            svg.render(it, SVG.RenderMode.FILE)
+        }
+    }
+
+    @Test
+    internal fun testCodeMonkey() {
+        val svg = SVG.svg(true) {
+            // Ears
+            g {
+                id = "ear"
+                circle {
+                    cx = "100"
+                    cy = "100"
+                    r = "40"
+                    stroke = "black"
+                    strokeWidth = "2"
+                    fill = "white"
+                }
+                circle {
+                    cx = "100"
+                    cy = "100"
+                    r = "28"
+                    stroke = "black"
+                    strokeWidth = "2"
+                    fill = "white"
+                }
+            }
+            use {
+                x = "140"
+                y = "-30"
+                href = "#ear"
+            }
+            // Face
+            circle {
+                id = "face"
+                cx = "180"
+                cy = "140"
+                r = "80"
+                stroke = "black"
+                strokeWidth = "2"
+                fill = "#aa450f"
+            }
+            // Eyes
+            circle {
+                id = "eye"
+                cx = "160"
+                cy = "95"
+                r = "20"
+                stroke = "black"
+                strokeWidth = "2"
+                fill = "white"
+            }
+            use {
+                x = "45"
+                y = "-5"
+                href = "#eye"
+            }
+            // Muzzle
+            circle {
+                cx = "195"
+                cy = "178"
+                r = "65"
+                stroke = "black"
+                strokeWidth = "2"
+                fill = "white"
+            }
+            // Nostrils
+            circle {
+                id = "nostril"
+                cx = "178"
+                cy = "138"
+                r = "4"
+                fill = "black"
+            }
+            use {
+                x = "35"
+                y = "-5"
+                href = "#nostril"
+            }
+
+            path {
+                d = "M 180 150" +
+                        " A 30 30 -200 0 1 215.1 109.9" +
+                        " Z"
+                fill = "red"
+                stroke = "black"
+                strokeWidth = "2"
+            }
+        }
+
+        FileWriter("build/tmp/codeMonkey.svg").use {
             svg.render(it, SVG.RenderMode.FILE)
         }
     }
