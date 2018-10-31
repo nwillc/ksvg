@@ -16,12 +16,12 @@ package com.github.nwillc.ksvg.elements
 /**
  * A defs element which can define groups to be used later.
  */
-class DEFS(validateAttributes: Boolean) : Element("defs", validateAttributes) {
+class DEFS(validation: Boolean) : Element("defs", validation) {
     /**
      * Create a group element in this def.
      */
     fun g(init: G.() -> Unit): G {
-        val group = G(validateAttributes)
+        val group = G(validation)
         group.init()
         children.add(group)
         return group

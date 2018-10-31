@@ -31,7 +31,7 @@ internal class TypedAttribute(private val type: AttributeType) : ReadWriteProper
 
     override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
         if (value != null && thisRef is Element) {
-            if (thisRef.validateAttributes)
+            if (thisRef.validation)
                 type.verify(value)
 
             thisRef.attributes[property.name] = value

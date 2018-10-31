@@ -11,4 +11,4 @@ package com.github.nwillc.ksvg.elements
 /**
  * A defs element which can define groups to be used later.
  */
-class STYLE(validateAttributes: Boolean) : Element("style", validateAttributes)
+class STYLE(validation: Boolean) : Element("style", validation)

@@ -18,6 +18,10 @@ package com.github.nwillc.ksvg.attributes
  */
 enum class AttributeType {
     /**
+     * No validations will be performed on type none.
+     */
+    None(),
+    /**
      * A length value, a number and optional unit.
      */
     Length() {
@@ -73,6 +77,9 @@ enum class AttributeType {
         }
     };
 
+    /**
+     * Constants.
+     */
     private companion object {
         private val number = Regex("[+-]?[0-9]*.?[0-9]+")
         private val separator = Regex("\\s*,?\\s+")
@@ -88,5 +95,5 @@ enum class AttributeType {
     /**
      * Verify a value is of the AttributeType.
      */
-    abstract fun verify(value: String)
+    open fun verify(value: String) {}
 }

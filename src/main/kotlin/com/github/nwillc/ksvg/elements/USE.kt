@@ -22,7 +22,7 @@ import com.github.nwillc.ksvg.attributes.TypedAttribute
  * An SVG use element.
  */
 @SvgTagMarker
-class USE(validateAttributes: Boolean = false) : Element("use", validateAttributes), HasOrigin {
+class USE(validation: Boolean = false) : Element("use", validation), HasOrigin {
     override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
     override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 

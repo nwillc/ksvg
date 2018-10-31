@@ -23,7 +23,7 @@ import java.io.Writer
  * The SVG element itself.
  */
 @SvgTagMarker
-class SVG(validateAttributes: Boolean = false) : Container("svg", validateAttributes), HasDimensions {
+class SVG(validation: Boolean = false) : Container("svg", validation), HasDimensions {
     /**
      * Top level functions.
      */
@@ -31,8 +31,8 @@ class SVG(validateAttributes: Boolean = false) : Container("svg", validateAttrib
         /**
          * Create an SVG element.
          */
-        fun svg(validateAttributes: Boolean = false, init: SVG.() -> Unit): SVG {
-            val svg = SVG(validateAttributes)
+        fun svg(validation: Boolean = false, init: SVG.() -> Unit): SVG {
+            val svg = SVG(validation)
             svg.init()
             return svg
         }
@@ -65,14 +65,17 @@ class SVG(validateAttributes: Boolean = false) : Container("svg", validateAttrib
      * Create a group element in this svg.
      */
     fun defs(init: DEFS.() -> Unit): DEFS {
-        val defs = DEFS(validateAttributes)
+        val defs = DEFS(validation)
         defs.init()
         children.add(defs)
         return defs
     }
 
+    /**
+     * Create a style element.
+     */
     fun style(init: STYLE.() -> Unit): STYLE {
-        val style = STYLE(validateAttributes)
+        val style = STYLE(validation)
         style.init()
         children.add(style)
         return style

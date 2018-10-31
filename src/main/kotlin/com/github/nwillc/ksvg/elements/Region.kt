@@ -22,7 +22,7 @@ import com.github.nwillc.ksvg.attributes.HasStroke
 /**
  * An abstract element that is a region and therefore has stroke and fill.
  */
-abstract class Region(name: String, validateAttributes: Boolean) : Element(name, validateAttributes), HasStroke,
+abstract class Region(name: String, validation: Boolean) : Element(name, validation), HasStroke,
         HasFill {
     override var stroke: String? by attributes
     override var strokeWidth: String? by RenamedAttribute("stroke-width")

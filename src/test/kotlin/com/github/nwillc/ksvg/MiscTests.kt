@@ -17,9 +17,9 @@ internal class MiscTests {
     @Test
     internal fun testValidationAttributesTrue() {
         SVG.svg(true) {
-            assertThat(validateAttributes).isTrue()
+            assertThat(validation).isTrue()
             rect {
-                assertThat(validateAttributes).isTrue()
+                assertThat(validation).isTrue()
             }
         }
     }
@@ -27,9 +27,9 @@ internal class MiscTests {
     @Test
     internal fun testValidationAttributesFalse() {
         SVG.svg {
-            assertThat(validateAttributes).isFalse()
+            assertThat(validation).isFalse()
             rect {
-                assertThat(validateAttributes).isFalse()
+                assertThat(validation).isFalse()
             }
         }
     }

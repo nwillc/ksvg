@@ -19,4 +19,4 @@ import com.github.nwillc.ksvg.SvgTagMarker
  * The SVG element itself.
  */
 @SvgTagMarker
-class G(validateAttributes: Boolean = false) : Container("g", validateAttributes)
+class G(validation: Boolean = false) : Container("g", validation)

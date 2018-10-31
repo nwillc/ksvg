@@ -21,7 +21,7 @@ import com.github.nwillc.ksvg.attributes.AttributeType
  * An SVG path element.
  */
 @SvgTagMarker
-class PATH(validateAttributes: Boolean = false) : Region("path", validateAttributes) {
+class PATH(validation: Boolean = false) : Region("path", validation) {
     /**
      * The path definition.
      */

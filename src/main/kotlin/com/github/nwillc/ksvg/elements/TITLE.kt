@@ -19,4 +19,4 @@ import com.github.nwillc.ksvg.SvgTagMarker
  * An SVG title element.
  */
 @SvgTagMarker
-class TITLE(validateAttributes: Boolean = false) : Element("title", validateAttributes)
+class TITLE(validation: Boolean = false) : Element("title", validation)

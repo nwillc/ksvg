@@ -23,10 +23,10 @@ import java.io.Writer
 /**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
- * @param validateAttributes A boolean indicating if attribute values should be validated based on AttributeType when
+ * @param validation A boolean indicating that attribute values and other validations should be perfromed.
  * assigned.
  */
-abstract class Element(private val name: String, var validateAttributes: Boolean) {
+abstract class Element(private val name: String, var validation: Boolean) {
     /**
      * A Map of attributes associated with the element.
      */

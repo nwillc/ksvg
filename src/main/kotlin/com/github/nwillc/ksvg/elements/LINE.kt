@@ -23,7 +23,7 @@ import com.github.nwillc.ksvg.attributes.HasStroke
  * An SVG line element.
  */
 @SvgTagMarker
-class LINE(validateAttributes: Boolean = false) : Element("line", validateAttributes), HasStroke {
+class LINE(validation: Boolean = false) : Element("line", validation), HasStroke {
     override var stroke: String? by attributes
     override var strokeWidth: String? by RenamedAttribute("stroke-width")
     /**

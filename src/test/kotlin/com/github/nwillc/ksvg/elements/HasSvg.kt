@@ -20,6 +20,6 @@ internal open class HasSvg(private val validated: Boolean = true) {
 
     @BeforeEach
     internal fun setValidation() {
-        svg.validateAttributes = validated
+        svg.validation = validated
     }
 }

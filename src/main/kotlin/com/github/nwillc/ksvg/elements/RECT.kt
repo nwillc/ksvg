@@ -23,7 +23,7 @@ import com.github.nwillc.ksvg.attributes.HasOrigin
  * An SVG rect element.
  */
 @SvgTagMarker
-class RECT(validateAttributes: Boolean = false) : Region("rect", validateAttributes), HasOrigin, HasDimensions {
+class RECT(validation: Boolean = false) : Region("rect", validation), HasOrigin, HasDimensions {
     override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
     override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
     override var height: String? by TypedAttribute(AttributeType.LengthOrPercentage)
@@ -33,7 +33,7 @@ class RECT(validateAttributes: Boolean = false) : Region("rect", validateAttribu
      * Add a title to the rect.
      */
     fun title(block: TITLE.() -> Unit): TITLE {
-        val title = TITLE(validateAttributes)
+        val title = TITLE(validation)
         title.block()
         children.add(title)
         return title

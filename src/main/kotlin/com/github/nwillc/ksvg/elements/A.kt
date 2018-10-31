@@ -20,7 +20,7 @@ import com.github.nwillc.ksvg.SvgTagMarker
  * An SVG A reference element.
  */
 @SvgTagMarker
-class A(validateAttributes: Boolean = false) : Element("a", validateAttributes) {
+class A(validation: Boolean = false) : Element("a", validation) {
     /**
      * The reference URL.
      */

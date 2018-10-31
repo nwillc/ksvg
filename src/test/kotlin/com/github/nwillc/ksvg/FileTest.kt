@@ -57,8 +57,16 @@ internal class FileTest {
 
                     .black-stroke { stroke: black; stroke-width: 2; }
                     .fur-color { fill: white; }
-                    
+
                 """.trimIndent()
+            }
+            // Label
+            text {
+                x = "40"
+                y = "50"
+                body = "#CODE"
+                fontFamily = "monospace"
+                fontSize = "40px"
             }
             // Ears
             g {
