@@ -51,6 +51,8 @@ internal class FileTest {
     @Test
     internal fun testCodeMonkey() {
         val svg = SVG.svg(true) {
+            height = "300"
+            width = "300"
             // Ears
             g {
                 id = "ear"
