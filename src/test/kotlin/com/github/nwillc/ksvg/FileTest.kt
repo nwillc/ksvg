@@ -52,24 +52,28 @@ internal class FileTest {
         val svg = SVG.svg(true) {
             height = "300"
             width = "300"
+            style {
+                body = """
+
+                    .black-stroke { stroke: black; stroke-width: 2; }
+                    .fur-color { fill: white; }
+                    
+                """.trimIndent()
+            }
             // Ears
             g {
                 id = "ear"
                 circle {
+                    cssClass = "black-stroke fur-color"
                     cx = "100"
                     cy = "100"
                     r = "40"
-                    stroke = "black"
-                    strokeWidth = "2"
-                    fill = "white"
                 }
                 circle {
+                    cssClass = "black-stroke fur-color"
                     cx = "100"
                     cy = "100"
                     r = "28"
-                    stroke = "black"
-                    strokeWidth = "2"
-                    fill = "white"
                 }
             }
             use {
@@ -79,23 +83,20 @@ internal class FileTest {
             }
             // Face
             circle {
+                cssClass = "black-stroke"
                 id = "face"
                 cx = "180"
                 cy = "140"
                 r = "80"
-                stroke = "black"
-                strokeWidth = "2"
                 fill = "#aa450f"
             }
             // Eyes
             circle {
+                cssClass = "black-stroke fur-color"
                 id = "eye"
                 cx = "160"
                 cy = "95"
                 r = "20"
-                stroke = "black"
-                strokeWidth = "2"
-                fill = "white"
             }
             use {
                 x = "45"
@@ -104,12 +105,10 @@ internal class FileTest {
             }
             // Muzzle
             circle {
+                cssClass = "black-stroke fur-color"
                 cx = "195"
                 cy = "178"
                 r = "65"
-                stroke = "black"
-                strokeWidth = "2"
-                fill = "white"
             }
             // Nostrils
             circle {
@@ -126,10 +125,9 @@ internal class FileTest {
             }
             // Mouth
             path {
+                cssClass = "black-stroke"
                 d = "M 150 150 C 100,250 305,260 230,140 C 205,190 165,170 150,150 Z"
                 fill = "red"
-                stroke = "black"
-                strokeWidth = "2"
             }
         }
 

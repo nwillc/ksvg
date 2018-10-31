@@ -71,6 +71,13 @@ class SVG(validateAttributes: Boolean = false) : Container("svg", validateAttrib
         return defs
     }
 
+    fun style(init: STYLE.() -> Unit): STYLE {
+        val style = STYLE(validateAttributes)
+        style.init()
+        children.add(style)
+        return style
+    }
+
     override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
         return if (renderMode == RenderMode.FILE) {
             val map = mutableMapOf<String, String?>("xmlns" to "http://www.w3.org/2000/svg")

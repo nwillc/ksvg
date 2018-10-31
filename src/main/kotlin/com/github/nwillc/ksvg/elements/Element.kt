@@ -15,6 +15,7 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.attributes.TypedAttribute
 import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.RenamedAttribute
 import com.github.nwillc.ksvg.escapeHTML
 import java.io.StringWriter
 import java.io.Writer
@@ -40,6 +41,11 @@ abstract class Element(private val name: String, var validateAttributes: Boolean
      * The id attribute of the Element.
      */
     var id: String? by TypedAttribute(AttributeType.IdName)
+
+    /**
+     * The CSS class.
+     */
+    var cssClass: String? by RenamedAttribute("class")
 
     /**
      * Raw text body of the Element.
