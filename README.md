@@ -109,7 +109,7 @@ DSL is biased toward the inline representation because that's its origin, but it
 and in the limitted scenarios tested it works.
 
 ## A Limited Set of Elements
-Currently only a small set of SVG Elements is supported. Adding more is straight forward, I just met my own needs, and 
+Currently only a small set of SVG Elements are supported. Adding more is straight forward, I just met my own needs, and 
 so additions can be done by others, or as my needs increase.
 
 ## See Also
