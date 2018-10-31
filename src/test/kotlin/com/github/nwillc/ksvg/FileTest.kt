@@ -17,7 +17,6 @@ import com.github.nwillc.ksvg.elements.SVG
 import org.junit.jupiter.api.Test
 import java.io.FileWriter
 
-//@Disabled
 internal class FileTest {
     @Test
     internal fun testCirclesDiagonal() {

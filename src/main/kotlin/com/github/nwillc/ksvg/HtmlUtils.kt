@@ -20,12 +20,14 @@ fun String.escapeHTML(): String {
     val out = StringBuilder(Math.max(16, length))
     for (i in 0 until length) {
         val c = this[i]
-        if (c.toInt() > 127 || c == '"' || c == '<' || c == '>' || c == '&') {
-            out.append("&#")
-            out.append(c.toInt())
-            out.append(';')
-        } else {
-            out.append(c)
+        val ci = c.toInt()
+        when {
+            ci > 127 || c == '"' || c == '<' || c == '>' || c == '&' -> {
+                out.append("&#")
+                out.append(ci)
+                out.append(';')
+            }
+            else -> out.append(c)
         }
     }
     return out.toString()
