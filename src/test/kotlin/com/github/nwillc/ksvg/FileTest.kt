@@ -123,11 +123,9 @@ internal class FileTest {
                 y = "-5"
                 href = "#nostril"
             }
-
+            // Mouth
             path {
-                d = "M 180 150" +
-                        " A 30 30 -200 0 1 215.1 109.9" +
-                        " Z"
+                d = "M 150 150 C 100,250 305,260 230,140 C 205,190 165,170 150,150 Z"
                 fill = "red"
                 stroke = "black"
                 strokeWidth = "2"

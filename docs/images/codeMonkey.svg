@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg">
+<g id="ear">
+<circle r="40" cx="100" cy="100" stroke-width="2" fill="white" stroke="black"/>
+<circle r="28" cx="100" cy="100" stroke-width="2" fill="white" stroke="black"/>
+</g>
+<use x="140" y="-30" href="#ear"/>
+<circle r="80" cx="180" cy="140" id="face" stroke-width="2" fill="#aa450f" stroke="black"/>
+<circle r="20" cx="160" cy="95" id="eye" stroke-width="2" fill="white" stroke="black"/>
+<use x="45" y="-5" href="#eye"/>
+<circle r="65" cx="195" cy="178" stroke-width="2" fill="white" stroke="black"/>
+<circle r="4" cx="178" cy="138" id="nostril" fill="black"/>
+<use x="35" y="-5" href="#nostril"/>
+<path d="M 150 150 C 100,250 305,260 230,140 C 205,190 165,170 150,150 Z" stroke-width="2" fill="red" stroke="black"/>
+</svg>
