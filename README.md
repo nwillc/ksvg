@@ -15,8 +15,8 @@ val svg = SVG.svg(true) {
          style {
              body = """
 
-                 .black-stroke { stroke: black; stroke-width: 2; }
-                 .fur-color { fill: white; }
+                 svg .black-stroke { stroke: black; stroke-width: 2; }
+                 svg .fur-color { fill: white; }
 
              """.trimIndent()
          }
