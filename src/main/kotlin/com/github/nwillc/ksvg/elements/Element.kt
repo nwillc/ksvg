@@ -52,6 +52,9 @@ abstract class Element(private val name: String, var validation: Boolean) {
      */
     var body: String = ""
 
+    /**
+     * Add a child element.
+     */
     protected fun <E : Element> add(element: E, block: E.() -> Unit): E {
         element.block()
         children.add(element)
