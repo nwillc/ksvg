@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewbox="0 0 600 600">
 <style>
 .black-stroke { stroke: black; stroke-width: 2; }
 .fur-color { fill: white; }
