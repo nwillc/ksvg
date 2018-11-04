@@ -31,11 +31,7 @@ class SVG(validation: Boolean = false) : Container("svg", validation), HasDimens
         /**
          * Create an SVG element.
          */
-        fun svg(validation: Boolean = false, init: SVG.() -> Unit): SVG {
-            val svg = SVG(validation)
-            svg.init()
-            return svg
-        }
+        fun svg(validation: Boolean = false, block: SVG.() -> Unit): SVG = SVG(validation).apply(block)
     }
 
     /**
@@ -64,22 +60,12 @@ class SVG(validation: Boolean = false) : Container("svg", validation), HasDimens
     /**
      * Create a group element in this svg.
      */
-    fun defs(init: DEFS.() -> Unit): DEFS {
-        val defs = DEFS(validation)
-        defs.init()
-        children.add(defs)
-        return defs
-    }
+    fun defs(block: DEFS.() -> Unit): DEFS = add(DEFS(validation), block)
 
     /**
      * Create a style element.
      */
-    fun style(init: STYLE.() -> Unit): STYLE {
-        val style = STYLE(validation)
-        style.init()
-        children.add(style)
-        return style
-    }
+    fun style(block: STYLE.() -> Unit): STYLE = add(STYLE(validation), block)
 
     override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
         return if (renderMode == RenderMode.FILE) {

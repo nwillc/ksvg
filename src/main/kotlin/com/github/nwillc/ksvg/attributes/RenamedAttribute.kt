@@ -20,7 +20,8 @@ import kotlin.reflect.KProperty
 /**
  * A property delegate to allow attributes to be rendered with a different name.
  */
-internal class RenamedAttribute(private val renamed: String, private val type: AttributeType = AttributeType.None) : ReadWriteProperty<Any?, String?> {
+internal class RenamedAttribute(private val renamed: String, private val type: AttributeType = AttributeType.None) :
+    ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
     override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {
         if (thisRef is Element) {

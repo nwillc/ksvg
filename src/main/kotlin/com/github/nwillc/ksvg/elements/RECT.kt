@@ -32,10 +32,5 @@ class RECT(validation: Boolean = false) : Region("rect", validation), HasOrigin,
     /**
      * Add a title to the rect.
      */
-    fun title(block: TITLE.() -> Unit): TITLE {
-        val title = TITLE(validation)
-        title.block()
-        children.add(title)
-        return title
-    }
+    fun title(block: TITLE.() -> Unit): TITLE = add(TITLE(validation), block)
 }

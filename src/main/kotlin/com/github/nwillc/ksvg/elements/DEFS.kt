@@ -20,10 +20,5 @@ class DEFS(validation: Boolean) : Element("defs", validation) {
     /**
      * Create a group element in this def.
      */
-    fun g(init: G.() -> Unit): G {
-        val group = G(validation)
-        group.init()
-        children.add(group)
-        return group
-    }
+    fun g(block: G.() -> Unit): G = add(G(validation), block)
 }

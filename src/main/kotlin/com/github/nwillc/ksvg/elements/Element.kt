@@ -13,9 +13,9 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.TypedAttribute
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.RenamedAttribute
+import com.github.nwillc.ksvg.attributes.TypedAttribute
 import com.github.nwillc.ksvg.escapeHTML
 import java.io.StringWriter
 import java.io.Writer
@@ -51,6 +51,12 @@ abstract class Element(private val name: String, var validation: Boolean) {
      * Raw text body of the Element.
      */
     var body: String = ""
+
+    protected fun <E : Element> add(element: E, block: E.() -> Unit): E {
+        element.block()
+        children.add(element)
+        return element
+    }
 
     /**
      * Get the attributes specific to a render mode. Allows tags to modify their attributes during rendering

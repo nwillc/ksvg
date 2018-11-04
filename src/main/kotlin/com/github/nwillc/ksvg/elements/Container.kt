@@ -20,90 +20,45 @@ abstract class Container(name: String, validation: Boolean) : Element(name, vali
     /**
      * Create a rect element in this svg.
      */
-    fun rect(init: RECT.() -> Unit): RECT {
-        val rect = RECT(validation)
-        rect.init()
-        children.add(rect)
-        return rect
-    }
+    fun rect(block: RECT.() -> Unit): RECT = add(RECT(validation), block)
 
     /**
      * Create a text element in this svg.
      */
-    fun text(init: TEXT.() -> Unit): TEXT {
-        val text = TEXT(validation)
-        text.init()
-        children.add(text)
-        return text
-    }
+    fun text(block: TEXT.() -> Unit): TEXT = add(TEXT(validation), block)
 
     /**
      * Create a circle element in this svg.
      */
-    fun circle(init: CIRCLE.() -> Unit): CIRCLE {
-        val circle = CIRCLE(validation)
-        circle.init()
-        children.add(circle)
-        return circle
-    }
+    fun circle(block: CIRCLE.() -> Unit): CIRCLE = add(CIRCLE(validation), block)
 
     /**
      * Create a polygon element in this svg.
      */
-    fun polygon(init: POLYGON.() -> Unit): POLYGON {
-        val polygon = POLYGON(validation)
-        polygon.init()
-        children.add(polygon)
-        return polygon
-    }
+    fun polygon(block: POLYGON.() -> Unit): POLYGON = add(POLYGON(validation), block)
 
     /**
      * Create a line element in this svg.
      */
-    fun line(init: LINE.() -> Unit): LINE {
-        val line = LINE(validation)
-        line.init()
-        children.add(line)
-        return line
-    }
+    fun line(block: LINE.() -> Unit): LINE = add(LINE(validation), block)
 
     /**
      * Create an a reference element in this svg.
      */
-    fun a(block: A.() -> Unit): A {
-        val a = A(validation)
-        a.block()
-        children.add(a)
-        return a
-    }
+    fun a(block: A.() -> Unit): A = add(A(validation), block)
 
     /**
      * Create an a path element in this svg.
      */
-    fun path(block: PATH.() -> Unit): PATH {
-        val path = PATH(validation)
-        path.block()
-        children.add(path)
-        return path
-    }
+    fun path(block: PATH.() -> Unit): PATH = add(PATH(validation), block)
 
     /**
      * Create a group element in this svg.
      */
-    fun g(init: G.() -> Unit): G {
-        val group = G(validation)
-        group.init()
-        children.add(group)
-        return group
-    }
+    fun g(block: G.() -> Unit): G = add(G(validation), block)
 
     /**
      * Create a group element in this svg.
      */
-    fun use(init: USE.() -> Unit): USE {
-        val use = USE(validation)
-        use.init()
-        children.add(use)
-        return use
-    }
+    fun use(block: USE.() -> Unit): USE = add(USE(validation), block)
 }

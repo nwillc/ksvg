@@ -29,22 +29,12 @@ class A(validation: Boolean = false) : Element("a", validation) {
     /**
      * Create a rect element inside the reference.
      */
-    fun rect(block: RECT.() -> Unit): RECT {
-        val rect = RECT()
-        rect.block()
-        children.add(rect)
-        return rect
-    }
+    fun rect(block: RECT.() -> Unit): RECT = add(RECT(validation), block)
 
     /**
      * Create a text element inside the reference.
      */
-    fun text(block: TEXT.() -> Unit): TEXT {
-        val text = TEXT()
-        text.block()
-        children.add(text)
-        return text
-    }
+    fun text(block: TEXT.() -> Unit): TEXT = add(TEXT(validation), block)
 
     override fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> {
         return if (renderMode == SVG.RenderMode.FILE) {
