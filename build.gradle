@@ -118,7 +118,7 @@ model {
 }
 
 
-bintrayUpload.onlyIf { !project.version.toString().endsWith('SNAPSHOT') }
+bintrayUpload.onlyIf { !project.version.toString().contains('-') }
 
 bintray {
     user = System.getenv('BINTRAY_USER')
