@@ -32,6 +32,8 @@ apply plugin: "com.moonlitdoor.git-version"
 group 'com.github.nwillc'
 version "$gitVersion"
 
+print "$project.name $gitVersion"
+
 repositories {
     jcenter()
 }
