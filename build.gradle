@@ -177,3 +177,13 @@ jacocoTestReport {
     }
 }
 jacocoTestReport.dependsOn test
+
+task demo {
+    doLast {
+        println "gitVersion='$gitVersion'"
+        println "gitCommitCount='$gitCommitCount'"
+        println "gitTagCount='$gitTagCount'"
+        println "gitCommitAndTagCount='$gitCommitAndTagCount'"
+        println "gitBranchName='$gitBranchName'"
+    }
+}
