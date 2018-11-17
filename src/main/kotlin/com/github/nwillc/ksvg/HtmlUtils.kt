@@ -13,8 +13,8 @@
 
 package com.github.nwillc.ksvg
 
-const val MIN_BUFFER_SIZE = 16
-const val EIGHT_BIT_START = 127
+internal const val MIN_BUFFER_SIZE = 16
+internal const val EIGHT_BIT_START = 127
 
 /**
  * A quick and dirty HTML special character escaping for body elements.
