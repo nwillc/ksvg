@@ -13,16 +13,19 @@
 
 package com.github.nwillc.ksvg
 
+const val MIN_BUFFER_SIZE = 16
+const val EIGHT_BIT_START = 127
+
 /**
  * A quick and dirty HTML special character escaping for body elements.
  */
 fun String.escapeHTML(): String {
-    val out = StringBuilder(Math.max(16, length))
+    val out = StringBuilder(Math.max(MIN_BUFFER_SIZE, length))
     for (i in 0 until length) {
         val c = this[i]
         val ci = c.toInt()
         when {
-            ci > 127 || c == '"' || c == '<' || c == '>' || c == '&' -> {
+            ci > EIGHT_BIT_START || c == '"' || c == '<' || c == '>' || c == '&' -> {
                 out.append("&#")
                 out.append(ci)
                 out.append(';')
