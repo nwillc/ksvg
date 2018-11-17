@@ -14,7 +14,7 @@ buildscript {
                 "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_plugin_version",
                 "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version",
                 "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_plugin_version",
-                "com.moonlitdoor.git-version:git-version:$git_version_plugin_version"
+                "gradle.plugin.com.github.ngyewch:gradle-git-version:$git_version_plugin_version"
 
     }
 }
@@ -27,13 +27,11 @@ apply plugin: 'com.github.nwillc.vplugin'
 apply plugin: 'org.jetbrains.dokka'
 apply plugin: "io.gitlab.arturbosch.detekt"
 apply plugin: "jacoco"
-apply plugin: "com.moonlitdoor.git-version"
+apply plugin: "com.github.ngyewch.git-version"
 
 group 'com.github.nwillc'
-version "$gitVersion"
 
-print "$project.name $gitVersion"
-
+println "${project.name} ${version}"
 repositories {
     jcenter()
 }
@@ -186,4 +184,8 @@ task demo {
         println "gitCommitAndTagCount='$gitCommitAndTagCount'"
         println "gitBranchName='$gitBranchName'"
     }
+}
+
+gitVersion {
+    gitTagPrefix 'v'                  // Tag prefix to extract version from.
 }
