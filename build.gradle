@@ -30,8 +30,10 @@ apply plugin: "jacoco"
 apply plugin: "com.github.ngyewch.git-version"
 
 group 'com.github.nwillc'
+version "${gitVersion.gitVersionInfo.gitVersionName.substring(1)}"
 
 println "${project.name} ${version}"
+
 repositories {
     jcenter()
 }
@@ -115,7 +117,6 @@ model {
     }
 }
 
-
 bintrayUpload.onlyIf { !project.version.toString().contains('-') }
 
 bintray {
@@ -175,16 +176,6 @@ jacocoTestReport {
     }
 }
 jacocoTestReport.dependsOn test
-
-task demo {
-    doLast {
-        println "gitVersion='$gitVersion'"
-        println "gitCommitCount='$gitCommitCount'"
-        println "gitTagCount='$gitTagCount'"
-        println "gitCommitAndTagCount='$gitCommitAndTagCount'"
-        println "gitBranchName='$gitBranchName'"
-    }
-}
 
 gitVersion {
     gitTagPrefix 'v'                  // Tag prefix to extract version from.
