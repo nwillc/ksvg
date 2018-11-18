@@ -13,9 +13,7 @@
 
 package com.github.nwillc.ksvg.elements
 
-import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import java.io.InputStreamReader
 import java.io.StringWriter
@@ -103,14 +101,6 @@ internal class SVGTest : HasSvg() {
         }
 
         assertThat(svg.toString()).isEqualTo("<svg>\n<text fill=\"black\"/>\n</svg>\n")
-    }
-
-    @Test
-    internal fun toStringFailure() {
-        // Force a child element in that will throw an exception up when rendered.
-        svg.children.add(mockk<TEXT>())
-        assertThatThrownBy { svg.toString() }.isInstanceOf(RuntimeException::class.java)
-                .hasMessageContaining("Unable to generate SVG")
     }
 
     @Test
