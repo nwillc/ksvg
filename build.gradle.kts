@@ -1,5 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.gradle.api.publish.maven.MavenPom
+import com.jfrog.bintray.gradle.BintrayExtension
 
 plugins {
     jacoco
@@ -10,7 +12,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.github.ngyewch.git-version") version "0.2"
     id("org.jmailen.kotlinter") version "1.20.1"
-    //    id("com.jfrog.bintray") version "1.8.4"
+    id("com.jfrog.bintray") version "1.8.4"
 }
 
 group = "com.github.nwillc"
@@ -43,7 +45,7 @@ jacoco {
 }
 
 gitVersion {
-    gitTagPrefix = "v"                  // Tag prefix to extract version from.
+    gitTagPrefix = "v"
 }
 
 tasks {
@@ -74,6 +76,10 @@ tasks {
             }
         }
     }
+
+    withType<GenerateMavenPom> {
+        destination = file("${buildDir}/libs/${project.name}-${version}.pom")
+    }
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -81,31 +87,35 @@ val sourcesJar by tasks.registering(Jar::class) {
     from(sourceSets["main"].allSource)
 }
 
-
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokka")
     classifier = "javadoc"
     from("$buildDir/javadoc")
 }
 
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            from components.java
-//            artifact sourceJar
-//            artifact javadocJar
-//            pom.withXml {
-//                asNode().dependencies.'*'.findAll() {
-//                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
-//                        dep.name == it.artifactId.text()
-//                    }
-//                }.each() {
-//                    it.scope*.value = 'compile'
-//                }
-//            }
-//        }
-//    }
-//}
+fun MavenPom.addDependencies() = withXml {
+    asNode().appendNode("dependencies").let { depNode ->
+        configurations.compile.allDependencies.forEach {
+            depNode.appendNode("dependency").apply {
+                appendNode("groupId", it.group)
+                appendNode("artifactId", it.name)
+                appendNode("version", it.version)
+            }
+        }
+    }
+}
+
+val publicationName = "maven"
+publishing {
+    publications {
+        register(publicationName, MavenPublication::class) {
+            from(components["java"])
+            artifact(sourcesJar.get())
+            artifact(javadocJar.get())
+            pom.addDependencies()
+        }
+    }
+}
 
 //
 //publish.dependsOn = ['assemble', 'sourceJar', 'javadocJar', 'generatePomFileForMavenPublication']
@@ -118,31 +128,24 @@ val javadocJar by tasks.registering(Jar::class) {
 //
 //bintrayUpload.onlyIf { !project.version.toString().contains('-') }
 //
-//bintray {
-//    user = System.getenv("BINTRAY_USER")
-//    key = System.getenv("BINTRAY_API_KEY")
-//
-//    dryRun = false
-//    publish = true
-//  //  publications = ["maven"]
-//    pkg {
-//        repo = "maven"
-//        name = project.name
-//        desc = "Kotlin SVG generation DSL."
-//        websiteUrl = "https://github.com/nwillc/ksvg"
-//        issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
-//        vcsUrl = "https://github.com/nwillc/ksvg.git"
-////        licenses = ["ISC"]
-////        labels = ['kotlin', 'SVG', 'DSL']
-//        publicDownloadNumbers = true
-//    }
-//}
-//
 
-//
-//task ghPages(dependsOn: dokka) {
-//    copy {
-//        from('build/javadoc')
-//        into('docs/javadoc/')
-//    }
-//}
+bintray {
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_API_KEY")
+    dryRun = false
+    publish = true
+    setPublications(publicationName)
+    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
+        repo = "maven"
+        name = "$project.name"
+        desc = "Kotlin SVG generation DSL."
+        websiteUrl = "https://github.com/nwillc/ksvg"
+        issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
+        vcsUrl = "https://github.com/nwillc/ksvg.git"
+        setLicenses("ISC")
+        setLabels("kotlin","SVG","DSL")
+        publicDownloadNumbers = true
+    })
+}
+
+
