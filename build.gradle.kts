@@ -1,11 +1,13 @@
+import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
+    `jacoco`
     kotlin("jvm") version "1.3.10"
 //    `jacoco`
     // `maven-publish`
 //    id("com.jfrog.bintray") version "1.8.4"
     id("com.github.nwillc.vplugin") version "2.1.1"
-//    id 'org.jetbrains.dokka' version '0.9.17'
+    id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.github.ngyewch.git-version") version "0.2"
     id("org.jmailen.kotlinter") version "1.20.1"
@@ -108,10 +110,12 @@ tasks.withType<Test> {
 //    }
 //}
 //
-//dokka {
-//    outputFormat = 'javadoc'
-//    outputDirectory = "$buildDir/javadoc"
-//}
+
+tasks.withType<DokkaTask> {
+    outputFormat = "javadoc"
+    outputDirectory = "$buildDir/javadoc"
+}
+
 //
 //task ghPages(dependsOn: dokka) {
 //    copy {
@@ -126,17 +130,21 @@ detekt {
     filters = ".*/build/.*"
 }
 
-//
-//jacoco {
-//    toolVersion = "0.8.2"
-//}
-//
-//jacocoTestReport {
-//    reports {
-//        xml.enabled = true
-//        html.enabled = true
-//    }
-//}
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+tasks.withType<JacocoReport> {
+    reports {
+        xml.apply {
+            isEnabled = true
+        }
+        html.apply {
+            isEnabled = true
+        }
+    }
+}
+
 //jacocoTestReport.dependsOn test
 //
 
