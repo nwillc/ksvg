@@ -1,4 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     jacoco
@@ -32,23 +33,32 @@ dependencies {
     testImplementation("io.mockk:mockk:1.8.13.kotlin13")
 }
 
-//compileKotlin {
-//    kotlinOptions.jvmTarget = "1.8"
-//}
-//compileTestKotlin {
-//    kotlinOptions.jvmTarget = "1.8"
-//}
-
 tasks {
-    withType {
+    withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
     }
-}
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-    testLogging {
-        showStandardStreams = true
+    withType<Test> {
+        useJUnitPlatform()
+        testLogging {
+            showStandardStreams = true
+        }
+    }
+
+    withType<DokkaTask> {
+        outputFormat = "javadoc"
+        outputDirectory = "$buildDir/javadoc"
+    }
+
+    withType<JacocoReport> {
+        reports {
+            xml.apply {
+                isEnabled = true
+            }
+            html.apply {
+                isEnabled = true
+            }
+        }
     }
 }
 
@@ -116,11 +126,6 @@ tasks.withType<Test> {
 //}
 //
 
-tasks.withType<DokkaTask> {
-    outputFormat = "javadoc"
-    outputDirectory = "$buildDir/javadoc"
-}
-
 //
 //task ghPages(dependsOn: dokka) {
 //    copy {
@@ -137,17 +142,6 @@ detekt {
 
 jacoco {
     toolVersion = "0.8.2"
-}
-
-tasks.withType<JacocoReport> {
-    reports {
-        xml.apply {
-            isEnabled = true
-        }
-        html.apply {
-            isEnabled = true
-        }
-    }
 }
 
 //jacocoTestReport.dependsOn test
