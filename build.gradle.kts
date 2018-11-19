@@ -3,7 +3,6 @@ import org.jetbrains.dokka.gradle.DokkaTask
 plugins {
     jacoco
     kotlin("jvm") version "1.3.10"
-//    `jacoco`
     // `maven-publish`
 //    id("com.jfrog.bintray") version "1.8.4"
     id("com.github.nwillc.vplugin") version "2.1.1"
@@ -39,6 +38,12 @@ dependencies {
 //compileTestKotlin {
 //    kotlinOptions.jvmTarget = "1.8"
 //}
+
+tasks {
+    withType {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+}
 
 tasks.withType<Test> {
     useJUnitPlatform()
