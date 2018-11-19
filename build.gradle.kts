@@ -1,14 +1,3 @@
-import org.gradle.api.tasks.bundling.Jar
-import java.nio.file.Paths
-
-//buildscript {
-//    ext.kotlin_version = kotlin_version
-//
-//    repositories {
-//        jcenter()
-//        gradlePluginPortal()
-//    }
-//}
 
 plugins {
     kotlin("jvm") version "1.3.10"
@@ -17,7 +6,7 @@ plugins {
 //    id("com.jfrog.bintray") version "1.8.4"
     id("com.github.nwillc.vplugin") version "2.1.1"
 //    id 'org.jetbrains.dokka' version '0.9.17'
-//    id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC9.2'
+    id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.github.ngyewch.git-version") version "0.2"
 }
 
@@ -56,21 +45,8 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-
-//
-//    beforeTest { descriptor ->
-//        logger.lifecycle("\tRunning $descriptor.className.$descriptor.name")
-//    }
-//
-//    afterSuite { descriptor, result ->
-//        if (descriptor.parent == null) {
-//            logger.lifecycle("\tTests run: $result.testCount, Failures: $result.failedTestCount, Skipped: $result.skippedTestCount")
-//        }
-//    }
-//
     testLogging {
         showStandardStreams = true
-        //exceptionFormat = "full"
     }
 }
 
@@ -157,10 +133,12 @@ tasks.withType<Test> {
 //}
 //check.dependsOn ktlint
 //
-//detekt {
-//    input = files("src/main/kotlin")
-//    filters = ".*/resources/.*,.*/build/.*"
-//}
+
+detekt {
+    input = files("src/main/kotlin")
+    filters = ".*/build/.*"
+}
+
 //
 //jacoco {
 //    toolVersion = "0.8.2"
