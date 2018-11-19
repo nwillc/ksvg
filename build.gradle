@@ -3,31 +3,20 @@ buildscript {
 
     repositories {
         jcenter()
-        maven {
-            url = 'https://plugins.gradle.org/m2/'
-        }
-    }
-
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
-                "gradle.plugin.com.github.nwillc:vplugin:$vplugin_version",
-                "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_plugin_version",
-                "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version",
-                "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_plugin_version",
-                "gradle.plugin.com.github.ngyewch:gradle-git-version:$git_version_plugin_version"
-
+        gradlePluginPortal()
     }
 }
 
-
-apply plugin: 'kotlin'
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.nwillc.vplugin'
-apply plugin: 'org.jetbrains.dokka'
-apply plugin: "io.gitlab.arturbosch.detekt"
-apply plugin: "jacoco"
-apply plugin: "com.github.ngyewch.git-version"
+plugins {
+    id 'maven-publish'
+    id 'jacoco'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.10'
+    id 'com.jfrog.bintray' version '1.8.4'
+    id 'com.github.nwillc.vplugin' version '2.1.1'
+    id 'org.jetbrains.dokka' version '0.9.17'
+    id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC9.2'
+    id 'com.github.ngyewch.git-version' version '0.2'
+}
 
 group 'com.github.nwillc'
 version "${gitVersion.gitVersionInfo.gitVersionName.substring(1)}"
@@ -160,7 +149,6 @@ task ktlint(type: JavaExec, group: "verification") {
 check.dependsOn ktlint
 
 detekt {
-    toolVersion = "$detekt_plugin_version"
     input = files("src/main/kotlin")
     filters = ".*/resources/.*,.*/build/.*"
 }
