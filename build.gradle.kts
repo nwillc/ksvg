@@ -118,14 +118,6 @@ publishing {
 }
 
 //
-//publish.dependsOn = ['assemble', 'sourceJar', 'javadocJar', 'generatePomFileForMavenPublication']
-//
-//model {
-//    tasks.generatePomFileForMavenPublication {
-//        destination = file("${buildDir}/libs/${project.name}-${version}.pom")
-//    }
-//}
-//
 //bintrayUpload.onlyIf { !project.version.toString().contains('-') }
 //
 
