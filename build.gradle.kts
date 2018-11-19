@@ -3,14 +3,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     jacoco
+    `maven-publish`
     kotlin("jvm") version "1.3.10"
-    // `maven-publish`
-//    id("com.jfrog.bintray") version "1.8.4"
     id("com.github.nwillc.vplugin") version "2.1.1"
     id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.github.ngyewch.git-version") version "0.2"
     id("org.jmailen.kotlinter") version "1.20.1"
+    //    id("com.jfrog.bintray") version "1.8.4"
 }
 
 group = "com.github.nwillc"
@@ -33,6 +33,19 @@ dependencies {
     testImplementation("io.mockk:mockk:1.8.13.kotlin13")
 }
 
+detekt {
+    input = files("src/main/kotlin")
+    filters = ".*/build/.*"
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+gitVersion {
+    gitTagPrefix = "v"                  // Tag prefix to extract version from.
+}
+
 tasks {
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
@@ -51,6 +64,7 @@ tasks {
     }
 
     withType<JacocoReport> {
+        dependsOn("test")
         reports {
             xml.apply {
                 isEnabled = true
@@ -62,18 +76,17 @@ tasks {
     }
 }
 
+val sourcesJar by tasks.registering(Jar::class) {
+    classifier = "sources"
+    from(sourceSets["main"].allSource)
+}
 
-//val sourcesJar by tasks.registering(Jar::class) {
-//    classifier = "sources"
-//    from(sourceSets["main"].allSource)
-//}
 
-//
-//task javadocJar(type: Jar, dependsOn: ['dokka']) {
-//    from "$buildDir/javadoc"
-//    classifier = 'javadoc'
-//}
-//
+val javadocJar by tasks.registering(Jar::class) {
+    dependsOn("dokka")
+    classifier = "javadoc"
+    from("$buildDir/javadoc")
+}
 
 //publishing {
 //    publications {
@@ -133,20 +146,3 @@ tasks {
 //        into('docs/javadoc/')
 //    }
 //}
-
-
-detekt {
-    input = files("src/main/kotlin")
-    filters = ".*/build/.*"
-}
-
-jacoco {
-    toolVersion = "0.8.2"
-}
-
-//jacocoTestReport.dependsOn test
-//
-
-gitVersion {
-    gitTagPrefix = "v"                  // Tag prefix to extract version from.
-}
