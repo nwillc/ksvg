@@ -16,6 +16,7 @@ package com.github.nwillc.ksvg
 import com.github.nwillc.ksvg.elements.SVG
 import org.junit.jupiter.api.Test
 import java.io.FileWriter
+import java.nio.file.Paths
 
 internal class FileTest {
     @Test
@@ -41,8 +42,7 @@ internal class FileTest {
                     href = "#circle1"
                 }
         }
-
-        FileWriter("build/tmp/circlesDiagonal.svg").use {
+        FileWriter("/tmp/circlesDiagonal.svg").use {
             svg.render(it, SVG.RenderMode.FILE)
         }
     }
@@ -139,7 +139,7 @@ internal class FileTest {
             }
         }
 
-        FileWriter("build/tmp/codeMonkey.svg").use {
+        FileWriter("/tmp/codeMonkey.svg").use {
             svg.render(it, SVG.RenderMode.FILE)
         }
     }
