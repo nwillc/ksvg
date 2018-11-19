@@ -1,7 +1,7 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-    `jacoco`
+    jacoco
     kotlin("jvm") version "1.3.10"
 //    `jacoco`
     // `maven-publish`
