@@ -16,7 +16,6 @@ package com.github.nwillc.ksvg
 import com.github.nwillc.ksvg.elements.SVG
 import org.junit.jupiter.api.Test
 import java.io.FileWriter
-import java.nio.file.Paths
 
 internal class FileTest {
     @Test

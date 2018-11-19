@@ -8,6 +8,7 @@ plugins {
 //    id 'org.jetbrains.dokka' version '0.9.17'
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.github.ngyewch.git-version") version "0.2"
+    id("org.jmailen.kotlinter") version "1.20.1"
 }
 
 group = "com.github.nwillc"
@@ -19,10 +20,6 @@ repositories {
     jcenter()
 }
 
-//configurations {
-//    ktlint
-//}
-
 dependencies {
     compile(kotlin("stdlib-jdk8"))
 
@@ -32,8 +29,6 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.1")
 
     testImplementation("io.mockk:mockk:1.8.13.kotlin13")
-
-   // ktlint "com.github.shyiko:ktlint:$ktlint_version"
 }
 
 //compileKotlin {
@@ -124,15 +119,7 @@ tasks.withType<Test> {
 //        into('docs/javadoc/')
 //    }
 //}
-//
-//task ktlint(type: JavaExec, group: "verification") {
-//    description = "Check Kotlin code style."
-//    classpath = configurations.ktlint
-//    main = "com.github.shyiko.ktlint.Main"
-//    args ["src/**/*.kt"]
-//}
-//check.dependsOn ktlint
-//
+
 
 detekt {
     input = files("src/main/kotlin")
