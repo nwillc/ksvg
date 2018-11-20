@@ -11,6 +11,11 @@ after_success:
   - ./gradlew jacocoTestReport
   - bash <(curl -s https://codecov.io/bash)
 
+deploy:
+  provider: script
+  script: ./gradlew bintrayUpload
+  on:
+    tags: true
 
 branches:
   only:

@@ -55,7 +55,6 @@ publishing {
             from(components["java"])
             artifact(sourcesJar.get())
             artifact(javadocJar.get())
-            pom.addDependencies()
         }
     }
 }
@@ -122,21 +121,6 @@ val javadocJar by tasks.registering(Jar::class) {
     from("$buildDir/javadoc")
 }
 
-fun MavenPom.addDependencies() = withXml {
-    asNode().appendNode("dependencies").let { depNode ->
-        configurations.compile.allDependencies.forEach {
-            depNode.appendNode("dependency").apply {
-                appendNode("groupId", it.group)
-                appendNode("artifactId", it.name)
-                appendNode("version", it.version)
-            }
-        }
-    }
-}
-
-//
-//bintrayUpload.onlyIf { !project.version.toString().contains('-') }
-//
 
 
 
