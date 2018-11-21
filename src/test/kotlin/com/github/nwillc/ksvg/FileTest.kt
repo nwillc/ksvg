@@ -46,39 +46,6 @@ internal class FileTest {
         }
     }
 
-    private fun SVG.ear(x: Int, y: Int) {
-        circle {
-            cssClass = "black-stroke fur-color"
-            cx = x.toString()
-            cy = y.toString()
-            r = "40"
-        }
-        circle {
-            cssClass = "black-stroke fur-color"
-            cx = x.toString()
-            cy = y.toString()
-            r = "28"
-        }
-    }
-
-    private fun SVG.eye(x: Int, y: Int ) {
-        circle {
-            cssClass = "black-stroke fur-color"
-            cx = x.toString()
-            cy = y.toString()
-            r = "20"
-        }
-    }
-
-    private fun SVG.nostril(x: Int, y: Int) {
-        circle {
-            cx = x.toString()
-            cy = y.toString()
-            r = "4"
-            fill = "black"
-        }
-    }
-
     @Test
     internal fun testCodeMonkey() {
         val svg = SVG.svg(true) {
@@ -100,8 +67,8 @@ internal class FileTest {
                 fontFamily = "monospace"
                 fontSize = "40px"
             }
-            // Ears
-            ear(100,100)
+            // Ears - use a function because USE tag doesn't work in Safari
+            ear(100, 100)
             ear(240, 70)
             // Face
             circle {
@@ -112,9 +79,9 @@ internal class FileTest {
                 r = "80"
                 fill = "#aa450f"
             }
-            // Eyes
-            eye( 160, 95)
-            eye( 205, 90)
+            // Eyes - use a function because USE tag doesn't work in Safari
+            eye(160, 95)
+            eye(205, 90)
             // Muzzle
             circle {
                 cssClass = "black-stroke fur-color"
@@ -122,7 +89,7 @@ internal class FileTest {
                 cy = "178"
                 r = "65"
             }
-            // Nostrils
+            // Nostrils - use a function because USE tag doesn't work in Safari
             nostril(178, 138)
             nostril(213, 133)
             // Mouth
@@ -135,6 +102,39 @@ internal class FileTest {
 
         FileWriter("/tmp/codeMonkey.svg").use {
             svg.render(it, SVG.RenderMode.FILE)
+        }
+    }
+
+    private fun SVG.ear(x: Int, y: Int) {
+        circle {
+            cssClass = "black-stroke fur-color"
+            cx = x.toString()
+            cy = y.toString()
+            r = "40"
+        }
+        circle {
+            cssClass = "black-stroke fur-color"
+            cx = x.toString()
+            cy = y.toString()
+            r = "28"
+        }
+    }
+
+    private fun SVG.eye(x: Int, y: Int) {
+        circle {
+            cssClass = "black-stroke fur-color"
+            cx = x.toString()
+            cy = y.toString()
+            r = "20"
+        }
+    }
+
+    private fun SVG.nostril(x: Int, y: Int) {
+        circle {
+            cx = x.toString()
+            cy = y.toString()
+            r = "4"
+            fill = "black"
         }
     }
 }
