@@ -2,6 +2,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.gradle.api.publish.maven.MavenPom
 import com.jfrog.bintray.gradle.BintrayExtension
+import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 
 plugins {
     jacoco
@@ -107,6 +108,17 @@ tasks {
 
     withType<GenerateMavenPom> {
         destination = file("${buildDir}/libs/${project.name}-${version}.pom")
+    }
+
+    withType<BintrayUploadTask> {
+       onlyIf {
+           if (gitVersion.gitVersionInfo.gitVersionName.contains('-')) {
+               logger.lifecycle("Version ${gitVersion.gitVersionInfo.gitVersionName} is not a release version - skipping upload.")
+               false
+           } else {
+               true
+           }
+       }
     }
 }
 
