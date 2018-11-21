@@ -72,6 +72,7 @@ bintray {
         websiteUrl = "https://github.com/nwillc/ksvg"
         issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
         vcsUrl = "https://github.com/nwillc/ksvg.git"
+        version.vcsTag = "${gitVersion.gitVersionInfo.gitVersionName}"
         setLicenses("ISC")
         setLabels("kotlin","SVG","DSL")
         publicDownloadNumbers = true

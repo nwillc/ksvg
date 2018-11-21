@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewbox="0 0 600 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
 <style>
-.black-stroke { stroke: black; stroke-width: 2; }
-.fur-color { fill: white; }
+svg .black-stroke { stroke: black; stroke-width: 2; }
+svg .fur-color { fill: white; }
 </style>
 <text x="40" y="50" font-size="40px" font-family="monospace">#CODE</text>
-<g id="ear">
 <circle r="40" cx="100" cy="100" class="black-stroke fur-color"/>
 <circle r="28" cx="100" cy="100" class="black-stroke fur-color"/>
-</g>
-<use x="140" y="-30" href="#ear"/>
+<circle r="40" cx="240" cy="70" class="black-stroke fur-color"/>
+<circle r="28" cx="240" cy="70" class="black-stroke fur-color"/>
 <circle r="80" cx="180" cy="140" id="face" fill="#aa450f" class="black-stroke"/>
-<circle r="20" cx="160" cy="95" id="eye" class="black-stroke fur-color"/>
-<use x="45" y="-5" href="#eye"/>
+<circle r="20" cx="160" cy="95" class="black-stroke fur-color"/>
+<circle r="20" cx="205" cy="90" class="black-stroke fur-color"/>
 <circle r="65" cx="195" cy="178" class="black-stroke fur-color"/>
-<circle r="4" cx="178" cy="138" id="nostril" fill="black"/>
-<use x="35" y="-5" href="#nostril"/>
+<circle r="4" cx="178" cy="138" fill="black"/>
+<circle r="4" cx="213" cy="133" fill="black"/>
 <path d="M 150 150 C 100,250 305,260 230,140 C 205,190 165,170 150,150 Z" fill="red" class="black-stroke"/>
 </svg>

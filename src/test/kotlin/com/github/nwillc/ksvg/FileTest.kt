@@ -46,6 +46,39 @@ internal class FileTest {
         }
     }
 
+    private fun SVG.ear(x: Int, y: Int) {
+        circle {
+            cssClass = "black-stroke fur-color"
+            cx = x.toString()
+            cy = y.toString()
+            r = "40"
+        }
+        circle {
+            cssClass = "black-stroke fur-color"
+            cx = x.toString()
+            cy = y.toString()
+            r = "28"
+        }
+    }
+
+    private fun SVG.eye(x: Int, y: Int ) {
+        circle {
+            cssClass = "black-stroke fur-color"
+            cx = x.toString()
+            cy = y.toString()
+            r = "20"
+        }
+    }
+
+    private fun SVG.nostril(x: Int, y: Int) {
+        circle {
+            cx = x.toString()
+            cy = y.toString()
+            r = "4"
+            fill = "black"
+        }
+    }
+
     @Test
     internal fun testCodeMonkey() {
         val svg = SVG.svg(true) {
@@ -68,26 +101,8 @@ internal class FileTest {
                 fontSize = "40px"
             }
             // Ears
-            g {
-                id = "ear"
-                circle {
-                    cssClass = "black-stroke fur-color"
-                    cx = "100"
-                    cy = "100"
-                    r = "40"
-                }
-                circle {
-                    cssClass = "black-stroke fur-color"
-                    cx = "100"
-                    cy = "100"
-                    r = "28"
-                }
-            }
-            use {
-                x = "140"
-                y = "-30"
-                href = "#ear"
-            }
+            ear(100,100)
+            ear(240, 70)
             // Face
             circle {
                 cssClass = "black-stroke"
@@ -98,18 +113,8 @@ internal class FileTest {
                 fill = "#aa450f"
             }
             // Eyes
-            circle {
-                cssClass = "black-stroke fur-color"
-                id = "eye"
-                cx = "160"
-                cy = "95"
-                r = "20"
-            }
-            use {
-                x = "45"
-                y = "-5"
-                href = "#eye"
-            }
+            eye( 160, 95)
+            eye( 205, 90)
             // Muzzle
             circle {
                 cssClass = "black-stroke fur-color"
@@ -118,18 +123,8 @@ internal class FileTest {
                 r = "65"
             }
             // Nostrils
-            circle {
-                id = "nostril"
-                cx = "178"
-                cy = "138"
-                r = "4"
-                fill = "black"
-            }
-            use {
-                x = "35"
-                y = "-5"
-                href = "#nostril"
-            }
+            nostril(178, 138)
+            nostril(213, 133)
             // Mouth
             path {
                 cssClass = "black-stroke"
