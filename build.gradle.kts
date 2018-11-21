@@ -67,7 +67,7 @@ bintray {
     setPublications(publicationName)
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "maven"
-        name = "$project.name"
+        name = "${project.name}"
         desc = "Kotlin SVG generation DSL."
         websiteUrl = "https://github.com/nwillc/ksvg"
         issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
