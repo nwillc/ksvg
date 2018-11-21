@@ -13,6 +13,7 @@
 
 package com.github.nwillc.ksvg
 
+import com.github.nwillc.ksvg.elements.Container
 import com.github.nwillc.ksvg.elements.SVG
 import org.junit.jupiter.api.Test
 import java.io.FileWriter
@@ -105,7 +106,7 @@ internal class FileTest {
         }
     }
 
-    private fun SVG.ear(x: Int, y: Int) {
+    private fun Container.ear(x: Int, y: Int) {
         circle {
             cssClass = "black-stroke fur-color"
             cx = x.toString()
@@ -120,7 +121,7 @@ internal class FileTest {
         }
     }
 
-    private fun SVG.eye(x: Int, y: Int) {
+    private fun Container.eye(x: Int, y: Int) {
         circle {
             cssClass = "black-stroke fur-color"
             cx = x.toString()
@@ -129,7 +130,7 @@ internal class FileTest {
         }
     }
 
-    private fun SVG.nostril(x: Int, y: Int) {
+    private fun Container.nostril(x: Int, y: Int) {
         circle {
             cx = x.toString()
             cy = y.toString()
