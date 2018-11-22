@@ -40,14 +40,14 @@ internal class ATest : HasSvg() {
             href = "http://www.google.com"
         }
 
-        StringWriter().use {
-            svg.render(it, SVG.RenderMode.INLINE)
-            assertThat(it.toString()).isEqualTo("<svg>\n<a xlink:href=\"http://www.google.com\"/>\n</svg>\n")
+        StringWriter().use { writer ->
+            svg.render(writer, SVG.RenderMode.INLINE)
+            assertThat(writer.toString()).isEqualTo("<svg>\n<a xlink:href=\"http://www.google.com\"/>\n</svg>\n")
         }
 
-        StringWriter().use {
-            svg.render(it, SVG.RenderMode.FILE)
-            assertThat(it.toString()).isEqualTo(
+        StringWriter().use { writer ->
+            svg.render(writer, SVG.RenderMode.FILE)
+            assertThat(writer.toString()).isEqualTo(
                     "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\">\n" +
                             "<a href=\"http://www.google.com\"/>\n" +
                             "</svg>\n"

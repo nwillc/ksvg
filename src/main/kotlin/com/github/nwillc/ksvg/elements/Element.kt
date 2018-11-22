@@ -120,9 +120,9 @@ abstract class Element(private val name: String, var validation: Boolean) {
      * Returns the rendered inline SVG as a String.
      */
     override fun toString(): String {
-            return StringWriter().use {
-                render(it, SVG.RenderMode.INLINE)
-                it.toString()
+            return StringWriter().use { writer ->
+                render(writer, SVG.RenderMode.INLINE)
+                writer.toString()
             }
     }
 }

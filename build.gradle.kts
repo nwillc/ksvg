@@ -1,6 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.gradle.api.publish.maven.MavenPom
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 
@@ -75,7 +74,7 @@ bintray {
         vcsUrl = "https://github.com/nwillc/ksvg.git"
         version.vcsTag = "${gitVersion.gitVersionInfo.gitVersionName}"
         setLicenses("ISC")
-        setLabels("kotlin","SVG","DSL")
+        setLabels("kotlin", "SVG", "DSL")
         publicDownloadNumbers = true
     })
 }
@@ -112,14 +111,14 @@ tasks {
     }
 
     withType<BintrayUploadTask> {
-       onlyIf {
-           if (gitVersion.gitVersionInfo.gitVersionName.contains('-')) {
-               logger.lifecycle("Version ${gitVersion.gitVersionInfo.gitVersionName} is not a release version - skipping upload.")
-               false
-           } else {
-               true
-           }
-       }
+        onlyIf {
+            if (gitVersion.gitVersionInfo.gitVersionName.contains('-')) {
+                logger.lifecycle("Version ${gitVersion.gitVersionInfo.gitVersionName} is not a release version - skipping upload.")
+                false
+            } else {
+                true
+            }
+        }
     }
 }
 
@@ -133,8 +132,3 @@ val javadocJar by tasks.registering(Jar::class) {
     classifier = "javadoc"
     from("$buildDir/javadoc")
 }
-
-
-
-
-
