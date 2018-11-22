@@ -15,7 +15,6 @@ import java.util.logging.Logger
 import java.util.logging.SimpleFormatter
 import java.util.logging.StreamHandler
 
-
 internal class USETest : HasSvg(true) {
 
     @Test
@@ -28,13 +27,11 @@ internal class USETest : HasSvg(true) {
             svg.validation = true
             it.reset()
             svg.use {
-
             }
             handler.flush()
             assertThat(it.toString()).contains("The use tags href has compatibility issues with Safari")
             logger.removeHandler(handler)
         }
-
     }
 
     @Test
@@ -46,7 +43,6 @@ internal class USETest : HasSvg(true) {
             logger.addHandler(handler)
             svg.validation = false
             svg.use {
-
             }
             handler.flush()
             assertThat(it.toString()).isEmpty()
