@@ -13,11 +13,11 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.RenamedAttribute
 import com.github.nwillc.ksvg.SvgTagMarker
-import com.github.nwillc.ksvg.attributes.TypedAttribute
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasStroke
+import com.github.nwillc.ksvg.attributes.RenamedAttribute
+import com.github.nwillc.ksvg.attributes.TypedAttribute
 
 /**
  * An SVG line element.

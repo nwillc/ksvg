@@ -14,8 +14,8 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.SvgTagMarker
-import com.github.nwillc.ksvg.attributes.TypedAttribute
 import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.TypedAttribute
 
 /**
  * The SVG circle element.

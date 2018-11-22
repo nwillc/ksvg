@@ -78,11 +78,11 @@ abstract class Element(private val name: String, var validation: Boolean) {
      */
     open fun render(writer: Writer, renderMode: SVG.RenderMode) {
         writer.append("<$name")
-        getAttributes(renderMode).entries.forEach {
+        getAttributes(renderMode).entries.forEach { entry ->
             writer.append(' ')
-            writer.append(it.key)
+            writer.append(entry.key)
             writer.append("=\"")
-            writer.append(it.value)
+            writer.append(entry.value)
             writer.append('"')
         }
         if (!hasContent()) {

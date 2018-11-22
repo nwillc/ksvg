@@ -21,15 +21,15 @@ internal class USETest : HasSvg(true) {
     internal fun testValidationWarning() {
         val logger = Logger.getLogger(USE::javaClass.name)
         val formatter = SimpleFormatter()
-        ByteArrayOutputStream().use {
-            val handler = StreamHandler(it, formatter)
+        ByteArrayOutputStream().use { stream ->
+            val handler = StreamHandler(stream, formatter)
             logger.addHandler(handler)
             svg.validation = true
-            it.reset()
+            stream.reset()
             svg.use {
             }
             handler.flush()
-            assertThat(it.toString()).contains("The use tags href has compatibility issues with Safari")
+            assertThat(stream.toString()).contains("The use tags href has compatibility issues with Safari")
             logger.removeHandler(handler)
         }
     }
@@ -38,14 +38,14 @@ internal class USETest : HasSvg(true) {
     internal fun testNoValidationWarning() {
         val logger = Logger.getLogger(USE::javaClass.name)
         val formatter = SimpleFormatter()
-        ByteArrayOutputStream().use {
-            val handler = StreamHandler(it, formatter)
+        ByteArrayOutputStream().use { stream ->
+            val handler = StreamHandler(stream, formatter)
             logger.addHandler(handler)
             svg.validation = false
             svg.use {
             }
             handler.flush()
-            assertThat(it.toString()).isEmpty()
+            assertThat(stream.toString()).isEmpty()
             logger.removeHandler(handler)
         }
     }

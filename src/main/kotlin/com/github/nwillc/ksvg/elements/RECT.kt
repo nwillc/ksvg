@@ -14,10 +14,10 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.SvgTagMarker
-import com.github.nwillc.ksvg.attributes.TypedAttribute
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasDimensions
 import com.github.nwillc.ksvg.attributes.HasOrigin
+import com.github.nwillc.ksvg.attributes.TypedAttribute
 
 /**
  * An SVG rect element.

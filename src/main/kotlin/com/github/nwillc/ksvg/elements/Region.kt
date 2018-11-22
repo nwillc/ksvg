@@ -15,9 +15,9 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.RenamedAttribute
 import com.github.nwillc.ksvg.attributes.HasFill
 import com.github.nwillc.ksvg.attributes.HasStroke
+import com.github.nwillc.ksvg.attributes.RenamedAttribute
 
 /**
  * An abstract element that is a region and therefore has stroke and fill.
