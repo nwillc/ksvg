@@ -128,6 +128,7 @@ so additions can be done by others, or as my needs increase.
 - [Javadoc](https://nwillc.github.io/ksvg/javadoc)
 
 -----
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a16affc437924cbcb0d14efec6874fe3)](https://app.codacy.com/app/nwillc/ksvg?utm_source=github.com&utm_medium=referral&utm_content=nwillc/ksvg&utm_campaign=Badge_Grade_Dashboard)
 [![Coverage](https://codecov.io/gh/nwillc/ksvg/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/nwillc/ksvg)
 [![license](https://img.shields.io/github/license/nwillc/ksvg.svg)](https://tldrlegal.com/license/-isc-license)
 [![Travis](https://img.shields.io/travis/nwillc/ksvg.svg)](https://travis-ci.org/nwillc/ksvg)
