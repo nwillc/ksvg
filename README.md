@@ -133,3 +133,4 @@ so additions can be done by others, or as my needs increase.
 [![Travis](https://img.shields.io/travis/nwillc/ksvg.svg)](https://travis-ci.org/nwillc/ksvg)
 [![Download](https://api.bintray.com/packages/nwillc/maven/ksvg/images/download.svg)](https://bintray.com/nwillc/maven/ksvg/_latestVersion)
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e00d48ec86df4fb4a63e554729b1bf6e)](https://www.codacy.com/app/nwillc/ksvg?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nwillc/ksvg&amp;utm_campaign=Badge_Grade)
