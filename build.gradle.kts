@@ -7,7 +7,7 @@ plugins {
     jacoco
     `maven-publish`
     kotlin("jvm") version "1.3.10"
-    id("com.github.nwillc.vplugin") version "2.1.1"
+    id("com.github.nwillc.vplugin") version "2.2.2"
     id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.github.ngyewch.git-version") version "0.2"

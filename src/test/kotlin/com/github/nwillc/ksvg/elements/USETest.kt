@@ -9,6 +9,8 @@
 package com.github.nwillc.ksvg.elements
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.util.logging.Logger
@@ -16,37 +18,40 @@ import java.util.logging.SimpleFormatter
 import java.util.logging.StreamHandler
 
 internal class USETest : HasSvg(true) {
+    val formatter = SimpleFormatter()
+    val stream = ByteArrayOutputStream()
+    val handler = StreamHandler(stream, formatter)
+
+    companion object {
+        val logger = Logger.getLogger(USE::javaClass.name)
+    }
+
+    @BeforeEach
+    fun setup() {
+        stream.reset()
+        logger.addHandler(handler)
+    }
+
+    @AfterEach
+    fun tearDown() {
+        logger.removeHandler(handler)
+    }
 
     @Test
     internal fun testValidationWarning() {
-        val logger = Logger.getLogger(USE::javaClass.name)
-        val formatter = SimpleFormatter()
-        ByteArrayOutputStream().use { stream ->
-            val handler = StreamHandler(stream, formatter)
-            logger.addHandler(handler)
-            svg.validation = true
-            stream.reset()
-            svg.use {
-            }
-            handler.flush()
-            assertThat(stream.toString()).contains("The use tags href has compatibility issues with Safari")
-            logger.removeHandler(handler)
+        svg.validation = true
+        svg.use {
         }
+        handler.flush()
+        assertThat(stream.toString()).contains("The use tags href has compatibility issues with Safari")
     }
 
     @Test
     internal fun testNoValidationWarning() {
-        val logger = Logger.getLogger(USE::javaClass.name)
-        val formatter = SimpleFormatter()
-        ByteArrayOutputStream().use { stream ->
-            val handler = StreamHandler(stream, formatter)
-            logger.addHandler(handler)
-            svg.validation = false
-            svg.use {
-            }
-            handler.flush()
-            assertThat(stream.toString()).isEmpty()
-            logger.removeHandler(handler)
+        svg.validation = false
+        svg.use {
         }
+        handler.flush()
+        assertThat(stream.toString()).isEmpty()
     }
 }
