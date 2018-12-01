@@ -1,0 +1,9 @@
+kind: pipeline
+name: default
+
+steps:
+- name: library
+  image: openjdk:8
+  commands:
+  - ./gradlew classes
+  - ./gradlew test
