@@ -9,4 +9,4 @@ steps:
   - ./gradlew test
   - ./gradlew jacocoTestReport
   - "curl -s https://codecov.io/bash | bash"
-  - ./gradlew bintrayUpload
+  - git tag
