@@ -8,5 +8,5 @@ steps:
   - ./gradlew classes
   - ./gradlew test
   - ./gradlew jacocoTestReport
-  - bash <(curl -s https://codecov.io/bash)
+  - "bash <(curl -s https://codecov.io/bash)"
   - ./gradlew bintrayUpload
