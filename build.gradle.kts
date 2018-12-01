@@ -3,6 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 
+val assertJVersion = "3.11.1"
+val jacocoToolVersion = "0.8.2"
+val jupiterVersion = "5.3.2"
+val jvmTargetVersion = "1.8"
+val mockkVersion = "1.8.13.kotlin13"
+
 plugins {
     jacoco
     `maven-publish`
@@ -27,12 +33,12 @@ repositories {
 dependencies {
     compile(kotlin("stdlib-jdk8"))
 
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.3.1")
-    testCompile("org.assertj:assertj-core:3.11.1")
+    testCompile("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
+    testCompile("org.assertj:assertj-core:$assertJVersion")
 
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.1")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
 
-    testImplementation("io.mockk:mockk:1.8.13.kotlin13")
+    testImplementation("io.mockk:mockk:$mockkVersion")
 }
 
 detekt {
@@ -41,7 +47,7 @@ detekt {
 }
 
 jacoco {
-    toolVersion = "0.8.2"
+    toolVersion = jacocoToolVersion
 }
 
 gitVersion {
@@ -81,7 +87,7 @@ bintray {
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = jvmTargetVersion
     }
 
     withType<Test> {
