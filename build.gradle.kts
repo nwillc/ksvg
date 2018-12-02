@@ -71,7 +71,7 @@ publishing {
             version = project.version.toString()
 
             from(components["java"])
-            artifact(tasks["sourcesJar"])
+            artifact(sourcesJar.get())
             artifact(javadocJar.get())
         }
     }
