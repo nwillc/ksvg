@@ -57,11 +57,20 @@ gitVersion {
 val publicationName = "maven"
 publishing {
     publications {
-        register(publicationName, MavenPublication::class) {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+
             from(components["java"])
-            artifact(sourcesJar.get())
-            artifact(javadocJar.get())
+//            artifact(sourcesJar.get())
+//            artifact(javadocJar.get())
         }
+//        register(publicationName, MavenPublication::class) {
+//            from(components["java"])
+//            artifact(sourcesJar.get())
+//            artifact(javadocJar.get())
+//        }
     }
 }
 
