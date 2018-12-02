@@ -22,23 +22,20 @@ plugins {
 }
 
 group = "com.github.nwillc"
-version = "${gitVersion.gitVersionInfo.gitVersionName.substring(1)}"
+version = gitVersion.gitVersionInfo.gitVersionName.substring(1)
 
-logger.lifecycle("${project.name} ${version}")
+logger.lifecycle("${project.name} $version")
 
 repositories {
     jcenter()
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk8"))
-
-    testCompile("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
-    testCompile("org.assertj:assertj-core:$assertJVersion")
-
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
-
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
+    testImplementation("org.assertj:assertj-core:$assertJVersion")
     testImplementation("io.mockk:mockk:$mockkVersion")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
 }
 
 detekt {
@@ -54,23 +51,29 @@ gitVersion {
     gitTagPrefix = "v"
 }
 
+val sourcesJar by tasks.registering(Jar::class) {
+    classifier = "sources"
+    from(sourceSets["main"].allSource)
+}
+
+val javadocJar by tasks.registering(Jar::class) {
+    dependsOn("dokka")
+    classifier = "javadoc"
+    from("$buildDir/javadoc")
+}
+
 val publicationName = "maven"
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>(publicationName) {
             groupId = project.group.toString()
             artifactId = project.name
             version = project.version.toString()
 
             from(components["java"])
-//            artifact(sourcesJar.get())
-//            artifact(javadocJar.get())
+            artifact(tasks["sourcesJar"])
+            artifact(javadocJar.get())
         }
-//        register(publicationName, MavenPublication::class) {
-//            from(components["java"])
-//            artifact(sourcesJar.get())
-//            artifact(javadocJar.get())
-//        }
     }
 }
 
@@ -82,12 +85,12 @@ bintray {
     setPublications(publicationName)
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "maven"
-        name = "${project.name}"
+        name = project.name
         desc = "Kotlin SVG generation DSL."
         websiteUrl = "https://github.com/nwillc/ksvg"
         issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
         vcsUrl = "https://github.com/nwillc/ksvg.git"
-        version.vcsTag = "${gitVersion.gitVersionInfo.gitVersionName}"
+        version.vcsTag = gitVersion.gitVersionInfo.gitVersionName
         setLicenses("ISC")
         setLabels("kotlin", "SVG", "DSL")
         publicDownloadNumbers = true
@@ -98,17 +101,14 @@ tasks {
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = jvmTargetVersion
     }
-
     withType<Test> {
         useJUnitPlatform()
         testLogging.showStandardStreams = true
     }
-
     withType<DokkaTask> {
         outputFormat = "javadoc"
         outputDirectory = "$buildDir/javadoc"
     }
-
     withType<JacocoReport> {
         dependsOn("test")
         reports {
@@ -120,11 +120,9 @@ tasks {
             }
         }
     }
-
     withType<GenerateMavenPom> {
-        destination = file("${buildDir}/libs/${project.name}-${version}.pom")
+        destination = file("$buildDir/libs/${project.name}-$version.pom")
     }
-
     withType<BintrayUploadTask> {
         onlyIf {
             if (gitVersion.gitVersionInfo.gitVersionName.contains('-')) {
@@ -137,13 +135,3 @@ tasks {
     }
 }
 
-val sourcesJar by tasks.registering(Jar::class) {
-    classifier = "sources"
-    from(sourceSets["main"].allSource)
-}
-
-val javadocJar by tasks.registering(Jar::class) {
-    dependsOn("dokka")
-    classifier = "javadoc"
-    from("$buildDir/javadoc")
-}
