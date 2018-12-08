@@ -8,11 +8,13 @@ val jacocoToolVersion = "0.8.2"
 val jupiterVersion = "5.3.2"
 val jvmTargetVersion = "1.8"
 val mockkVersion = "1.8.13.kotlin13"
+val coverageThreshold = 0.98
+val publicationName = "maven"
 
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.10"
+    kotlin("jvm") version "1.3.11"
     id("com.github.nwillc.vplugin") version "2.2.2"
     id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
@@ -62,7 +64,6 @@ val javadocJar by tasks.registering(Jar::class) {
     from("$buildDir/javadoc")
 }
 
-val publicationName = "maven"
 publishing {
     publications {
         create<MavenPublication>(publicationName) {
@@ -97,7 +98,24 @@ bintray {
     })
 }
 
+jacoco {
+    toolVersion = "0.8.2"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
 tasks {
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = coverageThreshold.toBigDecimal()
+                }
+            }
+        }
+    }
+    named("check") {
+        dependsOn(":jacocoTestCoverageVerification")
+    }
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = jvmTargetVersion
     }
@@ -134,4 +152,3 @@ tasks {
         }
     }
 }
-
