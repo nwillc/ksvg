@@ -122,6 +122,27 @@ and in the limitted scenarios tested it works.
 Currently only a small set of SVG Elements are supported. Adding more is straight forward, I just met my own needs, and 
 so additions can be done by others, or as my needs increase.
 
+## As Compared To kotlinx.html
+Why did I write yet another SVG DSL when SVG is covered by the [kotlinx.html](https://github.com/Kotlin/kotlinx.html)?
+Let's just say ... you try using it. I could not figure out how to use it based on the SVG specification. This package
+is as close to a one to one mapping as I could make it.  So what if you want to combine them? Not a problem, just use
+`unsafe/raw`:
+
+```kotlin
+
+ val svg = SVG.svg {
+   // ....
+ }
+ System.out.appendHTML().html {
+     body {
+        unsafe {
+            raw(svg.toString())
+        }
+     }
+ }
+
+```
+
 ## See Also
 
 - [License](LICENSE.md)
