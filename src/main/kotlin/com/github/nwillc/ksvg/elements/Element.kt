@@ -18,7 +18,6 @@ import com.github.nwillc.ksvg.attributes.RenamedAttribute
 import com.github.nwillc.ksvg.attributes.TypedAttribute
 import com.github.nwillc.ksvg.escapeHTML
 import java.io.StringWriter
-import java.io.Writer
 
 /**
  * Abstract SVG named element with attributes and child elements.
@@ -73,31 +72,31 @@ abstract class Element(private val name: String, var validation: Boolean) {
 
     /**
      * Render the Element as SVG.
-     * @param writer A Writer to append the SVG to.
+     * @param appendable A Writer to append the SVG to.
      * @param renderMode Should the Elements render for inline SVG or file SVG.
      */
-    open fun render(writer: Writer, renderMode: SVG.RenderMode) {
-        writer.append("<$name")
+    open fun render(appendable: Appendable, renderMode: SVG.RenderMode) {
+        appendable.append("<$name")
         getAttributes(renderMode).entries.forEach { entry ->
-            writer.append(' ')
-            writer.append(entry.key)
-            writer.append("=\"")
-            writer.append(entry.value)
-            writer.append('"')
+            appendable.append(' ')
+            appendable.append(entry.key)
+            appendable.append("=\"")
+            appendable.append(entry.value)
+            appendable.append('"')
         }
         if (!hasContent()) {
-            writer.append("/>\n")
+            appendable.append("/>\n")
         } else {
-            writer.append('>')
+            appendable.append('>')
             if (hasBody()) {
-                writer.append(body.escapeHTML())
+                appendable.append(body.escapeHTML())
             } else {
-                writer.append('\n')
+                appendable.append('\n')
             }
             children.forEach {
-                it.render(writer, renderMode)
+                it.render(appendable, renderMode)
             }
-            writer.append("</$name>\n")
+            appendable.append("</$name>\n")
         }
     }
 

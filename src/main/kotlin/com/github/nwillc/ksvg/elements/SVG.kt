@@ -17,7 +17,6 @@ import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasDimensions
 import com.github.nwillc.ksvg.attributes.TypedAttribute
-import java.io.Writer
 
 /**
  * The SVG element itself.
@@ -77,10 +76,10 @@ class SVG(validation: Boolean = false) : Container("svg", validation), HasDimens
         }
     }
 
-    override fun render(writer: Writer, renderMode: RenderMode) {
+    override fun render(appendable: Appendable, renderMode: RenderMode) {
         if (renderMode == RenderMode.FILE) {
-            writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n")
+            appendable.append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n")
         }
-        super.render(writer, renderMode)
+        super.render(appendable, renderMode)
     }
 }
