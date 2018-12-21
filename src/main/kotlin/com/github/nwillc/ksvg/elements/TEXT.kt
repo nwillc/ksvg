@@ -17,24 +17,23 @@ import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasFill
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.attributes.RenamedAttribute
-import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG text element.
  */
 @SvgTagMarker
 class TEXT(validation: Boolean = false) : Element("text", validation), HasOrigin, HasFill {
-    override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+    override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
     override var fill: String? by attributes
 
     /**
      * The font size attributes.
      */
-    var fontSize: String? by RenamedAttribute("font-size", AttributeType.Length)
+    var fontSize: String? by AttributeProperty("font-size", AttributeType.Length)
     /**
      * The font family.
      */
-    var fontFamily: String? by RenamedAttribute("font-family")
+    var fontFamily: String? by AttributeProperty("font-family")
 }

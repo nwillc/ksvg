@@ -79,6 +79,9 @@ enum class AttributeType {
         }
     },
 
+    /**
+     * CSS class names work imperfectly in some browsers so warn about them.
+     */
     CssClass() {
         override fun verify(value: String) {
             logger.warning("CSS support is incomplete in some browsers, know issues in IE and Firefox.")

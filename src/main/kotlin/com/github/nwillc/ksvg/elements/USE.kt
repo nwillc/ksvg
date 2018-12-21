@@ -16,7 +16,7 @@ package com.github.nwillc.ksvg.elements
 import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 import java.util.logging.Logger
 
 /**
@@ -24,9 +24,12 @@ import java.util.logging.Logger
  */
 @SvgTagMarker
 class USE(validation: Boolean = false) : Element("use", validation), HasOrigin {
-    override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+    override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
+    /**
+     * Companion object.
+     */
     private companion object {
         private val logger = Logger.getLogger(USE::javaClass.name)
     }
@@ -40,5 +43,5 @@ class USE(validation: Boolean = false) : Element("use", validation), HasOrigin {
     /**
      * The reference URL.
      */
-    var href: String? by TypedAttribute(AttributeType.Relative)
+    var href: String? by AttributeProperty(type = AttributeType.Relative)
 }

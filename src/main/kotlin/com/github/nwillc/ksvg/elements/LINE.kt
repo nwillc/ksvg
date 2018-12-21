@@ -16,8 +16,7 @@ package com.github.nwillc.ksvg.elements
 import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasStroke
-import com.github.nwillc.ksvg.attributes.RenamedAttribute
-import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG line element.
@@ -25,24 +24,24 @@ import com.github.nwillc.ksvg.attributes.TypedAttribute
 @SvgTagMarker
 class LINE(validation: Boolean = false) : Element("line", validation), HasStroke {
     override var stroke: String? by attributes
-    override var strokeWidth: String? by RenamedAttribute("stroke-width")
+    override var strokeWidth: String? by AttributeProperty("stroke-width")
     /**
      * The X1 coordinate of the line.
      */
-    var x1: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    var x1: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
     /**
      * The Y1 coordinate of the line.
      */
-    var y1: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    var y1: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
     /**
      * The X2 coordinate of the line.
      */
-    var x2: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    var x2: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
     /**
      * The Y2 coordinate of the line.
      */
-    var y2: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    var y2: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 }

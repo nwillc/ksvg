@@ -18,14 +18,18 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 /**
- * A property delegate to allow attributes to be rendered with a different name.
+ * A property delegate to allow attributes to be rendered with a different name and to validate content by type.
+ * @param renamed The name to use when rendering the property.
+ * @param type The attribute type to use for validation.
  */
-internal class RenamedAttribute(private val renamed: String, private val type: AttributeType = AttributeType.None) :
-    ReadWriteProperty<Any?, String?> {
+internal class AttributeProperty(
+    private val renamed: String? = null,
+    private val type: AttributeType = AttributeType.None
+) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
     override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {
         if (thisRef is Element) {
-            return thisRef.attributes[renamed]
+            return thisRef.attributes[renamed ?: property.name]
         }
         return null
     }
@@ -34,7 +38,7 @@ internal class RenamedAttribute(private val renamed: String, private val type: A
         if (value != null && thisRef is Element) {
             if (thisRef.validation)
                 type.verify(value)
-            thisRef.attributes[renamed] = value
+            thisRef.attributes[renamed ?: property.name] = value
         }
     }
 }

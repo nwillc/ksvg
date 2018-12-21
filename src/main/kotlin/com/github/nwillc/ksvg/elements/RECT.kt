@@ -17,17 +17,17 @@ import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasDimensions
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG rect element.
  */
 @SvgTagMarker
 class RECT(validation: Boolean = false) : Region("rect", validation), HasOrigin, HasDimensions {
-    override var x: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var height: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var width: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+    override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+    override var height: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+    override var width: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
     /**
      * Add a title to the rect.

@@ -138,7 +138,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     // Test the impossible error conditions of the TypeAttribute delegate
     @Test
     internal fun testTypeAttributedDelegate() {
-        val typeAttr = TypedAttribute(AttributeType.Length)
+        val typeAttr = AttributeProperty(type = AttributeType.Length)
 
         assertThat(typeAttr.getValue(this, kProperty)).isNull()
         typeAttr.setValue(svg, kProperty, null)
@@ -149,7 +149,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     // Test the impossible error conditions of the RenameAttribute delegate
     @Test
     internal fun testRenamedAttributedDelegate() {
-        val typeAttr = RenamedAttribute("foo")
+        val typeAttr = AttributeProperty("foo")
 
         assertThat(typeAttr.getValue(this, kProperty)).isNull()
         typeAttr.setValue(svg, kProperty, null)
