@@ -15,7 +15,7 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
-import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * The SVG circle element.
@@ -25,15 +25,15 @@ class CIRCLE(validation: Boolean = false) : Region("circle", validation) {
     /**
      * The x coordinate of the circle's center.
      */
-    var cx: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    var cx: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
     /**
      * The r coordinate of the circle's center.
      */
-    var cy: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    var cy: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
     /**
      * The radius or the circle.
      */
-    var r: String? by TypedAttribute(AttributeType.Length)
+    var r: String? by AttributeProperty(type = AttributeType.Length)
 }

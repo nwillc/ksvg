@@ -16,7 +16,7 @@ package com.github.nwillc.ksvg.elements
 import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasDimensions
-import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * The SVG element itself.
@@ -48,13 +48,13 @@ class SVG(validation: Boolean = false) : Container("svg", validation), HasDimens
         FILE
     }
 
-    override var height: String? by TypedAttribute(AttributeType.LengthOrPercentage)
-    override var width: String? by TypedAttribute(AttributeType.LengthOrPercentage)
+    override var height: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+    override var width: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
 
     /**
      * The viewBox attribute.
      */
-    var viewBox: String? by TypedAttribute(AttributeType.NumberList)
+    var viewBox: String? by AttributeProperty(type = AttributeType.NumberList)
 
     /**
      * Create a group element in this svg.

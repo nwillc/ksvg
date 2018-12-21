@@ -15,7 +15,7 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
-import com.github.nwillc.ksvg.attributes.TypedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG path element.
@@ -25,5 +25,5 @@ class PATH(validation: Boolean = false) : Region("path", validation) {
     /**
      * The path definition.
      */
-    var d: String? by TypedAttribute(AttributeType.Path)
+    var d: String? by AttributeProperty(type = AttributeType.Path)
 }
