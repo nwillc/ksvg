@@ -14,32 +14,18 @@
 package com.github.nwillc.ksvg.elements
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.io.ByteArrayOutputStream
-import java.util.logging.Logger
-import java.util.logging.SimpleFormatter
-import java.util.logging.StreamHandler
+import uk.org.lidalia.slf4jtest.LoggingEvent.warn
+import uk.org.lidalia.slf4jtest.TestLoggerFactory
+import java.util.Arrays.asList
 
 internal class USETest : HasSvg(true) {
-    private val formatter = SimpleFormatter()
-    private val stream = ByteArrayOutputStream()
-    private val handler = StreamHandler(stream, formatter)
-
-    companion object {
-        val logger = Logger.getLogger(USE::javaClass.name)!!
-    }
+    var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)
 
     @BeforeEach
     fun setup() {
-        stream.reset()
-        logger.addHandler(handler)
-    }
-
-    @AfterEach
-    fun tearDown() {
-        logger.removeHandler(handler)
+        TestLoggerFactory.clear()
     }
 
     @Test
@@ -47,8 +33,7 @@ internal class USETest : HasSvg(true) {
         svg.validation = true
         svg.use {
         }
-        handler.flush()
-        assertThat(stream.toString()).contains("The use tags href has compatibility issues with Safari")
+        assertThat(logger.loggingEvents).containsAll(asList(warn("The use tags href has compatibility issues with Safari.")))
     }
 
     @Test
@@ -56,7 +41,6 @@ internal class USETest : HasSvg(true) {
         svg.validation = false
         svg.use {
         }
-        handler.flush()
-        assertThat(stream.toString()).isEmpty()
+        assertThat(logger.loggingEvents).isEmpty()
     }
 }

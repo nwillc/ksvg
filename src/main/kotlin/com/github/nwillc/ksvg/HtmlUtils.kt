@@ -13,7 +13,6 @@
 
 package com.github.nwillc.ksvg
 
-
 internal const val EIGHT_BIT_START = 127.toChar()
 
 /**

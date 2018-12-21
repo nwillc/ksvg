@@ -4,12 +4,14 @@ import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 
 val assertJVersion = "3.11.1"
+val coverageThreshold = 0.98
 val jacocoToolVersion = "0.8.2"
 val jupiterVersion = "5.3.2"
 val jvmTargetVersion = "1.8"
 val mockkVersion = "1.8.13.kotlin13"
-val coverageThreshold = 0.98
 val publicationName = "maven"
+val slf4jApiVersion = "1.7.25"
+val slf4jTestVersion = "1.2.0"
 
 plugins {
     jacoco
@@ -34,9 +36,11 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.slf4j:slf4j-api:$slf4jApiVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
     testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("uk.org.lidalia:slf4j-test:$slf4jTestVersion")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
 }
 

@@ -17,7 +17,7 @@ import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasOrigin
 import com.github.nwillc.ksvg.attributes.TypedAttribute
-import java.util.logging.Logger
+import org.slf4j.LoggerFactory
 
 /**
  * An SVG use element.
@@ -28,12 +28,12 @@ class USE(validation: Boolean = false) : Element("use", validation), HasOrigin {
     override var y: String? by TypedAttribute(AttributeType.LengthOrPercentage)
 
     private companion object {
-        private val logger = Logger.getLogger(USE::javaClass.name)
+        private val logger = LoggerFactory.getLogger(USE::javaClass.name)
     }
 
     init {
         if (validation) {
-            logger.warning("The use tags href has compatibility issues with Safari.")
+            logger.warn("The use tags href has compatibility issues with Safari.")
         }
     }
 
