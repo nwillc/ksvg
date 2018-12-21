@@ -13,6 +13,8 @@
 
 package com.github.nwillc.ksvg.attributes
 
+import java.util.logging.Logger
+
 /**
  *  An enumeration of attribute types and the how to verify if a value is of this type.
  */
@@ -75,12 +77,19 @@ enum class AttributeType {
             if (!(value matches path))
                 throw IllegalArgumentException("Value ($value) is not a valid path: $path")
         }
+    },
+
+    CssClass() {
+        override fun verify(value: String) {
+            logger.warning("CSS support is incomplete in some browsers, know issues in IE and Firefox.")
+        }
     };
 
     /**
      * Constants.
      */
     private companion object {
+        private val logger = Logger.getLogger(AttributeType::javaClass.name)
         private val number = Regex("[+-]?[0-9]*.?[0-9]+")
         private val separator = Regex("\\s*,?\\s+")
         private val lengthUnits = "em|ex|px|in|cm|mm|pt|pc"

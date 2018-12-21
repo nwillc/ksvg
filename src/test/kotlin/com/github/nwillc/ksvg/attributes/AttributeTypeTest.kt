@@ -14,14 +14,28 @@
 package com.github.nwillc.ksvg.attributes
 
 import com.github.nwillc.ksvg.elements.HasSvg
+import com.github.nwillc.ksvg.elements.SVG
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.io.ByteArrayOutputStream
+import java.util.logging.Logger
+import java.util.logging.SimpleFormatter
+import java.util.logging.StreamHandler
 import kotlin.reflect.KProperty
 
 internal class AttributeTypeTest : HasSvg(true) {
     private val kProperty = mockk<KProperty<String>>()
+    private val formatter = SimpleFormatter()
+    private val stream = ByteArrayOutputStream()
+    private val handler = StreamHandler(stream, formatter)
+
+    @BeforeEach
+    internal fun streamPrep() {
+        stream.reset()
+    }
 
     @Test
     internal fun testPositionOrPercentageFail() {
@@ -141,5 +155,31 @@ internal class AttributeTypeTest : HasSvg(true) {
         typeAttr.setValue(svg, kProperty, null)
         typeAttr.setValue(this, kProperty, "foo")
         typeAttr.setValue(this, kProperty, null)
+    }
+
+    @Test
+    internal fun testCssClassWarning() {
+        val logger = Logger.getLogger(AttributeType::javaClass.name)!!
+        logger.addHandler(handler)
+
+        svg.rect {
+            cssClass = "test"
+        }
+        handler.flush()
+        assertThat(stream.toString()).contains("CSS support is incomplete in some browsers")
+        logger.removeHandler(handler)
+    }
+
+    @Test
+    internal fun testCssClassNoWarning() {
+        val logger = Logger.getLogger(AttributeType::javaClass.name)!!
+        logger.addHandler(handler)
+
+        SVG(false).rect {
+            cssClass = "test"
+        }
+        handler.flush()
+        assertThat(stream.toString()).isEmpty()
+        logger.removeHandler(handler)
     }
 }

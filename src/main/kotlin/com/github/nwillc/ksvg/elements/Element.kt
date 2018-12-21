@@ -44,7 +44,7 @@ abstract class Element(private val name: String, var validation: Boolean) {
     /**
      * The CSS class.
      */
-    var cssClass: String? by RenamedAttribute("class")
+    var cssClass: String? by RenamedAttribute("class", AttributeType.CssClass)
 
     /**
      * Raw text body of the Element.
