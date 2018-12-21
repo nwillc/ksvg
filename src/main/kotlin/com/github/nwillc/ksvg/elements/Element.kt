@@ -89,7 +89,7 @@ abstract class Element(private val name: String, var validation: Boolean) {
         } else {
             appendable.append('>')
             if (hasBody()) {
-                appendable.append(body.escapeHTML())
+                appendable.escapeHTML(body)
             } else {
                 appendable.append('\n')
             }

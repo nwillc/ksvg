@@ -16,6 +16,7 @@ package com.github.nwillc.ksvg
 import com.github.nwillc.ksvg.elements.SVG
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.lang.StringBuilder
 
 internal class MiscTests {
 
@@ -41,6 +42,8 @@ internal class MiscTests {
 
     @Test
     internal fun testEscapeHTML() {
-        assertThat("a&<>\"\u00E7".escapeHTML()).isEqualTo("a&#38;&#60;&#62;&#34;&#231;")
+        val sb = StringBuilder()
+        sb.escapeHTML("a&<>\"\u00E7")
+        assertThat(sb.toString()).isEqualTo("a&#38;&#60;&#62;&#34;&#231;")
     }
 }
