@@ -96,7 +96,7 @@ internal class FileTest {
             // Mouth
             path {
                 cssClass = "black-stroke"
-                d = "M 150 150 C 100,250 305,260 230,140 C 205,190 165,170 150,150 Z"
+                d = "M 150 150 C 100,270 310,255 232,140 C 205,190 165,170 150,150 Z"
                 fill = "red"
             }
         }

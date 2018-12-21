@@ -14,7 +14,7 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.SvgTagMarker
-import com.github.nwillc.ksvg.attributes.RenamedAttribute
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG A reference element.
@@ -24,7 +24,7 @@ class A(validation: Boolean = false) : Element("a", validation) {
     /**
      * The reference URL.
      */
-    var href: String? by RenamedAttribute("xlink:href")
+    var href: String? by AttributeProperty("xlink:href")
 
     /**
      * Create a rect element inside the reference.
