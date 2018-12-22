@@ -1,0 +1,250 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Element - ksvg</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg.elements</a>&nbsp;/&nbsp;<a href="./index.html">Element</a><br/>
+<br/>
+<h1>Element</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Element</span></code>
+<p>Abstract SVG named element with attributes and child elements.</p>
+<h3>Parameters</h3>
+<p><a name="name"></a>
+<code>name</code> - The svg tag of the element.</p>
+<p><a name="validation"></a>
+<code>validation</code> - A boolean indicating that attribute values and other validations should be perfromed.
+assigned.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Element</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$<init>(kotlin.String, kotlin.Boolean)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$<init>(kotlin.String, kotlin.Boolean)/validation">validation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span></code>
+<p>Abstract SVG named element with attributes and child elements.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="attributes.html">attributes</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">attributes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-map/index.html"><span class="identifier">HashMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code>
+<p>A Map of attributes associated with the element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="body.html">body</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">body</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Raw text body of the Element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="children.html">children</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">children</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span></code>
+<p>Child Element contained in this Element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="css-class.html">cssClass</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">cssClass</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The CSS class.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="id.html">id</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>The id attribute of the Element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="validation.html">validation</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">validation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>A boolean indicating that attribute values and other validations should be perfromed.
+assigned.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span> <span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$add(com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Function1((com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Unit)))/element">element</span><span class="symbol">:</span>&nbsp;<a href="add.html#E"><span class="identifier">E</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$add(com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Function1((com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="add.html#E"><span class="identifier">E</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="add.html#E"><span class="identifier">E</span></a></code>
+<p>Add a child element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-attributes.html">getAttributes</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getAttributes</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$getAttributes(com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="../-s-v-g/-render-mode/index.html"><span class="identifier">RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code>
+<p>Get the attributes specific to a render mode. Allows tags to modify their attributes during rendering
+based on the rendering mode. Defaults to the basic Element attributes but can be overridden by Elements to return
+differing attribute based on mode.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-body.html">hasBody</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasBody</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Has raw text body.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-children.html">hasChildren</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Has Children.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-content.html">hasContent</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasContent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Has any content, i.e. a body and/or children.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="render.html">render</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/appendable">appendable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-appendable/index.html"><span class="identifier">Appendable</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="../-s-v-g/-render-mode/index.html"><span class="identifier">RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Render the Element as SVG.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="to-string.html">toString</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the rendered inline SVG as a String.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-a/index.html">A</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a></code>
+<p>An SVG A reference element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-container/index.html">Container</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Container</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a></code>
+<p>An abstract container element which provides factories for general sub elements.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-d-e-f-s/index.html">DEFS</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DEFS</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a></code>
+<p>A defs element which can define groups to be used later.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-l-i-n-e/index.html">LINE</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">LINE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-stroke/index.html"><span class="identifier">HasStroke</span></a></code>
+<p>An SVG line element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-region/index.html">Region</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Region</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-stroke/index.html"><span class="identifier">HasStroke</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-fill/index.html"><span class="identifier">HasFill</span></a></code>
+<p>An abstract element that is a region and therefore has stroke and fill.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-s-t-y-l-e/index.html">STYLE</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">STYLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a></code>
+<p>A defs element which can define groups to be used later.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-t-e-x-t/index.html">TEXT</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TEXT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-fill/index.html"><span class="identifier">HasFill</span></a></code>
+<p>An SVG text element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-t-i-t-l-e/index.html">TITLE</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TITLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a></code>
+<p>An SVG title element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-u-s-e/index.html">USE</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">USE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Element</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-origin/index.html"><span class="identifier">HasOrigin</span></a></code>
+<p>An SVG use element.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -146,7 +146,7 @@ is as close to a one to one mapping as I could make it.  So what if you want to 
 ## See Also
 
 - [License](LICENSE.md)
-- [Javadoc](https://nwillc.github.io/ksvg/javadoc)
+- [API Docs](https://nwillc.github.io/ksvg/dokka/ksvg)
 
 -----
 [![Coverage](https://codecov.io/gh/nwillc/ksvg/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/nwillc/ksvg)

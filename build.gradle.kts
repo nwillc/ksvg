@@ -2,6 +2,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
+import org.jetbrains.dokka.gradle.LinkMapping
 
 val assertJVersion = "3.11.1"
 val coverageThreshold = 0.98
@@ -128,8 +129,10 @@ tasks {
         testLogging.showStandardStreams = true
     }
     withType<DokkaTask> {
-        outputFormat = "javadoc"
-        outputDirectory = "$buildDir/javadoc"
+        outputFormat = "html"
+        includeNonPublic = false
+        outputDirectory = "$buildDir/dokka"
+        includes = arrayListOf("Module.md")
     }
     withType<JacocoReport> {
         dependsOn("test")

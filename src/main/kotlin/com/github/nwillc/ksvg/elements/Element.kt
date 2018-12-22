@@ -21,8 +21,7 @@ import java.io.StringWriter
 /**
  * Abstract SVG named element with attributes and child elements.
  * @param name The svg tag of the element.
- * @param validation A boolean indicating that attribute values and other validations should be perfromed.
- * assigned.
+ * @param validation Should attribute and other validations be performed?
  */
 abstract class Element(private val name: String, var validation: Boolean) {
     /**
