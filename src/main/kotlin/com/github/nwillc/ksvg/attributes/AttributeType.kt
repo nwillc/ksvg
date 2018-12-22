@@ -13,7 +13,7 @@
 
 package com.github.nwillc.ksvg.attributes
 
-import java.util.logging.Logger
+import org.slf4j.LoggerFactory
 
 /**
  *  An enumeration of attribute types and the how to verify if a value is of this type.
@@ -39,7 +39,8 @@ enum class AttributeType {
         override fun verify(value: String) {
             if (!(value matches lengthPercent))
                 throw IllegalArgumentException(
-                        "Value ($value) is not a valid length or percentage: $lengthPercent")
+                    "Value ($value) is not a valid length or percentage: $lengthPercent"
+                )
         }
     },
     /**
@@ -84,7 +85,7 @@ enum class AttributeType {
      */
     CssClass() {
         override fun verify(value: String) {
-            logger.warning("CSS support is incomplete in some browsers, know issues in IE and Firefox.")
+            logger.warn("CSS support is incomplete in some browsers, know issues in IE and Firefox.")
         }
     };
 
@@ -92,7 +93,7 @@ enum class AttributeType {
      * Constants.
      */
     private companion object {
-        private val logger = Logger.getLogger(AttributeType::javaClass.name)
+        private val logger = LoggerFactory.getLogger(AttributeType::javaClass.name)
         private val number = Regex("[+-]?[0-9]*.?[0-9]+")
         private val separator = Regex("\\s*,?\\s+")
         private val lengthUnits = "em|ex|px|in|cm|mm|pt|pc"
