@@ -31,16 +31,15 @@ internal class USETest : HasSvg(true) {
     @Test
     internal fun testValidationWarning() {
         svg.validation = true
-        svg.use {
-        }
-        assertThat(logger.loggingEvents).containsAll(asList(warn("The use tags href has compatibility issues with Safari.")))
+        svg.use {}
+        assertThat(logger.loggingEvents).containsAll(
+            asList(warn("The use tags href has compatibility issues with Safari.")))
     }
 
     @Test
     internal fun testNoValidationWarning() {
         svg.validation = false
-        svg.use {
-        }
+        svg.use {}
         assertThat(logger.loggingEvents).isEmpty()
     }
 }

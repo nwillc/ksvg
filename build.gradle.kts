@@ -50,10 +50,6 @@ detekt {
     filters = ".*/build/.*"
 }
 
-jacoco {
-    toolVersion = jacocoToolVersion
-}
-
 gitVersion {
     gitTagPrefix = "v"
 }
@@ -90,7 +86,7 @@ bintray {
     publish = true
     setPublications(publicationName)
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
-        repo = "maven"
+        repo = publicationName
         name = project.name
         desc = "Kotlin SVG generation DSL."
         websiteUrl = "https://github.com/nwillc/ksvg"
@@ -104,7 +100,7 @@ bintray {
 }
 
 jacoco {
-    toolVersion = "0.8.2"
+    toolVersion = jacocoToolVersion
     reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
