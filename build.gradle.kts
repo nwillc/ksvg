@@ -123,6 +123,13 @@ tasks {
     withType<Test> {
         useJUnitPlatform()
         testLogging.showStandardStreams = true
+        beforeTest(KotlinClosure1<TestDescriptor, Unit>({ logger.lifecycle("    Running ${this.className}.${this.name}") }))
+        afterSuite(KotlinClosure2<TestDescriptor, TestResult, Unit>({ descriptor, result ->
+            if (descriptor.parent == null) {
+                logger.lifecycle("Tests run: ${result.testCount}, Failures: ${result.failedTestCount}, Skipped: ${result.skippedTestCount}")
+            }
+            Unit
+        }))
     }
     withType<DokkaTask> {
         outputFormat = "html"
