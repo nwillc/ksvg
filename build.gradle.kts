@@ -21,15 +21,14 @@ plugins {
     id("com.github.nwillc.vplugin") version "2.3.0"
     id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
-    id("com.github.ngyewch.git-version") version "0.2"
     id("org.jmailen.kotlinter") version "1.20.1"
     id("com.jfrog.bintray") version "1.8.4"
 }
 
 group = "com.github.nwillc"
-version = gitVersion.gitVersionInfo.gitVersionName.substring(1)
+version = "2.2.3-SNAPSHOT"
 
-logger.lifecycle("${project.name} $version")
+logger.lifecycle("${project.group}.${project.name}@$version")
 
 repositories {
     jcenter()
@@ -48,10 +47,6 @@ dependencies {
 detekt {
     input = files("src/main/kotlin")
     filters = ".*/build/.*"
-}
-
-gitVersion {
-    gitTagPrefix = "v"
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -92,7 +87,7 @@ bintray {
         websiteUrl = "https://github.com/nwillc/ksvg"
         issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
         vcsUrl = "https://github.com/nwillc/ksvg.git"
-        version.vcsTag = gitVersion.gitVersionInfo.gitVersionName
+        version.vcsTag = "v${project.version}"
         setLicenses("ISC")
         setLabels("kotlin", "SVG", "DSL")
         publicDownloadNumbers = true
@@ -116,6 +111,9 @@ tasks {
     }
     named("check") {
         dependsOn(":jacocoTestCoverageVerification")
+    }
+    named<Jar>("jar") {
+        manifest.attributes["Automatic-Module-Name"] = "${project.group}.${project.name}"
     }
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = jvmTargetVersion
@@ -149,12 +147,12 @@ tasks {
         }
     }
     withType<GenerateMavenPom> {
-        destination = file("$buildDir/libs/${project.name}-$version.pom")
+        destination = file("$buildDir/libs/${project.name}-${project.version}.pom")
     }
     withType<BintrayUploadTask> {
         onlyIf {
-            if (gitVersion.gitVersionInfo.gitVersionName.contains('-')) {
-                logger.lifecycle("Version ${gitVersion.gitVersionInfo.gitVersionName} is not a release version - skipping upload.")
+            if (project.version.toString().contains('-')) {
+                logger.lifecycle("Version v${project.version} is not a release version - skipping upload.")
                 false
             } else {
                 true
