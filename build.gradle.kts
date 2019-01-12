@@ -7,7 +7,7 @@ import org.jetbrains.dokka.gradle.LinkMapping
 val assertJVersion = "3.11.1"
 val coverageThreshold = 0.98
 val jacocoToolVersion = "0.8.2"
-val jupiterVersion = "5.3.2"
+val jupiterVersion = "5.4.0-M1"
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 val mockkVersion = "1.8.13.kotlin13"
 val publicationName = "maven"
