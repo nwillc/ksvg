@@ -13,14 +13,17 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.attributes.HasStroke
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class RECTTest : HasSvg(true) {
+    private val faker = Faker()
+
     @Test
     internal fun testRectStrokeWidthGetSet() {
-        val width = "10"
+        val width = faker.number().numberBetween(10, 1000).toString()
 
         svg.rect {
             strokeWidth = width
@@ -31,13 +34,18 @@ internal class RECTTest : HasSvg(true) {
 
     @Test
     internal fun testRectValidated() {
+        val xValue = faker.number().numberBetween(0, 100).toString()
+        val yValue = faker.number().numberBetween(5, 100)
+        val heightValue = faker.number().numberBetween(10, 100)
+        val widthValue = faker.number().numberBetween(10, 100)
+
         svg.rect {
-            x = "0"
-            y = "5px"
-            height = "100%"
-            width = "100"
+            x = xValue
+            y = "${yValue}px"
+            height = "${heightValue}%"
+            width = "$widthValue"
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"0\" width=\"100\" y=\"5px\" height=\"100%\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" width=\"$widthValue\" y=\"${yValue}px\" height=\"${heightValue}%\"/>\n</svg>\n")
     }
 }

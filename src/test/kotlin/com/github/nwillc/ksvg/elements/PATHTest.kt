@@ -19,10 +19,11 @@ import org.junit.jupiter.api.Test
 internal class PATHTest : HasSvg(true) {
     @Test
     internal fun testPathValidated() {
+        val path = "M 10,30 A 20,20 0,0,1 50,30 Z"
         svg.path {
-            d = "M 10,30 A 20,20 0,0,1 50,30 Z"
+            d = path
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<path d=\"M 10,30 A 20,20 0,0,1 50,30 Z\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<path d=\"$path\"/>\n</svg>\n")
     }
 }

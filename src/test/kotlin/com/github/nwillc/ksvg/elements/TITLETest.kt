@@ -13,18 +13,23 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class TITLETest : HasSvg() {
+    private val faker = Faker()
+
     @Test
     internal fun testTitle() {
+        val titleValue = faker.shakespeare().hamletQuote()
+
         svg.rect {
             title {
-                body = "Gone With The Wind"
+                body = titleValue
             }
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect>\n<title>Gone With The Wind</title>\n</rect>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect>\n<title>$titleValue</title>\n</rect>\n</svg>\n")
     }
 }

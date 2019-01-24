@@ -13,13 +13,16 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class LINETest : HasSvg() {
+    private val faker = Faker()
+
     @Test
     internal fun testLineStrokeWidthGetSet() {
-        val width = "10"
+        val width = faker.number().numberBetween(5,1000).toString()
 
         svg.line {
             strokeWidth = width
@@ -30,13 +33,18 @@ internal class LINETest : HasSvg() {
 
     @Test
     internal fun testLine() {
+        val x1Value = faker.number().numberBetween(5,1000).toString()
+        val y1Value = faker.number().numberBetween(5,1000).toString()
+        val x2Value = faker.number().numberBetween(5,1000).toString()
+        val y2Value = faker.number().numberBetween(5,1000).toString()
+
         svg.line {
-            x1 = "1"
-            y1 = "1"
-            x2 = "5"
-            y2 = "5"
+            x1 = x1Value
+            y1 = y1Value
+            x2 = x2Value
+            y2 = y2Value
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<line y1=\"1\" x1=\"1\" y2=\"5\" x2=\"5\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<line y1=\"$y1Value\" x1=\"$x1Value\" y2=\"$y2Value\" x2=\"$x2Value\"/>\n</svg>\n")
     }
 }

@@ -13,12 +13,14 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.io.InputStreamReader
 import java.io.StringWriter
 
 internal class SVGTest : HasSvg() {
+    private val faker = Faker()
 
     @Test
     internal fun testSvg() {
@@ -27,18 +29,23 @@ internal class SVGTest : HasSvg() {
 
     @Test
     internal fun testSvgWithAttr() {
-        svg.viewBox = "0 0 10 10"
-        assertThat(svg.toString()).isEqualTo("<svg viewBox=\"0 0 10 10\"/>\n")
+        val box = "${faker.number().numberBetween(0,10)} ${faker.number().numberBetween(0,10)} " +
+        "${faker.number().numberBetween(10,100)} ${faker.number().numberBetween(10,100)}"
+        svg.viewBox = box
+        assertThat(svg.toString()).isEqualTo("<svg viewBox=\"$box\"/>\n")
     }
 
     @Test
     internal fun testDimensions() {
+        val widthValue = faker.number().numberBetween(1, 200).toString()
+        val heightValue = faker.number().numberBetween(1, 200).toString()
+
         svg.rect {
-            width = "20"
-            height = "10"
+            width = widthValue
+            height = heightValue
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect width=\"20\" height=\"10\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect width=\"$widthValue\" height=\"$heightValue\"/>\n</svg>\n")
     }
 
     @Test
@@ -52,7 +59,7 @@ internal class SVGTest : HasSvg() {
 
     @Test
     internal fun testBodyGetSet() {
-        val msg = "Hello World"
+        val msg = faker.chuckNorris().fact()
 
         svg.text {
             body = msg
@@ -63,20 +70,24 @@ internal class SVGTest : HasSvg() {
 
     @Test
     internal fun testSvgWithTags() {
+        val xValue = faker.number().numberBetween(1, 100).toString()
+        val yValue = faker.number().numberBetween(1, 100).toString()
+        val bodyValue = faker.chuckNorris().fact().toString()
+
         svg.rect {
-            x = "1"
-            y = "2"
+            x = xValue
+            y = yValue
         }
         svg.text {
-            body = "Hello World"
+            body = bodyValue
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"1\" y=\"2\"/>\n<text>Hello World</text>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" y=\"$yValue\"/>\n<text>$bodyValue</text>\n</svg>\n")
     }
 
     @Test
     internal fun testAdd() {
-        val msg = "Hello World"
+        val msg = faker.chuckNorris().fact()
 
         svg.rect {}
 
@@ -89,18 +100,23 @@ internal class SVGTest : HasSvg() {
 
     @Test
     internal fun testRawAttributes() {
-        svg.attributes["foo"] = "bar"
+        val noun = faker.hacker().noun()
+        val value = faker.hacker().verb()
 
-        assertThat(svg.toString()).isEqualTo("<svg foo=\"bar\"/>\n")
+        svg.attributes[noun] = value
+
+        assertThat(svg.toString()).isEqualTo("<svg $noun=\"$value\"/>\n")
     }
 
     @Test
     internal fun testFill() {
+        val color = faker.color().name()
+
         svg.text {
-            fill = "black"
+            fill = color
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<text fill=\"black\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<text fill=\"$color\"/>\n</svg>\n")
     }
 
     @Test

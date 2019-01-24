@@ -13,11 +13,12 @@ val mockkVersion = "1.8.13.kotlin13"
 val publicationName = "maven"
 val slf4jApiVersion = "1.7.25"
 val slf4jTestVersion = "1.2.0"
+val fakerVersion = "0.12"
 
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.11"
+    kotlin("jvm") version "1.3.20"
     id("com.github.nwillc.vplugin") version "2.3.0"
     id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
@@ -28,7 +29,7 @@ plugins {
 group = "com.github.nwillc"
 version = "2.2.3-SNAPSHOT"
 
-logger.lifecycle("${project.group}.${project.name}@$version")
+logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
 repositories {
     jcenter()
@@ -41,6 +42,7 @@ dependencies {
     testImplementation("org.assertj:assertj-core:$assertJVersion")
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("uk.org.lidalia:slf4j-test:$slf4jTestVersion")
+    testImplementation("com.github.javafaker:javafaker:$fakerVersion")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
 }
 

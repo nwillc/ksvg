@@ -13,16 +13,20 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class GTest : HasSvg(true) {
+    private val faker = Faker()
+
     @Test
     internal fun testPathValidated() {
+        val identifier = faker.code().asin()
         svg.g {
-            id = "group1"
+            id = identifier
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<g id=\"group1\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<g id=\"$identifier\"/>\n</svg>\n")
     }
 }

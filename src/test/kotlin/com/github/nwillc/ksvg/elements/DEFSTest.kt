@@ -13,19 +13,22 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class DEFSTest : HasSvg(true) {
+    private val faker = Faker()
+
     @Test
     internal fun testDefs() {
-
+        val identifier = faker.code().asin()
         svg.defs {
             g {
-                id = "sample"
+                id = identifier
             }
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<defs>\n<g id=\"sample\"/>\n</defs>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<defs>\n<g id=\"$identifier\"/>\n</defs>\n</svg>\n")
     }
 }

@@ -13,43 +13,48 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.io.StringWriter
 
 internal class ATest : HasSvg() {
+    private val faker = Faker()
 
     @Test
     internal fun testHref() {
-        val url = "http://www.google.com"
+        val url = faker.internet().url()
+        val bodyValue = faker.lorem().fixedString(20)
+
         svg.a {
             href = url
             text {
-                body = "google.com"
+                body = bodyValue
             }
             rect {
             }
         }
         assertThat((svg.children[0] as A).href).isEqualTo(url)
-        assertThat(svg.toString()).isEqualTo("<svg>\n<a xlink:href=\"http://www.google.com\">\n<text>google.com</text>\n<rect/>\n</a>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<a xlink:href=\"$url\">\n<text>$bodyValue</text>\n<rect/>\n</a>\n</svg>\n")
     }
 
     @Test
     internal fun testAFileMode() {
+        val url = faker.internet().url()
         svg.a {
-            href = "http://www.google.com"
+            href = url
         }
 
         StringWriter().use { writer ->
             svg.render(writer, SVG.RenderMode.INLINE)
-            assertThat(writer.toString()).isEqualTo("<svg>\n<a xlink:href=\"http://www.google.com\"/>\n</svg>\n")
+            assertThat(writer.toString()).isEqualTo("<svg>\n<a xlink:href=\"$url\"/>\n</svg>\n")
         }
 
         StringWriter().use { writer ->
             svg.render(writer, SVG.RenderMode.FILE)
             assertThat(writer.toString()).isEqualTo(
                     "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "<a href=\"http://www.google.com\"/>\n" +
+                            "<a href=\"$url\"/>\n" +
                             "</svg>\n"
             )
         }

@@ -13,20 +13,24 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-/**
- *
- */
 internal class TEXTTest : HasSvg() {
+    private val faker = Faker()
+
     @Test
     internal fun testTextOrigin() {
+        val xValue = faker.number().numberBetween(1, 50).toString()
+        val yValue = faker.number().numberBetween(1, 50).toString()
+        val bodyValue = faker.shakespeare().hamletQuote()
+
         svg.text {
-            x = "1"
-            y = "2"
-            body = "hello"
+            x = xValue
+            y = yValue
+            body = bodyValue
         }
-        Assertions.assertThat(svg.toString()).isEqualTo("<svg>\n<text x=\"1\" y=\"2\">hello</text>\n</svg>\n")
+        Assertions.assertThat(svg.toString()).isEqualTo("<svg>\n<text x=\"$xValue\" y=\"$yValue\">$bodyValue</text>\n</svg>\n")
     }
 }
