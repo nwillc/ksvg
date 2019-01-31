@@ -2,23 +2,22 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
-import org.jetbrains.dokka.gradle.LinkMapping
 
 val assertJVersion = "3.11.1"
 val coverageThreshold = 0.98
 val jacocoToolVersion = "0.8.2"
-val jupiterVersion = "5.4.0-M1"
+val jupiterVersion = "5.4.0-RC1"
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
-val mockkVersion = "1.8.13.kotlin13"
+val mockkVersion = "1.9"
 val publicationName = "maven"
 val slf4jApiVersion = "1.7.25"
 val slf4jTestVersion = "1.2.0"
-val fakerVersion = "0.12"
+val fakerVersion = "0.16"
 
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.20"
+    kotlin("jvm") version "1.3.11"
     id("com.github.nwillc.vplugin") version "2.3.0"
     id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"

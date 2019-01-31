@@ -22,7 +22,7 @@ internal class LINETest : HasSvg() {
 
     @Test
     internal fun testLineStrokeWidthGetSet() {
-        val width = faker.number().numberBetween(5,1000).toString()
+        val width = faker.number().numberBetween(5, 1000).toString()
 
         svg.line {
             strokeWidth = width
@@ -33,10 +33,10 @@ internal class LINETest : HasSvg() {
 
     @Test
     internal fun testLine() {
-        val x1Value = faker.number().numberBetween(5,1000).toString()
-        val y1Value = faker.number().numberBetween(5,1000).toString()
-        val x2Value = faker.number().numberBetween(5,1000).toString()
-        val y2Value = faker.number().numberBetween(5,1000).toString()
+        val x1Value = faker.number().numberBetween(5, 1000).toString()
+        val y1Value = faker.number().numberBetween(5, 1000).toString()
+        val x2Value = faker.number().numberBetween(5, 1000).toString()
+        val y2Value = faker.number().numberBetween(5, 1000).toString()
 
         svg.line {
             x1 = x1Value

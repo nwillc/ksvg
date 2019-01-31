@@ -14,7 +14,6 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.javafaker.Faker
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -26,7 +25,7 @@ internal class CIRCLETest : HasSvg() {
         val colorValue = faker.color().name()
         val cxValue = faker.number().numberBetween(0, 1000).toString()
         val cyValue = faker.number().numberBetween(0, 1000).toString()
-        val rValue = faker.number().numberBetween(1,1000).toString()
+        val rValue = faker.number().numberBetween(1, 1000).toString()
 
         svg.circle {
             cx = cxValue
@@ -40,7 +39,7 @@ internal class CIRCLETest : HasSvg() {
 
     @Test
     internal fun testCircleStrokeWidthGetSet() {
-        val width = faker.number().numberBetween(1,100).toString()
+        val width = faker.number().numberBetween(1, 100).toString()
 
         svg.circle {
             strokeWidth = width

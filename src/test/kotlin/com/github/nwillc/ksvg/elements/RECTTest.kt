@@ -42,10 +42,10 @@ internal class RECTTest : HasSvg(true) {
         svg.rect {
             x = xValue
             y = "${yValue}px"
-            height = "${heightValue}%"
+            height = "$heightValue%"
             width = "$widthValue"
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" width=\"$widthValue\" y=\"${yValue}px\" height=\"${heightValue}%\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" width=\"$widthValue\" y=\"${yValue}px\" height=\"$heightValue%\"/>\n</svg>\n")
     }
 }
