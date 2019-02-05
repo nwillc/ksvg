@@ -47,7 +47,6 @@ dependencies {
 
 detekt {
     input = files("src/main/kotlin")
-    filters = ".*/build/.*"
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
