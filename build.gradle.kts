@@ -6,23 +6,23 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 val assertJVersion = "3.11.1"
 val coverageThreshold = 0.98
 val jacocoToolVersion = "0.8.2"
-val jupiterVersion = "5.4.0-RC1"
+val jupiterVersion = "5.4.0"
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 val mockkVersion = "1.9"
 val publicationName = "maven"
 val slf4jApiVersion = "1.7.25"
 val slf4jTestVersion = "1.2.0"
-val fakerVersion = "0.16"
+val fakerVersion = "0.17.2"
 
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.20"
+    kotlin("jvm") version "1.3.21"
     id("com.github.nwillc.vplugin") version "2.3.0"
     id("org.jetbrains.dokka") version "0.9.17"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.jfrog.bintray") version "1.8.4"
-    id("org.jlleitschuh.gradle.ktlint") version "7.0.0"
+    id("org.jlleitschuh.gradle.ktlint") version "7.1.0"
 }
 
 group = "com.github.nwillc"
