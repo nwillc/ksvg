@@ -1,3 +1,14 @@
 root=true
-[*.{kt,kts}]
-insert_final_newline=true
+
+[*]
+insert_final_newline = true
+end_of_line = crlf
+
+[*.{kt,kts,java}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[{.travis.yml}]
+indent_style = space
+indent_size = 2
