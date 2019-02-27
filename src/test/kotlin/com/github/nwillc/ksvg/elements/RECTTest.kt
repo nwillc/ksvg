@@ -45,7 +45,7 @@ internal class RECTTest : HasSvg(true) {
             height = "$heightValue%"
             width = "$widthValue"
         }
-
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" width=\"$widthValue\" y=\"${yValue}px\" height=\"$heightValue%\"/>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"%s\" width=\"%s\" y=\"%spx\" height=\"%s%%\"/>\n</svg>\n",
+            xValue, widthValue, yValue, heightValue)
     }
 }

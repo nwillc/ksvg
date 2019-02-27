@@ -3,7 +3,7 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val assertJVersion = "3.11.1"
+val assertJVersion = "3.12.0"
 val coverageThreshold = 0.98
 val jacocoToolVersion = "0.8.2"
 val jupiterVersion = "5.4.0"
