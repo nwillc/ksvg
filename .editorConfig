@@ -1,1 +1,17 @@
-root=true[*]insert_final_newline = trueend_of_line = lf[*.{kt,kts,java}]indent_style = spaceindent_size = 4trim_trailing_whitespace = true[{.travis.yml}]indent_style = spaceindent_size = 2
+root=true
+
+[*]
+insert_final_newline = true
+end_of_line = lf
+
+[*.{kt,kts,java}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[{.travis.yml}]
+indent_style = space
+indent_size = 2
+
+[*.bat]
+end_of_line = crlf
