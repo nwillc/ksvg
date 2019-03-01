@@ -3,7 +3,7 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val assertJVersion = "3.12.0"
+val assertJVersion = "3.12.1"
 val coverageThreshold = 0.98
 val jacocoToolVersion = "0.8.2"
 val jupiterVersion = "5.4.0"
@@ -37,13 +37,13 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.slf4j:slf4j-api:$slf4jApiVersion")
-    
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("uk.org.lidalia:slf4j-test:$slf4jTestVersion")
     testImplementation("com.github.javafaker:javafaker:$fakerVersion")
-    
+
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
 }
 
