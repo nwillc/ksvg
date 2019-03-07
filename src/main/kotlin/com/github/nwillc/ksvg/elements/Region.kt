@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright 2018 nwillc@gmail.com
  *
@@ -22,8 +20,8 @@ import com.github.nwillc.ksvg.attributes.AttributeProperty
 /**
  * An abstract element that is a region and therefore has stroke and fill.
  */
-abstract class Region(name: String, validation: Boolean) : Element(name, validation), HasStroke,
-        HasFill {
+abstract class Region(name: String, validation: Boolean) : Element(name, validation),
+    HasStroke, HasFill {
     override var stroke: String? by attributes
     override var strokeWidth: String? by AttributeProperty("stroke-width")
     override var fill: String? by attributes
