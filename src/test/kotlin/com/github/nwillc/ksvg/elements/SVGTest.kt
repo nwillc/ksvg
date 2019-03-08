@@ -1,14 +1,19 @@
 /*
- * Copyright 2018 nwillc@gmail.com
+ * Copyright 2019 nwillc@gmail.com
  *
- * Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
- * granted, provided that the above copyright notice and this permission notice appear in all copies.
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
  *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER
- * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL
+ * WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL
+ * THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING
+ * FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+ * NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
  */
 
 package com.github.nwillc.ksvg.elements
@@ -19,24 +24,24 @@ import org.junit.jupiter.api.Test
 import java.io.InputStreamReader
 import java.io.StringWriter
 
-internal class SVGTest : HasSvg() {
+class SVGTest : HasSvg() {
     private val faker = Faker()
 
     @Test
-    internal fun testSvg() {
+    fun `format of svg tag`() {
         assertThat(svg.toString()).isEqualTo("<svg/>\n")
     }
 
     @Test
-    internal fun testSvgWithAttr() {
-        val box = "${faker.number().numberBetween(0,10)} ${faker.number().numberBetween(0,10)} " +
-        "${faker.number().numberBetween(10,100)} ${faker.number().numberBetween(10,100)}"
+    fun `format of svg tag with attr`() {
+        val box = "${faker.number().numberBetween(0, 10)} ${faker.number().numberBetween(0, 10)} " +
+            "${faker.number().numberBetween(10, 100)} ${faker.number().numberBetween(10, 100)}"
         svg.viewBox = box
         assertThat(svg.toString()).isEqualTo("<svg viewBox=\"$box\"/>\n")
     }
 
     @Test
-    internal fun testDimensions() {
+    fun `format rect with dimensions`() {
         val widthValue = faker.number().numberBetween(1, 200).toString()
         val heightValue = faker.number().numberBetween(1, 200).toString()
 
@@ -49,8 +54,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testNoBody() {
-
+    fun `format of text without body`() {
         svg.text {
         }
 
@@ -58,7 +62,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testBodyGetSet() {
+    fun `format of text with body`() {
         val msg = faker.chuckNorris().fact()
 
         svg.text {
@@ -69,7 +73,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testSvgWithTags() {
+    fun `format of svg with multiple tags`() {
         val xValue = faker.number().numberBetween(1, 100).toString()
         val yValue = faker.number().numberBetween(1, 100).toString()
         val bodyValue = faker.chuckNorris().fact().toString()
@@ -86,7 +90,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testAdd() {
+    fun `format multiple tags`() {
         val msg = faker.chuckNorris().fact()
 
         svg.rect {}
@@ -99,7 +103,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testRawAttributes() {
+    fun `format raw attributes`() {
         val noun = faker.hacker().noun()
         val value = faker.hacker().verb()
 
@@ -109,7 +113,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testFill() {
+    fun `format the fill attribute`() {
         val color = faker.color().name()
 
         svg.text {
@@ -120,7 +124,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testSVGFileMode() {
+    fun `format svg in file mode`() {
         StringWriter().use { writer ->
             svg.render(writer, SVG.RenderMode.INLINE)
             assertThat(writer.toString()).isEqualTo("<svg/>\n")
@@ -133,7 +137,7 @@ internal class SVGTest : HasSvg() {
     }
 
     @Test
-    internal fun testPersistedExample() {
+    fun `format rich svg vs persisted file`() {
         val svg = SVG.svg {
             width = "200"
             height = "200"

@@ -1,14 +1,19 @@
 /*
- * Copyright 2018 nwillc@gmail.com
+ * Copyright 2019 nwillc@gmail.com
  *
- * Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby
- * granted, provided that the above copyright notice and this permission notice appear in all copies.
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
  *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER
- * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL
+ * WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL
+ * THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR
+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING
+ * FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+ * NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+ * WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
  */
 
 package com.github.nwillc.ksvg.attributes
@@ -20,12 +25,15 @@ import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import uk.org.lidalia.slf4jtest.LoggingEvent.warn
 import uk.org.lidalia.slf4jtest.TestLoggerFactory
 import java.util.Arrays.asList
 import kotlin.reflect.KProperty
 
+@DisplayName("Attribute Validations")
 internal class AttributeTypeTest : HasSvg(true) {
     private val kProperty = mockk<KProperty<String>>()
     var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)
@@ -36,7 +44,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testPositionOrPercentageFail() {
+    fun `reject invalid positions or percentages`() {
         assertThatThrownBy { svg.width = "a" }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { svg.width = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { svg.width = "10 %" }.isInstanceOf(IllegalArgumentException::class.java)
@@ -44,7 +52,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testPositionOrPercentagePass() {
+    fun `accept valid positions and percentages`() {
         svg.width = "0"
         svg.width = "10"
         svg.width = "10%"
@@ -52,21 +60,21 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testListOfNumbersFail() {
+    fun `reject invalid lists of numbers`() {
         assertThatThrownBy { svg.viewBox = "a" }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { svg.viewBox = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
         assertThatThrownBy { svg.viewBox = "1,,1" }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test
-    internal fun testListOfNumbersPass() {
+    fun `accept valid lists of numbers`() {
         svg.viewBox = "0 0 1 5"
         svg.viewBox = "10  0 3 4"
         svg.viewBox = "10,0, 3,4"
     }
 
     @Test
-    internal fun testLengthFail() {
+    fun `reject invalid lengths`() {
         svg.circle {
             assertThatThrownBy { r = "a" }.isInstanceOf(IllegalArgumentException::class.java)
             assertThatThrownBy { r = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
@@ -75,7 +83,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testLengthPass() {
+    fun `accept valid lengths`() {
         svg.circle {
             r = "10"
             r = "10px"
@@ -83,7 +91,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testPathFail() {
+    fun `reject invalid paths`() {
         svg.path {
             assertThatThrownBy { d = "p" }.isInstanceOf(IllegalArgumentException::class.java)
             assertThatThrownBy { d = "@#$%^&*(" }.isInstanceOf(IllegalArgumentException::class.java)
@@ -91,7 +99,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testPathPass() {
+    fun `accept valid paths`() {
         svg.path {
             d = "M 150,0 L 75,200 L 225,200 Z"
             d = "M150 0 L75 200 L225 200 Z"
@@ -103,17 +111,17 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testNameFail() {
+    fun `reject invalid id`() {
         assertThatThrownBy { svg.id = "a bad name" }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test
-    internal fun testNamePass() {
+    fun `accept valid id`() {
         svg.id = "aGoodName"
     }
 
     @Test
-    internal fun testRelativeFail() {
+    fun `reject invalid href`() {
         assertThatThrownBy {
             svg.use {
                 href = "#a bad name"
@@ -127,36 +135,14 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testRelativePass() {
+    fun `accept valid href`() {
         svg.use {
             href = "#aGoodName"
         }
     }
 
-    // Test the impossible error conditions of the TypeAttribute delegate
     @Test
-    internal fun testTypeAttributedDelegate() {
-        val typeAttr = AttributeProperty(type = AttributeType.Length)
-
-        assertThat(typeAttr.getValue(this, kProperty)).isNull()
-        typeAttr.setValue(svg, kProperty, null)
-        typeAttr.setValue(this, kProperty, "foo")
-        typeAttr.setValue(this, kProperty, null)
-    }
-
-    // Test the impossible error conditions of the RenameAttribute delegate
-    @Test
-    internal fun testRenamedAttributedDelegate() {
-        val typeAttr = AttributeProperty("foo")
-
-        assertThat(typeAttr.getValue(this, kProperty)).isNull()
-        typeAttr.setValue(svg, kProperty, null)
-        typeAttr.setValue(this, kProperty, "foo")
-        typeAttr.setValue(this, kProperty, null)
-    }
-
-    @Test
-    internal fun testCssClassWarning() {
+    fun `generate warning when declaring CSS in inline mode`() {
         svg.rect {
             cssClass = "test"
         }
@@ -165,10 +151,25 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
-    internal fun testCssClassNoWarning() {
+    fun `not generate a warning declaring CSS in file mode`() {
         SVG(false).rect {
             cssClass = "test"
         }
         assertThat(logger.loggingEvents).isEmpty()
+    }
+
+    @Nested
+    @DisplayName("Coverage of Generated Code")
+    inner class GeneratedCodeTests {
+        // Test the impossible error conditions of the RenameAttribute delegate
+        @Test
+        fun `test internal properties not actually exposed`() {
+            val typeAttr = AttributeProperty("foo")
+
+            assertThat(typeAttr.getValue(this, kProperty)).isNull()
+            typeAttr.setValue(svg, kProperty, null)
+            typeAttr.setValue(this, kProperty, "foo")
+            typeAttr.setValue(this, kProperty, null)
+        }
     }
 }
