@@ -104,9 +104,9 @@ internal class AttributeTypeTest : HasSvg(true) {
             d = "M 150,0 L 75,200 L 225,200 Z"
             d = "M150 0 L75 200 L225 200 Z"
             d = "m 150 0" +
-                    "l 75 200 " +
-                    "l 225 200 " +
-                    "z"
+                "l 75 200 " +
+                "l 225 200 " +
+                "z"
         }
     }
 
@@ -147,7 +147,8 @@ internal class AttributeTypeTest : HasSvg(true) {
             cssClass = "test"
         }
         assertThat(logger.loggingEvents).containsAll(
-            asList(warn("CSS support is incomplete in some browsers, know issues in IE and Firefox.")))
+            asList(warn("CSS support is incomplete in some browsers, know issues in IE and Firefox."))
+        )
     }
 
     @Test
@@ -161,15 +162,25 @@ internal class AttributeTypeTest : HasSvg(true) {
     @Nested
     @DisplayName("Coverage of Generated Code")
     inner class GeneratedCodeTests {
+        private val foo = "foo"
+        private val bar = "bar"
+
         // Test the impossible error conditions of the RenameAttribute delegate
         @Test
-        fun `test internal properties not actually exposed`() {
-            val typeAttr = AttributeProperty("foo")
+        fun `type attribute non element`() {
+            val typeAttr = AttributeProperty(foo)
 
             assertThat(typeAttr.getValue(this, kProperty)).isNull()
             typeAttr.setValue(svg, kProperty, null)
-            typeAttr.setValue(this, kProperty, "foo")
+            typeAttr.setValue(this, kProperty, foo)
             typeAttr.setValue(this, kProperty, null)
+        }
+
+        @Test
+        fun `type attribute of element`() {
+            val typeAttr = AttributeProperty(foo)
+            svg.attributes[foo] = bar
+            assertThat(typeAttr.getValue(svg, kProperty)).isEqualTo(bar)
         }
     }
 }
