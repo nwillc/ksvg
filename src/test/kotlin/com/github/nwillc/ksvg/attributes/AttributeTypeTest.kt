@@ -36,7 +36,7 @@ import kotlin.reflect.KProperty
 @DisplayName("Attribute Validations")
 internal class AttributeTypeTest : HasSvg(true) {
     private val kProperty = mockk<KProperty<String>>()
-    var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)
+    private var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)!!
 
     @BeforeEach
     internal fun streamPrep() {

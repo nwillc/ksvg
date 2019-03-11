@@ -26,7 +26,7 @@ import uk.org.lidalia.slf4jtest.TestLoggerFactory
 import java.util.Arrays.asList
 
 internal class USETest : HasSvg(true) {
-    var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)
+    private var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)!!
 
     @BeforeEach
     fun setup() {
