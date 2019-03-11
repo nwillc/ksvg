@@ -21,6 +21,7 @@ package com.github.nwillc.ksvg.attributes
 import com.github.nwillc.ksvg.elements.HasSvg
 import com.github.nwillc.ksvg.elements.SVG
 import com.github.nwillc.ksvg.elements.USE
+import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -167,7 +168,7 @@ internal class AttributeTypeTest : HasSvg(true) {
 
         // Test the impossible error conditions of the RenameAttribute delegate
         @Test
-        fun `type attribute non element`() {
+        fun `return null attribute for non element`() {
             val typeAttr = AttributeProperty(foo)
 
             assertThat(typeAttr.getValue(this, kProperty)).isNull()
@@ -177,9 +178,10 @@ internal class AttributeTypeTest : HasSvg(true) {
         }
 
         @Test
-        fun `type attribute of element`() {
-            val typeAttr = AttributeProperty(foo)
-            svg.attributes[foo] = bar
+        fun `return attribute of element`() {
+            val typeAttr = AttributeProperty()
+            every { kProperty.name } returns bar
+            svg.attributes[bar] = bar
             assertThat(typeAttr.getValue(svg, kProperty)).isEqualTo(bar)
         }
     }
