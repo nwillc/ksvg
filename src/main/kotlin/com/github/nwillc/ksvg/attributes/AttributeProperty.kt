@@ -32,11 +32,10 @@ internal class AttributeProperty(
     private val type: AttributeType = AttributeType.None
 ) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
-    override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? {
-        if (thisRef is Element) {
-            return thisRef.attributes[renamed ?: property.name]
-        }
-        return null
+    override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? = if (thisRef is Element) {
+        thisRef.attributes[renamed ?: property.name]
+    } else {
+        null
     }
 
     override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {

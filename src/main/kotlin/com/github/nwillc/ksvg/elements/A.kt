@@ -41,13 +41,10 @@ class A(validation: Boolean = false) : Element("a", validation) {
      */
     fun text(block: TEXT.() -> Unit): TEXT = add(TEXT(validation), block)
 
-    override fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> {
-        return if (renderMode == SVG.RenderMode.FILE) {
-            val map = HashMap<String, String?>(attributes)
-            map["href"] = map.remove("xlink:href")
-            map
+    override fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> =
+        if (renderMode == SVG.RenderMode.FILE) HashMap<String, String?>(attributes).also {
+            it["href"] = it.remove("xlink:href")
         } else {
             attributes
         }
-    }
 }

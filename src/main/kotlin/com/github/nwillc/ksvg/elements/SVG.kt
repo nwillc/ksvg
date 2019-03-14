@@ -71,14 +71,12 @@ class SVG(validation: Boolean = false) : Container("svg", validation), HasDimens
      */
     fun style(block: STYLE.() -> Unit): STYLE = add(STYLE(validation), block)
 
-    override fun getAttributes(renderMode: RenderMode): Map<String, String?> {
-        return if (renderMode == RenderMode.FILE) {
-            val map = mutableMapOf<String, String?>("xmlns" to "http://www.w3.org/2000/svg")
-            map.putAll(attributes)
-            map
-        } else {
-            super.getAttributes(renderMode)
+    override fun getAttributes(renderMode: RenderMode): Map<String, String?> = if (renderMode == RenderMode.FILE) {
+        mutableMapOf<String, String?>("xmlns" to "http://www.w3.org/2000/svg").also {
+            it.putAll(attributes)
         }
+    } else {
+        super.getAttributes(renderMode)
     }
 
     override fun render(appendable: Appendable, renderMode: RenderMode) {

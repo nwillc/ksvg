@@ -57,10 +57,9 @@ abstract class Element(private val name: String, var validation: Boolean) {
     /**
      * Add a child element.
      */
-    protected fun <E : Element> add(element: E, block: E.() -> Unit): E {
-        element.block()
-        children.add(element)
-        return element
+    protected fun <E : Element> add(element: E, block: E.() -> Unit): E = element.also {
+        it.block()
+        children.add(it)
     }
 
     /**
@@ -69,9 +68,7 @@ abstract class Element(private val name: String, var validation: Boolean) {
      * differing attribute based on mode.
      * @param renderMode which mode we are rendering in
      */
-    open fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> {
-        return attributes
-    }
+    open fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> = attributes
 
     /**
      * Render the Element as SVG.
@@ -121,10 +118,8 @@ abstract class Element(private val name: String, var validation: Boolean) {
     /**
      * Returns the rendered inline SVG as a String.
      */
-    override fun toString(): String {
-        return StringWriter().use { writer ->
-            render(writer, SVG.RenderMode.INLINE)
-            writer.toString()
-        }
+    override fun toString(): String = StringWriter().use { writer ->
+        render(writer, SVG.RenderMode.INLINE)
+        writer.toString()
     }
 }
