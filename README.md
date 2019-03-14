@@ -1,3 +1,12 @@
+-----
+[![Coverage](https://codecov.io/gh/nwillc/ksvg/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/nwillc/ksvg)
+[![license](https://img.shields.io/github/license/nwillc/ksvg.svg)](https://tldrlegal.com/license/-isc-license)
+[![Travis](https://img.shields.io/travis/nwillc/ksvg.svg)](https://travis-ci.org/nwillc/ksvg)
+[![Download](https://api.bintray.com/packages/nwillc/maven/ksvg/images/download.svg)](https://bintray.com/nwillc/maven/ksvg/_latestVersion)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e00d48ec86df4fb4a63e554729b1bf6e)](https://www.codacy.com/app/nwillc/ksvg?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nwillc/ksvg&amp;utm_campaign=Badge_Grade)
+------
+
 # Kotlin SVG DSL
 
 I had a [Kotlin](https://kotlinlang.org/) microservice that needed to produce a simple heatmap chart on an HTML page to
@@ -145,13 +154,5 @@ is as close to a one to one mapping as I could make it.  So what if you want to 
 
 ## See Also
 
-- [License](LICENSE.md)
 - [API Docs](https://nwillc.github.io/ksvg/dokka/ksvg)
 
------
-[![Coverage](https://codecov.io/gh/nwillc/ksvg/branch/master/graphs/badge.svg?branch=master)](https://codecov.io/gh/nwillc/ksvg)
-[![license](https://img.shields.io/github/license/nwillc/ksvg.svg)](https://tldrlegal.com/license/-isc-license)
-[![Travis](https://img.shields.io/travis/nwillc/ksvg.svg)](https://travis-ci.org/nwillc/ksvg)
-[![Download](https://api.bintray.com/packages/nwillc/maven/ksvg/images/download.svg)](https://bintray.com/nwillc/maven/ksvg/_latestVersion)
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e00d48ec86df4fb4a63e554729b1bf6e)](https://www.codacy.com/app/nwillc/ksvg?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nwillc/ksvg&amp;utm_campaign=Badge_Grade)
