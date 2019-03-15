@@ -103,15 +103,6 @@ jacoco {
 }
 
 tasks {
-    jacocoTestCoverageVerification {
-        violationRules {
-            rule {
-                limit {
-                    minimum = coverageThreshold.toBigDecimal()
-                }
-            }
-        }
-    }
     named("check") {
         dependsOn(":jacocoTestCoverageVerification")
     }
@@ -146,6 +137,16 @@ tasks {
             }
             html.apply {
                 isEnabled = true
+            }
+        }
+    }
+    jacocoTestCoverageVerification {
+        dependsOn("jacocoTestReport")
+        violationRules {
+            rule {
+                limit {
+                    minimum = coverageThreshold.toBigDecimal()
+                }
             }
         }
     }
