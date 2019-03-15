@@ -3,16 +3,17 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val assertJVersion = "3.12.1"
 val coverageThreshold = 0.98
-val jacocoToolVersion = "0.8.2"
-val jupiterVersion = "5.4.0"
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
-val mockkVersion = "1.9"
 val publicationName = "maven"
-val slf4jApiVersion = "1.7.25"
-val slf4jTestVersion = "1.2.0"
-val fakerVersion = "0.17.2"
+
+val assertJVersion: String by project
+val fakerVersion: String by project
+val jacocoToolVersion: String by project
+val jupiterVersion: String by project
+val mockkVersion: String by project
+val slf4jApiVersion: String by project
+val slf4jTestVersion: String by project
 
 plugins {
     jacoco
