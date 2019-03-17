@@ -87,7 +87,7 @@ class SVGTest : HasSvg() {
             body = bodyValue
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" y=\"$yValue\"/>\n<text>%s</text>\n</svg>\n", bodyValue.escapeHTML())
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"%s\" y=\"%s\"/>\n<text>%s</text>\n</svg>\n", xValue, yValue, bodyValue.escapeHTML())
     }
 
     @Test
@@ -100,7 +100,7 @@ class SVGTest : HasSvg() {
             body = msg
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect/>\n<text>$msg</text>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect/>\n<text>%s</text>\n</svg>\n", msg.escapeHTML())
     }
 
     @Test
