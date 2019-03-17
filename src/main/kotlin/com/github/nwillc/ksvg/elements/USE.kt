@@ -18,16 +18,14 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.attributes.AttributeProperty
 import org.slf4j.LoggerFactory
 
 /**
  * An SVG use element.
  */
-@SvgTagMarker
 class USE(validation: Boolean = false) : Element("use", validation), HasOrigin {
     override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
     override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)

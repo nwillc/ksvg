@@ -18,10 +18,7 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
-
 /**
  * An SVG title element.
  */
-@SvgTagMarker
 class TITLE(validation: Boolean = false) : Element("title", validation)

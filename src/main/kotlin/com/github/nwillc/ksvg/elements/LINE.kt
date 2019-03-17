@@ -18,15 +18,13 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasStroke
-import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG line element.
  */
-@SvgTagMarker
 class LINE(validation: Boolean = false) : Element("line", validation), HasStroke {
     override var stroke: String? by attributes
     override var strokeWidth: String? by AttributeProperty("stroke-width")

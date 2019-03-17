@@ -16,7 +16,7 @@
  *
  */
 
-package com.github.nwillc.ksvg
+package com.github.nwillc.ksvg.elements
 
 /**
  * Indicates something is an SVG DSL marker.

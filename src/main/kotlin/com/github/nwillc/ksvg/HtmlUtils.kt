@@ -21,7 +21,7 @@ package com.github.nwillc.ksvg
 internal const val EIGHT_BIT_START = 127.toChar()
 
 /**
- * Escapes special characters for HTML output. Handles double quotes, greater than, less than, ampersand, and characters
+ * Escapes special characters of an Appendable for HTML output. Handles double quotes, greater than, less than, ampersand, and characters
  * greater than eight bit.
  */
 fun Appendable.escapeHTML(csq: CharSequence) {
@@ -37,3 +37,9 @@ fun Appendable.escapeHTML(csq: CharSequence) {
         }
     }
 }
+
+/**
+ * Escapes special characters of a String for HTML output. Handles double quotes, greater than, less than, ampersand, and characters
+ * greater than eight bit.
+ */
+fun String.escapeHTML() : String = StringBuilder().also { it.escapeHTML(this) }.toString()

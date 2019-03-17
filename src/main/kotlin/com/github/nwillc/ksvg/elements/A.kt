@@ -18,13 +18,11 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
 import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG A reference element.
  */
-@SvgTagMarker
 class A(validation: Boolean = false) : Element("a", validation) {
     /**
      * The reference URL.

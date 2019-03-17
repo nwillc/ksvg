@@ -18,16 +18,14 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasDimensions
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG rect element.
  */
-@SvgTagMarker
 class RECT(validation: Boolean = false) : Region("rect", validation), HasOrigin, HasDimensions {
     override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
     override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)

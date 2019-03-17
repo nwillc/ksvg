@@ -18,10 +18,7 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
-
 /**
  * The SVG element itself.
  */
-@SvgTagMarker
 class G(validation: Boolean = false) : Container("g", validation)

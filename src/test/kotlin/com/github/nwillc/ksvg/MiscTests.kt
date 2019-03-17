@@ -21,9 +21,10 @@ package com.github.nwillc.ksvg
 import com.github.nwillc.ksvg.elements.SVG
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import java.lang.StringBuilder
 
 class MiscTests {
+    private val specialCharacters = "a&<>\"\u00E7"
+    private val escapedCharacters = "a&#38;&#60;&#62;&#34;&#231;"
 
     @Test
     fun `inherit validation true if set`() {
@@ -44,11 +45,15 @@ class MiscTests {
             }
         }
     }
+    
+    @Test
+    fun `escape html special characters from an Appendable`() {
+        val sb = StringBuilder().apply { escapeHTML(specialCharacters) }
+        assertThat(sb.toString()).isEqualTo(escapedCharacters)
+    }
 
     @Test
-    fun `escape html special characters`() {
-        val sb = StringBuilder()
-        sb.escapeHTML("a&<>\"\u00E7")
-        assertThat(sb.toString()).isEqualTo("a&#38;&#60;&#62;&#34;&#231;")
+    fun `escape html special characters from a String`() {
+        assertThat(specialCharacters.escapeHTML()).isEqualTo(escapedCharacters)
     }
 }

@@ -18,14 +18,12 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
-import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.AttributeProperty
+import com.github.nwillc.ksvg.attributes.AttributeType
 
 /**
  * The SVG circle element.
  */
-@SvgTagMarker
 class CIRCLE(validation: Boolean = false) : Region("circle", validation) {
     /**
      * The x coordinate of the circle's center.

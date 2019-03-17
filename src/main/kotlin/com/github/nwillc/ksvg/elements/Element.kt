@@ -18,8 +18,8 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.AttributeProperty
+import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.escapeHTML
 import java.io.StringWriter
 
@@ -28,6 +28,7 @@ import java.io.StringWriter
  * @param name The svg tag of the element.
  * @param validation Should attribute and other validations be performed?
  */
+@SvgTagMarker
 abstract class Element(private val name: String, var validation: Boolean) {
     /**
      * A Map of attributes associated with the element.

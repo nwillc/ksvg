@@ -19,6 +19,7 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.javafaker.Faker
+import com.github.nwillc.ksvg.escapeHTML
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.io.InputStreamReader
@@ -86,7 +87,7 @@ class SVGTest : HasSvg() {
             body = bodyValue
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" y=\"$yValue\"/>\n<text>$bodyValue</text>\n</svg>\n")
+        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"$xValue\" y=\"$yValue\"/>\n<text>%s</text>\n</svg>\n", bodyValue.escapeHTML())
     }
 
     @Test

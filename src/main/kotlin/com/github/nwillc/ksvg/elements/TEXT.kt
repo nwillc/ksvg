@@ -18,16 +18,14 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
+import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasFill
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.attributes.AttributeProperty
 
 /**
  * An SVG text element.
  */
-@SvgTagMarker
 class TEXT(validation: Boolean = false) : Element("text", validation), HasOrigin, HasFill {
     override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
     override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)

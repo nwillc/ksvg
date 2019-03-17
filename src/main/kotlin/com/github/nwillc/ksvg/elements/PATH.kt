@@ -18,14 +18,12 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.SvgTagMarker
-import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.AttributeProperty
+import com.github.nwillc.ksvg.attributes.AttributeType
 
 /**
  * An SVG path element.
  */
-@SvgTagMarker
 class PATH(validation: Boolean = false) : Region("path", validation) {
     /**
      * The path definition.
