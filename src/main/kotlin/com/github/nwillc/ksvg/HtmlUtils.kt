@@ -42,4 +42,4 @@ fun Appendable.escapeHTML(csq: CharSequence) {
  * Escapes special characters of a String for HTML output. Handles double quotes, greater than, less than, ampersand, and characters
  * greater than eight bit.
  */
-fun String.escapeHTML() : String = StringBuilder().also { it.escapeHTML(this) }.toString()
+fun String.escapeHTML(): String = StringBuilder().also { it.escapeHTML(this) }.toString()

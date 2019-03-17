@@ -45,7 +45,7 @@ class MiscTests {
             }
         }
     }
-    
+
     @Test
     fun `escape html special characters from an Appendable`() {
         val sb = StringBuilder().apply { escapeHTML(specialCharacters) }
