@@ -18,6 +18,7 @@
 
 package com.github.nwillc.ksvg
 
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 /**
@@ -26,4 +27,4 @@ import org.slf4j.LoggerFactory
  *    val logger = getLogger<SomeType>()
  * ```
  **/
-inline fun <reified T : Any> getLogger() = LoggerFactory.getLogger(T::class.java)
+inline fun <reified T> getLogger(): Logger = LoggerFactory.getLogger(T::class.java.name)

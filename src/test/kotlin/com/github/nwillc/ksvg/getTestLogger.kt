@@ -20,4 +20,4 @@ package com.github.nwillc.ksvg
 
 import uk.org.lidalia.slf4jtest.TestLoggerFactory
 
-inline fun <reified T : Any> getTestLogger() = TestLoggerFactory.getTestLogger(T::class.java.name)
+inline fun <reified T> getTestLogger() = TestLoggerFactory.getTestLogger(T::class.java.name)
