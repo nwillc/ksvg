@@ -1,6 +1,7 @@
 $dokka.format:html
 $dokka.linkExtension:html
 $dokka.location:com.github.nwillc.ksvg$escapeHTML(java.lang.Appendable, kotlin.CharSequence)com.github.nwillc.ksvg/java.lang.-appendable/escape-h-t-m-l.html
+$dokka.location:com.github.nwillc.ksvg$escapeHTML(kotlin.String)com.github.nwillc.ksvg/kotlin.-string/escape-h-t-m-l.html
 com.github.nwillc.ksvg
 com.github.nwillc.ksvg.attributes
 com.github.nwillc.ksvg.elements

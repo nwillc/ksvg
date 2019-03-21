@@ -1,4 +1,0 @@
-$dokka.format:html-as-java
-$dokka.linkExtension:html
-
-com.github.nwillc.ksvg

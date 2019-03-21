@@ -78,8 +78,7 @@
 </td>
 <td>
 <code><span class="keyword">var </span><span class="identifier">validation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
-<p>A boolean indicating that attribute values and other validations should be perfromed.
-assigned.</p>
+<p>Should attribute and other validations be performed?</p>
 </td>
 </tr>
 </tbody>
@@ -187,7 +186,7 @@ assigned.</p>
 <p><a href="../-element/get-attributes.html">getAttributes</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getAttributes</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$getAttributes(com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="../-s-v-g/-render-mode/index.html"><span class="identifier">RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getAttributes</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$getAttributes(com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="../-s-v-g/-render-mode/index.html"><span class="identifier">SVG.RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code>
 <p>Get the attributes specific to a render mode. Allows tags to modify their attributes during rendering
 based on the rendering mode. Defaults to the basic Element attributes but can be overridden by Elements to return
 differing attribute based on mode.</p>
@@ -225,7 +224,7 @@ differing attribute based on mode.</p>
 <p><a href="../-element/render.html">render</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/appendable">appendable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-appendable/index.html"><span class="identifier">Appendable</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="../-s-v-g/-render-mode/index.html"><span class="identifier">RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/appendable">appendable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-appendable/index.html"><span class="identifier">Appendable</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="../-s-v-g/-render-mode/index.html"><span class="identifier">SVG.RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Render the Element as SVG.</p>
 </td>
 </tr>
