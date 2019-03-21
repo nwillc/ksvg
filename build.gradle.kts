@@ -20,10 +20,10 @@ plugins {
     `maven-publish`
     kotlin("jvm") version "1.3.21"
     id("com.github.nwillc.vplugin") version "2.3.0"
-    id("org.jetbrains.dokka") version "0.9.17"
+    id("org.jetbrains.dokka") version "0.9.18"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.jfrog.bintray") version "1.8.4"
-    id("org.jlleitschuh.gradle.ktlint") version "7.1.0"
+    id("org.jlleitschuh.gradle.ktlint") version "7.2.1"
 }
 
 group = "com.github.nwillc"
@@ -50,6 +50,12 @@ dependencies {
 
 detekt {
     input = files("src/main/kotlin")
+    reports {
+        html {
+            enabled = true
+            destination = file("$buildDir/reports/detekt/detekt.html")
+        }
+    }
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
