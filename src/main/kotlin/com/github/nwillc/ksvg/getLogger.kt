@@ -22,7 +22,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 /**
- * 
+ *
  * A function returning the SLF4J Logger for the specified type:
  * ```
  *    val logger = getLogger<SomeType>()
