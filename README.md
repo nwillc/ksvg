@@ -154,4 +154,3 @@ is as close to a one to one mapping as I could make it.  So what if you want to 
 ## See Also
 
 - [API Docs](https://nwillc.github.io/ksvg/dokka/ksvg)
-
