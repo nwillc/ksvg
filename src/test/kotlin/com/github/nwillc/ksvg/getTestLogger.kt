@@ -16,18 +16,8 @@
  *
  */
 
-package com.github.nwillc.ksvg.elements
+package com.github.nwillc.ksvg
 
-import com.github.nwillc.ksvg.attributes.AttributeProperty
-import com.github.nwillc.ksvg.attributes.HasFill
-import com.github.nwillc.ksvg.attributes.HasStroke
+import uk.org.lidalia.slf4jtest.TestLoggerFactory
 
-/**
- * An abstract element that is a region and therefore has stroke and fill.
- */
-abstract class Region(name: String, validation: Boolean) : Element(name, validation),
-    HasStroke, HasFill {
-    override var stroke: String? by attributes
-    override var strokeWidth: String? by AttributeProperty("stroke-width")
-    override var fill: String? by attributes
-}
+inline fun <reified T : Any> getTestLogger() = TestLoggerFactory.getTestLogger(T::class.java.name)

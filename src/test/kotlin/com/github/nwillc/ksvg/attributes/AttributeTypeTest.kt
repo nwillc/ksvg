@@ -20,7 +20,7 @@ package com.github.nwillc.ksvg.attributes
 
 import com.github.nwillc.ksvg.elements.HasSvg
 import com.github.nwillc.ksvg.elements.SVG
-import com.github.nwillc.ksvg.elements.USE
+import com.github.nwillc.ksvg.getTestLogger
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
@@ -37,7 +37,7 @@ import kotlin.reflect.KProperty
 @DisplayName("Attribute Validations")
 internal class AttributeTypeTest : HasSvg(true) {
     private val kProperty = mockk<KProperty<String>>()
-    private var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)!!
+    private var logger = getTestLogger<AttributeType>()
 
     @BeforeEach
     internal fun streamPrep() {

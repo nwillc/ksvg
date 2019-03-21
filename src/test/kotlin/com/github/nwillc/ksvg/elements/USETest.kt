@@ -18,6 +18,7 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.nwillc.ksvg.getTestLogger
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -26,7 +27,7 @@ import uk.org.lidalia.slf4jtest.TestLoggerFactory
 import java.util.Arrays.asList
 
 internal class USETest : HasSvg(true) {
-    private var logger = TestLoggerFactory.getTestLogger(USE::javaClass.name)!!
+    private var logger = getTestLogger<USE>()
 
     @BeforeEach
     fun setup() {

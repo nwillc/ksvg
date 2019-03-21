@@ -16,18 +16,14 @@
  *
  */
 
-package com.github.nwillc.ksvg.elements
+package com.github.nwillc.ksvg
 
-import com.github.nwillc.ksvg.attributes.AttributeProperty
-import com.github.nwillc.ksvg.attributes.HasFill
-import com.github.nwillc.ksvg.attributes.HasStroke
+import org.slf4j.LoggerFactory
 
 /**
- * An abstract element that is a region and therefore has stroke and fill.
- */
-abstract class Region(name: String, validation: Boolean) : Element(name, validation),
-    HasStroke, HasFill {
-    override var stroke: String? by attributes
-    override var strokeWidth: String? by AttributeProperty("stroke-width")
-    override var fill: String? by attributes
-}
+ * A function returning the SLF4J Logger for the cast type:
+ * ```
+ *    val logger = getLogger<SomeType>()
+ * ```
+ **/
+inline fun <reified T : Any> getLogger() = LoggerFactory.getLogger(T::class.java)

@@ -21,7 +21,7 @@ package com.github.nwillc.ksvg.elements
 import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import org.slf4j.LoggerFactory
+import com.github.nwillc.ksvg.getLogger
 
 /**
  * An SVG use element.
@@ -34,7 +34,7 @@ class USE(validation: Boolean = false) : Element("use", validation), HasOrigin {
      * Companion object.
      */
     private companion object {
-        private val logger = LoggerFactory.getLogger(USE::javaClass.name)
+        private val logger = getLogger<USE>()
     }
 
     init {

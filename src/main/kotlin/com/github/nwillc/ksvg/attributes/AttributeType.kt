@@ -18,7 +18,7 @@
 
 package com.github.nwillc.ksvg.attributes
 
-import org.slf4j.LoggerFactory
+import com.github.nwillc.ksvg.getLogger
 
 /**
  *  An enumeration of attribute types and the how to verify if a value is of this type.
@@ -98,7 +98,7 @@ enum class AttributeType {
      * Constants.
      */
     private companion object {
-        private val logger = LoggerFactory.getLogger(AttributeType::javaClass.name)
+        private val logger = getLogger<AttributeType>()
         private val number = Regex("[+-]?[0-9]*.?[0-9]+")
         private val separator = Regex("\\s*,?\\s+")
         private val lengthUnits = "em|ex|px|in|cm|mm|pt|pc"
