@@ -38,6 +38,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.slf4j:slf4j-api:$slf4jApiVersion")
+    implementation("$group:slf4jkext:1.1.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")

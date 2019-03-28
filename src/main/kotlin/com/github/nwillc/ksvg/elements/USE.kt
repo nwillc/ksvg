@@ -21,7 +21,7 @@ package com.github.nwillc.ksvg.elements
 import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.getLogger
+import com.github.nwillc.slf4jkext.getLogger
 
 /**
  * An SVG use element.

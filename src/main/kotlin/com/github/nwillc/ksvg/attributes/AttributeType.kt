@@ -18,7 +18,7 @@
 
 package com.github.nwillc.ksvg.attributes
 
-import com.github.nwillc.ksvg.getLogger
+import com.github.nwillc.slf4jkext.getLogger
 
 /**
  *  An enumeration of attribute types and the how to verify if a value is of this type.
