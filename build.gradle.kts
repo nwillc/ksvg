@@ -27,7 +27,7 @@ plugins {
 }
 
 group = "com.github.nwillc"
-version = "2.2.5"
+version = "2.2.6-SNAPSHOT"
 
 logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
@@ -50,6 +50,7 @@ dependencies {
 }
 
 detekt {
+    toolVersion = "1.0.0-RC14"
     input = files("src/main/kotlin")
     reports {
         html {
