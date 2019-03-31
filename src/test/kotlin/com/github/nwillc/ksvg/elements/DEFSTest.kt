@@ -20,8 +20,10 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+@DisplayName("DEFS tag")
 class DEFSTest : HasSvg(true) {
     private val faker = Faker()
 

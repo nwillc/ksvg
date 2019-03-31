@@ -21,11 +21,13 @@ package com.github.nwillc.ksvg.elements
 import com.github.nwillc.ksvg.getTestLogger
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import uk.org.lidalia.slf4jtest.LoggingEvent.warn
 import uk.org.lidalia.slf4jtest.TestLoggerFactory
 import java.util.Arrays.asList
 
+@DisplayName("USE tag")
 internal class USETest : HasSvg(true) {
     private var logger = getTestLogger<USE>()
 

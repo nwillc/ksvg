@@ -20,8 +20,10 @@ package com.github.nwillc.ksvg
 
 import com.github.nwillc.ksvg.elements.SVG
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+@DisplayName("Misc Tests")
 class MiscTests {
     private val specialCharacters = "a&<>\"\u00E7"
     private val escapedCharacters = "a&#38;&#60;&#62;&#34;&#231;"

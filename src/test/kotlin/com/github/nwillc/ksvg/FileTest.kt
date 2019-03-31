@@ -20,9 +20,11 @@ package com.github.nwillc.ksvg
 
 import com.github.nwillc.ksvg.elements.Container
 import com.github.nwillc.ksvg.elements.SVG
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.io.FileWriter
 
+@DisplayName("File Output")
 class FileTest {
     @Test
     fun `create diagonal circles`() {

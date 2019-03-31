@@ -21,8 +21,10 @@ package com.github.nwillc.ksvg.elements
 import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.attributes.HasStroke
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+@DisplayName("RECT tag")
 class RECTTest : HasSvg(true) {
     private val faker = Faker()
 

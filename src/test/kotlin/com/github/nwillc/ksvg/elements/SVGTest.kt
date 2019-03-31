@@ -21,10 +21,12 @@ package com.github.nwillc.ksvg.elements
 import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.escapeHTML
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.io.InputStreamReader
 import java.io.StringWriter
 
+@DisplayName("SVG tag")
 class SVGTest : HasSvg() {
     private val faker = Faker()
 
@@ -70,7 +72,7 @@ class SVGTest : HasSvg() {
             body = msg
         }
 
-        assertThat((svg.children[0] as TEXT).body).isEqualTo(msg)
+        assertThat((svg.children[0] as TEXT).body).isEqualTo(msg.escapeHTML())
     }
 
     @Test

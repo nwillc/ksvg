@@ -20,8 +20,10 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.javafaker.Faker
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+@DisplayName("CIRCLE tag")
 class CIRCLETest : HasSvg() {
     private val faker = Faker()
 

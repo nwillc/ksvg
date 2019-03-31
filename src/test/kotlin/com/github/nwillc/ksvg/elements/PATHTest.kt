@@ -19,8 +19,10 @@
 package com.github.nwillc.ksvg.elements
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+@DisplayName("PATH tag")
 class PATHTest : HasSvg(true) {
     @Test
     fun `format a path tag`() {

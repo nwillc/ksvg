@@ -19,8 +19,10 @@
 package com.github.nwillc.ksvg.elements
 
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
+@DisplayName("POLYGON tag")
 class POLYGONTest : HasSvg() {
 
     @Test
