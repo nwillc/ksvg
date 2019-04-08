@@ -54,6 +54,9 @@ detekt {
     toolVersion = "1.0.0-RC14"
     input = files("src/main/kotlin")
     reports {
+        xml {
+            enabled = true
+        }
         html {
             enabled = true
             destination = file("$buildDir/reports/detekt/detekt.html")
@@ -108,7 +111,7 @@ bintray {
 
 jacoco {
     toolVersion = jacocoToolVersion
-    }
+}
 
 sonarqube {
     properties {
