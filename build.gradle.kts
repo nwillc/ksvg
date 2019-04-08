@@ -112,7 +112,7 @@ jacoco {
 
 sonarqube {
     properties {
-        property("sonar.host.url","http://localhost:9000")
+        property("sonar.host.url",  "http://localhost:9000")
     }
 }
 
