@@ -24,6 +24,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.jfrog.bintray") version "1.8.4"
     id("org.jlleitschuh.gradle.ktlint") version "7.2.1"
+    id("org.sonarqube") version "2.7"
 }
 
 group = "com.github.nwillc"
@@ -107,7 +108,12 @@ bintray {
 
 jacoco {
     toolVersion = jacocoToolVersion
-    reportsDir = file("$buildDir/customJacocoReportDir")
+    }
+
+sonarqube {
+    properties {
+        property("sonar.host.url","http://localhost:9000")
+    }
 }
 
 tasks {

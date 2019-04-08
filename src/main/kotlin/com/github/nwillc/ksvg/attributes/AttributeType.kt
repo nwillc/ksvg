@@ -113,5 +113,5 @@ enum class AttributeType {
     /**
      * Verify a value is of the AttributeType.
      */
-    open fun verify(value: String) {}
+    open fun verify(value: String) { /* No verifications by default */ }
 }
