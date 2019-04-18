@@ -18,16 +18,21 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.AttributeProperty
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
 import com.github.nwillc.ksvg.attributes.HasFill
+import com.github.nwillc.ksvg.attributes.HasFillImpl
 import com.github.nwillc.ksvg.attributes.HasStroke
+import com.github.nwillc.ksvg.attributes.HasStrokeImpl
 
 /**
  * An abstract element that is a region and therefore has stroke and fill.
  */
-abstract class Region(name: String, validation: Boolean) : Element(name, validation),
-    HasStroke, HasFill {
-    override var stroke: String? by attributes
-    override var strokeWidth: String? by AttributeProperty("stroke-width")
-    override var fill: String? by attributes
-}
+abstract class Region(
+    name: String,
+    validation: Boolean,
+    hasAttributes: HasAttributes = HasAttributesImpl(validation)
+) :
+    Element(name, validation, hasAttributes),
+    HasStroke by HasStrokeImpl(hasAttributes),
+    HasFill by HasFillImpl(hasAttributes)

@@ -20,14 +20,18 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
 import com.github.nwillc.ksvg.attributes.HasStroke
+import com.github.nwillc.ksvg.attributes.HasStrokeImpl
 
 /**
  * An SVG line element.
  */
-class LINE(validation: Boolean = false) : Element("line", validation), HasStroke {
-    override var stroke: String? by attributes
-    override var strokeWidth: String? by AttributeProperty("stroke-width")
+class LINE(validation: Boolean = false, hasAttributes: HasAttributes = HasAttributesImpl(validation)) :
+    Element("line", validation, hasAttributes),
+    HasStroke by HasStrokeImpl(hasAttributes) {
+
     /**
      * The X1 coordinate of the line.
      */

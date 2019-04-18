@@ -19,6 +19,6 @@
 package com.github.nwillc.ksvg.elements
 
 /**
- * A defs element which can define groups to be used later.
+ * An SVG style element.
  */
 class STYLE(validation: Boolean) : Element("style", validation)

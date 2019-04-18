@@ -20,16 +20,20 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
 import com.github.nwillc.ksvg.attributes.HasFill
+import com.github.nwillc.ksvg.attributes.HasFillImpl
 import com.github.nwillc.ksvg.attributes.HasOrigin
+import com.github.nwillc.ksvg.attributes.HasOriginImpl
 
 /**
  * An SVG text element.
  */
-class TEXT(validation: Boolean = false) : Element("text", validation), HasOrigin, HasFill {
-    override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    override var fill: String? by attributes
+class TEXT(validation: Boolean = false, hasAttributes: HasAttributes = HasAttributesImpl(validation)) :
+    Element("text", validation, hasAttributes),
+    HasOrigin by HasOriginImpl(hasAttributes),
+    HasFill by HasFillImpl(hasAttributes) {
 
     /**
      * The font size attributes.

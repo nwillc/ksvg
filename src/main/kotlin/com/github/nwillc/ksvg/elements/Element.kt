@@ -20,6 +20,8 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
 import com.github.nwillc.ksvg.escapeHTML
 import java.io.StringWriter
 
@@ -29,21 +31,15 @@ import java.io.StringWriter
  * @param validation Should attribute and other validations be performed?
  */
 @SvgTagMarker
-abstract class Element(private val name: String, var validation: Boolean) {
-    /**
-     * A Map of attributes associated with the element.
-     */
-    val attributes = hashMapOf<String, String?>()
-
+abstract class Element(
+    private val name: String,
+    validation: Boolean,
+    hasAttributes: HasAttributes = HasAttributesImpl(validation)
+) : HasAttributes by hasAttributes {
     /**
      * Child Element contained in this Element.
      */
     val children = arrayListOf<Element>()
-
-    /**
-     * The id attribute of the Element.
-     */
-    var id: String? by AttributeProperty(type = AttributeType.IdName)
 
     /**
      * The CSS class.
@@ -62,14 +58,6 @@ abstract class Element(private val name: String, var validation: Boolean) {
         it.block()
         children.add(it)
     }
-
-    /**
-     * Get the attributes specific to a render mode. Allows tags to modify their attributes during rendering
-     * based on the rendering mode. Defaults to the basic Element attributes but can be overridden by Elements to return
-     * differing attribute based on mode.
-     * @param renderMode which mode we are rendering in
-     */
-    open fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> = attributes
 
     /**
      * Render the Element as SVG.

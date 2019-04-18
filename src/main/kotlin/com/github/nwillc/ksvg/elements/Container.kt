@@ -18,10 +18,17 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
+
 /**
  * An abstract container element which provides factories for general sub elements.
  */
-abstract class Container(name: String, validation: Boolean) : Element(name, validation) {
+abstract class Container(
+    name: String,
+    validation: Boolean,
+    hasAttributes: HasAttributes = HasAttributesImpl(validation)
+) : Element(name, validation, hasAttributes) {
     /**
      * Create a rect element in this svg.
      */

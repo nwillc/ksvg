@@ -18,20 +18,20 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.AttributeProperty
-import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
 import com.github.nwillc.ksvg.attributes.HasDimensions
+import com.github.nwillc.ksvg.attributes.HasDimensionsImpl
 import com.github.nwillc.ksvg.attributes.HasOrigin
+import com.github.nwillc.ksvg.attributes.HasOriginImpl
 
 /**
  * An SVG rect element.
  */
-class RECT(validation: Boolean = false) : Region("rect", validation), HasOrigin, HasDimensions {
-    override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    override var height: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    override var width: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-
+class RECT(validation: Boolean = false, hasAttributes: HasAttributes = HasAttributesImpl(validation)) :
+    Region("rect", validation, hasAttributes),
+    HasOrigin by HasOriginImpl(hasAttributes),
+    HasDimensions by HasDimensionsImpl(hasAttributes) {
     /**
      * Add a title to the rect.
      */

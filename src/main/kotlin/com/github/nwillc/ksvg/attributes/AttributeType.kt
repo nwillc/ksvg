@@ -27,11 +27,11 @@ enum class AttributeType {
     /**
      * No validations will be performed on type none.
      */
-    None(),
+    None,
     /**
      * A length value, a number and optional unit.
      */
-    Length() {
+    Length {
         override fun verify(value: String) {
             if (!(value matches length))
                 throw IllegalArgumentException("Value ($value) is not a valid length or percentage: $length")
@@ -40,7 +40,7 @@ enum class AttributeType {
     /**
      * A length or percentage, a number and optional unit or percent sign.
      */
-    LengthOrPercentage() {
+    LengthOrPercentage {
         override fun verify(value: String) {
             if (!(value matches lengthPercent))
                 throw IllegalArgumentException(
@@ -51,7 +51,7 @@ enum class AttributeType {
     /**
      * A list of numbers separated by white space or commas.
      */
-    NumberList() {
+    NumberList {
         override fun verify(value: String) {
             if (!(value matches numberList))
                 throw IllegalArgumentException("Value ($value) is not a valid number list: $number")
@@ -60,7 +60,7 @@ enum class AttributeType {
     /**
      * Any non empty character string without whitespace.
      */
-    IdName() {
+    IdName {
         override fun verify(value: String) {
             if (!(value matches idName))
                 throw IllegalArgumentException("Value ($value) is not a valid id: $idName")
@@ -69,7 +69,7 @@ enum class AttributeType {
     /**
      * A relative URL by id name.
      */
-    Relative() {
+    Relative {
         override fun verify(value: String) {
             if (!(value matches relative))
                 throw IllegalArgumentException("Value ($value) is not a valid id: $relative")
@@ -78,7 +78,7 @@ enum class AttributeType {
     /**
      * A set of commands and coordinates.
      */
-    Path() {
+    Path {
         override fun verify(value: String) {
             if (!(value matches path))
                 throw IllegalArgumentException("Value ($value) is not a valid path: $path")
@@ -88,7 +88,7 @@ enum class AttributeType {
     /**
      * CSS class names work imperfectly in some browsers so warn about them.
      */
-    CssClass() {
+    CssClass {
         override fun verify(value: String) {
             logger.warn("CSS support is incomplete in some browsers, know issues in IE and Firefox.")
         }
@@ -113,5 +113,6 @@ enum class AttributeType {
     /**
      * Verify a value is of the AttributeType.
      */
-    open fun verify(value: String) { /* No verifications by default */ }
+    open fun verify(value: String) { /* No verifications by default */
+    }
 }

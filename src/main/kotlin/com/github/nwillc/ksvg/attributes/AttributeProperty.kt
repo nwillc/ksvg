@@ -18,7 +18,6 @@
 
 package com.github.nwillc.ksvg.attributes
 
-import com.github.nwillc.ksvg.elements.Element
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -32,14 +31,14 @@ internal class AttributeProperty(
     private val type: AttributeType = AttributeType.None
 ) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
-    override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? = if (thisRef is Element) {
+    override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? = if (thisRef is HasAttributes) {
         thisRef.attributes[renamed ?: property.name]
     } else {
         null
     }
 
     override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: String?) {
-        if (value != null && thisRef is Element) {
+        if (value != null && thisRef is HasAttributes) {
             if (thisRef.validation)
                 type.verify(value)
             thisRef.attributes[renamed ?: property.name] = value

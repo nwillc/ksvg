@@ -20,15 +20,18 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
 import com.github.nwillc.ksvg.attributes.HasOrigin
+import com.github.nwillc.ksvg.attributes.HasOriginImpl
 import com.github.nwillc.slf4jkext.getLogger
 
 /**
  * An SVG use element.
  */
-class USE(validation: Boolean = false) : Element("use", validation), HasOrigin {
-    override var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    override var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+class USE(validation: Boolean = false, hasAttributes: HasAttributes = HasAttributesImpl(validation)) :
+    Element("use", validation, hasAttributes),
+    HasOrigin by HasOriginImpl(hasAttributes) {
 
     /**
      * Companion object.

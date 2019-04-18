@@ -23,6 +23,7 @@ internal const val EIGHT_BIT_START = 127.toChar()
 /**
  * Escapes special characters of an Appendable for HTML output. Handles double quotes,
  * greater than, less than, ampersand, and characters greater than eight bit.
+ * @param csq A sequence of characters to HTML escape.
  */
 fun Appendable.escapeHTML(csq: CharSequence) {
     for (i in 0 until csq.length) {
