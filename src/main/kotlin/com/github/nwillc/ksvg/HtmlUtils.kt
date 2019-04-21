@@ -43,4 +43,20 @@ fun Appendable.escapeHTML(csq: CharSequence) {
  * Escapes special characters of a String for HTML output. Handles double quotes,
  * greater than, less than, ampersand, and characters greater than eight bit.
  */
-fun String.escapeHTML(): String = StringBuilder().also { it.escapeHTML(this) }.toString()
+fun String.escapeHTML(): String = usingAppendable(Appendable::escapeHTML)
+
+fun Appendable.toAttributeName(csq: CharSequence) {
+    csq.forEach {
+        if (it.isUpperCase()) {
+            append('-')
+            append(it.toLowerCase())
+        } else {
+            append(it)
+        }
+    }
+}
+
+fun String.toAttributeName(): String = usingAppendable(Appendable::toAttributeName)
+
+fun String.usingAppendable(function: Appendable.(CharSequence) -> Unit): String =
+    StringBuilder().also { it.function(this) }.toString()

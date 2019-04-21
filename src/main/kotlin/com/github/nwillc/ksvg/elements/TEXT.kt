@@ -18,14 +18,7 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.AttributeProperty
-import com.github.nwillc.ksvg.attributes.AttributeType
-import com.github.nwillc.ksvg.attributes.HasAttributes
-import com.github.nwillc.ksvg.attributes.HasAttributesImpl
-import com.github.nwillc.ksvg.attributes.HasFill
-import com.github.nwillc.ksvg.attributes.HasFillImpl
-import com.github.nwillc.ksvg.attributes.HasOrigin
-import com.github.nwillc.ksvg.attributes.HasOriginImpl
+import com.github.nwillc.ksvg.attributes.*
 
 /**
  * An SVG text element.
@@ -38,9 +31,9 @@ class TEXT(validation: Boolean = false, hasAttributes: HasAttributes = HasAttrib
     /**
      * The font size attributes.
      */
-    var fontSize: String? by AttributeProperty("font-size", AttributeType.Length)
+    var fontSize: String? by AttributeProperty(type = AttributeType.Length)
     /**
      * The font family.
      */
-    var fontFamily: String? by AttributeProperty("font-family")
+    var fontFamily: String? by AttributeProperty()
 }

@@ -25,8 +25,6 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Misc Tests")
 class MiscTests {
-    private val specialCharacters = "a&<>\"\u00E7"
-    private val escapedCharacters = "a&#38;&#60;&#62;&#34;&#231;"
 
     @Test
     fun `inherit validation true if set`() {
@@ -46,16 +44,5 @@ class MiscTests {
                 assertThat(validation).isFalse()
             }
         }
-    }
-
-    @Test
-    fun `escape html special characters from an Appendable`() {
-        val sb = StringBuilder().apply { escapeHTML(specialCharacters) }
-        assertThat(sb.toString()).isEqualTo(escapedCharacters)
-    }
-
-    @Test
-    fun `escape html special characters from a String`() {
-        assertThat(specialCharacters.escapeHTML()).isEqualTo(escapedCharacters)
     }
 }

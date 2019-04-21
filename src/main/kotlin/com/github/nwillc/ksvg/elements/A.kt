@@ -18,8 +18,6 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.AttributeProperty
-
 /**
  * An SVG A reference element.
  */
@@ -27,7 +25,7 @@ class A(validation: Boolean = false) : Element("a", validation) {
     /**
      * The reference URL.
      */
-    var href: String? by AttributeProperty("xlink:href")
+    var href: String? by attributes
 
     /**
      * Create a rect element inside the reference.
@@ -40,8 +38,8 @@ class A(validation: Boolean = false) : Element("a", validation) {
     fun text(block: TEXT.() -> Unit): TEXT = add(TEXT(validation), block)
 
     override fun getAttributes(renderMode: SVG.RenderMode): Map<String, String?> =
-        if (renderMode == SVG.RenderMode.FILE) HashMap<String, String?>(attributes).also {
-            it["href"] = it.remove("xlink:href")
+        if (renderMode == SVG.RenderMode.INLINE) HashMap<String, String?>(attributes).also {
+            it["xlink:href"] = it.remove("href")
         } else {
             attributes
         }

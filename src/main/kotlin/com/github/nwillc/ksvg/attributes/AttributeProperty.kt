@@ -18,6 +18,7 @@
 
 package com.github.nwillc.ksvg.attributes
 
+import com.github.nwillc.ksvg.toAttributeName
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -32,7 +33,7 @@ internal class AttributeProperty(
 ) : ReadWriteProperty<Any?, String?> {
     @Suppress("UNCHECKED_CAST")
     override operator fun getValue(thisRef: Any?, property: KProperty<*>): String? = if (thisRef is HasAttributes) {
-        thisRef.attributes[renamed ?: property.name]
+        thisRef.attributes[renamed ?: property.name.toAttributeName()]
     } else {
         null
     }
@@ -41,7 +42,7 @@ internal class AttributeProperty(
         if (value != null && thisRef is HasAttributes) {
             if (thisRef.validation)
                 type.verify(value)
-            thisRef.attributes[renamed ?: property.name] = value
+            thisRef.attributes[renamed ?: property.name.toAttributeName()] = value
         }
     }
 }

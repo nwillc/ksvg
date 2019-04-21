@@ -18,12 +18,7 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.AttributeProperty
-import com.github.nwillc.ksvg.attributes.AttributeType
-import com.github.nwillc.ksvg.attributes.HasAttributes
-import com.github.nwillc.ksvg.attributes.HasAttributesImpl
-import com.github.nwillc.ksvg.attributes.HasDimensions
-import com.github.nwillc.ksvg.attributes.HasDimensionsImpl
+import com.github.nwillc.ksvg.attributes.*
 
 /**
  * The SVG element itself.
@@ -59,7 +54,7 @@ class SVG(validation: Boolean = false, hasAttributes: HasAttributes = HasAttribu
     /**
      * The viewBox attribute.
      */
-    var viewBox: String? by AttributeProperty(type = AttributeType.NumberList)
+    var viewBox: String? by AttributeProperty("viewBox", AttributeType.NumberList)
 
     /**
      * Create a group element in this svg.
