@@ -18,7 +18,12 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.*
+import com.github.nwillc.ksvg.attributes.AttributeProperty
+import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
+import com.github.nwillc.ksvg.attributes.HasDimensions
+import com.github.nwillc.ksvg.attributes.HasDimensionsImpl
 
 /**
  * The SVG element itself.

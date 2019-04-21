@@ -18,7 +18,14 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.nwillc.ksvg.attributes.*
+import com.github.nwillc.ksvg.attributes.AttributeProperty
+import com.github.nwillc.ksvg.attributes.AttributeType
+import com.github.nwillc.ksvg.attributes.HasAttributes
+import com.github.nwillc.ksvg.attributes.HasAttributesImpl
+import com.github.nwillc.ksvg.attributes.HasFill
+import com.github.nwillc.ksvg.attributes.HasFillImpl
+import com.github.nwillc.ksvg.attributes.HasOrigin
+import com.github.nwillc.ksvg.attributes.HasOriginImpl
 
 /**
  * An SVG text element.

@@ -33,7 +33,7 @@ class HtmlUtilsTest {
     }
 
     @Test
-    fun toAttributeName() {
+    fun `normalize attribute names`() {
         assertThat("strokeWidth".toAttributeName()).isEqualTo("stroke-width")
     }
 }
