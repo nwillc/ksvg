@@ -13,17 +13,18 @@ val jacocoToolVersion: String by project
 val jupiterVersion: String by project
 val mockkVersion: String by project
 val slf4jApiVersion: String by project
+val slf4jKextVersion: String by project
 val slf4jTestVersion: String by project
 
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.30"
+    kotlin("jvm") version "1.3.31"
     id("com.github.nwillc.vplugin") version "2.3.0"
     id("org.jetbrains.dokka") version "0.9.18"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.jfrog.bintray") version "1.8.4"
-    id("org.jlleitschuh.gradle.ktlint") version "7.3.0"
+    id("org.jlleitschuh.gradle.ktlint") version "7.4.0"
     id("org.sonarqube") version "2.7"
 }
 
@@ -39,7 +40,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.slf4j:slf4j-api:$slf4jApiVersion")
-    implementation("$group:slf4jkext:1.1.0")
+    implementation("$group:slf4jkext:$slf4jKextVersion")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
     testImplementation("org.assertj:assertj-core:$assertJVersion")
