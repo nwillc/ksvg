@@ -24,7 +24,7 @@ plugins {
     id("org.jetbrains.dokka") version "0.9.18"
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC9.2"
     id("com.jfrog.bintray") version "1.8.4"
-    id("org.jlleitschuh.gradle.ktlint") version "7.4.0"
+    id("org.jlleitschuh.gradle.ktlint") version "8.0.0"
     id("org.sonarqube") version "2.7"
 }
 
