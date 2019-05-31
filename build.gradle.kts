@@ -11,6 +11,7 @@ val assertJVersion: String by project
 val fakerVersion: String by project
 val jacocoToolVersion: String by project
 val jupiterVersion: String by project
+val ktlintToolVersion: String by project
 val mockkVersion: String by project
 val slf4jApiVersion: String by project
 val slf4jKextVersion: String by project
@@ -49,6 +50,10 @@ dependencies {
     testImplementation("com.github.javafaker:javafaker:$fakerVersion")
 
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
+}
+
+ktlint {
+    version.set(ktlintToolVersion)
 }
 
 detekt {
