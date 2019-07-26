@@ -23,11 +23,38 @@
 </tr>
 <tr>
 <td>
+<p><a href="-has-attributes/index.html">HasAttributes</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HasAttributes</span></code>
+<p>This interface describes how SVG handles attributes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-attributes-impl/index.html">HasAttributesImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HasAttributesImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>A basic implementation of HasAttributes.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="-has-dimensions/index.html">HasDimensions</a></p>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">HasDimensions</span></code>
 <p>An Element has height and width dimensions.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-dimensions-impl/index.html">HasDimensionsImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HasDimensionsImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a><span class="symbol">, </span><a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>A basic implementation of HasDimensions.</p>
 </td>
 </tr>
 <tr>
@@ -41,6 +68,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="-has-fill-impl/index.html">HasFillImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HasFillImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-fill/index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>A basic implementation of HasFill.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="-has-origin/index.html">HasOrigin</a></p>
 </td>
 <td>
@@ -50,11 +86,29 @@
 </tr>
 <tr>
 <td>
+<p><a href="-has-origin-impl/index.html">HasOriginImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HasOriginImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>A Basic implementation of HasOrigin.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="-has-stroke/index.html">HasStroke</a></p>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">HasStroke</span></code>
 <p>An Element has a stroke associated.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-has-stroke-impl/index.html">HasStrokeImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HasStrokeImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-has-stroke/index.html"><span class="identifier">HasStroke</span></a><span class="symbol">, </span><a href="-has-attributes/index.html"><span class="identifier">HasAttributes</span></a></code>
+<p>A basic implementation of HasStroke.</p>
 </td>
 </tr>
 </tbody>

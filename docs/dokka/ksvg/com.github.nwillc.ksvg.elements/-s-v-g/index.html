@@ -33,7 +33,7 @@ standalone SVG file.</p>
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">SVG</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.SVG$<init>(kotlin.Boolean)/validation">validation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span></code>
+<code><span class="identifier">SVG</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.SVG$<init>(kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/validation">validation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.SVG$<init>(kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/hasAttributes">hasAttributes</span><span class="symbol">:</span>&nbsp;<a href="../../com.github.nwillc.ksvg.attributes/-has-attributes/index.html"><span class="identifier">HasAttributes</span></a>&nbsp;<span class="symbol">=</span>&nbsp;HasAttributesImpl(validation)<span class="symbol">)</span></code>
 <p>The SVG element itself.</p>
 </td>
 </tr>
@@ -44,29 +44,11 @@ standalone SVG file.</p>
 <tbody>
 <tr>
 <td>
-<p><a href="height.html">height</a></p>
-</td>
-<td>
-<code><span class="keyword">var </span><span class="identifier">height</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
-<p>The height dimension.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="view-box.html">viewBox</a></p>
 </td>
 <td>
 <code><span class="keyword">var </span><span class="identifier">viewBox</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
 <p>The viewBox attribute.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="width.html">width</a></p>
-</td>
-<td>
-<code><span class="keyword">var </span><span class="identifier">width</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
-<p>The width dimension.</p>
 </td>
 </tr>
 </tbody>
@@ -89,9 +71,7 @@ standalone SVG file.</p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getAttributes</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.SVG$getAttributes(com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="-render-mode/index.html"><span class="identifier">SVG.RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code>
-<p>Get the attributes specific to a render mode. Allows tags to modify their attributes during rendering
-based on the rendering mode. Defaults to the basic Element attributes but can be overridden by Elements to return
-differing attribute based on mode.</p>
+<p>Return the attribute map, with possible processing based on the renderMode.</p>
 </td>
 </tr>
 <tr>
