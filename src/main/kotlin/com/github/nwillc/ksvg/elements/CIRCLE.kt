@@ -22,7 +22,7 @@ import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 
 /**
- * The SVG circle element.
+ * An SVG circle element.
  */
 class CIRCLE(validation: Boolean = false) : Region("circle", validation) {
     /**

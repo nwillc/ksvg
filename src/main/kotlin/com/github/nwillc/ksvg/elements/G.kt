@@ -19,6 +19,6 @@
 package com.github.nwillc.ksvg.elements
 
 /**
- * The SVG element itself.
+ * An SVG container element used to group other SVG elements.
  */
 class G(validation: Boolean = false) : Container("g", validation)

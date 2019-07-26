@@ -19,7 +19,7 @@
 package com.github.nwillc.ksvg.elements
 
 /**
- * A defs element which can define groups to be used later.
+ * An SVG defs element which can define groups to be used later.
  */
 class DEFS(validation: Boolean) : Element("defs", validation) {
     /**

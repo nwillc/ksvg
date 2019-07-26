@@ -22,7 +22,7 @@ import com.github.nwillc.ksvg.attributes.AttributeProperty
 import com.github.nwillc.ksvg.attributes.AttributeType
 
 /**
- * The SVG polygon element.
+ * An SVG polygon element.
  */
 class POLYGON(validation: Boolean = false) : Region("polygon", validation) {
     /**
