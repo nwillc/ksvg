@@ -20,9 +20,9 @@ package com.github.nwillc.ksvg
 
 import com.github.nwillc.ksvg.elements.Container
 import com.github.nwillc.ksvg.elements.SVG
+import java.io.FileWriter
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import java.io.FileWriter
 
 @DisplayName("File Output")
 class FileTest {

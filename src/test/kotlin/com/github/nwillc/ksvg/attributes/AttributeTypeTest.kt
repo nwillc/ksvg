@@ -23,6 +23,8 @@ import com.github.nwillc.ksvg.elements.SVG
 import com.github.nwillc.ksvg.getTestLogger
 import io.mockk.every
 import io.mockk.mockk
+import java.util.Arrays.asList
+import kotlin.reflect.KProperty
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
@@ -31,8 +33,6 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import uk.org.lidalia.slf4jtest.LoggingEvent.warn
 import uk.org.lidalia.slf4jtest.TestLoggerFactory
-import java.util.Arrays.asList
-import kotlin.reflect.KProperty
 
 @DisplayName("Attribute Validations")
 internal class AttributeTypeTest : HasSvg(true) {

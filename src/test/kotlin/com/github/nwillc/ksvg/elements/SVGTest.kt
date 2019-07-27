@@ -20,11 +20,11 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.escapeHTML
+import java.io.InputStreamReader
+import java.io.StringWriter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import java.io.InputStreamReader
-import java.io.StringWriter
 
 @DisplayName("SVG tag")
 class SVGTest : HasSvg() {
