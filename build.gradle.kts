@@ -26,11 +26,10 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.0.0-RC16"
     id("com.jfrog.bintray") version "1.8.4"
     id("org.jlleitschuh.gradle.ktlint") version "8.2.0"
-    id("org.sonarqube") version "2.7.1"
 }
 
 group = "com.github.nwillc"
-version = "2.3.1-SNAPSHOT"
+version = "2.3.1"
 
 logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
@@ -117,12 +116,6 @@ bintray {
 
 jacoco {
     toolVersion = jacocoToolVersion
-}
-
-sonarqube {
-    properties {
-        property("sonar.host.url", "http://localhost:9000")
-    }
 }
 
 tasks {
