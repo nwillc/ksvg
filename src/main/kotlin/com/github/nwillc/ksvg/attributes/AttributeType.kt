@@ -41,7 +41,9 @@ enum class AttributeType {
      */
     LengthOrPercentage {
         override fun verify(value: String) {
-            require(value matches lengthPercent) { "Value ($value) is not a valid length or percentage: $lengthPercent" }
+            require(value matches lengthPercent) {
+                "Value ($value) is not a valid length or percentage: $lengthPercent"
+            }
         }
     },
     /**
