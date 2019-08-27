@@ -26,8 +26,7 @@ internal const val EIGHT_BIT_START = 127.toChar()
  * @param csq A sequence of characters to HTML escape.
  */
 fun Appendable.escapeHTML(csq: CharSequence) {
-    for (i in 0 until csq.length) {
-        val c = csq[i]
+    for (c in csq) {
         when {
             c > EIGHT_BIT_START || c == '"' || c == '<' || c == '>' || c == '&' -> {
                 append("&#")

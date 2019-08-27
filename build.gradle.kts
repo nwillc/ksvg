@@ -20,10 +20,10 @@ val slf4jTestVersion: String by project
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.41"
+    kotlin("jvm") version "1.3.50"
     id("com.github.nwillc.vplugin") version "3.0.1"
     id("org.jetbrains.dokka") version "0.9.18"
-    id("io.gitlab.arturbosch.detekt") version "1.0.0-RC16"
+    id("io.gitlab.arturbosch.detekt") version "1.0.1"
     id("com.jfrog.bintray") version "1.8.4"
     id("org.jlleitschuh.gradle.ktlint") version "8.2.0"
 }

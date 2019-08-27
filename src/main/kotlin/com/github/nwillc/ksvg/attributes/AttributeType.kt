@@ -33,8 +33,7 @@ enum class AttributeType {
      */
     Length {
         override fun verify(value: String) {
-            if (!(value matches length))
-                throw IllegalArgumentException("Value ($value) is not a valid length or percentage: $length")
+            require(value matches length) { "Value ($value) is not a valid length or percentage: $length" }
         }
     },
     /**
@@ -42,10 +41,7 @@ enum class AttributeType {
      */
     LengthOrPercentage {
         override fun verify(value: String) {
-            if (!(value matches lengthPercent))
-                throw IllegalArgumentException(
-                    "Value ($value) is not a valid length or percentage: $lengthPercent"
-                )
+            require(value matches lengthPercent) { "Value ($value) is not a valid length or percentage: $lengthPercent" }
         }
     },
     /**
@@ -53,8 +49,7 @@ enum class AttributeType {
      */
     NumberList {
         override fun verify(value: String) {
-            if (!(value matches numberList))
-                throw IllegalArgumentException("Value ($value) is not a valid number list: $number")
+            require(value matches numberList) { "Value ($value) is not a valid number list: $number" }
         }
     },
     /**
@@ -62,8 +57,7 @@ enum class AttributeType {
      */
     IdName {
         override fun verify(value: String) {
-            if (!(value matches idName))
-                throw IllegalArgumentException("Value ($value) is not a valid id: $idName")
+            require(value matches idName) { "Value ($value) is not a valid id: $idName" }
         }
     },
     /**
@@ -71,8 +65,7 @@ enum class AttributeType {
      */
     Relative {
         override fun verify(value: String) {
-            if (!(value matches relative))
-                throw IllegalArgumentException("Value ($value) is not a valid id: $relative")
+            require(value matches relative) { "Value ($value) is not a valid id: $relative" }
         }
     },
     /**
@@ -80,8 +73,7 @@ enum class AttributeType {
      */
     Path {
         override fun verify(value: String) {
-            if (!(value matches path))
-                throw IllegalArgumentException("Value ($value) is not a valid path: $path")
+            require(value matches path) { "Value ($value) is not a valid path: $path" }
         }
     },
 
@@ -101,7 +93,7 @@ enum class AttributeType {
         private val logger = getLogger<AttributeType>()
         private val number = Regex("[+-]?[0-9]*.?[0-9]+")
         private val separator = Regex("\\s*,?\\s+")
-        private val lengthUnits = "em|ex|px|in|cm|mm|pt|pc"
+        private const val lengthUnits = "em|ex|px|in|cm|mm|pt|pc"
         private val length = Regex("$number($lengthUnits)?")
         private val lengthPercent = Regex("$number($lengthUnits|%)?")
         private val numberList = Regex("($number($separator)?)+")
