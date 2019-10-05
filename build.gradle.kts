@@ -38,15 +38,21 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("org.slf4j:slf4j-api:$slf4jApiVersion")
-    implementation("$group:slf4jkext:$slf4jKextVersion")
+    listOf(
+        kotlin("stdlib-jdk8"),
+        "org.slf4j:slf4j-api:$slf4jApiVersion",
+        "$group:slf4jkext:$slf4jKextVersion"
+    )
+        .forEach { implementation(it) }
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
-    testImplementation("org.assertj:assertj-core:$assertJVersion")
-    testImplementation("io.mockk:mockk:$mockkVersion")
-    testImplementation("uk.org.lidalia:slf4j-test:$slf4jTestVersion")
-    testImplementation("com.github.javafaker:javafaker:$fakerVersion")
+    listOf(
+        "org.junit.jupiter:junit-jupiter-api:$jupiterVersion",
+        "org.assertj:assertj-core:$assertJVersion",
+        "io.mockk:mockk:$mockkVersion",
+        "uk.org.lidalia:slf4j-test:$slf4jTestVersion",
+        "com.github.javafaker:javafaker:$fakerVersion"
+    )
+        .forEach { testImplementation(it) }
 
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
 }
