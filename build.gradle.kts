@@ -9,6 +9,7 @@ val publicationName = "maven"
 
 val assertJVersion: String by project
 val fakerVersion: String by project
+val gradleVersion: String by project
 val jacocoToolVersion: String by project
 val jupiterVersion: String by project
 val ktlintToolVersion: String by project
@@ -20,16 +21,16 @@ val slf4jTestVersion: String by project
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.50"
+    kotlin("jvm") version "1.3.60"
     id("com.github.nwillc.vplugin") version "3.0.1"
-    id("org.jetbrains.dokka") version "0.9.18"
-    id("io.gitlab.arturbosch.detekt") version "1.0.1"
+    id("org.jetbrains.dokka") version "0.10.0"
+    id("io.gitlab.arturbosch.detekt") version "1.2.0"
     id("com.jfrog.bintray") version "1.8.4"
-    id("org.jlleitschuh.gradle.ktlint") version "8.2.0"
+    id("org.jlleitschuh.gradle.ktlint") version "9.1.1"
 }
 
 group = "com.github.nwillc"
-version = "2.3.2"
+version = "2.3.3"
 
 logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
@@ -148,7 +149,7 @@ tasks {
     withType<DokkaTask> {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
-        includes = arrayListOf("Module.md")
+//        includes = arrayListOf("Module.md")
     }
     withType<JacocoReport> {
         dependsOn("test")
