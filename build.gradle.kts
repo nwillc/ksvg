@@ -21,16 +21,16 @@ val slf4jTestVersion: String by project
 plugins {
     jacoco
     `maven-publish`
-    kotlin("jvm") version "1.3.60"
+    kotlin("jvm") version "1.3.61"
     id("com.github.nwillc.vplugin") version "3.0.1"
     id("org.jetbrains.dokka") version "0.10.0"
-    id("io.gitlab.arturbosch.detekt") version "1.2.0"
+    id("io.gitlab.arturbosch.detekt") version "1.3.0"
     id("com.jfrog.bintray") version "1.8.4"
     id("org.jlleitschuh.gradle.ktlint") version "9.1.1"
 }
 
 group = "com.github.nwillc"
-version = "2.3.3"
+version = "2.3.4"
 
 logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
@@ -84,7 +84,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 val javadocJar by tasks.registering(Jar::class) {
     dependsOn("dokka")
     classifier = "javadoc"
-    from("$buildDir/javadoc")
+    from("$buildDir/dokka")
 }
 
 publishing {
@@ -149,7 +149,9 @@ tasks {
     withType<DokkaTask> {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
-//        includes = arrayListOf("Module.md")
+        configuration {
+            includes = listOf("Module.md")
+        }
     }
     withType<JacocoReport> {
         dependsOn("test")
