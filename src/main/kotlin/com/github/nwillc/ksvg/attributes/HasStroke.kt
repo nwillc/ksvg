@@ -31,4 +31,9 @@ interface HasStroke {
      * The stroke width.
      */
     var strokeWidth: String?
+
+    /**
+     * The stroke dash array.
+     */
+    var strokeDashArray: String?
 }
