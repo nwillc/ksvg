@@ -15,103 +15,11 @@
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<code><span class="identifier">Region</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Region$<init>(kotlin.String, kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Region$<init>(kotlin.String, kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/validation">validation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Region$<init>(kotlin.String, kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/hasAttributes">hasAttributes</span><span class="symbol">:</span>&nbsp;<a href="../../com.github.nwillc.ksvg.attributes/-has-attributes/index.html"><span class="identifier">HasAttributes</span></a>&nbsp;<span class="symbol">=</span>&nbsp;HasAttributesImpl(validation)<span class="symbol">)</span></code>
 <p>An abstract element that is a region and therefore has stroke and fill.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Inherited Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-element/body.html">body</a></p>
-</td>
-<td>
-<code><span class="keyword">var </span><span class="identifier">body</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>Raw text body of the Element.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-element/children.html">children</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">children</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../-element/index.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span></code>
-<p>Child Element contained in this Element.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-element/css-class.html">cssClass</a></p>
-</td>
-<td>
-<code><span class="keyword">var </span><span class="identifier">cssClass</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
-<p>The CSS class.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Inherited Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-element/add.html">add</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">E</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-element/index.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span> <span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$add(com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Function1((com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Unit)))/element">element</span><span class="symbol">:</span>&nbsp;<a href="../-element/add.html#E"><span class="identifier">E</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$add(com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Function1((com.github.nwillc.ksvg.elements.Element.add.E, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-element/add.html#E"><span class="identifier">E</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-element/add.html#E"><span class="identifier">E</span></a></code>
-<p>Add a child element.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-element/has-body.html">hasBody</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">hasBody</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
-<p>Has raw text body.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-element/has-children.html">hasChildren</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">hasChildren</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
-<p>Has Children.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-element/has-content.html">hasContent</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">hasContent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
-<p>Has any content, i.e. a body and/or children.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-element/render.html">render</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">render</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/appendable">appendable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-appendable/index.html"><span class="identifier">Appendable</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Element$render(java.lang.Appendable, com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<a href="../-s-v-g/-render-mode/index.html"><span class="identifier">SVG.RenderMode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Render the Element as SVG.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-element/to-string.html">toString</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>Returns the rendered inline SVG as a String.</p>
-</td>
+<code><span class="identifier">Region</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.elements.Region$<init>(kotlin.String, kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Region$<init>(kotlin.String, kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/validation">validation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.github.nwillc.ksvg.elements.Region$<init>(kotlin.String, kotlin.Boolean, com.github.nwillc.ksvg.attributes.HasAttributes)/hasAttributes">hasAttributes</span><span class="symbol">:</span>&nbsp;<a href="../../com.github.nwillc.ksvg.attributes/-has-attributes/index.html"><span class="identifier">HasAttributes</span></a>&nbsp;<span class="symbol">=</span>&nbsp;HasAttributesImpl(validation)<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -120,39 +28,35 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../-c-i-r-c-l-e/index.html">CIRCLE</a></p>
+<h4><a href="../-c-i-r-c-l-e/index.html">CIRCLE</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">CIRCLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a></code>
 <p>An SVG circle element.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">CIRCLE</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-p-a-t-h/index.html">PATH</a></p>
+<h4><a href="../-p-a-t-h/index.html">PATH</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">PATH</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a></code>
 <p>An SVG path element.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">PATH</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-p-o-l-y-g-o-n/index.html">POLYGON</a></p>
+<h4><a href="../-p-o-l-y-g-o-n/index.html">POLYGON</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">POLYGON</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a></code>
 <p>An SVG polygon element.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">POLYGON</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../-r-e-c-t/index.html">RECT</a></p>
+<h4><a href="../-r-e-c-t/index.html">RECT</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">RECT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a></code>
 <p>An SVG rect element.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">RECT</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Region</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="../../com.github.nwillc.ksvg.attributes/-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a></code></td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HasAttributes - ksvg</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">ksvg</a>&nbsp;/&nbsp;<a href="../index.html">com.github.nwillc.ksvg.attributes</a>&nbsp;/&nbsp;<a href="./index.html">HasAttributes</a><br/>
+<br/>
+<h1>HasAttributes</h1>
+<code><span class="keyword">interface </span><span class="identifier">HasAttributes</span></code>
+<p>This interface describes how SVG handles attributes.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="attributes.html">attributes</a></h4>
+</td>
+<td>
+<p>The attributes are simply labels with associated values.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">attributes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="id.html">id</a></h4>
+</td>
+<td>
+<p>All things that can have attributes can have an id attribute.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="validation.html">validation</a></h4>
+</td>
+<td>
+<p>Should we attempt to validated values correctness when assign them?</p>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">validation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="get-attributes.html">getAttributes</a></h4>
+</td>
+<td>
+<p>Return the attribute map, with possible processing based on the renderMode.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getAttributes</span><span class="symbol">(</span><span class="identifier" id="com.github.nwillc.ksvg.attributes.HasAttributes$getAttributes(com.github.nwillc.ksvg.elements.SVG.RenderMode)/renderMode">renderMode</span><span class="symbol">:</span>&nbsp;<span class="identifier">RenderMode</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.github.nwillc.ksvg.elements/-element/index.html">Element</a></h4>
+</td>
+<td>
+<p>Abstract SVG named element with attributes and child elements.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Element</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">HasAttributes</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-has-attributes-impl/index.html">HasAttributesImpl</a></h4>
+</td>
+<td>
+<p>A basic implementation of HasAttributes.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HasAttributesImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">HasAttributes</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-has-dimensions-impl/index.html">HasDimensionsImpl</a></h4>
+</td>
+<td>
+<p>A basic implementation of HasDimensions.</p>
+<code><span class="keyword">class </span><span class="identifier">HasDimensionsImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-has-dimensions/index.html"><span class="identifier">HasDimensions</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasAttributes</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-has-fill-impl/index.html">HasFillImpl</a></h4>
+</td>
+<td>
+<p>A basic implementation of HasFill.</p>
+<code><span class="keyword">class </span><span class="identifier">HasFillImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-has-fill/index.html"><span class="identifier">HasFill</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasAttributes</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-has-origin-impl/index.html">HasOriginImpl</a></h4>
+</td>
+<td>
+<p>A Basic implementation of HasOrigin.</p>
+<code><span class="keyword">class </span><span class="identifier">HasOriginImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-has-origin/index.html"><span class="identifier">HasOrigin</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasAttributes</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-has-stroke-impl/index.html">HasStrokeImpl</a></h4>
+</td>
+<td>
+<p>A basic implementation of HasStroke.</p>
+<code><span class="keyword">class </span><span class="identifier">HasStrokeImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-has-stroke/index.html"><span class="identifier">HasStroke</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HasAttributes</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
