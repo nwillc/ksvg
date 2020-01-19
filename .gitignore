@@ -2,7 +2,6 @@
 out
 .gradle
 .gradle.kts
-gradle
 build
 *.iml
 .java-version
