@@ -21,8 +21,8 @@ package com.github.nwillc.ksvg.elements
 import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.RenderMode
 import com.github.nwillc.ksvg.testing.HasSvg
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ATest : HasSvg() {
     private val faker = Faker()
@@ -40,8 +40,8 @@ class ATest : HasSvg() {
             rect {
             }
         }
-        assertThat((svg.children[0] as A).href).isEqualTo(url)
-        assertThat(svg.toString()).isEqualTo("<svg>\n<a xlink:href=\"$url\">\n<text>$bodyValue</text>\n<rect/>\n</a>\n</svg>\n")
+        assertEquals((svg.children[0] as A).href, url)
+        assertEquals(svg.toString(), "<svg>\n<a xlink:href=\"$url\">\n<text>$bodyValue</text>\n<rect/>\n</a>\n</svg>\n")
     }
 
     @Test
@@ -53,12 +53,12 @@ class ATest : HasSvg() {
 
         StringBuilder().apply {
             svg.render(this, RenderMode.INLINE)
-            assertThat(this.toString()).isEqualTo("<svg>\n<a xlink:href=\"$url\"/>\n</svg>\n")
+            assertEquals(this.toString(), "<svg>\n<a xlink:href=\"$url\"/>\n</svg>\n")
         }
 
         StringBuilder().apply {
             svg.render(this, RenderMode.FILE)
-            assertThat(this.toString()).isEqualTo(
+            assertEquals(this.toString(),
                 "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\">\n" +
                     "<a href=\"$url\"/>\n" +
                     "</svg>\n"

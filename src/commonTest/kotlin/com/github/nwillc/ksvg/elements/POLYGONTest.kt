@@ -19,8 +19,8 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
-import org.assertj.core.api.Assertions
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class POLYGONTest : HasSvg() {
 
@@ -31,6 +31,6 @@ class POLYGONTest : HasSvg() {
             points = pts
         }
 
-        Assertions.assertThat(svg.toString()).isEqualTo("<svg>\n<polygon points=\"$pts\"/>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<polygon points=\"$pts\"/>\n</svg>\n")
     }
 }

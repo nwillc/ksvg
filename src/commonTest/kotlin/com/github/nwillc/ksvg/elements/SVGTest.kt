@@ -21,8 +21,8 @@ package com.github.nwillc.ksvg.elements
 import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.RenderMode
 import com.github.nwillc.ksvg.testing.HasSvg
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import com.github.nwillc.ksvg.escapeHTML
 
 class SVGTest : HasSvg() {
@@ -30,7 +30,7 @@ class SVGTest : HasSvg() {
 
     @Test
     fun `format of svg tag`() {
-        assertThat(svg.toString()).isEqualTo("<svg/>\n")
+        assertEquals(svg.toString(), "<svg/>\n")
     }
 
     @Test
@@ -38,7 +38,7 @@ class SVGTest : HasSvg() {
         val box = "${faker.number().numberBetween(0, 10)} ${faker.number().numberBetween(0, 10)} " +
             "${faker.number().numberBetween(10, 100)} ${faker.number().numberBetween(10, 100)}"
         svg.viewBox = box
-        assertThat(svg.toString()).isEqualTo("<svg viewBox=\"$box\"/>\n")
+        assertEquals(svg.toString(), "<svg viewBox=\"$box\"/>\n")
     }
 
     @Test
@@ -51,15 +51,14 @@ class SVGTest : HasSvg() {
             height = heightValue
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect width=\"$widthValue\" height=\"$heightValue\"/>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<rect width=\"$widthValue\" height=\"$heightValue\"/>\n</svg>\n")
     }
 
     @Test
     fun `format of text without body`() {
         svg.text {
         }
-
-        assertThat((svg.children[0] as TEXT).body).isEmpty()
+        assertEquals((svg.children[0] as TEXT).body, "")
     }
 
     @Test
@@ -70,7 +69,7 @@ class SVGTest : HasSvg() {
             body = msg
         }
 
-        assertThat((svg.children[0] as TEXT).body).isEqualTo(msg.escapeHTML())
+        assertEquals((svg.children[0] as TEXT).body, msg.escapeHTML())
     }
 
     @Test
@@ -87,7 +86,10 @@ class SVGTest : HasSvg() {
             body = bodyValue
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect x=\"%s\" y=\"%s\"/>\n<text>%s</text>\n</svg>\n", xValue, yValue, bodyValue.escapeHTML())
+        assertEquals(
+            svg.toString(),
+            "<svg>\n<rect x=\"$xValue\" y=\"$yValue\"/>\n<text>${bodyValue.escapeHTML()}</text>\n</svg>\n"
+        )
     }
 
     @Test
@@ -100,7 +102,7 @@ class SVGTest : HasSvg() {
             body = msg
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<rect/>\n<text>%s</text>\n</svg>\n", msg.escapeHTML())
+        assertEquals(svg.toString(), "<svg>\n<rect/>\n<text>${msg.escapeHTML()}</text>\n</svg>\n")
     }
 
     @Test
@@ -110,7 +112,7 @@ class SVGTest : HasSvg() {
 
         svg.attributes[noun] = value
 
-        assertThat(svg.toString()).isEqualTo("<svg $noun=\"$value\"/>\n")
+        assertEquals(svg.toString(), "<svg $noun=\"$value\"/>\n")
     }
 
     @Test
@@ -121,19 +123,22 @@ class SVGTest : HasSvg() {
             fill = color
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<text fill=\"$color\"/>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<text fill=\"$color\"/>\n</svg>\n")
     }
 
     @Test
     fun `format svg in file mode`() {
         StringBuilder().apply {
             svg.render(this, RenderMode.INLINE)
-            assertThat(this.toString()).isEqualTo("<svg/>\n")
+            assertEquals(this.toString(), "<svg/>\n")
         }
 
         StringBuilder().apply {
             svg.render(this, RenderMode.FILE)
-            assertThat(this.toString()).isEqualTo("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\"/>\n")
+            assertEquals(
+                this.toString(),
+                "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<svg xmlns=\"http://www.w3.org/2000/svg\"/>\n"
+            )
         }
     }
 
@@ -180,7 +185,7 @@ class SVGTest : HasSvg() {
 //                val text = input.readText()
 //                StringWriter().use { writer ->
 //                    svg.render(writer, SVG.RenderMode.FILE)
-//                    assertThat(writer.toString()).isEqualTo(text)
+//                    assertEquals(writer.toString(), text)
 //                }
 //            }
 //        }

@@ -20,8 +20,8 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.testing.HasSvg
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class TEXTTest : HasSvg() {
     private val faker = Faker()
@@ -37,7 +37,6 @@ class TEXTTest : HasSvg() {
             y = yValue
             body = bodyValue
         }
-        assertThat(svg.toString())
-            .isEqualTo("<svg>\n<text x=\"$xValue\" y=\"$yValue\">$bodyValue</text>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<text x=\"$xValue\" y=\"$yValue\">$bodyValue</text>\n</svg>\n")
     }
 }

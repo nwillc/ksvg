@@ -20,8 +20,8 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.testing.HasSvg
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class CIRCLETest : HasSvg() {
     private val faker = Faker()
@@ -40,7 +40,7 @@ class CIRCLETest : HasSvg() {
             fill = colorValue
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<circle r=\"$rValue\" cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$colorValue\"/>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<circle r=\"$rValue\" cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$colorValue\"/>\n</svg>\n")
     }
 
     @Test
@@ -51,6 +51,6 @@ class CIRCLETest : HasSvg() {
             strokeWidth = width
         }
 
-        assertThat((svg.children[0] as CIRCLE).strokeWidth).isEqualTo(width)
+        assertEquals((svg.children[0] as CIRCLE).strokeWidth, width)
     }
 }

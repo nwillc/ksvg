@@ -19,7 +19,6 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
 
 internal class USETest : HasSvg(true) {

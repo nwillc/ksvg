@@ -19,8 +19,8 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class PATHTest : HasSvg(true) {
     @Test
@@ -30,6 +30,6 @@ class PATHTest : HasSvg(true) {
             d = path
         }
 
-        assertThat(svg.toString()).isEqualTo("<svg>\n<path d=\"$path\"/>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<path d=\"$path\"/>\n</svg>\n")
     }
 }
