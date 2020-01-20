@@ -24,6 +24,8 @@ import com.github.nwillc.ksvg.attributes.HasAttributes
 import com.github.nwillc.ksvg.attributes.HasAttributesImpl
 import com.github.nwillc.ksvg.attributes.HasOrigin
 import com.github.nwillc.ksvg.attributes.HasOriginImpl
+import com.github.nwillc.ksvg.logging.LogLevel
+import com.github.nwillc.ksvg.logging.log
 
 /**
  * An SVG use element.
@@ -32,16 +34,9 @@ class USE(validation: Boolean = false, hasAttributes: HasAttributes = HasAttribu
     Element("use", validation, hasAttributes),
     HasOrigin by HasOriginImpl(hasAttributes) {
 
-    /**
-     * Companion object.
-     */
-    private companion object {
-//        private val logger = getLogger<USE>()
-    }
-
     init {
         if (validation) {
-//            logger.warn("The use tags href has compatibility issues with Safari.")
+            log(LogLevel.WARN, "The use tags href has compatibility issues with Safari.")
         }
     }
 

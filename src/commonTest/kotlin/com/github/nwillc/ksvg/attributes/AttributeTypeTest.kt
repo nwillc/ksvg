@@ -18,23 +18,17 @@
 
 package com.github.nwillc.ksvg.attributes
 
-import com.github.nwillc.ksvg.elements.SVG
 import com.github.nwillc.ksvg.testing.HasSvg
-import java.util.Arrays.asList
-import kotlin.reflect.KProperty
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
 internal class AttributeTypeTest : HasSvg(true) {
-//    private val kProperty = mockk<KProperty<String>>()
-
     @Test
     fun `reject invalid positions or percentages`() {
-        assertThatThrownBy { svg.width = "a" }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { svg.width = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { svg.width = "10 %" }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { svg.width = "10%%" }.isInstanceOf(IllegalArgumentException::class.java)
+        assertFailsWith<IllegalArgumentException> { svg.width = "a" }
+        assertFailsWith<IllegalArgumentException> { svg.width = "10a" }
+        assertFailsWith<IllegalArgumentException> { svg.width = "10 %" }
+        assertFailsWith<IllegalArgumentException> { svg.width = "10%%" }
     }
 
     @Test
@@ -47,9 +41,9 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun `reject invalid lists of numbers`() {
-        assertThatThrownBy { svg.viewBox = "a" }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { svg.viewBox = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy { svg.viewBox = "1,,1" }.isInstanceOf(IllegalArgumentException::class.java)
+        assertFailsWith<IllegalArgumentException> { svg.viewBox = "a" }
+        assertFailsWith<IllegalArgumentException> { svg.viewBox = "10a" }
+        assertFailsWith<IllegalArgumentException> { svg.viewBox = "1,,1" }
     }
 
     @Test
@@ -62,9 +56,9 @@ internal class AttributeTypeTest : HasSvg(true) {
     @Test
     fun `reject invalid lengths`() {
         svg.circle {
-            assertThatThrownBy { r = "a" }.isInstanceOf(IllegalArgumentException::class.java)
-            assertThatThrownBy { r = "10a" }.isInstanceOf(IllegalArgumentException::class.java)
-            assertThatThrownBy { r = "10 %" }.isInstanceOf(IllegalArgumentException::class.java)
+            assertFailsWith<IllegalArgumentException> { r = "a" }
+            assertFailsWith<IllegalArgumentException> { r = "10a" }
+            assertFailsWith<IllegalArgumentException> { r = "10 %" }
         }
     }
 
@@ -79,8 +73,8 @@ internal class AttributeTypeTest : HasSvg(true) {
     @Test
     fun `reject invalid paths`() {
         svg.path {
-            assertThatThrownBy { d = "p" }.isInstanceOf(IllegalArgumentException::class.java)
-            assertThatThrownBy { d = "@#$%^&*(" }.isInstanceOf(IllegalArgumentException::class.java)
+            assertFailsWith<IllegalArgumentException> { d = "p" }
+            assertFailsWith<IllegalArgumentException> { d = "@#$%^&*(" }
         }
     }
 
@@ -98,7 +92,7 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun `reject invalid id`() {
-        assertThatThrownBy { svg.id = "a bad name" }.isInstanceOf(IllegalArgumentException::class.java)
+        assertFailsWith<IllegalArgumentException> { svg.id = "a bad name" }
     }
 
     @Test
@@ -108,16 +102,16 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun `reject invalid href`() {
-        assertThatThrownBy {
+        assertFailsWith<IllegalArgumentException> {
             svg.use {
                 href = "#a bad name"
             }
-        }.isInstanceOf(IllegalArgumentException::class.java)
-        assertThatThrownBy {
+        }
+        assertFailsWith<IllegalArgumentException> {
             svg.use {
                 href = "name"
             }
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        }
     }
 
     @Test

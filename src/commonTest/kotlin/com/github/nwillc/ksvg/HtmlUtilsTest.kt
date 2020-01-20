@@ -18,8 +18,8 @@
 
 package com.github.nwillc.ksvg
 
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class HtmlUtilsTest {
     private val specialCharacters = "a&<>\"\u00E7"
@@ -27,11 +27,11 @@ class HtmlUtilsTest {
 
     @Test
     fun `escape html special characters from a String`() {
-        assertThat(specialCharacters.escapeHTML()).isEqualTo(escapedCharacters)
+        assertEquals(specialCharacters.escapeHTML(), escapedCharacters)
     }
 
     @Test
     fun `normalize attribute names`() {
-        assertThat("strokeWidth".toAttributeName()).isEqualTo("stroke-width")
+        assertEquals("strokeWidth".toAttributeName(),"stroke-width")
     }
 }

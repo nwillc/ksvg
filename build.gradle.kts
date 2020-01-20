@@ -9,9 +9,6 @@ val jacocoToolVersion: String by project
 val jupiterVersion: String by project
 val ktlintToolVersion: String by project
 val mockkVersion: String by project
-val slf4jApiVersion: String by project
-val slf4jKextVersion: String by project
-val slf4jTestVersion: String by project
 
 plugins {
     kotlin("multiplatform") version "1.3.61"
@@ -38,7 +35,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("org.assertj:assertj-core:$assertJVersion")
+//                implementation("org.assertj:assertj-core:$assertJVersion")
                 implementation("com.github.javafaker:javafaker:$fakerVersion")
             }
         }
@@ -51,7 +48,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
-                implementation("org.assertj:assertj-core:$assertJVersion")
+//                implementation("org.assertj:assertj-core:$assertJVersion")
             }
         }
     }

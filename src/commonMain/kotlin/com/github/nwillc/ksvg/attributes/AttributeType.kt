@@ -18,8 +18,11 @@
 
 package com.github.nwillc.ksvg.attributes
 
+import com.github.nwillc.ksvg.logging.LogLevel
+import com.github.nwillc.ksvg.logging.log
+
 /**
- *  An enumeration of attribute types and the how to verify if a value is of this type.
+ *  An enumeration of attribute types and how to verify if a value is of this type.
  */
 enum class AttributeType {
     /**
@@ -82,7 +85,7 @@ enum class AttributeType {
      */
     CssClass {
         override fun verify(value: String) {
-//            logger.warn("CSS support is incomplete in some browsers, know issues in IE and Firefox.")
+            log(LogLevel.WARN,"CSS support is incomplete in some browsers, know issues in IE and Firefox.")
         }
     };
 
@@ -90,7 +93,6 @@ enum class AttributeType {
      * Constants.
      */
     private companion object {
-//        private val logger = getLogger<AttributeType>()
         private val number = Regex("[+-]?[0-9]*.?[0-9]+")
         private val separator = Regex("\\s*,?\\s+")
         private const val lengthUnits = "em|ex|px|in|cm|mm|pt|pc"

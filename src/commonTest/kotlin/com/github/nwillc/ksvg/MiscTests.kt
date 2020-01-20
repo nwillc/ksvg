@@ -19,16 +19,17 @@
 package com.github.nwillc.ksvg
 
 import com.github.nwillc.ksvg.elements.SVG
-import org.assertj.core.api.Assertions.assertThat
 import kotlin.test.Test
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class MiscTests {
     @Test
     fun `inherit validation true if set`() {
         SVG.svg(true) {
-            assertThat(validation).isTrue()
+            assertTrue(validation)
             rect {
-                assertThat(validation).isTrue()
+                assertTrue(validation)
             }
         }
     }
@@ -36,9 +37,9 @@ class MiscTests {
     @Test
     fun `default validation is false`() {
         SVG.svg {
-            assertThat(validation).isFalse()
+            assertFalse(validation)
             rect {
-                assertThat(validation).isFalse()
+                assertFalse(validation)
             }
         }
     }
