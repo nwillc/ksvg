@@ -18,15 +18,16 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.RenderMode
+import com.github.nwillc.ksvg.elements.ATest.Fixtures.QUOTE
+import com.github.nwillc.ksvg.elements.CIRCLETest.Fixtures.COLOR
 import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import com.github.nwillc.ksvg.escapeHTML
+import kotlin.random.Random
 
 class SVGTest : HasSvg() {
-    private val faker = Faker()
 
     @Test
     fun `format of svg tag`() {
@@ -35,16 +36,16 @@ class SVGTest : HasSvg() {
 
     @Test
     fun `format of svg tag with attr`() {
-        val box = "${faker.number().numberBetween(0, 10)} ${faker.number().numberBetween(0, 10)} " +
-            "${faker.number().numberBetween(10, 100)} ${faker.number().numberBetween(10, 100)}"
+        val box = "${Random.nextInt(0, 10)} ${Random.nextInt(0, 10)} " +
+            "${Random.nextInt(10, 100)} ${Random.nextInt(10, 100)}"
         svg.viewBox = box
         assertEquals(svg.toString(), "<svg viewBox=\"$box\"/>\n")
     }
 
     @Test
     fun `format rect with dimensions`() {
-        val widthValue = faker.number().numberBetween(1, 200).toString()
-        val heightValue = faker.number().numberBetween(1, 200).toString()
+        val widthValue = Random.nextInt(1, 200).toString()
+        val heightValue = Random.nextInt(1, 200).toString()
 
         svg.rect {
             width = widthValue
@@ -63,7 +64,7 @@ class SVGTest : HasSvg() {
 
     @Test
     fun `format of text with body`() {
-        val msg = faker.chuckNorris().fact()
+        val msg = QUOTE
 
         svg.text {
             body = msg
@@ -74,9 +75,9 @@ class SVGTest : HasSvg() {
 
     @Test
     fun `format of svg with multiple tags`() {
-        val xValue = faker.number().numberBetween(1, 100).toString()
-        val yValue = faker.number().numberBetween(1, 100).toString()
-        val bodyValue = faker.chuckNorris().fact().toString()
+        val xValue = Random.nextInt(1, 100).toString()
+        val yValue = Random.nextInt(1, 100).toString()
+        val bodyValue = QUOTE
 
         svg.rect {
             x = xValue
@@ -94,7 +95,7 @@ class SVGTest : HasSvg() {
 
     @Test
     fun `format multiple tags`() {
-        val msg = faker.chuckNorris().fact()
+        val msg = QUOTE
 
         svg.rect {}
 
@@ -107,8 +108,8 @@ class SVGTest : HasSvg() {
 
     @Test
     fun `format raw attributes`() {
-        val noun = faker.hacker().noun()
-        val value = faker.hacker().verb()
+        val noun = "foo"
+        val value = "bar"
 
         svg.attributes[noun] = value
 
@@ -117,7 +118,7 @@ class SVGTest : HasSvg() {
 
     @Test
     fun `format the fill attribute`() {
-        val color = faker.color().name()
+        val color = COLOR
 
         svg.text {
             fill = color

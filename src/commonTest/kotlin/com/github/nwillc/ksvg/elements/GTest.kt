@@ -18,17 +18,15 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class GTest : HasSvg(true) {
-    private val faker = Faker()
 
     @Test
     fun `format g tag`() {
-        val identifier = faker.code().asin()
+        val identifier = "foo"
         svg.g {
             id = identifier
         }

@@ -32,12 +32,12 @@ class CIRCLETest : HasSvg() {
             cx = cxValue
             cy = cyValue
             r = rValue
-            fill = colorValue
+            fill = COLOR
         }
 
         assertEquals(
             svg.toString(),
-            "<svg>\n<circle r=\"$rValue\" cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$colorValue\"/>\n</svg>\n"
+            "<svg>\n<circle r=\"$rValue\" cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$COLOR\"/>\n</svg>\n"
         )
     }
 
@@ -55,6 +55,6 @@ class CIRCLETest : HasSvg() {
         val cxValue = Random.nextInt(0, 1000).toString()
         val cyValue = Random.nextInt(0, 1000).toString()
         val rValue = Random.nextInt(1, 1000).toString()
-        val colorValue = listOf("red", "blue", "green").let { it[Random.nextInt(it.indices)]}
+        val COLOR = listOf("red", "blue", "green").let { it[Random.nextInt(it.indices)]}
     }
 }

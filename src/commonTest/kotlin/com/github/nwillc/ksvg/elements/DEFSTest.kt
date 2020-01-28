@@ -18,17 +18,15 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class DEFSTest : HasSvg(true) {
-    private val faker = Faker()
 
     @Test
     fun `format defs properly`() {
-        val identifier = faker.code().asin()
+        val identifier = "bar"
         svg.defs {
             g {
                 id = identifier

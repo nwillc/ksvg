@@ -35,7 +35,6 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("com.github.javafaker:javafaker:$fakerVersion")
             }
         }
         val jvmMain by getting {
