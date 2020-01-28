@@ -18,17 +18,15 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class LINETest : HasSvg() {
-    private val faker = Faker()
 
     @Test
     fun `format a line with stroke width`() {
-        val width = faker.number().numberBetween(5, 1000).toString()
 
         svg.line {
             strokeWidth = width
@@ -39,10 +37,6 @@ class LINETest : HasSvg() {
 
     @Test
     fun `format line tag`() {
-        val x1Value = faker.number().numberBetween(5, 1000).toString()
-        val y1Value = faker.number().numberBetween(5, 1000).toString()
-        val x2Value = faker.number().numberBetween(5, 1000).toString()
-        val y2Value = faker.number().numberBetween(5, 1000).toString()
 
         svg.line {
             x1 = x1Value
@@ -51,6 +45,17 @@ class LINETest : HasSvg() {
             y2 = y2Value
         }
 
-        assertEquals(svg.toString(), "<svg>\n<line y1=\"$y1Value\" x1=\"$x1Value\" y2=\"$y2Value\" x2=\"$x2Value\"/>\n</svg>\n")
+        assertEquals(
+            svg.toString(),
+            "<svg>\n<line y1=\"$y1Value\" x1=\"$x1Value\" y2=\"$y2Value\" x2=\"$x2Value\"/>\n</svg>\n"
+        )
+    }
+
+    companion object Fixtures {
+        val width = Random.nextInt(5, 1000).toString()
+        val x1Value = Random.nextInt(5, 1000).toString()
+        val y1Value = Random.nextInt(5, 1000).toString()
+        val x2Value = Random.nextInt(5, 1000).toString()
+        val y2Value = Random.nextInt(5, 1000).toString()
     }
 }

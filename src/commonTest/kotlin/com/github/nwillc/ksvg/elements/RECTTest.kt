@@ -18,40 +18,42 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.attributes.HasStroke
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class RECTTest : HasSvg(true) {
-    private val faker = Faker()
 
     @Test
     fun `format a rect with a stroke`() {
-        val width = faker.number().numberBetween(10, 1000).toString()
 
         svg.rect {
-            strokeWidth = width
+            strokeWidth = WIDTH
         }
 
-        assertEquals((svg.children[0] as HasStroke).strokeWidth, width)
+        assertEquals((svg.children[0] as HasStroke).strokeWidth, WIDTH)
     }
 
     @Test
     fun `format a rect`() {
-        val xValue = faker.number().numberBetween(0, 100).toString()
-        val yValue = faker.number().numberBetween(5, 100)
-        val heightValue = faker.number().numberBetween(10, 100)
-        val widthValue = faker.number().numberBetween(10, 100)
-
         svg.rect {
-            x = xValue
-            y = "${yValue}px"
-            height = "$heightValue%"
-            width = "$widthValue"
+            x = X_VALUE
+            y = "${Y_VALUE}px"
+            height = "$HEIGHT%"
+            width = "$WIDTH"
         }
-        assertEquals(svg.toString(),"<svg>\n<rect x=\"$xValue\" width=\"$widthValue\" y=\"${yValue}px\" height=\"$heightValue%\"/>\n</svg>\n"
+        assertEquals(
+            svg.toString(),
+            "<svg>\n<rect x=\"$X_VALUE\" width=\"$WIDTH\" y=\"${Y_VALUE}px\" height=\"$HEIGHT%\"/>\n</svg>\n"
         )
+    }
+
+    companion object Fixtures {
+        val WIDTH = Random.nextInt(50, 100).toString()
+        val X_VALUE = Random.nextInt(0, 100).toString()
+        val Y_VALUE = Random.nextInt(5, 100)
+        val HEIGHT = Random.nextInt(10, 100)
     }
 }

@@ -35,7 +35,6 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-//                implementation("org.assertj:assertj-core:$assertJVersion")
                 implementation("com.github.javafaker:javafaker:$fakerVersion")
             }
         }
@@ -48,28 +47,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
-//                implementation("org.assertj:assertj-core:$assertJVersion")
             }
         }
     }
 }
-
-//dependencies {
-//    listOf(
-//        kotlin("stdlib-jdk8"),
-//        "org.slf4j:slf4j-api:$slf4jApiVersion",
-//        "$group:slf4jkext:$slf4jKextVersion"
-//    )
-//        .forEach { implementation(it) }
-//
-//    listOf(
-//        "org.junit.jupiter:junit-jupiter-api:$jupiterVersion",
-//        "org.assertj:assertj-core:$assertJVersion",
-//        "io.mockk:mockk:$mockkVersion",
-//        "uk.org.lidalia:slf4j-test:$slf4jTestVersion",
-//        "com.github.javafaker:javafaker:$fakerVersion"
-//    )
-//        .forEach { testImplementation(it) }
-//
-//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
-//}

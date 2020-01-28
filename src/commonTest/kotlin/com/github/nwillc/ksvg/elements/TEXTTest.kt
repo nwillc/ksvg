@@ -18,25 +18,27 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
+import com.github.nwillc.ksvg.elements.ATest.Fixtures.QUOTE
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class TEXTTest : HasSvg() {
-    private val faker = Faker()
 
     @Test
     fun `format a text tag`() {
-        val xValue = faker.number().numberBetween(1, 50).toString()
-        val yValue = faker.number().numberBetween(1, 50).toString()
-        val bodyValue = faker.shakespeare().hamletQuote()
 
         svg.text {
             x = xValue
             y = yValue
-            body = bodyValue
+            body = QUOTE
         }
-        assertEquals(svg.toString(), "<svg>\n<text x=\"$xValue\" y=\"$yValue\">$bodyValue</text>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<text x=\"$xValue\" y=\"$yValue\">$QUOTE</text>\n</svg>\n")
+    }
+
+    companion object Fixtures {
+        val xValue = Random.nextInt(1, 50).toString()
+        val yValue = Random.nextInt(1, 50).toString()
     }
 }

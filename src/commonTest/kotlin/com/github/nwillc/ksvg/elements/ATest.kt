@@ -18,19 +18,16 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.RenderMode
 import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ATest : HasSvg() {
-    private val faker = Faker()
-
     @Test
     fun `format href properly inline`() {
-        val url = faker.internet().url()
-        val bodyValue = faker.lorem().fixedString(20)
+        val url = URL
+        val bodyValue = QUOTE
 
         svg.a {
             href = url
@@ -46,7 +43,7 @@ class ATest : HasSvg() {
 
     @Test
     fun `format href properly in file mode`() {
-        val url = faker.internet().url()
+        val url = URL
         svg.a {
             href = url
         }
@@ -64,5 +61,20 @@ class ATest : HasSvg() {
                     "</svg>\n"
             )
         }
+    }
+
+    companion object Fixtures {
+        const val URL = "http://google.com"
+        val QUOTE = """
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia nulla. In congue, nisl at
+            porttitor interdum, turpis nulla facilisis nisi, eget congue nulla sapien a augue. Praesent eu nulla
+            sed erat commodo maximus. Vestibulum ex tellus, efficitur eu risus eget, faucibus cursus ipsum. Nam efficitur
+            sagittis nisl nec porttitor. Cras quis congue augue. Morbi sed dapibus urna, eu pellentesque tortor. Fusce
+            nibh elit, posuere at massa eget, venenatis fringilla odio. Aenean tortor nisi, egestas a metus vitae,
+            fermentum scelerisque risus. Aliquam ultricies nisl hendrerit lectus tincidunt, id porta ex pretium.
+            Pellentesque consequat, dui rutrum elementum varius, odio nisl imperdiet neque, et varius ante est et augue.
+            Pellentesque ornare, ante a pellentesque malesuada, ligula mauris luctus diam, sed porttitor metus enim a
+            dolor.
+        """.trimIndent()
     }
 }

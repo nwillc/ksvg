@@ -18,24 +18,21 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
+import com.github.nwillc.ksvg.elements.ATest.Fixtures.QUOTE
 import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class TITLETest : HasSvg() {
-    private val faker = Faker()
 
     @Test
     fun `format a rect with a title properly`() {
-        val titleValue = faker.shakespeare().hamletQuote()
-
         svg.rect {
             title {
-                body = titleValue
+                body = QUOTE
             }
         }
 
-        assertEquals(svg.toString(), "<svg>\n<rect>\n<title>$titleValue</title>\n</rect>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<rect>\n<title>$QUOTE</title>\n</rect>\n</svg>\n")
     }
 }

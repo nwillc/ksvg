@@ -18,21 +18,16 @@
 
 package com.github.nwillc.ksvg.elements
 
-import com.github.javafaker.Faker
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.random.Random
+import kotlin.random.nextInt
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class CIRCLETest : HasSvg() {
-    private val faker = Faker()
 
     @Test
     fun `format a circle`() {
-        val colorValue = faker.color().name()
-        val cxValue = faker.number().numberBetween(0, 1000).toString()
-        val cyValue = faker.number().numberBetween(0, 1000).toString()
-        val rValue = faker.number().numberBetween(1, 1000).toString()
-
         svg.circle {
             cx = cxValue
             cy = cyValue
@@ -40,17 +35,26 @@ class CIRCLETest : HasSvg() {
             fill = colorValue
         }
 
-        assertEquals(svg.toString(), "<svg>\n<circle r=\"$rValue\" cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$colorValue\"/>\n</svg>\n")
+        assertEquals(
+            svg.toString(),
+            "<svg>\n<circle r=\"$rValue\" cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$colorValue\"/>\n</svg>\n"
+        )
     }
 
     @Test
     fun `format a circle with a width`() {
-        val width = faker.number().numberBetween(1, 100).toString()
-
         svg.circle {
-            strokeWidth = width
+            strokeWidth = WIDTH
         }
 
-        assertEquals((svg.children[0] as CIRCLE).strokeWidth, width)
+        assertEquals((svg.children[0] as CIRCLE).strokeWidth, WIDTH)
+    }
+
+    companion object Fixtures {
+        val WIDTH = Random.nextInt(1..100).toString()
+        val cxValue = Random.nextInt(0, 1000).toString()
+        val cyValue = Random.nextInt(0, 1000).toString()
+        val rValue = Random.nextInt(1, 1000).toString()
+        val colorValue = listOf("red", "blue", "green").let { it[Random.nextInt(it.indices)]}
     }
 }
