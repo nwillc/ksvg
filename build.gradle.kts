@@ -41,6 +41,7 @@ repositories {
 
 kotlin {
     jvm()
+    js()
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -69,6 +70,13 @@ kotlin {
             dependencies {
                 listOf(
                     kotlin("test-junit")
+                ).forEach { implementation(it) }
+            }
+        }
+        val jsMain by getting {
+            dependencies {
+                listOf(
+                    kotlin("stdlib-js")
                 ).forEach { implementation(it) }
             }
         }
