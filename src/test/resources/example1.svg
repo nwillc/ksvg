@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-<rect x="50" width="20" y="50" fill="blue" height="10">
-<title>A Blue Rectangle</title>
-</rect>
-<text x="100" y="100">label</text>
-<circle r="20" cx="100" cy="150" stroke-width="2" fill="red" stroke="blue"/>
-<line y1="0" x1="0" y2="40" x2="40" stroke-width="3" stroke="black"/>
-</svg>
