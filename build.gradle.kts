@@ -49,6 +49,22 @@ kotlin {
         }
     }
     js() {
+        useCommonJs()
+        browser {
+            runTask {
+                sourceMaps = true
+            }
+            webpackTask {
+                sourceMaps = true
+            }
+        }
+        compilations.all {
+            kotlinOptions {
+                sourceMap = true
+                metaInfo = true
+                main = "call"
+            }
+        }
         mavenPublication { // Setup the publication for the target
 //            artifactId = "ksvg-js"
             // Add a docs JAR artifact (it should be a custom task):
