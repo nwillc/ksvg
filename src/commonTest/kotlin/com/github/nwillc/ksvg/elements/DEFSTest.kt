@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
 class DEFSTest : HasSvg(true) {
 
     @Test
-    fun `format defs properly`() {
+    fun defs() {
         val identifier = "bar"
         svg.defs {
             g {

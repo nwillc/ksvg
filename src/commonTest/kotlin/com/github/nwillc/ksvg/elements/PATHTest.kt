@@ -22,7 +22,7 @@ import kotlin.test.assertEquals
 
 class PATHTest : HasSvg(true) {
     @Test
-    fun `format a path tag`() {
+    fun pathTag() {
         val path = "M 10,30 A 20,20 0,0,1 50,30 Z"
         svg.path {
             d = path

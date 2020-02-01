@@ -23,7 +23,7 @@ import kotlin.test.assertTrue
 
 class MiscTests {
     @Test
-    fun `inherit validation true if set`() {
+    fun inheritValidation() {
         SVG.svg(true) {
             assertTrue(validation)
             rect {
@@ -33,7 +33,7 @@ class MiscTests {
     }
 
     @Test
-    fun `default validation is false`() {
+    fun defaultValidation() {
         SVG.svg {
             assertFalse(validation)
             rect {

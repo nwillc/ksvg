@@ -25,7 +25,7 @@ import kotlin.test.assertEquals
 class RECTTest : HasSvg(true) {
 
     @Test
-    fun `format a rect with a stroke`() {
+    fun rectWithStroke() {
 
         svg.rect {
             strokeWidth = WIDTH
@@ -35,7 +35,7 @@ class RECTTest : HasSvg(true) {
     }
 
     @Test
-    fun `format a rect`() {
+    fun rect() {
         svg.rect {
             x = X_VALUE
             y = "${Y_VALUE}px"

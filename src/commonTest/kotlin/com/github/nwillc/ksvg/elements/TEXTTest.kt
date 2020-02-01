@@ -25,7 +25,7 @@ import kotlin.test.assertEquals
 class TEXTTest : HasSvg() {
 
     @Test
-    fun `format a text tag`() {
+    fun textTag() {
 
         svg.text {
             x = xValue

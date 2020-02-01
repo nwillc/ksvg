@@ -28,7 +28,7 @@ val mockkVersion: String by project
 
 plugins {
     kotlin("multiplatform") version "1.3.61"
-    id("maven-publish")
+    `maven-publish`
 }
 
 group = "com.github.nwillc"
@@ -42,10 +42,10 @@ repositories {
 
 kotlin {
     jvm() {
-        mavenPublication { // Setup the publication for the target
-//            artifactId = "ksvg-jvm"
+        mavenPublication {
+            artifactId = "${project.name}"
             // Add a docs JAR artifact (it should be a custom task):
-//            artifact(javadocJar)
+            // artifact(javadocJar)
         }
     }
     js() {
@@ -65,23 +65,24 @@ kotlin {
                 main = "call"
             }
         }
-        mavenPublication { // Setup the publication for the target
-//            artifactId = "ksvg-js"
+        mavenPublication {
+            // Setup the publication for the target
+            //            artifactId = "ksvg-js"
             // Add a docs JAR artifact (it should be a custom task):
-//            artifact(javadocJar)
+            //            artifact(javadocJar)
         }
     }
     sourceSets {
         val commonMain by getting {
             dependencies {
-                listOf(
+                setOf(
                     kotlin("stdlib-common")
                 ).forEach { implementation(it) }
             }
         }
         val commonTest by getting {
             dependencies {
-                listOf(
+                setOf(
                     kotlin("test-common"),
                     kotlin("test-junit"),
                     kotlin("test-annotations-common")
@@ -90,22 +91,32 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                listOf(
+                setOf(
                     kotlin("stdlib-jdk8")
                 ).forEach { implementation(it) }
             }
         }
         val jvmTest by getting {
             dependencies {
-                listOf(
+                setOf(
                     kotlin("test-junit")
                 ).forEach { implementation(it) }
             }
         }
         val jsMain by getting {
             dependencies {
-                listOf(
+                setOf(
                     kotlin("stdlib-js")
+                ).forEach { implementation(it) }
+            }
+        }
+        val jsTest by getting {
+            dependencies {
+                setOf(
+                    kotlin("test-js"),
+                    kotlin("test-common"),
+                    kotlin("test-junit"),
+                    kotlin("test-annotations-common")
                 ).forEach { implementation(it) }
             }
         }

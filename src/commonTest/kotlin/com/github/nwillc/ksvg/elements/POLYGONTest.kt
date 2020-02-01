@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
 class POLYGONTest : HasSvg() {
 
     @Test
-    fun `format a polygon`() {
+    fun aPolygon() {
         val pts = "200,10 250,190 160,210"
         svg.polygon {
             points = pts

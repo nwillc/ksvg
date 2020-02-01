@@ -25,7 +25,7 @@ import kotlin.test.assertEquals
 class CIRCLETest : HasSvg() {
 
     @Test
-    fun `format a circle`() {
+    fun aCircle() {
         svg.circle {
             cx = cxValue
             cy = cyValue
@@ -40,7 +40,7 @@ class CIRCLETest : HasSvg() {
     }
 
     @Test
-    fun `format a circle with a width`() {
+    fun aCircleWidth() {
         svg.circle {
             strokeWidth = WIDTH
         }

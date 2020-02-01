@@ -28,12 +28,12 @@ import kotlin.random.Random
 class SVGTest : HasSvg() {
 
     @Test
-    fun `format of svg tag`() {
+    fun svgTag() {
         assertEquals(svg.toString(), "<svg/>\n")
     }
 
     @Test
-    fun `format of svg tag with attr`() {
+    fun svgTagWithAttr() {
         val box = "${Random.nextInt(0, 10)} ${Random.nextInt(0, 10)} " +
             "${Random.nextInt(10, 100)} ${Random.nextInt(10, 100)}"
         svg.viewBox = box
@@ -41,7 +41,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
-    fun `format rect with dimensions`() {
+    fun rectWithDimensions() {
         val widthValue = Random.nextInt(1, 200).toString()
         val heightValue = Random.nextInt(1, 200).toString()
 
@@ -54,14 +54,14 @@ class SVGTest : HasSvg() {
     }
 
     @Test
-    fun `format of text without body`() {
+    fun textWithoutBody() {
         svg.text {
         }
         assertEquals((svg.children[0] as TEXT).body, "")
     }
 
     @Test
-    fun `format of text with body`() {
+    fun textWithBody() {
         val msg = QUOTE
 
         svg.text {
@@ -72,7 +72,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
-    fun `format of svg with multiple tags`() {
+    fun svgMultipleTags() {
         val xValue = Random.nextInt(1, 100).toString()
         val yValue = Random.nextInt(1, 100).toString()
         val bodyValue = QUOTE
@@ -92,7 +92,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
-    fun `format multiple tags`() {
+    fun multipleTags() {
         val msg = QUOTE
 
         svg.rect {}
@@ -105,7 +105,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
-    fun `format raw attributes`() {
+    fun rawAttributes() {
         val noun = "foo"
         val value = "bar"
 
@@ -115,7 +115,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
-    fun `format the fill attribute`() {
+    fun fillAttribute() {
         val color = COLOR
 
         svg.text {
@@ -126,7 +126,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
-    fun `format svg in file mode`() {
+    fun svgFileMode() {
         StringBuilder().apply {
             svg.render(this, RenderMode.INLINE)
             assertEquals(this.toString(), "<svg/>\n")

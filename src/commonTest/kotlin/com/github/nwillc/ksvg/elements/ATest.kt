@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
 
 class ATest : HasSvg() {
     @Test
-    fun `format href properly inline`() {
+    fun hrefInline() {
         val url = URL
         val bodyValue = QUOTE
 
@@ -40,7 +40,7 @@ class ATest : HasSvg() {
     }
 
     @Test
-    fun `format href properly in file mode`() {
+    fun hrefFileMode() {
         val url = URL
         svg.a {
             href = url

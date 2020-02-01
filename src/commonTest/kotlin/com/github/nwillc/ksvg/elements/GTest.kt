@@ -23,7 +23,7 @@ import kotlin.test.assertEquals
 class GTest : HasSvg(true) {
 
     @Test
-    fun `format g tag`() {
+    fun gTag() {
         val identifier = "foo"
         svg.g {
             id = identifier

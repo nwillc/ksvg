@@ -24,12 +24,12 @@ class HtmlUtilsTest {
     private val escapedCharacters = "a&#38;&#60;&#62;&#34;&#231;"
 
     @Test
-    fun `escape html special characters from a String`() {
+    fun escapeHtml() {
         assertEquals(specialCharacters.escapeHTML(), escapedCharacters)
     }
 
     @Test
-    fun `normalize attribute names`() {
+    fun normalizeAttribute() {
         assertEquals("strokeWidth".toAttributeName(),"stroke-width")
     }
 }

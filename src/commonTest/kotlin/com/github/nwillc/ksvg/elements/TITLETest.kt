@@ -24,7 +24,7 @@ import kotlin.test.assertEquals
 class TITLETest : HasSvg() {
 
     @Test
-    fun `format a rect with a title properly`() {
+    fun rectWithTitle() {
         svg.rect {
             title {
                 body = QUOTE

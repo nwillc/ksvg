@@ -24,7 +24,7 @@ import kotlin.test.assertEquals
 class LINETest : HasSvg() {
 
     @Test
-    fun `format a line with stroke width`() {
+    fun aLineStrokeWidth() {
 
         svg.line {
             strokeWidth = width
@@ -34,7 +34,7 @@ class LINETest : HasSvg() {
     }
 
     @Test
-    fun `format line tag`() {
+    fun lineTag() {
 
         svg.line {
             x1 = x1Value
