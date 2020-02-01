@@ -109,5 +109,12 @@ kotlin {
                 ).forEach { implementation(it) }
             }
         }
+        val jsTest by getting {
+            dependencies {
+                listOf(
+                    kotlin("test-js")
+                ).forEach { implementation(it) }
+            }
+        }
     }
 }

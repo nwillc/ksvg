@@ -18,6 +18,7 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.elements.ATest.Fixtures.QUOTE
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -25,6 +26,7 @@ import kotlin.test.assertEquals
 class TEXTTest : HasSvg() {
 
     @Test
+    @JsName("format_a_text_tag")
     fun `format a text tag`() {
 
         svg.text {

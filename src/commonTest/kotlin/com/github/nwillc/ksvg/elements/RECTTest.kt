@@ -18,6 +18,7 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.attributes.HasStroke
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -25,6 +26,7 @@ import kotlin.test.assertEquals
 class RECTTest : HasSvg(true) {
 
     @Test
+    @JsName("format_a_rect_with_a_stroke")
     fun `format a rect with a stroke`() {
 
         svg.rect {
@@ -35,6 +37,7 @@ class RECTTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("format_a_rect")
     fun `format a rect`() {
         svg.rect {
             x = X_VALUE

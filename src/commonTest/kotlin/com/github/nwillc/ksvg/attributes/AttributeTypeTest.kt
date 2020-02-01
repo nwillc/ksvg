@@ -17,11 +17,13 @@
 package com.github.nwillc.ksvg.attributes
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
 internal class AttributeTypeTest : HasSvg(true) {
     @Test
+    @JsName("reject_invalid_positions_or_percentages")
     fun `reject invalid positions or percentages`() {
         assertFailsWith<IllegalArgumentException> { svg.width = "a" }
         assertFailsWith<IllegalArgumentException> { svg.width = "10a" }
@@ -30,6 +32,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("accept_valid_positions_and_percentages")
     fun `accept valid positions and percentages`() {
         svg.width = "0"
         svg.width = "10"
@@ -38,6 +41,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("reject_invalid_lists_of_numbers")
     fun `reject invalid lists of numbers`() {
         assertFailsWith<IllegalArgumentException> { svg.viewBox = "a" }
         assertFailsWith<IllegalArgumentException> { svg.viewBox = "10a" }
@@ -45,6 +49,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("accept_valid_lists_of_numbers")
     fun `accept valid lists of numbers`() {
         svg.viewBox = "0 0 1 5"
         svg.viewBox = "10  0 3 4"
@@ -52,6 +57,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("reject_invalid_lengths")
     fun `reject invalid lengths`() {
         svg.circle {
             assertFailsWith<IllegalArgumentException> { r = "a" }
@@ -61,6 +67,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("accept_valid_lengths")
     fun `accept valid lengths`() {
         svg.circle {
             r = "10"
@@ -69,6 +76,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("reject_invalid_paths")
     fun `reject invalid paths`() {
         svg.path {
             assertFailsWith<IllegalArgumentException> { d = "p" }
@@ -77,6 +85,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("accept_valid_paths")
     fun `accept valid paths`() {
         svg.path {
             d = "M 150,0 L 75,200 L 225,200 Z"
@@ -89,16 +98,19 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("reject_invalid_id")
     fun `reject invalid id`() {
         assertFailsWith<IllegalArgumentException> { svg.id = "a bad name" }
     }
 
     @Test
+    @JsName("accept_valid_id")
     fun `accept valid id`() {
         svg.id = "aGoodName"
     }
 
     @Test
+    @JsName("reject_invalid_href")
     fun `reject invalid href`() {
         assertFailsWith<IllegalArgumentException> {
             svg.use {
@@ -113,6 +125,7 @@ internal class AttributeTypeTest : HasSvg(true) {
     }
 
     @Test
+    @JsName("accept_valid_href")
     fun `accept valid href`() {
         svg.use {
             href = "#aGoodName"

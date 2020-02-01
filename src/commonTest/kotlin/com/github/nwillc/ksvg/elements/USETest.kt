@@ -17,6 +17,7 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 
 internal class USETest : HasSvg(true) {
@@ -28,6 +29,7 @@ internal class USETest : HasSvg(true) {
 //    }
 
 //    @Test
+//    @JsName("generate_a_warning_about_safari_on_use_tag_with_validation_true")
 //    fun `generate a warning about safari on use tag with validation true`() {
 //        svg.validation = true
 //        svg.use {}
@@ -36,6 +38,7 @@ internal class USETest : HasSvg(true) {
 //    }
 
 //    @Test
+//    @JsName("not_generate_a_warning_for_use_when_validation_false")
 //    fun `not generate a warning for use when validation false`() {
 //        svg.validation = false
 //        svg.use {}

@@ -16,6 +16,7 @@
 
 package com.github.nwillc.ksvg
 
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -24,11 +25,13 @@ class HtmlUtilsTest {
     private val escapedCharacters = "a&#38;&#60;&#62;&#34;&#231;"
 
     @Test
+    @JsName("escape_html_special_characters_from_a_String")
     fun `escape html special characters from a String`() {
         assertEquals(specialCharacters.escapeHTML(), escapedCharacters)
     }
 
     @Test
+    @JsName("normalize_attribute_names")
     fun `normalize attribute names`() {
         assertEquals("strokeWidth".toAttributeName(),"stroke-width")
     }

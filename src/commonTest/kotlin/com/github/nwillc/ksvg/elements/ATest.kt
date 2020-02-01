@@ -18,11 +18,13 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.RenderMode
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ATest : HasSvg() {
     @Test
+    @JsName("format_href_properly_inline")
     fun `format href properly inline`() {
         val url = URL
         val bodyValue = QUOTE
@@ -40,6 +42,7 @@ class ATest : HasSvg() {
     }
 
     @Test
+    @JsName("format_href_properly_in_file_mode")
     fun `format href properly in file mode`() {
         val url = URL
         svg.a {

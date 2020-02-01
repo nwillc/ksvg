@@ -17,12 +17,14 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class DEFSTest : HasSvg(true) {
 
     @Test
+    @JsName("format_defs_properly")
     fun `format defs properly`() {
         val identifier = "bar"
         svg.defs {

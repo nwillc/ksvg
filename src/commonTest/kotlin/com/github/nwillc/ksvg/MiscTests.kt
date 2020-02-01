@@ -17,12 +17,14 @@
 package com.github.nwillc.ksvg
 
 import com.github.nwillc.ksvg.elements.SVG
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class MiscTests {
     @Test
+    @JsName("inherit_validation_true_if_set")
     fun `inherit validation true if set`() {
         SVG.svg(true) {
             assertTrue(validation)
@@ -33,6 +35,7 @@ class MiscTests {
     }
 
     @Test
+    @JsName("default_validation_is_false")
     fun `default validation is false`() {
         SVG.svg {
             assertFalse(validation)

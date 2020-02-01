@@ -18,12 +18,14 @@ package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.elements.ATest.Fixtures.QUOTE
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class TITLETest : HasSvg() {
 
     @Test
+    @JsName("format_a_rect_with_a_title_properly")
     fun `format a rect with a title properly`() {
         svg.rect {
             title {

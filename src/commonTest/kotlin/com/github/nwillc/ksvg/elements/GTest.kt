@@ -17,12 +17,14 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class GTest : HasSvg(true) {
 
     @Test
+    @JsName("format_g_tag")
     fun `format g tag`() {
         val identifier = "foo"
         svg.g {

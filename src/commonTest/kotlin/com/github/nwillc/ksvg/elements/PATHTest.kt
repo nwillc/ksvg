@@ -17,11 +17,13 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class PATHTest : HasSvg(true) {
     @Test
+    @JsName("format_a_path_tag")
     fun `format a path tag`() {
         val path = "M 10,30 A 20,20 0,0,1 50,30 Z"
         svg.path {

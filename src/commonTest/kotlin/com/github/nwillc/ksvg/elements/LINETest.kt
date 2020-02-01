@@ -17,6 +17,7 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -24,6 +25,7 @@ import kotlin.test.assertEquals
 class LINETest : HasSvg() {
 
     @Test
+    @JsName("format_a_line_with_stroke_width")
     fun `format a line with stroke width`() {
 
         svg.line {
@@ -34,6 +36,7 @@ class LINETest : HasSvg() {
     }
 
     @Test
+    @JsName("format_a_line_tag")
     fun `format line tag`() {
 
         svg.line {

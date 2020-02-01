@@ -17,6 +17,7 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.random.nextInt
 import kotlin.test.Test
@@ -25,6 +26,7 @@ import kotlin.test.assertEquals
 class CIRCLETest : HasSvg() {
 
     @Test
+    @JsName("format_a_circle")
     fun `format a circle`() {
         svg.circle {
             cx = cxValue
@@ -40,6 +42,7 @@ class CIRCLETest : HasSvg() {
     }
 
     @Test
+    @JsName("format_a_circle_with_a_width")
     fun `format a circle with a width`() {
         svg.circle {
             strokeWidth = WIDTH

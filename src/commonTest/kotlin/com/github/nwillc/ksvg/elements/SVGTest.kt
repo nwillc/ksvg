@@ -23,16 +23,19 @@ import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import com.github.nwillc.ksvg.escapeHTML
+import kotlin.js.JsName
 import kotlin.random.Random
 
 class SVGTest : HasSvg() {
 
     @Test
+    @JsName("format_of_svg_tag")
     fun `format of svg tag`() {
         assertEquals(svg.toString(), "<svg/>\n")
     }
 
     @Test
+    @JsName("format_of_svg_tag_with_attr")
     fun `format of svg tag with attr`() {
         val box = "${Random.nextInt(0, 10)} ${Random.nextInt(0, 10)} " +
             "${Random.nextInt(10, 100)} ${Random.nextInt(10, 100)}"
@@ -41,6 +44,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_rect_with_dimensions")
     fun `format rect with dimensions`() {
         val widthValue = Random.nextInt(1, 200).toString()
         val heightValue = Random.nextInt(1, 200).toString()
@@ -54,6 +58,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_of_text_without_body")
     fun `format of text without body`() {
         svg.text {
         }
@@ -61,6 +66,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_of_text_with_body")
     fun `format of text with body`() {
         val msg = QUOTE
 
@@ -72,6 +78,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_of_svg_with_multiple_tags")
     fun `format of svg with multiple tags`() {
         val xValue = Random.nextInt(1, 100).toString()
         val yValue = Random.nextInt(1, 100).toString()
@@ -92,6 +99,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_multiple_tags")
     fun `format multiple tags`() {
         val msg = QUOTE
 
@@ -105,6 +113,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_raw_attributes")
     fun `format raw attributes`() {
         val noun = "foo"
         val value = "bar"
@@ -115,6 +124,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_the_fill_attribute")
     fun `format the fill attribute`() {
         val color = COLOR
 
@@ -126,6 +136,7 @@ class SVGTest : HasSvg() {
     }
 
     @Test
+    @JsName("format_svg_in_file_mode")
     fun `format svg in file mode`() {
         StringBuilder().apply {
             svg.render(this, RenderMode.INLINE)

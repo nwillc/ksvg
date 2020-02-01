@@ -17,12 +17,14 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.testing.HasSvg
+import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class POLYGONTest : HasSvg() {
 
     @Test
+    @JsName("format_a_polygon")
     fun `format a polygon`() {
         val pts = "200,10 250,190 160,210"
         svg.polygon {
