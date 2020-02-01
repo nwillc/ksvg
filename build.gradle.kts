@@ -28,6 +28,7 @@ val mockkVersion: String by project
 
 plugins {
     kotlin("multiplatform") version "1.3.61"
+    id("maven-publish")
 }
 
 group = "com.github.nwillc"
@@ -40,8 +41,36 @@ repositories {
 }
 
 kotlin {
-    jvm()
-    js()
+    jvm() {
+        mavenPublication { // Setup the publication for the target
+//            artifactId = "ksvg-jvm"
+            // Add a docs JAR artifact (it should be a custom task):
+//            artifact(javadocJar)
+        }
+    }
+    js() {
+        useCommonJs()
+        browser {
+            runTask {
+                sourceMaps = true
+            }
+            webpackTask {
+                sourceMaps = true
+            }
+        }
+        compilations.all {
+            kotlinOptions {
+                sourceMap = true
+                metaInfo = true
+                main = "call"
+            }
+        }
+        mavenPublication { // Setup the publication for the target
+//            artifactId = "ksvg-js"
+            // Add a docs JAR artifact (it should be a custom task):
+//            artifact(javadocJar)
+        }
+    }
     sourceSets {
         val commonMain by getting {
             dependencies {
