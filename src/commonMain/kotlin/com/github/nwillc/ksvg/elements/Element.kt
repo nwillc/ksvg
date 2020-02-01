@@ -64,7 +64,10 @@ abstract class Element(
      */
     open fun render(appendable: Appendable, renderMode: RenderMode) {
         appendable.append("<$name")
-        getAttributes(renderMode).entries.forEach { entry ->
+        getAttributes(renderMode)
+            .entries
+            .sortedBy { it.key }
+            .forEach { entry ->
             appendable.append(' ')
             appendable.append(entry.key)
             appendable.append("=\"")

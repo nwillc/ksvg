@@ -50,7 +50,7 @@ class SVGTest : HasSvg() {
             height = heightValue
         }
 
-        assertEquals(svg.toString(), "<svg>\n<rect width=\"$widthValue\" height=\"$heightValue\"/>\n</svg>\n")
+        assertEquals(svg.toString(), "<svg>\n<rect height=\"$heightValue\" width=\"$widthValue\"/>\n</svg>\n")
     }
 
     @Test

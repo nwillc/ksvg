@@ -35,7 +35,7 @@ class CIRCLETest : HasSvg() {
 
         assertEquals(
             svg.toString(),
-            "<svg>\n<circle r=\"$rValue\" cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$COLOR\"/>\n</svg>\n"
+            "<svg>\n<circle cx=\"$cxValue\" cy=\"$cyValue\" fill=\"$COLOR\" r=\"$rValue\"/>\n</svg>\n"
         )
     }
 

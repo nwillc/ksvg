@@ -33,19 +33,22 @@ class LINETest : HasSvg() {
         assertEquals((svg.children[0] as LINE).strokeWidth, width)
     }
 
+
     @Test
     fun lineTag() {
 
-        svg.line {
-            x1 = x1Value
-            y1 = y1Value
-            x2 = x2Value
-            y2 = y2Value
+        val svg = SVG.svg {
+            line {
+                x1 = x1Value
+                y1 = y1Value
+                x2 = x2Value
+                y2 = y2Value
+            }
         }
 
         assertEquals(
             svg.toString(),
-            "<svg>\n<line y1=\"$y1Value\" x1=\"$x1Value\" y2=\"$y2Value\" x2=\"$x2Value\"/>\n</svg>\n"
+            "<svg>\n<line x1=\"$x1Value\" x2=\"$x2Value\" y1=\"$y1Value\" y2=\"$y2Value\"/>\n</svg>\n"
         )
     }
 

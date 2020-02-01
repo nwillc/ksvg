@@ -17,10 +17,13 @@
 package com.github.nwillc.ksvg.elements
 
 import com.github.nwillc.ksvg.attributes.HasStroke
+import com.github.nwillc.ksvg.logging.LogLevel
+import com.github.nwillc.ksvg.logging.log
 import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.fail
 
 class RECTTest : HasSvg(true) {
 
@@ -36,15 +39,18 @@ class RECTTest : HasSvg(true) {
 
     @Test
     fun rect() {
-        svg.rect {
-            x = X_VALUE
-            y = "${Y_VALUE}px"
-            height = "$HEIGHT%"
-            width = "$WIDTH"
+        val svg = SVG.svg {
+            rect {
+                x = X_VALUE
+                y = "${Y_VALUE}px"
+                height = "$HEIGHT%"
+                width = "$WIDTH"
+            }
         }
         assertEquals(
             svg.toString(),
-            "<svg>\n<rect x=\"$X_VALUE\" width=\"$WIDTH\" y=\"${Y_VALUE}px\" height=\"$HEIGHT%\"/>\n</svg>\n"
+            "<svg>\n<rect height=\"$HEIGHT%\" width=\"$WIDTH\" x=\"$X_VALUE\" y=\"${Y_VALUE}px\"/>\n</svg>\n",
+            svg.toString()
         )
     }
 

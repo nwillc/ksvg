@@ -122,3 +122,12 @@ kotlin {
         }
     }
 }
+
+tasks {
+    withType<Test> {
+        testLogging {
+            showStandardStreams = true
+            events("passed", "failed", "skipped")
+        }
+    }
+}

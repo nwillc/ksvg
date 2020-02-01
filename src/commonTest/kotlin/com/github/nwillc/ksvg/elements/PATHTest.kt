@@ -24,8 +24,10 @@ class PATHTest : HasSvg(true) {
     @Test
     fun pathTag() {
         val path = "M 10,30 A 20,20 0,0,1 50,30 Z"
-        svg.path {
-            d = path
+        val svg = SVG.svg {
+            path {
+                d = path
+            }
         }
 
         assertEquals(svg.toString(), "<svg>\n<path d=\"$path\"/>\n</svg>\n")

@@ -16,6 +16,7 @@
 
 package com.github.nwillc.ksvg.attributes
 
+import com.github.nwillc.ksvg.elements.SVG
 import com.github.nwillc.ksvg.testing.HasSvg
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
@@ -31,10 +32,12 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun validPositionsPercentages() {
-        svg.width = "0"
-        svg.width = "10"
-        svg.width = "10%"
-        svg.width = "9px"
+        SVG.svg {
+            width = "0"
+            width = "10"
+            width = "10%"
+            width = "9px"
+        }
     }
 
     @Test
@@ -46,9 +49,11 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun validListsNumbers() {
-        svg.viewBox = "0 0 1 5"
-        svg.viewBox = "10  0 3 4"
-        svg.viewBox = "10,0, 3,4"
+        SVG.svg {
+            viewBox = "0 0 1 5"
+            viewBox = "10  0 3 4"
+            viewBox = "10,0, 3,4"
+        }
     }
 
     @Test
@@ -62,9 +67,11 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun validLengths() {
-        svg.circle {
-            r = "10"
-            r = "10px"
+        SVG.svg {
+            circle {
+                r = "10"
+                r = "10px"
+            }
         }
     }
 
@@ -78,13 +85,15 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun validPaths() {
-        svg.path {
-            d = "M 150,0 L 75,200 L 225,200 Z"
-            d = "M150 0 L75 200 L225 200 Z"
-            d = "m 150 0" +
-                "l 75 200 " +
-                "l 225 200 " +
-                "z"
+        SVG.svg {
+            path {
+                d = "M 150,0 L 75,200 L 225,200 Z"
+                d = "M150 0 L75 200 L225 200 Z"
+                d = "m 150 0" +
+                    "l 75 200 " +
+                    "l 225 200 " +
+                    "z"
+            }
         }
     }
 
@@ -114,8 +123,10 @@ internal class AttributeTypeTest : HasSvg(true) {
 
     @Test
     fun validHref() {
-        svg.use {
-            href = "#aGoodName"
+        SVG.svg {
+            use {
+                href = "#aGoodName"
+            }
         }
     }
 
