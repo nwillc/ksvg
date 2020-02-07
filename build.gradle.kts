@@ -13,6 +13,7 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
+import org.jetbrains.dokka.gradle.DokkaTask
 
 val coverageThreshold = 0.98
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
@@ -29,6 +30,7 @@ val mockkVersion: String by project
 plugins {
     kotlin("multiplatform") version "1.3.61"
     `maven-publish`
+    id("org.jetbrains.dokka") version "0.10.0"
 }
 
 group = "com.github.nwillc"
@@ -38,6 +40,7 @@ logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
 repositories {
     jcenter()
+    mavenLocal()
 }
 
 kotlin {
@@ -128,6 +131,13 @@ tasks {
         testLogging {
             showStandardStreams = true
             events("passed", "failed", "skipped")
+        }
+    }
+    withType<DokkaTask> {
+        outputFormat = "html"
+        outputDirectory = "docs/dokka"
+        configuration {
+            includes = listOf("Module.md")
         }
     }
 }
