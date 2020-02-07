@@ -13,24 +13,17 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
+import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 
 val coverageThreshold = 0.98
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
-val publicationName = "maven"
-
-val assertJVersion: String by project
-val fakerVersion: String by project
-val gradleVersion: String by project
-val jacocoToolVersion: String by project
-val jupiterVersion: String by project
-val ktlintToolVersion: String by project
-val mockkVersion: String by project
 
 plugins {
     kotlin("multiplatform") version "1.3.61"
     `maven-publish`
     id("org.jetbrains.dokka") version "0.10.0"
+    id("com.jfrog.bintray") version "1.8.4"
 }
 
 group = "com.github.nwillc"
@@ -44,14 +37,14 @@ repositories {
 }
 
 kotlin {
-    jvm() {
+    jvm {
         mavenPublication {
             artifactId = "${project.name}"
             // Add a docs JAR artifact (it should be a custom task):
             // artifact(javadocJar)
         }
     }
-    js() {
+    js {
         useCommonJs()
         browser {
             runTask {
@@ -138,6 +131,16 @@ tasks {
         outputDirectory = "docs/dokka"
         configuration {
             includes = listOf("Module.md")
+        }
+    }
+    withType<BintrayUploadTask> {
+        onlyIf {
+            if (project.version.toString().contains('-')) {
+                logger.lifecycle("Version v${project.version} is not a release version - skipping upload.")
+                false
+            } else {
+                true
+            }
         }
     }
 }
