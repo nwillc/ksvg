@@ -13,6 +13,7 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
+import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 
@@ -22,12 +23,13 @@ val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 plugins {
     kotlin("multiplatform") version "1.3.61"
     `maven-publish`
+    base
     id("org.jetbrains.dokka") version "0.10.0"
     id("com.jfrog.bintray") version "1.8.4"
 }
 
 group = "com.github.nwillc"
-version = "3.0.0-SNAPSHOT"
+version = "3.0.1-SNAPSHOT"
 
 logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
@@ -117,6 +119,30 @@ kotlin {
             }
         }
     }
+}
+
+bintray {
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_API_KEY")
+    dryRun = false
+    publish = true
+    val pubs = publishing.publications
+                   .map { it.name }
+                   .filter { it != "kotlinMultiplatform" }
+                   .toTypedArray()
+    setPublications(*pubs)
+    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
+           repo = "maven"
+           name = project.name
+           desc = "Kotlin SVG generation DSL."
+           websiteUrl = "https://github.com/nwillc/ksvg"
+           issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
+           vcsUrl = "https://github.com/nwillc/ksvg.git"
+           version.vcsTag = "v${project.version}"
+           setLicenses("ISC")
+           setLabels("kotlin", "SVG", "DSL")
+           publicDownloadNumbers = true
+       })
 }
 
 tasks {

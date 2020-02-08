@@ -4,7 +4,7 @@
 [![Download](https://api.bintray.com/packages/nwillc/maven/ksvg/images/download.svg)](https://bintray.com/nwillc/maven/ksvg/_latestVersion)
 ------
 
-# Kotlin SVG DSL
+# Kotlin Multiplatform SVG DSL
 
 I had a [Kotlin](https://kotlinlang.org/) microservice that needed to produce a simple heatmap chart on an HTML page to
 a large audience very rapidly. This was an ad hoc DevOps requirement, so I didn't want to take on an involved Javascript
@@ -92,7 +92,7 @@ fun codeMonkey() {
          svg.render(it, SVG.RenderMode.FILE)
      }
     }
-    
+
     private fun Container.ear(x: Int, y: Int) {
         circle {
             cssClass = "black-stroke fur-color"
@@ -107,26 +107,30 @@ fun codeMonkey() {
             r = "28"
         }
     }
-    
+
 ```
 Yields a code monkey:
 ![code monkey](./docs/images/codeMonkey.svg)
 ## Validation
-Originally the attribute values were *appropriate* types, but eventually as support for percentage values etc. was 
-added, and considering they are always represented as strings in SVG, the value type was changed to String. But that 
+Originally the attribute values were *appropriate* types, but eventually as support for percentage values etc. was
+added, and considering they are always represented as strings in SVG, the value type was changed to String. But that
 made errors like `length = "foo"` possible.  Therefore, attribute validation was added. Over time other validations
-became apparent too. With validation on, while the SVG is created, things are checked, for example when an attribute 
-string is assigned, if it can be properly validated, it is. Validation can be turned off for performance reasons. 
+became apparent too. With validation on, while the SVG is created, things are checked, for example when an attribute
+string is assigned, if it can be properly validated, it is. Validation can be turned off for performance reasons.
 
 ## About Inline vs File SVG
-SVG is an XML tag based format. Those tags can be put into an `.svg` file, or in modern browsers 
+SVG is an XML tag based format. Those tags can be put into an `.svg` file, or in modern browsers
 appear directly inline in the HTML5. However some attributes and other details differ slightly between these modes. This
 DSL is biased toward the inline representation because that's its origin, but it supports indicating the rendering mode
 and in the limitted scenarios tested it works.
 
 ## A Limited Set of Elements
-Currently only a small set of SVG Elements are supported. Adding more is straight forward, I just met my own needs, and 
+Currently only a small set of SVG Elements are supported. Adding more is straight forward, I just met my own needs, and
 so additions can be done by others, or as my needs increase.
+
+## Multiplatform Support
+This is a multiplatform project currently targeting JVM and JavaScript.  The JVM target is fully baked, the
+JavaScript is still a bit doughy. Looking for JavaScript folks to help me polish it.
 
 ## As Compared To kotlinx.html
 Why did I write yet another SVG DSL when SVG is covered by the [kotlinx.html](https://github.com/Kotlin/kotlinx.html)?
