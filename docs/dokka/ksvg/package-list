@@ -8,3 +8,4 @@ $dokka.location:com.github.nwillc.ksvg$usingAppendable(kotlin.String, kotlin.Fun
 com.github.nwillc.ksvg
 com.github.nwillc.ksvg.attributes
 com.github.nwillc.ksvg.elements
+com.github.nwillc.ksvg.logging
