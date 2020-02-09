@@ -17,7 +17,6 @@ import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.jetbrains.dokka.gradle.DokkaTask
 
-val coverageThreshold = 0.98
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 
 plugins {
@@ -41,9 +40,7 @@ repositories {
 kotlin {
     jvm {
         mavenPublication {
-            artifactId = "${project.name}"
-            // Add a docs JAR artifact (it should be a custom task):
-            // artifact(javadocJar)
+            artifactId = project.name
         }
     }
     js {
@@ -62,12 +59,6 @@ kotlin {
                 metaInfo = true
                 main = "call"
             }
-        }
-        mavenPublication {
-            // Setup the publication for the target
-            //            artifactId = "ksvg-js"
-            // Add a docs JAR artifact (it should be a custom task):
-            //            artifact(javadocJar)
         }
     }
     sourceSets {
@@ -111,10 +102,7 @@ kotlin {
         val jsTest by getting {
             dependencies {
                 setOf(
-                    kotlin("test-js"),
-                    kotlin("test-common"),
-                    kotlin("test-junit"),
-                    kotlin("test-annotations-common")
+                    kotlin("test-js")
                 ).forEach { implementation(it) }
             }
         }
@@ -140,7 +128,7 @@ bintray {
            vcsUrl = "https://github.com/nwillc/ksvg.git"
            version.vcsTag = "v${project.version}"
            setLicenses("ISC")
-           setLabels("kotlin", "SVG", "DSL")
+           setLabels("kotlin", "SVG", "DSL", "Multiplatform")
            publicDownloadNumbers = true
        })
 }
