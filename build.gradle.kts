@@ -22,6 +22,7 @@ val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 plugins {
     kotlin("multiplatform") version "1.3.61"
     `maven-publish`
+    java
     jacoco
     id("org.jetbrains.dokka") version "0.10.0"
     id("com.jfrog.bintray") version "1.8.4"
