@@ -22,7 +22,7 @@ val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 plugins {
     kotlin("multiplatform") version "1.3.61"
     `maven-publish`
-    base
+    jacoco
     id("org.jetbrains.dokka") version "0.10.0"
     id("com.jfrog.bintray") version "1.8.4"
 }
@@ -115,25 +115,53 @@ bintray {
     dryRun = false
     publish = true
     val pubs = publishing.publications
-                   .map { it.name }
-                   .filter { it != "kotlinMultiplatform" }
-                   .toTypedArray()
+        .map { it.name }
+        .filter { it != "kotlinMultiplatform" }
+        .toTypedArray()
     setPublications(*pubs)
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
-           repo = "maven"
-           name = project.name
-           desc = "Kotlin SVG generation DSL."
-           websiteUrl = "https://github.com/nwillc/ksvg"
-           issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
-           vcsUrl = "https://github.com/nwillc/ksvg.git"
-           version.vcsTag = "v${project.version}"
-           setLicenses("ISC")
-           setLabels("kotlin", "SVG", "DSL", "Multiplatform")
-           publicDownloadNumbers = true
-       })
+        repo = "maven"
+        name = project.name
+        desc = "Kotlin SVG generation DSL."
+        websiteUrl = "https://github.com/nwillc/ksvg"
+        issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
+        vcsUrl = "https://github.com/nwillc/ksvg.git"
+        version.vcsTag = "v${project.version}"
+        setLicenses("ISC")
+        setLabels("kotlin", "SVG", "DSL", "Multiplatform")
+        publicDownloadNumbers = true
+    })
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("${buildDir}/jacoco-reports")
 }
 
 tasks {
+    withType<JacocoReport> {
+        dependsOn("jvmTest")
+        group = "Reporting"
+        description = "Generate Jacoco coverage reports."
+        val coverageSourceDirs = arrayOf(
+            "commonMain/src",
+            "jvmMain/src"
+        )
+        val classFiles = File("${buildDir}/classes/kotlin/jvm/")
+            .walkBottomUp()
+            .toSet()
+        classDirectories.setFrom(classFiles)
+        sourceDirectories.setFrom(files(coverageSourceDirs))
+        additionalSourceDirs.setFrom(files(coverageSourceDirs))
+        executionData.setFrom(files("${buildDir}/jacoco/jvmTest.exec"))
+
+        reports {
+            xml.isEnabled = false
+            csv.isEnabled = false
+            html.isEnabled = true
+            html.destination = File("${buildDir}/jacoco-reports/html")
+        }
+    }
     withType<Test> {
         testLogging {
             showStandardStreams = true
