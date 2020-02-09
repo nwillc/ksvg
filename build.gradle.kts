@@ -157,7 +157,7 @@ tasks {
         executionData.setFrom(files("${buildDir}/jacoco/jvmTest.exec"))
 
         reports {
-            xml.isEnabled = false
+            xml.isEnabled = true
             csv.isEnabled = false
             html.isEnabled = true
             html.destination = File("${buildDir}/jacoco-reports/html")
