@@ -20,7 +20,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 
 plugins {
-    kotlin("multiplatform") version "1.3.61"
+    kotlin("multiplatform") // version "1.3.61"
     `maven-publish`
     java
     jacoco
