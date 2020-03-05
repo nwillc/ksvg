@@ -20,12 +20,13 @@ import org.jetbrains.dokka.gradle.DokkaTask
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 
 plugins {
-    kotlin("multiplatform") version "1.3.61"
+    kotlin("multiplatform") version "1.3.70"
     `maven-publish`
     java
     jacoco
-    id("org.jetbrains.dokka") version "0.10.0"
+    id("org.jetbrains.dokka") version "0.10.1"
     id("com.jfrog.bintray") version "1.8.4"
+    id("com.github.nwillc.vplugin") version "3.0.1"
 }
 
 group = "com.github.nwillc"
