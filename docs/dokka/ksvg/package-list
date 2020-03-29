@@ -4,6 +4,7 @@ $dokka.location:com.github.nwillc.ksvg$escapeHTML(java.lang.Appendable, kotlin.C
 $dokka.location:com.github.nwillc.ksvg$escapeHTML(kotlin.String)com.github.nwillc.ksvg/kotlin.-string/escape-h-t-m-l.html
 $dokka.location:com.github.nwillc.ksvg$toAttributeName(java.lang.Appendable, kotlin.CharSequence)com.github.nwillc.ksvg/java.lang.-appendable/to-attribute-name.html
 $dokka.location:com.github.nwillc.ksvg$toAttributeName(kotlin.String)com.github.nwillc.ksvg/kotlin.-string/to-attribute-name.html
+$dokka.location:com.github.nwillc.ksvg$usingAppendable(kotlin.String, kotlin.Function2((, kotlin.CharSequence, kotlin.Unit)))com.github.nwillc.ksvg/kotlin.-string/using-appendable.html
 $dokka.location:com.github.nwillc.ksvg$usingAppendable(kotlin.String, kotlin.Function2((java.lang.Appendable, kotlin.CharSequence, kotlin.Unit)))com.github.nwillc.ksvg/kotlin.-string/using-appendable.html
 com.github.nwillc.ksvg
 com.github.nwillc.ksvg.attributes

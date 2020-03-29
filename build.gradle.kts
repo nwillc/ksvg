@@ -20,13 +20,13 @@ import org.jetbrains.dokka.gradle.DokkaTask
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 
 plugins {
-    kotlin("multiplatform") version "1.3.70"
+    kotlin("multiplatform") version "1.3.71"
     `maven-publish`
     java
     jacoco
     id("org.jetbrains.dokka") version "0.10.1"
     id("com.jfrog.bintray") version "1.8.4"
-    id("com.github.nwillc.vplugin") version "3.0.1"
+    id("com.github.nwillc.vplugin") version "3.0.3"
 }
 
 group = "com.github.nwillc"
@@ -173,8 +173,32 @@ tasks {
     withType<DokkaTask> {
         outputFormat = "html"
         outputDirectory = "docs/dokka"
-        configuration {
-            includes = listOf("Module.md")
+//        configuration {
+//            includes = listOf("Module.md")
+//        }
+        multiplatform {
+            register("jvmDocs") {
+                includes = listOf("Module.md")
+                targets = listOf("JVM")
+                platform = "jvm"
+                sourceRoot {
+                    path = kotlin.sourceSets.getByName("jvmMain").kotlin.srcDirs.first().toString()
+                }
+                sourceRoot {
+                    path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
+                }
+            }
+            register("jsDocs") {
+                includes = listOf("Module.md")
+                targets = listOf("JS")
+                platform = "js"
+                sourceRoot {
+                    path = kotlin.sourceSets.getByName("jsMain").kotlin.srcDirs.first().toString()
+                }
+                sourceRoot {
+                    path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
+                }
+            }
         }
     }
     withType<BintrayUploadTask> {
