@@ -43,22 +43,8 @@ kotlin {
         }
     }
     js {
-        useCommonJs()
-        browser {
-            runTask {
-                sourceMaps = true
-            }
-            webpackTask {
-                sourceMaps = true
-            }
-        }
-        compilations.all {
-            kotlinOptions {
-                sourceMap = true
-                metaInfo = true
-                main = "call"
-            }
-        }
+        browser()
+        nodejs()
     }
     sourceSets {
         val commonMain by getting {

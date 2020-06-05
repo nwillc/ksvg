@@ -19,7 +19,7 @@ object PluginVersions {
     const val bintray = "1.8.5"
     const val dokka = "0.10.1"
     const val kotlin = "1.3.72"
-    const val vplugin = "3.0.4"
+    const val vplugin = "3.0.5"
 }
 
 object Dependencies {
