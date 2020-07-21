@@ -153,6 +153,18 @@ is as close to a one to one mapping as I could make it.  So what if you want to 
 
 ```
 
+## Kotlin/JS Installation
+To use KSVG with Kotlin/JS, use the `ksvg-js` artifact and ensure you add `maven("https://dl.bintray.com/nwillc/maven")` to your repositories list:
+```
+repositories {
+    maven("https://dl.bintray.com/nwillc/maven")
+}
+
+dependencies {
+    implementation("com.github.nwillc:ksvg-js:x.y.z")
+}
+```
+
 ## See Also
 
 - [API Docs](https://nwillc.github.io/ksvg/dokka/ksvg)
