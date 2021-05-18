@@ -28,7 +28,7 @@ fun Appendable.escapeHTML(csq: CharSequence) {
         when {
             c > EIGHT_BIT_START || c == '"' || c == '<' || c == '>' || c == '&' -> {
                 append("&#")
-                append(c.toInt().toString())
+                append(c.code.toString())
                 append(';')
             }
             else -> append(c)
@@ -48,7 +48,7 @@ fun Appendable.toAttributeName(csq: CharSequence) {
     csq.forEach {
         if (it in 'A'..'Z') {
             append('-')
-            append(it.toLowerCase())
+            append(it.lowercaseChar())
         } else {
             append(it)
         }

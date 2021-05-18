@@ -16,18 +16,14 @@
 
 
 object PluginVersions {
-    const val bintray = "1.8.5"
-    const val dokka = "0.10.1"
-    const val kotlin = "1.3.72"
+    const val kotlin = "1.5.0"
     const val vplugin = "3.0.5"
 }
 
 object Dependencies {
     val plugins = mapOf(
         "org.jetbrains.kotlin.multiplatform" to PluginVersions.kotlin,
-        "org.jetbrains.dokka" to PluginVersions.dokka,
-        "com.github.nwillc.vplugin" to PluginVersions.vplugin,
-        "com.jfrog.bintray" to PluginVersions.bintray
+        "com.github.nwillc.vplugin" to PluginVersions.vplugin
     )
 
     fun plugins(vararg keys: String, block: (Pair<String, String>) -> Unit) =

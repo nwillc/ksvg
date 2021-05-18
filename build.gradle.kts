@@ -13,185 +13,50 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-import com.jfrog.bintray.gradle.BintrayExtension
-import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
-import org.jetbrains.dokka.gradle.DokkaTask
 
 val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
 
 plugins {
     `maven-publish`
     java
-    jacoco
     Dependencies.plugins.forEach { (n, v) -> id(n) version v }
 }
 
 group = "com.github.nwillc"
-version = "3.0.1-SNAPSHOT"
+version = "3.1.0-SNAPSHOT"
 
 logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
 repositories {
-    jcenter()
+    mavenCentral()
     mavenLocal()
 }
 
 kotlin {
-    jvm {
-        mavenPublication {
-            artifactId = project.name
-        }
-    }
+    jvm()
     js {
         browser()
         nodejs()
     }
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                setOf(
-                    kotlin("stdlib-common")
-                ).forEach { implementation(it) }
-            }
-        }
-        val commonTest by getting {
-            dependencies {
-                setOf(
-                    kotlin("test-common"),
-                    kotlin("test-junit"),
-                    kotlin("test-annotations-common")
-                ).forEach { implementation(it) }
-            }
-        }
-        val jvmMain by getting {
-            dependencies {
-                setOf(
-                    kotlin("stdlib-jdk8")
-                ).forEach { implementation(it) }
-            }
-        }
         val jvmTest by getting {
             dependencies {
-                setOf(
-                    kotlin("test-junit")
-                ).forEach { implementation(it) }
-            }
-        }
-        val jsMain by getting {
-            dependencies {
-                setOf(
-                    kotlin("stdlib-js")
-                ).forEach { implementation(it) }
+                implementation(kotlin("test-junit"))
             }
         }
         val jsTest by getting {
             dependencies {
-                setOf(
-                    kotlin("test-js")
-                ).forEach { implementation(it) }
+                implementation(kotlin("test-js"))
             }
         }
     }
 }
 
-bintray {
-    user = System.getenv("BINTRAY_USER")
-    key = System.getenv("BINTRAY_API_KEY")
-    dryRun = false
-    publish = true
-    val pubs = publishing.publications
-        .map { it.name }
-        .filter { it != "kotlinMultiplatform" }
-        .toTypedArray()
-    setPublications(*pubs)
-    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
-        repo = "maven"
-        name = project.name
-        desc = "Kotlin SVG generation DSL."
-        websiteUrl = "https://github.com/nwillc/ksvg"
-        issueTrackerUrl = "https://github.com/nwillc/ksvg/issues"
-        vcsUrl = "https://github.com/nwillc/ksvg.git"
-        version.vcsTag = "v${project.version}"
-        setLicenses("ISC")
-        setLabels("kotlin", "SVG", "DSL", "Multiplatform")
-        publicDownloadNumbers = true
-    })
-}
-
-jacoco {
-    toolVersion = "0.8.5"
-    reportsDir = file("${buildDir}/jacoco-reports")
-}
-
 tasks {
-    withType<JacocoReport> {
-        dependsOn("jvmTest")
-        group = "Reporting"
-        description = "Generate Jacoco coverage reports."
-        val coverageSourceDirs = arrayOf(
-            "commonMain/src",
-            "jvmMain/src"
-        )
-        val classFiles = File("${buildDir}/classes/kotlin/jvm/")
-            .walkBottomUp()
-            .toSet()
-        classDirectories.setFrom(classFiles)
-        sourceDirectories.setFrom(files(coverageSourceDirs))
-        additionalSourceDirs.setFrom(files(coverageSourceDirs))
-        executionData.setFrom(files("${buildDir}/jacoco/jvmTest.exec"))
-
-        reports {
-            xml.isEnabled = true
-            csv.isEnabled = false
-            html.isEnabled = true
-            html.destination = File("${buildDir}/jacoco-reports/html")
-        }
-    }
     withType<Test> {
         testLogging {
             showStandardStreams = true
             events("passed", "failed", "skipped")
-        }
-    }
-    withType<DokkaTask> {
-        outputFormat = "html"
-        outputDirectory = "docs/dokka"
-//        configuration {
-//            includes = listOf("Module.md")
-//        }
-        multiplatform {
-            register("jvmDocs") {
-                includes = listOf("Module.md")
-                targets = listOf("JVM")
-                platform = "jvm"
-                sourceRoot {
-                    path = kotlin.sourceSets.getByName("jvmMain").kotlin.srcDirs.first().toString()
-                }
-                sourceRoot {
-                    path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
-                }
-            }
-            register("jsDocs") {
-                includes = listOf("Module.md")
-                targets = listOf("JS")
-                platform = "js"
-                sourceRoot {
-                    path = kotlin.sourceSets.getByName("jsMain").kotlin.srcDirs.first().toString()
-                }
-                sourceRoot {
-                    path = kotlin.sourceSets.getByName("commonMain").kotlin.srcDirs.first().toString()
-                }
-            }
-        }
-    }
-    withType<BintrayUploadTask> {
-        onlyIf {
-            if (project.version.toString().contains('-')) {
-                logger.lifecycle("Version v${project.version} is not a release version - skipping upload.")
-                false
-            } else {
-                true
-            }
         }
     }
 }
