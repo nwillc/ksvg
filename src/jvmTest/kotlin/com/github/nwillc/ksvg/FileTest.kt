@@ -18,7 +18,8 @@ package com.github.nwillc.ksvg
 
 import com.github.nwillc.ksvg.elements.Container
 import com.github.nwillc.ksvg.elements.SVG
-import java.io.FileWriter
+import java.io.ByteArrayOutputStream
+import java.io.OutputStreamWriter
 import kotlin.test.Test
 
 class FileTest {
@@ -45,7 +46,7 @@ class FileTest {
                     href = "#circle1"
                 }
         }
-        FileWriter("/tmp/circlesDiagonal.svg").use {
+        OutputStreamWriter(ByteArrayOutputStream()).use {
             svg.render(it, RenderMode.FILE)
         }
     }
@@ -104,7 +105,7 @@ class FileTest {
             }
         }
 
-        FileWriter("/tmp/codeMonkey.svg").use {
+        OutputStreamWriter(ByteArrayOutputStream()).use {
             svg.render(it, RenderMode.FILE)
         }
     }
