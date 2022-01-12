@@ -14,12 +14,10 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-val jvmTargetVersion = JavaVersion.VERSION_1_8.toString()
-
 plugins {
+    val kotlinVersion = "1.6.10"
+    kotlin("multiplatform") version kotlinVersion
     `maven-publish`
-    java
-    Dependencies.plugins.forEach { (n, v) -> id(n) version v }
 }
 
 group = "com.github.nwillc"
@@ -29,21 +27,38 @@ logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 kotlin {
-    jvm()
-    js {
-        browser()
+    jvm {
+        compilations.forEach {
+            it.kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
+            }
+        }
+    }
+    js(BOTH) {
+        browser {
+            testTask {
+                enabled = false
+            }
+        }
         nodejs()
     }
     sourceSets {
+        commonTest {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+            }
+        }
+
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
             }
         }
+
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
