@@ -15,8 +15,7 @@
  */
 
 plugins {
-    val kotlinVersion = "1.6.10"
-    kotlin("multiplatform") version kotlinVersion
+    kotlin("multiplatform") version "1.7.0"
     `maven-publish`
 }
 
@@ -25,14 +24,10 @@ version = "3.1.0-SNAPSHOT"
 
 logger.lifecycle("${project.group}.${project.name}@${project.version}")
 
-repositories {
-    mavenCentral()
-}
-
 kotlin {
     jvm {
-        compilations.forEach {
-            it.kotlinOptions {
+        compilations.configureEach {
+            kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_1_8.toString()
             }
         }
@@ -48,8 +43,7 @@ kotlin {
     sourceSets {
         commonTest {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
+                implementation(kotlin("test"))
             }
         }
 
@@ -60,9 +54,7 @@ kotlin {
         }
 
         val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
-            }
+            dependencies { }
         }
     }
 }
@@ -74,4 +66,9 @@ tasks {
             events("passed", "failed", "skipped")
         }
     }
+}
+
+tasks.wrapper {
+    gradleVersion = "7.4.2"
+    distributionType = Wrapper.DistributionType.ALL
 }
