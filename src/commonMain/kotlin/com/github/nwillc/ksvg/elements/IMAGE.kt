@@ -16,13 +16,16 @@
 
 package com.github.nwillc.ksvg.elements
 
+import com.github.nwillc.ksvg.attributes.*
 import com.github.nwillc.ksvg.attributes.AttributeProperty
-import com.github.nwillc.ksvg.attributes.AttributeType
 
-class IMAGE(validation: Boolean = false): Region("image", validation) {
+class IMAGE(validation: Boolean = false, hasAttributes: HasAttributes = HasAttributesImpl(validation)):
+    Region("image", validation, hasAttributes),
+    HasOrigin by HasOriginImpl(hasAttributes),
+    HasDimensions by HasDimensionsImpl(hasAttributes) {
     var href: String? by AttributeProperty(type = AttributeType.IdName)
-    var x: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    var y: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    var height: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
-    var width: String? by AttributeProperty(type = AttributeType.LengthOrPercentage)
+    /**
+     * Add a title to the image.
+     */
+    fun title(block: TITLE.() -> Unit): TITLE = add(TITLE(validation), block)
 }
