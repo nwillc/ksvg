@@ -71,4 +71,9 @@ abstract class Container(
      * Create a group element in this svg.
      */
     fun use(block: USE.() -> Unit): USE = add(USE(validation), block)
+
+    /**
+     * Create an image element in this svg
+     */
+    fun image(block: IMAGE.() -> Unit): IMAGE = add(IMAGE(validation), block)
 }
