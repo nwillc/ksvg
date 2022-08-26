@@ -165,7 +165,7 @@ so additions can be done by others, or as my needs increase.
 
 ## Multiplatform Support
 This is a multiplatform project currently targeting JVM and JavaScript.  The JVM target is fully baked, the
-JavaScript is still a bit doughy. Looking for JavaScript folks to help me polish it.
+JavaScript is still a bit doughy. Looking for [JavaScript](https://www.scaler.com/topics/javascript/) folks to help me polish it.
 
 ## As Compared To kotlinx.html
 Why did I write yet another SVG DSL when SVG is covered by the [kotlinx.html](https://github.com/Kotlin/kotlinx.html)?
