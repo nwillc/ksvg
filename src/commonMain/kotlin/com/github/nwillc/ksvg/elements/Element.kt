@@ -84,10 +84,17 @@ abstract class Element(
                 appendable.append('\n')
             }
             children.forEach {
-                it.render(appendable, renderMode)
+                it.renderAsChild(appendable, renderMode)
             }
             appendable.append("</$name>\n")
         }
+    }
+
+    /**
+     * Render an element nested inside another element.
+     */
+    internal open fun renderAsChild(appendable: Appendable, renderMode: RenderMode) {
+        render(appendable, renderMode)
     }
 
     /**

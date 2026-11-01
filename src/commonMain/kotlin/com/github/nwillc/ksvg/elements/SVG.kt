@@ -69,4 +69,8 @@ class SVG(validation: Boolean = false, hasAttributes: HasAttributes = HasAttribu
         }
         super.render(appendable, renderMode)
     }
+
+    internal override fun renderAsChild(appendable: Appendable, renderMode: RenderMode) {
+        super.render(appendable, renderMode)
+    }
 }
