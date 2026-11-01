@@ -20,9 +20,41 @@ import com.github.nwillc.ksvg.elements.Container
 import com.github.nwillc.ksvg.elements.SVG
 import java.io.ByteArrayOutputStream
 import java.io.OutputStreamWriter
+import java.io.StringReader
+import javax.xml.parsers.DocumentBuilderFactory
+import org.xml.sax.InputSource
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class FileTest {
+    @Test
+    fun `nested SVG elements produce a valid XML document`() {
+        val svg = SVG.svg {
+            children += SVG.svg {
+                a {
+                    href = "#target"
+                }
+            }
+            g {
+                children += SVG.svg {
+                    children += SVG.svg {
+                        rect {
+                            id = "target"
+                        }
+                    }
+                }
+            }
+        }
+        val output = buildString { svg.render(this, RenderMode.FILE) }
+        val factory = DocumentBuilderFactory.newInstance().apply { isNamespaceAware = true }
+        val document = factory.newDocumentBuilder().parse(InputSource(StringReader(output)))
+        val namespace = "http://www.w3.org/2000/svg"
+
+        assertEquals(4, document.getElementsByTagNameNS(namespace, "svg").length)
+        val link = document.getElementsByTagNameNS(namespace, "a").item(0)
+        assertEquals("#target", link.attributes.getNamedItem("href").nodeValue)
+    }
+
     @Test
     fun `create diagonal circles`() {
         val svg = SVG.svg(true) {
